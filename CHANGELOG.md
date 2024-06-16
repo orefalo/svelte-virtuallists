@@ -5,6 +5,13 @@
 
 ### Features
 
+* first commit ([38430dc](https://github.com/orefalo/svelte-virtuallists/commit/38430dccfab27b7a5935e8de5adcaf2ef3b05c47))
+
+## 1.0.0 (2024-06-16)
+
+
+### Features
+
 * blabla ([814bcfb](https://github.com/orefalo/svelte-virtuallists/commit/814bcfbbe99481e166a75786f8aca49125dcc895))
 * bring the demo over ([cca48a7](https://github.com/orefalo/svelte-virtuallists/commit/cca48a7e60b013f005dce5b881e0bb66389941bf))
 * fix demo and github actions ([43c812a](https://github.com/orefalo/svelte-virtuallists/commit/43c812a78be9290de9ad6d456ce0b6763367128e))
