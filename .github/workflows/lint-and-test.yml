@@ -1,0 +1,96 @@
+name: Lint check & Testing
+run-name: Lint check & Testing
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # The whole Node.js and pnpm installation and caching
+      # Based on https://github.com/pnpm/action-setup/tree/6e1964dde3397a825e79e4607ad57f3f7ca2c7cb#use-cache-to-reduce-installation-time
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 9
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: SvelteKit Sync
+        run: npx svelte-kit sync
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Svelte Sync
+        if: success() || failure() # Run even if previous failed
+        run: npx svelte-kit sync
+
+      - name: Svelte Check
+        if: success() || failure() # Run even if previous failed
+        run: pnpm run check
+
+      # Build Frontend
+      - name: Build Frontend
+        if: success() || failure() # Run even if previous failed
+        run: pnpm run build
+
+      # Cache Playwright
+      - name: Cache Playwright
+        if: success() || failure() # Run even if previous failed
+        uses: actions/cache@v4
+        id: playwright_cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }} # (not a good key)
+
+      # Install Playwright
+      - name: Install Playwright
+        # if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
+      # Run Tests
+      - name: Test
+        run: pnpm run test
+        env:
+          DEBUG: pw:webserver
+
+      # Upload test results
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results
