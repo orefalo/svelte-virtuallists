@@ -93,42 +93,80 @@ TODO
 
 The component accepts the following properties
 
-| Property          | Type                                              | Required? | Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ----------------- | ------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| width             | `number` or `string`\*                            |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                                                                                                                                                                                                                                      |
-| height            | `number` or `string`\*                            |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                                                                                                                                                                                                                                       |
-| itemCount         | `number`                                          |     ✓     | The number of items you want to render                                                                                                                                                                                                                                                                                                                                                                                                |
-| itemSize          | `number \| number[] \| (index: number) => number` |     ✓     | Either a fixed height/width (depending on the scrollDirection), an array containing the heights of all the items in your list, or a function that returns the height of an item given its index: `(index: number): number`                                                                                                                                                                                                            |
-| scrollDirection   | `string`                                          |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                                                                                                                                                                                                                                                                                                                           |
-| scrollOffset      | `number`                                          |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset                                                                                                                                                                                                                                                                                                                                            |
-| scrollToIndex     | `number`                                          |           | Item index to scroll to (by forcefully scrolling if necessary)                                                                                                                                                                                                                                                                                                                                                                        |
-| scrollToAlignment | `string`                                          |           | Used in combination with `scrollToIndex`, this prop controls the alignment of the scrolled to item. One of: `'start'`, `'center'`, `'end'` or `'auto'`. Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
-| scrollToBehaviour | `string`                                          |           | Used in combination with `scrollToIndex`, this prop controls the behaviour of the scrolling. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                                                                                   |
-| overscanCount     | `number`                                          |           | Number of extra buffer items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers/devices.                                                                                                                                                                                                                                                                                    |
-| estimatedItemSize | `number`                                          |           | Used to estimate the total size of the list before all of its items have actually been measured. The estimated total height is progressively adjusted as items are rendered.                                                                                                                                                                                                                                                          |
-| getKey            | `(index: number) => any`                          |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.                                                                                                                                                                                                                         |
+| Property          | Type                               | Required? | Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------- | ---------------------------------- | :-------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| width             | `number` or `string`\*             |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                                                                                                                                                                                                                                      |
+| height            | `number` or `string`\*             |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                                                                                                                                                                                                                                       |
+| itemCount         | `number`                           |     ✓     | The number of items you want to render                                                                                                                                                                                                                                                                                                                                                                                                |
+| itemSize          | `number                            | number[]  | (index: number) => number`                                                                                                                                                                                                                                                                                                                                                                                                            | ✓   | Either a fixed height/width (depending on the scrollDirection), an array containing the heights of all the items in your list, or a function that returns the height of an item given its index: `(index: number): number` |
+| row               | (r:RowAttributes) => SnippetResult |     ✓     | Snippet called to render every item, see below                                                                                                                                                                                                                                                                                                                                                                                        |
+| scrollDirection   | `string`                           |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                                                                                                                                                                                                                                                                                                                           |
+| scrollOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset                                                                                                                                                                                                                                                                                                                                            |
+| scrollToIndex     | `number`                           |           | Item index to scroll to (by forcefully scrolling if necessary)                                                                                                                                                                                                                                                                                                                                                                        |
+| scrollToAlignment | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the alignment of the scrolled to item. One of: `'start'`, `'center'`, `'end'` or `'auto'`. Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
+| scrollToBehaviour | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the behaviour of the scrolling. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                                                                                   |
+| windowOverPadding | `number`                           |           | Number of extra buffer items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers/devices.                                                                                                                                                                                                                                                                                    |
+| estimatedItemSize | `number`                           |           | Used to estimate the total size of the list before all of its items have actually been measured. The estimated total height is progressively adjusted as items are rendered.                                                                                                                                                                                                                                                          |
+| getKey            | `(index: number) => any`           |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.                                                                                                                                                                                                                         |
 
 _\* `height` must be a number when `scrollDirection` is `'vertical'`. Similarly, `width` must be a number if `scrollDirection` is `'horizontal'`_
 
 ### Snippets
 
-- `item` - Slot for each item
-  - Props:
-    - `index: number` - Item index
-    - `style: string` - Item style, must be applied to the slot (look above for example)
-- `header` - Slot for the elements that should appear at the top of the list
-- `footer` - Slot for the elements that should appear at the bottom of the list (e.g. `InfiniteLoading` component from `svelte-infinite-loading`)
+- `header` - a snippet for the elements that should appear at the top of the list
+- `footer` - a snippet for the elements that should appear at the bottom of the list (e.g. `InfiniteLoading` component from `svelte-infinite-loading`)
+- `row` - a required snipper property called to render each row of the list
+
+```typescript
+row: Snippet<[RowAttributes]>;
+
+export interface RowAttributes {
+	index: number; // Item index
+	style: string; //  Item style, must be applied to the slot (look above for example)
+}
+```
+
+for instance,
+
+```svelte
+<VirtualList  ...>
+  {#snippet row({ style, index }:RowAttributes)}
+    <div class="row" {style}>
+      Item: {data[index]}, Row: #{index}
+    </div>
+  {/snippet}
+ </VirtualList>
+```
 
 ### Events
 
-- `afterScroll` - Fired after handling the scroll event
-  - `detail` Props:
-    - `event: ScrollEvent` - The original scroll event
-    - `offset: number` - Either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
-- `itemsUpdated` - Fired when the visible items are updated
-  - `detail` Props:
-    - `start: number` - Index of the first visible item
-    - `end: number` - Index of the last visible item
+- `onAfterScroll` - Fired after handling the scroll event
+
+Accepts a function with the following signature `(event: AfterScrollEvent) => void`
+
+```typescript
+export interface AfterScrollEvent {
+	type: 'range.update';
+	// either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
+	offset: number | string;
+	// the original event
+	event: Event;
+}
+```
+
+- `onVisibleRangeUpdate` - Fired when the visible items are updated
+
+Accepts a function with the following signature `(range: VirtualRange) => void`
+
+```typescript
+export interface VirtualRangeEvent {
+	type: 'scroll.update';
+	start: number; //Index of the first visible item
+	end: number; //Index of the last visible item
+}
+```
+
+`start` and `end` are inclusive of `windowOverPadding` count
 
 ## Contributing
 
