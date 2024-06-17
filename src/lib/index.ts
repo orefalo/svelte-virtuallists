@@ -2,8 +2,11 @@ export type VirtualRowSize = number | number[] | ((index: number) => number);
 
 export { default as VirtualList } from './VirtualList.svelte';
 
+// use by the row() snippet
 export interface RowAttributes {
+	// the index of the row being rendered, from the original dataset
 	index: number;
+	// the calculated style for this row
 	style: string;
 }
 
@@ -13,13 +16,21 @@ export interface VirtualPosition {
 }
 
 export interface VirtualRange {
-	start?: number;
-	end?: number;
+	// index of the first visible item
+	start: number;
+	// index of the last visible item
+	end: number;
+}
+
+export interface VirtualRangeEvent extends VirtualRange {
+	type: 'range.update';
 }
 
 export interface AfterScrollEvent {
+	type: 'scroll.update';
+	// either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
 	offset: number | string;
-	// original event
+	// the original event
 	event: Event;
 }
 

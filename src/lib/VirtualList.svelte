@@ -38,7 +38,7 @@
 		SCROLL_CHANGE_REASON,
 		type AfterScrollEvent,
 		type RowAttributes,
-		type VirtualRange,
+		type VirtualRangeEvent,
 		type VirtualRowSize
 	} from '.';
 
@@ -62,16 +62,16 @@
 		// positioning
 		scrollToIndex?: number | undefined;
 		scrollOffset?: number | undefined;
-		overscanCount?: number;
+		windowOverPadding?: number;
 		scrollDirection?: DIRECTION;
 		scrollToAlignment?: ALIGNMENT;
 		scrollToBehaviour?: SCROLL_BEHAVIOR;
-		//snippets
+		// snippets
 		header?: Snippet;
 		row: Snippet<[RowAttributes]>;
 		footer?: Snippet;
-		// callbacks
-		onVisibleRangeUpdate?: (range: VirtualRange) => void;
+		// events
+		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
 		onAfterScroll?: (event: AfterScrollEvent) => void;
 	}
 
@@ -86,7 +86,7 @@
 		// positioning
 		scrollToIndex,
 		scrollOffset,
-		overscanCount = 3,
+		windowOverPadding = 3,
 		scrollDirection = DIRECTION.VERTICAL,
 		scrollToAlignment = ALIGNMENT.AUTO,
 		scrollToBehaviour = SCROLL_BEHAVIOR.INSTANT,
@@ -96,9 +96,8 @@
 		row,
 		header,
 
-		// callback
-		//TODO rename to visibleRangeUpdated
-		onVisibleRangeUpdate: onVisibleRangeUpdate = () => null,
+		// events
+		onVisibleRangeUpdate = () => null,
 		onAfterScroll = () => null
 	}: Props = $props();
 
@@ -261,7 +260,7 @@
 			//@ts-expect-error wrong type assignment
 			scrollDirection === DIRECTION.VERTICAL ? height : width,
 			offset,
-			overscanCount
+			windowOverPadding
 		);
 
 		let updatedItems = [];
@@ -285,8 +284,7 @@
 				});
 			}
 
-			// TODO: carefull, stop is not named the same as end, maybe rename stop->end
-			onVisibleRangeUpdate({ start, end });
+			onVisibleRangeUpdate({ type: 'range.update', start, end });
 		}
 
 		items = updatedItems;
@@ -341,7 +339,7 @@
 			scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
 		};
 
-		onAfterScroll({ offset, event });
+		onAfterScroll({ type: 'scroll.update', offset, event });
 	};
 
 	function getEstimatedItemSize(): number {

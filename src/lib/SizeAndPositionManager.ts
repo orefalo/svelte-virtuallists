@@ -202,11 +202,11 @@ export default class SizeAndPositionManager {
 		return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
 	}
 
-	getVisibleRange(containerSize: number = 0, offset: number, overscanCount: number): VirtualRange {
+	getVisibleRange(containerSize: number = 0, offset: number, windowOverPadding: number): VirtualRange {
 		const totalSize = this.getTotalSize();
 
 		if (totalSize === 0) {
-			return {};
+			return { start: 0, end: 0 };
 		}
 
 		const maxOffset = offset + containerSize;
@@ -226,9 +226,9 @@ export default class SizeAndPositionManager {
 			offset += this.getSizeAndPositionForIndex(end).size;
 		}
 
-		if (overscanCount) {
-			start = Math.max(0, start - overscanCount);
-			end = Math.min(end + overscanCount, this.itemCount - 1);
+		if (windowOverPadding) {
+			start = Math.max(0, start - windowOverPadding);
+			end = Math.min(end + windowOverPadding, this.itemCount - 1);
 		}
 
 		return {
