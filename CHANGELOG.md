@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.1...v1.0.2) (2024-06-18)
+
+
+### Miscellaneous Chores
+
+* release 1.0.2 ([0e789dd](https://github.com/orefalo/svelte-virtuallists/commit/0e789dd1c113bd2eec1c812cb75893a92f51b852))
+
 ## [1.0.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.0...v1.0.1) (2024-06-18)
 
 
