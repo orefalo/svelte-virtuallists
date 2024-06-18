@@ -1,12 +1,14 @@
 // issues the npm command to publish the package
 import child_process from 'node:child_process';
 import os from 'node:os';
-import packageJson from '../package.json' assert { type: 'json' };
+import { readPackageJSON } from './read-package-json.js';
 
 if (process.argv.length < 3) {
 	console.error('Usage: fetch-and-publish <NPM_OTP>');
 	process.exit(1);
 }
+
+const packageJson = readPackageJSON();
 
 const otp = process.argv[process.argv.length - 1];
 const version = packageJson.version;

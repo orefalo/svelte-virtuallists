@@ -1,9 +1,7 @@
 import fs from 'fs';
-
 import { makeBadge } from 'badge-maker';
 
 /**
- *
  * @param {string} name
  */
 const formatSize = (name) =>

@@ -1,12 +1,15 @@
 import adapter from '@sveltejs/adapter-static';
 import { sveltePreprocess } from 'svelte-preprocess';
 import path from 'path';
-import packageJson from './package.json' assert { type: 'json' };
+
+import { readPackageJSON } from './scripts/read-package-json.js';
+const packageJson = readPackageJSON();
 
 // IMPORTANTL if you update aliases, run `pnpm run dev` for the configuration to update (tsconfig.json)
 const alias = {
 	$comp: path.resolve('./src/lib/comp')
 };
+
 
 // alias used by our vite plugin to resolve file, it's the pkg name!
 // alias: package name -> src/lib

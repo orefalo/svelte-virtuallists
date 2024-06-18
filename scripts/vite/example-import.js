@@ -1,5 +1,4 @@
 import fs from 'node:fs/promises';
-
 import * as sass from 'sass';
 
 // This Highlight.js loading is based on the code in:

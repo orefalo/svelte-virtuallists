@@ -51,14 +51,14 @@ export default [
 		}
 	},
 	{
-        // 1. Target ```js code blocks in .md files.
-        files: ["**/*.md/*.js"],
-        rules: {
-            // 2. Disable other rules.
-            "no-console": "off",
-            "import/no-unresolved": "off"
-        }
-    },
+		// 1. Target ```js code blocks in .md files.
+		files: ['**/*.md/*.js'],
+		rules: {
+			// 2. Disable other rules.
+			'no-console': 'off',
+			'import/no-unresolved': 'off'
+		}
+	},
 	{
 		ignores: removeDuplicates([...readGitignoreFiles({ cwd: __dirname }), '**/.svelte-kit/', '**/_app/', 'package/'])
 	},
