@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	export interface Page {
 		title: string;
-		path: `/${string}`;
+		path: string;
 	}
 
 	export interface Section {
@@ -11,7 +11,6 @@
 </script>
 
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 
 	import { pathIsCurrent } from './pathUtils';
@@ -34,7 +33,7 @@
 								data-sveltekit-preload-data
 								class="page"
 								aria-current={pathIsCurrent(path, $page) ? 'page' : undefined}
-								href={base + path}
+								href={path}
 							>
 								{title}
 							</a>
