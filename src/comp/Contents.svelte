@@ -33,7 +33,7 @@
 								data-sveltekit-preload-data
 								class="page"
 								aria-current={pathIsCurrent(path, $page) ? 'page' : undefined}
-								href={base+path}
+								href={base + path}
 							>
 								{title}
 							</a>

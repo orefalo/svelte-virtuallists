@@ -18,7 +18,7 @@ on: # rebuild gh-pages when doc change on master
       logLevel:
         description: 'Log level'
         required: false
-    
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.

@@ -10,11 +10,7 @@
 		".vscode": true,
 		".husky": true
 	},
-	"hide-files.files": [
-		"node_modules",
-		".vscode",
-		".husky"
-	],
+	"hide-files.files": ["node_modules", ".vscode", ".husky"],
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"[typescript]": {

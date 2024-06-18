@@ -9,18 +9,16 @@ const config = {
 	kit: {
 		adapter: adapter({
 			pages: 'docs',
-			assets: 'docs',
-			fallback: '200.html'
+			assets: 'docs'
 		}),
 		// IMPORTANT: if you update aliases, run `pnpm run dev` for the configuration to update (tsconfig.json)
-
 		alias: {
 			'svelte-virtuallists': path.resolve('.', 'src/lib'),
 			$comp: path.resolve('./src/comp')
 		},
 		paths: {
-			base: '',
-			relative:false
+			base: process.env.BASE_PATH,
+			relative: false
 		}
 	}
 };
