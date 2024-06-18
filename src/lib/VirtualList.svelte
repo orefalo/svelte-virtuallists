@@ -179,7 +179,7 @@
 	})();
 
 	onMount(() => {
-		container?.addEventListener('scroll', handleScroll, thirdEventArg);
+		container.addEventListener('scroll', handleScroll, thirdEventArg);
 
 		if (scrollOffset !== undefined) {
 			scrollTo(scrollOffset);
@@ -190,7 +190,7 @@
 	});
 
 	onDestroy(() => {
-		if (mounted) container?.removeEventListener('scroll', handleScroll);
+		if (mounted) container.removeEventListener('scroll', handleScroll);
 	});
 
 	function propsUpdated() {
