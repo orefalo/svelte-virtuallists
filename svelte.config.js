@@ -10,7 +10,6 @@ const alias = {
 	$comp: path.resolve('./src/lib/comp')
 };
 
-
 // alias used by our vite plugin to resolve file, it's the pkg name!
 // alias: package name -> src/lib
 alias[packageJson.name] = path.resolve('.', 'src/lib');

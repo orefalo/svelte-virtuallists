@@ -2,7 +2,6 @@ import js from '@eslint/js';
 import ts from 'typescript-eslint';
 import svelte from 'eslint-plugin-svelte';
 import prettier from 'eslint-config-prettier';
-import markdown from 'eslint-plugin-markdown';
 import globals from 'globals';
 
 const __dirname = import.meta.dirname;
@@ -21,13 +20,6 @@ export default [
 	...svelte.configs['flat/recommended'],
 	prettier,
 	...svelte.configs['flat/prettier'],
-	...markdown.configs.recommended,
-	{
-		// 1. Add the plugin
-		plugins: {
-			markdown
-		}
-	},
 	{
 		languageOptions: {
 			globals: {
@@ -38,25 +30,11 @@ export default [
 		}
 	},
 	{
-		// 2. Enable the Markdown processor for all .md files.
-		files: ['**/*.md'],
-		processor: 'markdown/markdown'
-	},
-	{
 		files: ['**/*.svelte'],
 		languageOptions: {
 			parserOptions: {
 				parser: ts.parser
 			}
-		}
-	},
-	{
-		// 1. Target ```js code blocks in .md files.
-		files: ['**/*.md/*.js'],
-		rules: {
-			// 2. Disable other rules.
-			'no-console': 'off',
-			'import/no-unresolved': 'off'
 		}
 	},
 	{
