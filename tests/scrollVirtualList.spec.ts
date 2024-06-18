@@ -1,10 +1,15 @@
 import { expect, test } from '@playwright/test';
 
-test('add, remove all and add again works', async ({ page }) => {
-	await page.goto('http://localhost:3000/examples/positioning');
+test('index 0, then 5000, then back to 0', async ({ page }) => {
+	await page.goto('http://localhost:3000/');
+	await page.waitForTimeout(2000);
+	await page.goto('/examples/positioning');
 
 	const testpage = page.locator(':has-text("Positioning")~div');
+	expect(testpage).toBeDefined();
+
 	const listWrapper = testpage.locator('div.virtual-list-wrapper').first();
+	expect(listWrapper).toBeDefined();
 
 	// count the rendered list rows
 	expect(await listWrapper.locator('div.row').count()).toBeGreaterThan(7);
