@@ -250,3 +250,18 @@ END_COMMIT_OVERRIDE
 ```
 
 Source: https://github.com/googleapis/release-please#how-can-i-fix-release-notes
+
+## GitHub Configured
+
+### Code and Automation / Actions / General
+
+- Workflow must have `R/W` permissions
+- Check `Allow GitHub Actions to create and approve pull requests`
+
+### Code and Automation / GH Pages
+
+- Point it to branch `gh-pages`, folder `generated-docs`
+
+### Security / Secrets and variables / Actions / Respository secrets
+
+- Define secret `NPM_TOKEN` with a finegrained RW access token from NPM, for security is should be restricted to repository.
