@@ -12,6 +12,16 @@
 	let scrollToIndex: number | undefined = $state();
 	let scrollOffet: number | undefined = $state();
 
+	let start = $state(0);
+	let end = $state(0);
+
+	function handleMessage(event: any) {
+		if (event.type === 'range.update') {
+			start = event.start;
+			end = event.end;
+		}
+	}
+
 	$effect(() => {
 		// scrollToIndex and scrollOffset shall not be used together.
 		scrollToIndex = undefined;
@@ -77,7 +87,12 @@
 		</span>
 	</div>
 </div>
-
+<div style="float: right;font-weight: bold">
+	<span>Visible Area: start</span>
+	<span>{start}</span>
+	- <span>end</span>
+	<span>{end}</span>
+</div>
 <div class="list">
 	<VirtualList
 		bind:this={virtualList}
@@ -89,6 +104,7 @@
 		scrollOffset={scrollOffet}
 		{scrollToAlignment}
 		{scrollToBehaviour}
+		onVisibleRangeUpdate={handleMessage}
 	>
 		{#snippet row({ style, index }:{style:string, index:number})}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>

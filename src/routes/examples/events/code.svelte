@@ -4,8 +4,16 @@
 
 	let val = $state('// Event name: Event params   (Last event at the top)');
 
+	let start = $state(0);
+	let end = $state(0);
+
 	function handleMessage(event: any) {
 		val = JSON.stringify(event) + '\n' + val;
+
+		if (event.type === 'range.update') {
+			start = event.start;
+			end = event.end;
+		}
 	}
 
 	let virtualList: VirtualList;
@@ -31,7 +39,7 @@
 	});
 </script>
 
-<TextArea value={val} minRows={4} maxRows={30} />
+<TextArea value={val} minRows={4} maxRows={15} />
 
 <div class="actions">
 	<div class="select">
@@ -47,7 +55,12 @@
 		</span>
 	</div>
 </div>
-
+<div style="float: right;font-weight: bold">
+	<span>Visible Area: start</span>
+	<span>{start}</span>
+	- <span>end</span>
+	<span>{end}</span>
+</div>
 <div class="list">
 	<VirtualList
 		bind:this={virtualList}

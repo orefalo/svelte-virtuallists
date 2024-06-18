@@ -97,8 +97,8 @@
 		header,
 
 		// events
-		onVisibleRangeUpdate = () => null,
-		onAfterScroll = () => null
+		onVisibleRangeUpdate,
+		onAfterScroll
 	}: Props = $props();
 
 	const sizeAndPositionManager = new SizeAndPositionManager(itemSize, itemCount, getEstimatedItemSize());
@@ -256,7 +256,7 @@
 
 	function refresh() {
 		const { offset } = curState;
-		const { start, end } = sizeAndPositionManager.getVisibleRange(
+		let { start, end } = sizeAndPositionManager.getVisibleRange(
 			//@ts-expect-error wrong type assignment
 			scrollDirection === DIRECTION.VERTICAL ? height : width,
 			offset,
@@ -284,7 +284,21 @@
 				});
 			}
 
-			onVisibleRangeUpdate({ type: 'range.update', start, end });
+			if (onVisibleRangeUpdate) {
+				// calculate the visible positions
+				const r = sizeAndPositionManager.getVisibleRange(
+					//@ts-expect-error wrong type assignment
+					scrollDirection === DIRECTION.VERTICAL ? height : width,
+					offset,
+					0
+				);
+
+				onVisibleRangeUpdate({
+					type: 'range.update',
+					start: r.start,
+					end: r.end
+				});
+			}
 		}
 
 		items = updatedItems;
@@ -339,7 +353,9 @@
 			scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
 		};
 
-		onAfterScroll({ type: 'scroll.update', offset, event });
+		if (onAfterScroll) {
+			onAfterScroll({ type: 'scroll.update', offset, event });
+		}
 	};
 
 	function getEstimatedItemSize(): number {
