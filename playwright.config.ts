@@ -7,8 +7,7 @@ const config: PlaywrightTestConfig = {
 	timeout: 5 * 60 * 1000,
 	webServer: {
 		command: 'pnpm run static-serv',
-		port: 3000,
-		reuseExistingServer: false
+		port: 3000
 	},
 	use: {
 		trace: 'on',
