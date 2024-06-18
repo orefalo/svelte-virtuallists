@@ -2,6 +2,7 @@
 	"name": "svelte-virtuallists",
 	"version": "1.0.3",
 	"private": false,
+	"description": "A component that renders only what is visible",
 	"keywords": [
 		"svelte",
 		"virtual",
@@ -13,6 +14,7 @@
 		"type": "git",
 		"url": "https://github.com/orefalo/svelte-virtuallists.git"
 	},
+	"license": "MIT",
 	"type": "module",
 	"exports": {
 		"./package.json": "./package.json",
@@ -33,8 +35,8 @@
 		"commit": "cross-env node ./node_modules/cz-customizable/standalone.js",
 		"dev": "cross-env DEV=1 vite dev --port 3000",
 		"fetch-and-publish": "node scripts/fetch-and-publish.js",
-		"format": "prettier --ignore-path .gitignore --write --cache !**/pnpm-lock.yaml !./CHANGELOG.md .",
-		"lint": "pnpm run format && pnpm run lint-es",
+		"format": "prettier --write --cache .",
+		"lint": "pnpm run lint-es",
 		"lint-es": "eslint --cache .",
 		"package": "pnpm run package:build && pnpm run package:pack",
 		"package:build": "rimraf -g ./package/* && svelte-package -o ./package/dist && copyfiles ./README.md ./LICENSE ./package/ && node scripts/package-clean-copy.js",
