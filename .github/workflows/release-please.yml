@@ -1,5 +1,5 @@
-name: Release package to NPM
-run-name: Release package to NPM
+name: Release Please
+run-name: Release Please
 
 on:
   push:
