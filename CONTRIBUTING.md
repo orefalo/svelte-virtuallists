@@ -260,7 +260,7 @@ Source: https://github.com/googleapis/release-please#how-can-i-fix-release-notes
 
 ### Code and Automation / GH Pages
 
-- Point it to branch `gh-pages`, folder `generated-docs`
+- Point it to branch `gh-pages`, folder `docs`
 
 ### Security / Secrets and variables / Actions / Respository secrets
 
