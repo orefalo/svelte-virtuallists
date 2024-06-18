@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://badgen.net/npm/v/svelte-virtuallists"><img src="https://badgen.net/npm/v/svelte-virtuallists" alt="NPM VERSION"></a>
-  <a href="https://badgen.net/packagephobia/publish/svelte-virtuallists"><img src="hhttps://badgen.net/packagephobia/publish/svelte-virtuallists" alt="publish size"></a>
+  <a href="https://badgen.net/packagephobia/publish/svelte-virtuallists"><img src="https://badgen.net/packagephobia/publish/svelte-virtuallists" alt="publish size"></a>
   <a href="https://badgen.net/packagephobia/publish/svelte-virtuallists"><img src="https://orefalo.github.io/svelte-virtuallists/minified-size-badge.svg" alt="minified size"></a>
     <a href="https://orefalo.github.io/svelte-virtuallists/minified-size-badge.svg"><img src="https://badgen.net/bundlephobia/dependency-count/svelte-virtuallists" alt="deps"></a>
       <a href="https://badgen.net/github/contributors/orefalo/svelte-virtuallists"><img src="https://badgen.net/github/contributors/orefalo/svelte-virtuallists" alt="contributors"></a>
