@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.2...v1.0.3) (2024-06-18)
+
+
+### Bug Fixes
+
+* unrecognized token ([da522d2](https://github.com/orefalo/svelte-virtuallists/commit/da522d22dfe395a2c65a1fa4230bf55e7685917d))
+
+
+### Miscellaneous Chores
+
+* release 1.0.3 ([618b650](https://github.com/orefalo/svelte-virtuallists/commit/618b6506e811947378c5d84a61e91565844be4d6))
+
 ## [1.0.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.1...v1.0.2) (2024-06-18)
 
 
