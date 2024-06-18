@@ -12,7 +12,7 @@
 
 <script lang="ts">
 	import { page } from '$app/stores';
-
+	import { base } from '$app/paths';
 	import { pathIsCurrent } from './pathUtils';
 
 	let { contents = [] }: { contents: Section[] } = $props();
@@ -33,7 +33,7 @@
 								data-sveltekit-preload-data
 								class="page"
 								aria-current={pathIsCurrent(path, $page) ? 'page' : undefined}
-								href={path}
+								href={base+path}
 							>
 								{title}
 							</a>

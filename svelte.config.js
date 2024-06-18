@@ -19,10 +19,8 @@ const config = {
 			$comp: path.resolve('./src/comp')
 		},
 		paths: {
-			// Usually the base path will be the root (i.e. defaults by kit to the empty "" path since the env var is undefined),
-			//  but on the official documentation build we set this environment
-			//  variable to the base path where we're deploying to.
-			base: process.env.BASE_PATH
+			base: '',
+			relative:false
 		}
 	}
 };
