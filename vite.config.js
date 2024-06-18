@@ -10,7 +10,7 @@ export default defineConfig({
 		include: ['highlight.js', 'highlight.js/lib/core']
 	},
 	build: {
-		minify: 'esbuild', // We specify this explicitly, since we need the server code to be minified for size computation.
+		// minify: true, // We specify this explicitly, since we need the server code to be minified for size computation.
 		rollupOptions: {
 			output: {
 				manualChunks: manualChunksForAnalyzing
