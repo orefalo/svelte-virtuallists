@@ -12,6 +12,12 @@ on: # rebuild gh-pages when doc change on master
       - '!src/lib/**'
   release:
     types: [published]
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: false
     
 jobs:
   build-and-deploy:

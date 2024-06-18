@@ -2,18 +2,6 @@ import adapter from '@sveltejs/adapter-static';
 import { sveltePreprocess } from 'svelte-preprocess';
 import path from 'path';
 
-import { readPackageJSON } from './scripts/read-package-json.js';
-const packageJson = readPackageJSON();
-
-// IMPORTANTL if you update aliases, run `pnpm run dev` for the configuration to update (tsconfig.json)
-const alias = {
-	$comp: path.resolve('./src/lib/comp')
-};
-
-// alias used by our vite plugin to resolve file, it's the pkg name!
-// alias: package name -> src/lib
-alias[packageJson.name] = path.resolve('.', 'src/lib');
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: sveltePreprocess(),
@@ -24,6 +12,7 @@ const config = {
 			assets: 'docs',
 			fallback: '200.html'
 		}),
+		// IMPORTANT: if you update aliases, run `pnpm run dev` for the configuration to update (tsconfig.json)
 
 		alias: {
 			'svelte-virtuallists': path.resolve('.', 'src/lib'),

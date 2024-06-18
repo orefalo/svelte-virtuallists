@@ -5,9 +5,16 @@
 		"**/.hg": true,
 		"**/CVS": true,
 		"**/.DS_Store": true,
-		"**/Thumbs.db": true
+		"**/Thumbs.db": true,
+		"node_modules": true,
+		".vscode": true,
+		".husky": true
 	},
-	"hide-files.files": [],
+	"hide-files.files": [
+		"node_modules",
+		".vscode",
+		".husky"
+	],
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"[typescript]": {
