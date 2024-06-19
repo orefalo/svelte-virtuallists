@@ -52,29 +52,6 @@
 		[DIRECTION.HORIZONTAL]: 'scrollLeft'
 	};
 
-	interface Props {
-		height: number | string;
-		width: number | string;
-		itemCount: number;
-		itemSize: VirtualRowSize;
-		estimatedItemSize?: number;
-		getKey?: (i: number) => string;
-		// positioning
-		scrollToIndex?: number | undefined;
-		scrollOffset?: number | undefined;
-		windowOverPadding?: number;
-		scrollDirection?: DIRECTION;
-		scrollToAlignment?: ALIGNMENT;
-		scrollToBehaviour?: SCROLL_BEHAVIOR;
-		// snippets
-		header?: Snippet;
-		row: Snippet<[RowAttributes]>;
-		footer?: Snippet;
-		// events
-		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
-		onAfterScroll?: (event: AfterScrollEvent) => void;
-	}
-
 	const {
 		height,
 		width = '100%',
@@ -99,7 +76,28 @@
 		// events
 		onVisibleRangeUpdate,
 		onAfterScroll
-	}: Props = $props();
+	}: {
+		height: number | string;
+		width: number | string;
+		itemCount: number;
+		itemSize: VirtualRowSize;
+		estimatedItemSize?: number;
+		getKey?: (i: number) => string;
+		// positioning
+		scrollToIndex?: number | undefined;
+		scrollOffset?: number | undefined;
+		windowOverPadding?: number;
+		scrollDirection?: DIRECTION;
+		scrollToAlignment?: ALIGNMENT;
+		scrollToBehaviour?: SCROLL_BEHAVIOR;
+		// snippets
+		header?: Snippet;
+		row: Snippet<[RowAttributes]>;
+		footer?: Snippet;
+		// events
+		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
+		onAfterScroll?: (event: AfterScrollEvent) => void;
+	} = $props();
 
 	const sizeAndPositionManager = new SizeAndPositionManager(itemSize, itemCount, getEstimatedItemSize());
 
