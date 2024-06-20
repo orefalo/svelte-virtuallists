@@ -1,14 +1,24 @@
 <script lang="ts">
-	import { VirtualList } from 'svelte-virtuallists';
+	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
+
+	const itemCount = 10000;
 
 	let virtualList: VirtualList;
 
 	// on the component
 	let rowHeights: Array<number> | number = $state([]);
 
+	interface MyItemsData {
+		text: string;
+	}
+
+	const myItems: Array<MyItemsData> = new Array(itemCount).fill(1).map((v, i) => ({
+		text: 'Item ' + i
+	}));
+
 	function randomize() {
 		let newRowHeights = [];
-		for (let i = 0; i < 10000; i++) {
+		for (let i = 0; i < itemCount; i++) {
 			newRowHeights.push(Math.random() * (155 - 50) + 50);
 		}
 		rowHeights = newRowHeights;
@@ -22,10 +32,10 @@
 </script>
 
 <div class="list">
-	<VirtualList bind:this={virtualList} height={500} width="auto" itemCount={10000} itemSize={rowHeights}>
-		{#snippet row({ style, index }:{style:string, index:number})}
+	<VirtualList bind:this={virtualList} items={myItems} height={500} width="auto" {itemCount} itemSize={rowHeights}>
+		{#snippet slot({ item, style, index }:SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
-				Item #{index}
+				{item.text}
 			</div>
 		{/snippet}
 	</VirtualList>

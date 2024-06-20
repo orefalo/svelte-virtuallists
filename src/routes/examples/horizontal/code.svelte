@@ -1,10 +1,29 @@
-<script>
+<script lang="ts">
 	import { DIRECTION, VirtualList } from 'svelte-virtuallists';
+
+	interface MyItemsData {
+		text: string;
+		lineHeight: string;
+		width: string;
+	}
+
+	const myItems: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
+		text: 'Item ' + i,
+		lineHeight: 20 + (i % 20) + 'px',
+		width: 100 + (i % 30) + 'px'
+	}));
 </script>
 
 <div class="list horizontal">
-	<VirtualList height="200px" width={680} scrollDirection={DIRECTION.HORIZONTAL} itemCount={100000} itemSize={150}>
-		{#snippet row({ style, index })}
+	<VirtualList
+		height="200px"
+		width={680}
+		scrollDirection={DIRECTION.HORIZONTAL}
+		items={myItems}
+		itemCount={10000}
+		itemSize={150}
+	>
+		{#snippet slot({ item, style, index })}
 			<div class="col" {style}>
 				Item #{index}
 			</div>

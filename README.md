@@ -21,25 +21,26 @@
 
 Keep your page efficient and fast: only shows the visible items, instead of displaying all your data in large lists.
 
-This package is a copy-cat of [svelte-tiny-virtual-list](https://github.com/jonasgeiler/svelte-tiny-virtual-list) with svelte 5, better suroundings, types, bug fixes and enhacements to the functionality and APIs. Credits must go to its original [author](https://github.com/jonasgeiler).
+This package originated from [svelte-tiny-virtual-list](https://github.com/jonasgeiler/svelte-tiny-virtual-list) and was modified to support Svelte 5, improved model handling, types, bug fixes, and overall project enhancement. Many thanks to the original [author](https://github.com/jonasgeiler).
 
 ## Features
 
-- 🔄 **Svelte 5+**
+- ❺➎⓹ **Svelte 5+ only**
   Build for Svelte 5+ in Typescript.
 
-- ⚡ **Performant**
+- 🚀 **Performant**
   Render millions of items, without breaking a sweat.
 
 - 🛠 **Configurable**
   Customize width, heigh, position, style, content.
-- 💡 **Layout Control**
+  
+- 💠 **Layout Control**
   Support fixed and variables sizing, dynamic loading along with vertical and horizontal lists.
 
-- 🧠 **Programming Interface**
+- 🧩 **Programming Interface**
   Set list positions and properties, and respond promptly to events.
 
-- 🤏 **Small**
+- 💼 **Small**
   Compact and dependency free – Only ~5kb when compressed.
 
 ## Usage
@@ -48,7 +49,7 @@ This component can be used two different ways:
 
 - 🤖 As a scrollable listover a large number of items, optionally read incrementally.
 
-- 🧩 As a fondation for more complex components - TreeViews and DataGrids.
+- 🧠 As a fondation for more complex components - TreeViews and DataGrids.
 
 ## Browser Support
 
@@ -97,12 +98,13 @@ The component accepts the following properties
 | ----------------- | ----------- | :-------: | ------------ |
 | width             | `number` or `string`\*             |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                   |
 | height            | `number` or `string`\*             |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                          |
-| itemCount         | `number`                           |     ✓     | The number of items you want to render                                                                                                 |
+| items | any[] | ✓ | the model, the data for the items to display in the list. |
+| itemCount         | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
 | itemSize          | `number                            | number[]  | (index: number) => number`                                                                                                                                                                                           | ✓   | Either a fixed height/width (depending on the scrollDirection), an array containing the heights of all the items in your list, or a function that returns the height of an item given its index: `(index: number): number` |
 | row               | (r:RowAttributes) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
 | scrollDirection   | `string`                           |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                           |
-| scrollOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset              |
-| scrollToIndex     | `number`                           |           | Item index to scroll to (by forcefully scrolling if necessary)               |
+| scrollOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset.             |
+| scrollToIndex     | `number`                           |           | Item index to scroll to (by forcefully scrolling if necessary).              |
 | scrollToAlignment | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the alignment of the scrolled to item. One of: `'start'`, `'center'`, `'end'` or `'auto'`. Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
 | scrollToBehaviour | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the behaviour of the scrolling. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                                                                                   |
 | windowOverPadding | `number`                           |           | Number of extra buffer items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers/devices.                                                                                                                                                                                                                                                                                    |
@@ -115,10 +117,11 @@ _\* `height` must be a number when `scrollDirection` is `'vertical'`. Similarly,
 
 - `header` - a snippet for the elements that should appear at the top of the list
 - `footer` - a snippet for the elements that should appear at the bottom of the list (e.g. `InfiniteLoading` component from `svelte-infinite-loading`)
-- `row` - a required snipper property called to render each row of the list with the signature `row(r:RowAttributes)`
+- `slot` - a required snipper property called to render each row of the list with the signature `slot(r:RowAttributes)`
 
 ```typescript
 export interface RowAttributes {
+  item: any // the element from the items array at index
 	index: number; // Item index
 	style: string; //  Item style, must be applied to the slot (look above for example)
 }
@@ -128,9 +131,9 @@ for instance,
 
 ```svelte
 <VirtualList  ...>
-  {#snippet row({ style, index }:RowAttributes)}
+  {#snippet slot({ item, style, index }:RowAttributes)}
     <div class="row" {style}>
-      Item: {data[index]}, Row: #{index}
+      Item: {item}, Row: #{index}
     </div>
   {/snippet}
  </VirtualList>

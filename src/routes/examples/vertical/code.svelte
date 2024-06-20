@@ -1,5 +1,17 @@
-<script>
-	import { VirtualList } from 'svelte-virtuallists';
+<script lang="ts">
+	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
+
+	interface MyItemsData {
+		text: string;
+		lineHeight: string;
+		width: string;
+	}
+
+	const myItems: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
+		text: 'Item ' + i,
+		lineHeight: 20 + (i % 20) + 'px',
+		width: 100 + (i % 30) + 'px'
+	}));
 
 	let itemSize = 50;
 </script>
@@ -7,7 +19,6 @@
 <div class="actions">
 	<label for="item-height">
 		Item Height:
-
 		<div class="range">
 			<input type="range" id="item-height" step="5" min="50" max="155" bind:value={itemSize} />
 		</div>
@@ -15,10 +26,10 @@
 </div>
 
 <div class="list">
-	<VirtualList height={500} width="auto" itemCount={100000} {itemSize}>
-		{#snippet row({ style, index })}
+	<VirtualList items={myItems} height={500} width="auto" itemCount={myItems.length} {itemSize}>
+		{#snippet slot({ item, style, index }:SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
-				Item #{index}
+				{item.text}
 			</div>
 		{/snippet}
 	</VirtualList>

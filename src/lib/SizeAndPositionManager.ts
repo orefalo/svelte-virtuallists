@@ -5,17 +5,19 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type VirtualRowSize, type VirtualRange, type VirtualPosition } from '.';
+import { ALIGNMENT, type VirtualItemSize, type VirtualRange, type VirtualPosition } from '.';
 
 export default class SizeAndPositionManager {
-	private itemSize: VirtualRowSize;
+	private items: Array<any>;
+	private itemSize: VirtualItemSize;
 	private itemCount: number;
-	private estimatedItemSize: number;
+	private estimatedItemSize?: number;
 	private itemSizeAndPositionData: Record<number, VirtualPosition>;
 	private lastMeasuredIndex: number;
 	private totalSize?: number;
 
-	constructor(itemSize: VirtualRowSize, itemCount: number, estimatedItemSize: number) {
+	constructor(items: Array<any>, itemSize: VirtualItemSize, itemCount: number, estimatedItemSize?: number) {
+		this.items = items;
 		this.itemSize = itemSize;
 		this.itemCount = itemCount;
 		this.estimatedItemSize = estimatedItemSize;
@@ -31,7 +33,7 @@ export default class SizeAndPositionManager {
 		return typeof this.itemSize === 'function';
 	}
 
-	updateConfig(itemSize: VirtualRowSize, itemCount: number, estimatedItemSize: number) {
+	updateConfig(itemSize: VirtualItemSize, itemCount: number, estimatedItemSize?: number) {
 		if (itemCount !== undefined) {
 			this.itemCount = itemCount;
 		}
@@ -63,7 +65,7 @@ export default class SizeAndPositionManager {
 		const { itemSize } = this;
 
 		if (typeof itemSize === 'function') {
-			return itemSize(index);
+			return itemSize(this.items[index], index);
 		}
 
 		return Array.isArray(itemSize) ? itemSize[index] : itemSize;
@@ -139,6 +141,10 @@ export default class SizeAndPositionManager {
 		return this.lastMeasuredIndex >= 0 ? this.itemSizeAndPositionData[this.lastMeasuredIndex] : { offset: 0, size: 0 };
 	}
 
+	getEstimatedItemSize(): number {
+		return this.estimatedItemSize || (typeof this.itemSize === 'number' && this.itemSize) || 50;
+	}
+
 	/**
 	 * Total size of all items being measured.
 	 */
@@ -156,7 +162,7 @@ export default class SizeAndPositionManager {
 		return (
 			lastMeasuredSizeAndPosition.offset +
 			lastMeasuredSizeAndPosition.size +
-			(this.itemCount - this.lastMeasuredIndex - 1) * this.estimatedItemSize
+			(this.itemCount - this.lastMeasuredIndex - 1) * this.getEstimatedItemSize()
 		);
 	}
 

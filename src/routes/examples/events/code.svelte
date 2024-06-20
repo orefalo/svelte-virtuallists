@@ -16,6 +16,10 @@
 		}
 	}
 
+	// that's the model, which we don't use for this example
+	const myItems: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+
+
 	let virtualList: VirtualList;
 
 	// on the UI
@@ -66,6 +70,7 @@
 		bind:this={virtualList}
 		height={500}
 		width="auto"
+		items={myItems}
 		itemCount={10000}
 		itemSize={40}
 		{scrollToIndex}
@@ -73,9 +78,9 @@
 		onAfterScroll={handleMessage}
 		onVisibleRangeUpdate={handleMessage}
 	>
-		{#snippet row({ style, index }:{style:string, index:number})}
+		{#snippet slot({ item, style, index })}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>
-				Item #{index}
+				Item #{item}
 			</div>
 		{/snippet}
 	</VirtualList>

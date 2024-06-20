@@ -37,26 +37,20 @@
 		SCROLL_BEHAVIOR,
 		SCROLL_CHANGE_REASON,
 		type AfterScrollEvent,
-		type RowAttributes,
+		type SlotAttributes,
 		type VirtualRangeEvent,
-		type VirtualRowSize
+		type VirtualItemSize
 	} from '.';
-
-	const SCROLL_PROP = {
-		[DIRECTION.VERTICAL]: 'top',
-		[DIRECTION.HORIZONTAL]: 'left'
-	};
-
-	const SCROLL_PROP_LEGACY = {
-		[DIRECTION.VERTICAL]: 'scrollTop',
-		[DIRECTION.HORIZONTAL]: 'scrollLeft'
-	};
 
 	const {
 		height,
 		width = '100%',
+		items = [],
+		// total item count, regardless of progressive loading. helps define the viewport size
 		itemCount,
+		// provided or calculated size of item n
 		itemSize,
+		// usefull when using the progressive loader
 		estimatedItemSize,
 		getKey,
 
@@ -70,7 +64,7 @@
 
 		// snippets
 		footer,
-		row,
+		slot,
 		header,
 
 		// events
@@ -79,10 +73,11 @@
 	}: {
 		height: number | string;
 		width: number | string;
+		items: Array<any>;
 		itemCount: number;
-		itemSize: VirtualRowSize;
+		itemSize: VirtualItemSize;
 		estimatedItemSize?: number;
-		getKey?: (i: number) => string;
+		getKey?: (i: number | string) => string;
 		// positioning
 		scrollToIndex?: number | undefined;
 		scrollOffset?: number | undefined;
@@ -92,18 +87,22 @@
 		scrollToBehaviour?: SCROLL_BEHAVIOR;
 		// snippets
 		header?: Snippet;
-		row: Snippet<[RowAttributes]>;
+		slot: Snippet<[SlotAttributes<any>]>;
 		footer?: Snippet;
 		// events
 		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
 		onAfterScroll?: (event: AfterScrollEvent) => void;
 	} = $props();
 
-	const sizeAndPositionManager = new SizeAndPositionManager(itemSize, itemCount, getEstimatedItemSize());
+	const SCROLL_PROP = {
+		[DIRECTION.VERTICAL]: 'top',
+		[DIRECTION.HORIZONTAL]: 'left'
+	};
 
-	let mounted: boolean = false;
-	let container: HTMLDivElement;
-	let items: Array<RowAttributes> = $state([]);
+	const SCROLL_PROP_LEGACY = {
+		[DIRECTION.VERTICAL]: 'scrollTop',
+		[DIRECTION.HORIZONTAL]: 'scrollLeft'
+	};
 
 	interface VState {
 		offset: number;
@@ -115,9 +114,15 @@
 		scrollToAlignment?: string;
 		scrollOffset?: number;
 		itemCount?: number;
-		itemSize?: VirtualRowSize;
+		itemSize?: VirtualItemSize;
 		estimatedItemSize?: number;
 	}
+
+	const sizeAndPositionManager = new SizeAndPositionManager(items, itemSize, itemCount, estimatedItemSize);
+
+	let mounted: boolean = false;
+	let container: HTMLDivElement;
+	let visibleItems: Array<SlotAttributes<any>> = $state([]);
 
 	let curState: VState = $state({
 		offset: scrollOffset || (scrollToIndex !== undefined && itemCount && getOffsetForIndex(scrollToIndex)) || 0,
@@ -206,7 +211,7 @@
 			prevProps.estimatedItemSize !== estimatedItemSize;
 
 		if (itemPropsHaveChanged) {
-			sizeAndPositionManager.updateConfig(itemSize, itemCount, getEstimatedItemSize());
+			sizeAndPositionManager.updateConfig(itemSize, itemCount, estimatedItemSize);
 
 			recomputeSizes();
 		}
@@ -277,8 +282,9 @@
 		if (start !== undefined && end !== undefined) {
 			for (let index = start; index <= end; index++) {
 				updatedItems.push({
+					item: items[index],
 					index,
-					style: getStyle(index, false)
+					style: getStyle(index)
 				});
 			}
 
@@ -299,7 +305,7 @@
 			}
 		}
 
-		items = updatedItems;
+		visibleItems = updatedItems;
 	}
 
 	function scrollTo(value: number) {
@@ -356,11 +362,7 @@
 		}
 	};
 
-	function getEstimatedItemSize(): number {
-		return estimatedItemSize || (typeof itemSize === 'number' && itemSize) || 50;
-	}
-
-	function getStyle(index: number, sticky: boolean): string {
+	function getStyle(index: number): string {
 		if (styleCache[index]) return styleCache[index];
 
 		const { size, offset } = sizeAndPositionManager.getSizeAndPositionForIndex(index);
@@ -368,21 +370,9 @@
 		let style;
 
 		if (scrollDirection === DIRECTION.VERTICAL) {
-			style = `left:0;width:100%;height:${size}px;`;
-
-			if (sticky) {
-				style += `position:sticky;flex-grow:0;z-index:1;top:0;margin-top:${offset}px;margin-bottom:${-(offset + size)}px;`;
-			} else {
-				style += `position:absolute;top:${offset}px;`;
-			}
+			style = `left:0;width:100%;height:${size}px;position:absolute;top:${offset}px;`;
 		} else {
-			style = `top:0;width:${size}px;`;
-
-			if (sticky) {
-				style += `position:sticky;z-index:1;left:0;margin-left:${offset}px;margin-right:${-(offset + size)}px;`;
-			} else {
-				style += `position:absolute;height:100%;left:${offset}px;`;
-			}
+			style = `top:0;width:${size}px;position:absolute;height:100%;left:${offset}px;`;
 		}
 
 		return (styleCache[index] = style);
@@ -394,8 +384,8 @@
 		{@render header()}
 	{/if}
 	<div class="virtual-list-inner" style={innerStyle}>
-		{#each items as it (getKey ? getKey(it.index) : it.index)}
-			{@render row({ style: it.style, index: it.index })}
+		{#each visibleItems as el}
+			{@render slot({ item: el.item, style: el.style, index: getKey ? getKey(el.index) : el.index })}
 		{/each}
 	</div>
 

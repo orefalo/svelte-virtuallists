@@ -1,11 +1,14 @@
-export type VirtualRowSize = number | number[] | ((index: number) => number);
+export type VirtualItemSize = number | number[] | ((item: unknown, index: number) => number);
 
 export { default as VirtualList } from './VirtualList.svelte';
 
 // use by the row() snippet
-export interface RowAttributes {
-	// the index of the row being rendered, from the original dataset
-	index: number;
+export interface SlotAttributes<T> {
+	// the actual item value
+	item: T;
+	// The row's index being rendered, from the original dataset
+	// The index is a string if the IDs are processed via the getKey() function
+	index: number | string;
 	// the calculated style for this row
 	style: string;
 }
