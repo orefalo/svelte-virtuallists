@@ -8,13 +8,13 @@
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.COOXtoJP.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/3.C1sNBl_Y.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.BdpoP9H2.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DA9-zNU5.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.snEXkSWD.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.BdGfI8iM.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.CoVLiuRI.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/3.Bzx3ZZQq.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.BZmIF7EF.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.CjbgwzFk.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.DvB2ine7.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.Cme6Ksn_.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/3.ZhAGAss2.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.eE4E0hkm.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.DHOrxcnk.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -66,6 +66,10 @@ SOFTWARE.
 		}
 	}
 
+	<span class="hljs-comment">// that&#x27;s the model, which we don&#x27;t use for this example</span>
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i);
+
+
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">virtualList</span>: <span class="hljs-title class_">VirtualList</span>;
 
 	<span class="hljs-comment">// on the UI</span>
@@ -116,6 +120,7 @@ SOFTWARE.
 		<span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span>
 		<span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span>
 		<span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span>
+		<span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span>
 		<span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span>
 		<span class="hljs-attr">itemSize</span>=<span class="hljs-string">{40}</span>
 		{<span class="hljs-attr">scrollToIndex</span>}
@@ -123,9 +128,9 @@ SOFTWARE.
 		<span class="hljs-attr">onAfterScroll</span>=<span class="hljs-string">{handleMessage}</span>
 		<span class="hljs-attr">onVisibleRangeUpdate</span>=<span class="hljs-string">{handleMessage}</span>
 	&gt;</span>
-		{#snippet row({ style, index }:{style:string, index:number})}
+		{#snippet slot({ item, style, index })}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>} <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
-				Item #{index}
+				Item #{item}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		{/snippet}
 	<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -167,7 +172,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_ceyh3s = {
+					__sveltekit_h6wom3 = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -177,8 +182,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.DA9-zNU5.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.BdGfI8iM.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
@@ -192,6 +197,3 @@ SOFTWARE.
 		</div>
 	</body>
 </html>
-<!--- /\_/\ --->
-<!---( o.o )--->
-<!--- > ^ < --->

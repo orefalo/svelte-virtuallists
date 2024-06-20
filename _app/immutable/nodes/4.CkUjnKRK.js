@@ -1,10 +1,29 @@
-import{p as m,G as g,h as i,j as d,k as c,n as h,t as x,m as v,y as f,v as t,w as y}from"../chunks/external.snEXkSWD.js";import{E as _}from"../chunks/ExampleArea.BZmIF7EF.js";import{V as k,D as w}from"../chunks/svelte-virtuallists.CjbgwzFk.js";const I=!0,H=Object.freeze(Object.defineProperty({__proto__:null,prerender:I},Symbol.toStringTag,{value:"Module"}));var z=c('<div class="col svelte-1vy46ks"> </div>'),O=c('<div class="list horizontal svelte-1vy46ks"><!></div>');function L(l,a){m(a,!1),g();var n=O(),p=h(n);{var e=(o,s)=>{let u=()=>s==null?void 0:s().style,j=()=>s==null?void 0:s().index;var r=z(),b=h(r);x(()=>{v(r,"style",u()),f(b,`Item #${j()??""}`)}),i(o,r)};k(p,{height:"200px",width:680,get scrollDirection(){return w.HORIZONTAL},itemCount:1e5,itemSize:150,row:e})}i(l,n),d()}const T=`<script>
+import{p as g,H as d,h as r,j as x,k as c,n as o,t as f,m as v,D as y,v as t,x as I}from"../chunks/external.DvB2ine7.js";import{E as _}from"../chunks/ExampleArea.eE4E0hkm.js";import{V as w,D as k}from"../chunks/svelte-virtuallists.DHOrxcnk.js";const D=!0,R=Object.freeze(Object.defineProperty({__proto__:null,prerender:D},Symbol.toStringTag,{value:"Module"}));var z=c('<div class="col svelte-1vy46ks"> </div>'),H=c('<div class="list horizontal svelte-1vy46ks"><!></div>');function O(l,a){g(a,!1);const p=new Array(1e4).fill(1).map((h,s)=>({text:"Item "+s,lineHeight:20+s%20+"px",width:100+s%30+"px"}));d();var n=H(),e=o(n);{var j=(h,s)=>{let m=()=>s==null?void 0:s().style,u=()=>s==null?void 0:s().index;var i=z(),b=o(i);f(()=>{v(i,"style",m()),y(b,`Item #${u()??""}`)}),r(h,i)};w(e,{height:"200px",width:680,get scrollDirection(){return k.HORIZONTAL},items:p,itemCount:1e4,itemSize:150,slot:j})}r(l,n),x()}const A=`<script lang="ts">
 	import { DIRECTION, VirtualList } from 'svelte-virtuallists';
+
+	interface MyItemsData {
+		text: string;
+		lineHeight: string;
+		width: string;
+	}
+
+	const myItems: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
+		text: 'Item ' + i,
+		lineHeight: 20 + (i % 20) + 'px',
+		width: 100 + (i % 30) + 'px'
+	}));
 <\/script>
 
 <div class="list horizontal">
-	<VirtualList height="200px" width={680} scrollDirection={DIRECTION.HORIZONTAL} itemCount={100000} itemSize={150}>
-		{#snippet row({ style, index })}
+	<VirtualList
+		height="200px"
+		width={680}
+		scrollDirection={DIRECTION.HORIZONTAL}
+		items={myItems}
+		itemCount={10000}
+		itemSize={150}
+	>
+		{#snippet slot({ item, style, index })}
 			<div class="col" {style}>
 				Item #{index}
 			</div>
@@ -49,13 +68,32 @@ import{p as m,G as g,h as i,j as d,k as c,n as h,t as x,m as v,y as f,v as t,w a
 		margin: 50px auto;
 	}
 </style>
-`,C=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+`,L=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
 	<span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+
+	interface <span class="hljs-title class_">MyItemsData</span> {
+		<span class="hljs-attr">text</span>: string;
+		<span class="hljs-attr">lineHeight</span>: string;
+		<span class="hljs-attr">width</span>: string;
+	}
+
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">MyItemsData</span>&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
+		<span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i,
+		<span class="hljs-attr">lineHeight</span>: <span class="hljs-number">20</span> + (i % <span class="hljs-number">20</span>) + <span class="hljs-string">&#x27;px&#x27;</span>,
+		<span class="hljs-attr">width</span>: <span class="hljs-number">100</span> + (i % <span class="hljs-number">30</span>) + <span class="hljs-string">&#x27;px&#x27;</span>
+	}));
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list horizontal&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200px&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">{680}</span> <span class="hljs-attr">scrollDirection</span>=<span class="hljs-string">{DIRECTION.HORIZONTAL}</span> <span class="hljs-attr">itemCount</span>=<span class="hljs-string">{100000}</span> <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{150}</span>&gt;</span>
-		{#snippet row({ style, index })}
+	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span>
+		<span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200px&quot;</span>
+		<span class="hljs-attr">width</span>=<span class="hljs-string">{680}</span>
+		<span class="hljs-attr">scrollDirection</span>=<span class="hljs-string">{DIRECTION.HORIZONTAL}</span>
+		<span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span>
+		<span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span>
+		<span class="hljs-attr">itemSize</span>=<span class="hljs-string">{150}</span>
+	&gt;</span>
+		{#snippet slot({ item, style, index })}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
 				Item #{index}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -100,4 +138,4 @@ import{p as m,G as g,h as i,j as d,k as c,n as h,t as x,m as v,y as f,v as t,w a
 		<span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span> auto;
 	}
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,D={code:T,highlightedHTML:C,component:L};var N=c("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function S(l){var a=N(),n=y(a),p=t(t(n,!0)),e=t(t(p,!0));_(e,{example:D}),i(l,a)}export{S as component,H as universal};
+`,T={code:A,highlightedHTML:L,component:O};var C=c("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function V(l){var a=C(),p=I(a),n=t(t(p,!0)),e=t(t(n,!0));_(e,{example:T}),r(l,a)}export{V as component,R as universal};

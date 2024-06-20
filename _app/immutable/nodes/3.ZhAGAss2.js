@@ -1,7 +1,7 @@
-import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g as a,y as S,O as C,n,v as s,e as ts,d as p,b as k,s as h,w as F,K as N,L as ns}from"../chunks/external.snEXkSWD.js";import{E as ls}from"../chunks/ExampleArea.BZmIF7EF.js";import{V as es}from"../chunks/svelte-virtuallists.CjbgwzFk.js";const ps=!0,bs=Object.freeze(Object.defineProperty({__proto__:null,prerender:ps},Symbol.toStringTag,{value:"Module"}));var rs=q('<div class="container svelte-1gm0t61"><pre aria-hidden="true" class="svelte-1gm0t61"> </pre> <textarea readonly="" style="outline: none;" class="svelte-1gm0t61"></textarea></div>');function cs(j,e){$(e,!0);let l=A(e,"value",7,""),d=A(e,"minRows",3,1),r=A(e,"maxRows",3,40);const v=c=>c.split(/\r?\n/);function b(c,y){const w=v(c);return w.length=y,w.reduce(function(O,L){return O+`
-`+L})}V(()=>{l(b(l(),r()))});let g=C(()=>`${1+d()*1.2}em`),f=C(()=>r()?`${1+r()*1.2}em`:"auto");var i=rs(),o=n(i),x=n(o),m=s(s(o,!0));as(m),R(()=>{B(o,"style",`min-height: ${a(g)??""}; max-height: ${a(f)??""}`),S(x,l()+`
-`)}),M(m,l,c=>l(c)),T(j,i),J()}var is=q('<div class="row svelte-1rhn2my"> </div>'),os=q('<!> <div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div></div> <div style="float: right;font-weight: bold"><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <div class="list"><!></div>',1);function hs(j,e){$(e,!0);let l=h("// Event name: Event params   (Last event at the top)"),d=h(0),r=h(0);function v(t){p(l,JSON.stringify(t)+`
-`+a(l)),t.type==="range.update"&&(p(d,k(t.start)),p(r,k(t.end)))}let b,g=h(void 0),f=h(void 0),i=h(void 0),o=h(void 0);V(()=>{p(i,void 0),p(o,k(a(f)))}),V(()=>{p(o,void 0),p(i,k(a(g)))});var x=os(),m=F(x);cs(m,{get value(){return a(l)},minRows:4,maxRows:15});var c=s(s(m,!0)),y=n(c),w=n(y),I=s(n(w));N(I);var O=s(s(y,!0)),L=n(O),z=s(n(L));N(z);var E=s(s(c,!0)),K=n(E),H=s(s(K,!0)),P=n(H),D=s(s(H,!0)),G=s(s(D,!0)),Q=n(G),W=s(s(E,!0)),X=n(W);{var Y=(t,u)=>{let Z=()=>u==null?void 0:u().style,U=()=>u==null?void 0:u().index;var _=is(),ss=n(_);R(()=>{B(_,"style",Z()),ns(_,"highlighted",U()===a(i)),S(ss,`Item #${U()??""}`)}),T(t,_)};ts(es(X,{height:500,width:"auto",itemCount:1e4,itemSize:40,get scrollToIndex(){return a(i)},get scrollOffset(){return a(o)},onAfterScroll:v,onVisibleRangeUpdate:v,row:Y}),t=>b=t,()=>b)}R(()=>{S(P,a(d)),S(Q,a(r))}),M(I,()=>a(g),t=>p(g,t)),M(z,()=>a(f),t=>p(f,t)),T(j,x),J()}const ds=`<script lang="ts">
+import{p as J,a as A,u as L,t as V,J as R,h as S,j as N,k as T,O as ns,m as B,g as t,D as I,P as U,n,v as s,e as ls,d as r,b as k,s as h,x as F,L as C,M as es}from"../chunks/external.DvB2ine7.js";import{E as ps}from"../chunks/ExampleArea.eE4E0hkm.js";import{V as rs}from"../chunks/svelte-virtuallists.DHOrxcnk.js";const cs=!0,ys=Object.freeze(Object.defineProperty({__proto__:null,prerender:cs},Symbol.toStringTag,{value:"Module"}));var is=T('<div class="container svelte-1gm0t61"><pre aria-hidden="true" class="svelte-1gm0t61"> </pre> <textarea readonly="" style="outline: none;" class="svelte-1gm0t61"></textarea></div>');function os(u,p){J(p,!0);let l=A(p,"value",7,""),d=A(p,"minRows",3,1),c=A(p,"maxRows",3,40);const b=o=>o.split(/\r?\n/);function q(o,y){const v=b(o);return v.length=y,v.reduce(function(w,O){return w+`
+`+O})}L(()=>{l(q(l(),c()))});let x=U(()=>`${1+d()*1.2}em`),g=U(()=>c()?`${1+c()*1.2}em`:"auto");var j=is(),i=n(j),m=n(i),f=s(s(i,!0));ns(f),V(()=>{B(i,"style",`min-height: ${t(x)??""}; max-height: ${t(g)??""}`),I(m,l()+`
+`)}),R(f,l,o=>l(o)),S(u,j),N()}var hs=T('<div class="row svelte-1rhn2my"> </div>'),ds=T('<!> <div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div></div> <div style="float: right;font-weight: bold"><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <div class="list"><!></div>',1);function js(u,p){J(p,!0);let l=h("// Event name: Event params   (Last event at the top)"),d=h(0),c=h(0);function b(a){r(l,JSON.stringify(a)+`
+`+t(l)),a.type==="range.update"&&(r(d,k(a.start)),r(c,k(a.end)))}const q=new Array(1e4).fill(1).map((a,e)=>e);let x,g=h(void 0),j=h(void 0),i=h(void 0),m=h(void 0);L(()=>{r(i,void 0),r(m,k(t(j)))}),L(()=>{r(m,void 0),r(i,k(t(g)))});var f=ds(),o=F(f);os(o,{get value(){return t(l)},minRows:4,maxRows:15});var y=s(s(o,!0)),v=n(y),M=n(v),w=s(n(M));C(w);var O=s(s(v,!0)),P=n(O),z=s(n(P));C(z);var E=s(s(y,!0)),D=n(E),H=s(s(D,!0)),G=n(H),K=s(s(H,!0)),Q=s(s(K,!0)),W=n(Q),X=s(s(E,!0)),Y=n(X);{var Z=(a,e)=>{let $=()=>e==null?void 0:e().item,ss=()=>e==null?void 0:e().style,as=()=>e==null?void 0:e().index;var _=hs(),ts=n(_);V(()=>{B(_,"style",ss()),es(_,"highlighted",as()===t(i)),I(ts,`Item #${$()??""}`)}),S(a,_)};ls(rs(Y,{height:500,width:"auto",items:q,itemCount:1e4,itemSize:40,get scrollToIndex(){return t(i)},get scrollOffset(){return t(m)},onAfterScroll:b,onVisibleRangeUpdate:b,slot:Z}),a=>x=a,()=>x)}V(()=>{I(G,t(d)),I(W,t(c))}),R(w,()=>t(g),a=>r(g,a)),R(z,()=>t(j),a=>r(j,a)),S(u,f),N()}const us=`<script lang="ts">
 	import { VirtualList } from 'svelte-virtuallists';
 	import TextArea from '$comp/TextAreaAutosize.svelte';
 
@@ -18,6 +18,10 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 			end = event.end;
 		}
 	}
+
+	// that's the model, which we don't use for this example
+	const myItems: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+
 
 	let virtualList: VirtualList;
 
@@ -69,6 +73,7 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		bind:this={virtualList}
 		height={500}
 		width="auto"
+		items={myItems}
 		itemCount={10000}
 		itemSize={40}
 		{scrollToIndex}
@@ -76,9 +81,9 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		onAfterScroll={handleMessage}
 		onVisibleRangeUpdate={handleMessage}
 	>
-		{#snippet row({ style, index }:{style:string, index:number})}
+		{#snippet slot({ item, style, index })}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>
-				Item #{index}
+				Item #{item}
 			</div>
 		{/snippet}
 	</VirtualList>
@@ -116,7 +121,7 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		background: #efefef;
 	}
 </style>
-`,us=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,gs=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
 	<span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 	<span class="hljs-keyword">import</span> <span class="hljs-title class_">TextArea</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$comp/TextAreaAutosize.svelte&#x27;</span>;
 
@@ -133,6 +138,10 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 			end = event.<span class="hljs-property">end</span>;
 		}
 	}
+
+	<span class="hljs-comment">// that&#x27;s the model, which we don&#x27;t use for this example</span>
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i);
+
 
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">virtualList</span>: <span class="hljs-title class_">VirtualList</span>;
 
@@ -184,6 +193,7 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		<span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span>
 		<span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span>
 		<span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span>
+		<span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span>
 		<span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span>
 		<span class="hljs-attr">itemSize</span>=<span class="hljs-string">{40}</span>
 		{<span class="hljs-attr">scrollToIndex</span>}
@@ -191,9 +201,9 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		<span class="hljs-attr">onAfterScroll</span>=<span class="hljs-string">{handleMessage}</span>
 		<span class="hljs-attr">onVisibleRangeUpdate</span>=<span class="hljs-string">{handleMessage}</span>
 	&gt;</span>
-		{#snippet row({ style, index }:{style:string, index:number})}
+		{#snippet slot({ item, style, index })}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>} <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
-				Item #{index}
+				Item #{item}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		{/snippet}
 	<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -231,4 +241,4 @@ import{p as $,a as A,u as V,t as R,I as M,h as T,j as J,k as q,N as as,m as B,g 
 		<span class="hljs-attribute">background</span>: <span class="hljs-number">#efefef</span>;
 	}
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,js={code:ds,highlightedHTML:us,component:hs};var gs=q("<h2>Events</h2> <p>Try interacting with the list below and check the event log below.</p> <!>",1);function xs(j){var e=gs(),l=F(e),d=s(s(l,!0)),r=s(s(d,!0));ls(r,{example:js}),T(j,e)}export{xs as component,bs as universal};
+`,ms={code:us,highlightedHTML:gs,component:js};var fs=T("<h2>Events</h2> <p>Try interacting with the list below and check the event log below.</p> <!>",1);function ws(u){var p=fs(),l=F(p),d=s(s(l,!0)),c=s(s(d,!0));ps(c,{example:ms}),S(u,p)}export{ws as component,ys as universal};

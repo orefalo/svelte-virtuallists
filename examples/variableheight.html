@@ -8,13 +8,13 @@
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.COOXtoJP.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/7.s3PY7FKF.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.BdpoP9H2.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DA9-zNU5.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.snEXkSWD.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.BdGfI8iM.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.CoVLiuRI.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/7.BBkV8tfi.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.BZmIF7EF.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.CjbgwzFk.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.DvB2ine7.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.Cme6Ksn_.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/7.CFAGhw4V.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.eE4E0hkm.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.DHOrxcnk.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -47,17 +47,27 @@ SOFTWARE.
 .hljs-selector-pseudo{color:#c792ea;font-style:italic}.hljs-template-tag{color:#c792ea}.hljs-template-variable{color:#addb67}.hljs-addition{color:#addb67ff;font-style:italic}.hljs-deletion{color:#EF535090;font-style:italic}</style><!--]--><!--]--><title>Svelte-Virtuallists - Variable Height</title>
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[--><!--[--><div class="page-container svelte-1xp6paq"><div role="presentation" class="toc-container-space svelte-1xp6paq"></div> <main class="svelte-1xp6paq "><!--[--><!--[--><h2>Variable heights</h2> <p>list items can have different sizes</p> <!--[--><div><!--[--><div class="list"><!--[--><div class="virtual-list-wrapper svelte-1qhxbsx" style="height:500px;width:auto;"><!--[--><!--]!--> <div class="virtual-list-inner svelte-1qhxbsx" style="flex-direction:column;height:1026243.9129978808px;"><!--[--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:66.14388717518803px;position:absolute;top:0px;">Item #0</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:86.82238696793672px;position:absolute;top:66.14388717518803px;">Item #1</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:50.9932531411457px;position:absolute;top:152.96627414312474px;">Item #2</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:59.33575233953028px;position:absolute;top:203.95952728427045px;">Item #3</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:141.62510855082118px;position:absolute;top:263.29527962380075px;">Item #4</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:109.2448516904065px;position:absolute;top:404.92038817462196px;">Item #5</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:65.03182878194441px;position:absolute;top:514.1652398650285px;">Item #6</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:115.43415579669657px;position:absolute;top:579.197068646973px;">Item #7</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:69.10281436645313px;position:absolute;top:694.6312244436696px;">Item #8</div><!--]--><!--]--><!--]--></div> <!--[--><!--]!--></div><!--]--></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div><!--]--> <!--[--><pre data-language="svelte"><code class="hljs"><!--[--><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-	<span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+		<div style="display: contents"><!--[--><!--[--><!--[--><div class="page-container svelte-1xp6paq"><div role="presentation" class="toc-container-space svelte-1xp6paq"></div> <main class="svelte-1xp6paq "><!--[--><!--[--><h2>Variable heights</h2> <p>list items can have different sizes</p> <!--[--><div><!--[--><div class="list"><!--[--><div class="virtual-list-wrapper svelte-1qhxbsx" style="height:500px;width:auto;"><!--[--><!--]!--> <div class="virtual-list-inner svelte-1qhxbsx" style="flex-direction:column;height:1023410.7281767057px;"><!--[--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:82.27502063271683px;position:absolute;top:0px;">Item 0</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:70.05167533452308px;position:absolute;top:82.27502063271683px;">Item 1</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:85.18542026101235px;position:absolute;top:152.3266959672399px;">Item 2</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:71.88828861766538px;position:absolute;top:237.51211622825227px;">Item 3</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:88.98158205682117px;position:absolute;top:309.40040484591765px;">Item 4</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:63.10765722383307px;position:absolute;top:398.38198690273884px;">Item 5</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:114.27412871784986px;position:absolute;top:461.48964412657193px;">Item 6</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:138.77233414639653px;position:absolute;top:575.7637728444217px;">Item 7</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:127.37946592607398px;position:absolute;top:714.5361069908183px;">Item 8</div><!--]--><!--]--><!--[--><!--[--><div class="row svelte-18ammbl" style="left:0;width:100%;height:149.44263301047152px;position:absolute;top:841.9155729168923px;">Item 9</div><!--]--><!--]--><!--]--></div> <!--[--><!--]!--></div><!--]--></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div><!--]--> <!--[--><pre data-language="svelte"><code class="hljs"><!--[--><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+	<span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+
+	<span class="hljs-keyword">const</span> itemCount = <span class="hljs-number">10000</span>;
 
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">virtualList</span>: <span class="hljs-title class_">VirtualList</span>;
 
 	<span class="hljs-comment">// on the component</span>
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; | number = $state([]);
 
+	interface <span class="hljs-title class_">MyItemsData</span> {
+		<span class="hljs-attr">text</span>: string;
+	}
+
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">MyItemsData</span>&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(itemCount).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
+		<span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i
+	}));
+
 	<span class="hljs-keyword">function</span> <span class="hljs-title function_">randomize</span>(<span class="hljs-params"></span>) {
 		<span class="hljs-keyword">let</span> newRowHeights = [];
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000</span>; i++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; itemCount; i++) {
 			newRowHeights.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">50</span>) + <span class="hljs-number">50</span>);
 		}
 		rowHeights = newRowHeights;
@@ -71,10 +81,10 @@ SOFTWARE.
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> <span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span> <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
-		{#snippet row({ style, index }:{style:string, index:number})}
+	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> {<span class="hljs-attr">itemCount</span>} <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
+		{#snippet slot({ item, style, index }:SlotAttributes<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
-				Item #{index}
+				{item.text}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		{/snippet}
 	<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -99,7 +109,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_ceyh3s = {
+					__sveltekit_h6wom3 = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -109,8 +119,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.DA9-zNU5.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.BdGfI8iM.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 7],
@@ -124,6 +134,3 @@ SOFTWARE.
 		</div>
 	</body>
 </html>
-<!--- /\_/\ --->
-<!---( o.o )--->
-<!--- > ^ < --->

@@ -1,14 +1,24 @@
-import{H as z,s as k,b as m,e as H,g as L,h as o,d as g,k as h,n as c,t as q,v as t,m as S,y as V,w as d}from"../chunks/external.snEXkSWD.js";import{E as R}from"../chunks/ExampleArea.BZmIF7EF.js";import{V as M}from"../chunks/svelte-virtuallists.CjbgwzFk.js";const C=!0,K=Object.freeze(Object.defineProperty({__proto__:null,prerender:C},Symbol.toStringTag,{value:"Module"}));function A(e,a){g(a,50)}var I=h('<div class="row svelte-18ammbl"> </div>'),E=h('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function O(e){let a,l=k(m([]));function p(){let n=[];for(let s=0;s<1e4;s++)n.push(Math.random()*105+50);g(l,m(n))}p();var i=E(),u=d(i),b=c(u);{var v=(n,s)=>{let _=()=>s==null?void 0:s().style,y=()=>s==null?void 0:s().index;var r=I(),x=c(r);q(()=>{S(r,"style",_()),V(x,`Item #${y()??""}`)}),o(n,r)};H(M(b,{height:500,width:"auto",itemCount:1e4,get itemSize(){return L(l)},row:v}),n=>a=n,()=>a)}var w=t(t(u,!0)),j=c(w);j.__click=p;var f=t(t(j,!0));f.__click=[A,l],o(e,i)}z(["click"]);const T=`<script lang="ts">
-	import { VirtualList } from 'svelte-virtuallists';
+import{I as S,p as I,s as L,b as d,e as q,g as A,h as o,j as M,d as b,k as h,n as r,t as V,v as t,m as C,D as R,x as v}from"../chunks/external.DvB2ine7.js";import{E as D}from"../chunks/ExampleArea.eE4E0hkm.js";import{V as E}from"../chunks/svelte-virtuallists.DHOrxcnk.js";const O=!0,X=Object.freeze(Object.defineProperty({__proto__:null,prerender:O},Symbol.toStringTag,{value:"Module"}));function T(p,n){b(n,50)}var P=h('<div class="row svelte-18ammbl"> </div>'),B=h('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function F(p,n){I(n,!0);const l=1e4;let i,e=L(d([]));const w=new Array(l).fill(1).map((a,s)=>({text:"Item "+s}));function m(){let a=[];for(let s=0;s<l;s++)a.push(Math.random()*105+50);b(e,d(a))}m();var j=B(),u=v(j),f=r(u);{var y=(a,s)=>{let k=()=>s==null?void 0:s().item,z=()=>s==null?void 0:s().style;var c=P(),H=r(c);V(()=>{C(c,"style",z()),R(H,k().text)}),o(a,c)};q(E(f,{items:w,height:500,width:"auto",itemCount:l,get itemSize(){return A(e)},slot:y}),a=>i=a,()=>i)}var _=t(t(u,!0)),g=r(_);g.__click=m;var x=t(t(g,!0));x.__click=[T,e],o(p,j),M()}S(["click"]);const G=`<script lang="ts">
+	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
+
+	const itemCount = 10000;
 
 	let virtualList: VirtualList;
 
 	// on the component
 	let rowHeights: Array<number> | number = $state([]);
 
+	interface MyItemsData {
+		text: string;
+	}
+
+	const myItems: Array<MyItemsData> = new Array(itemCount).fill(1).map((v, i) => ({
+		text: 'Item ' + i
+	}));
+
 	function randomize() {
 		let newRowHeights = [];
-		for (let i = 0; i < 10000; i++) {
+		for (let i = 0; i < itemCount; i++) {
 			newRowHeights.push(Math.random() * (155 - 50) + 50);
 		}
 		rowHeights = newRowHeights;
@@ -22,10 +32,10 @@ import{H as z,s as k,b as m,e as H,g as L,h as o,d as g,k as h,n as c,t as q,v a
 <\/script>
 
 <div class="list">
-	<VirtualList bind:this={virtualList} height={500} width="auto" itemCount={10000} itemSize={rowHeights}>
-		{#snippet row({ style, index }:{style:string, index:number})}
+	<VirtualList bind:this={virtualList} items={myItems} height={500} width="auto" {itemCount} itemSize={rowHeights}>
+		{#snippet slot({ item, style, index }:SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
-				Item #{index}
+				{item.text}
 			</div>
 		{/snippet}
 	</VirtualList>
@@ -46,17 +56,27 @@ import{H as z,s as k,b as m,e as H,g as L,h as o,d as g,k as h,n as c,t as q,v a
 		background: #fff;
 	}
 </style>
-`,P=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-	<span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+`,J=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+	<span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+
+	<span class="hljs-keyword">const</span> itemCount = <span class="hljs-number">10000</span>;
 
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">virtualList</span>: <span class="hljs-title class_">VirtualList</span>;
 
 	<span class="hljs-comment">// on the component</span>
 	<span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; | number = $state([]);
 
+	interface <span class="hljs-title class_">MyItemsData</span> {
+		<span class="hljs-attr">text</span>: string;
+	}
+
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">MyItemsData</span>&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(itemCount).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
+		<span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i
+	}));
+
 	<span class="hljs-keyword">function</span> <span class="hljs-title function_">randomize</span>(<span class="hljs-params"></span>) {
 		<span class="hljs-keyword">let</span> newRowHeights = [];
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000</span>; i++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; itemCount; i++) {
 			newRowHeights.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">50</span>) + <span class="hljs-number">50</span>);
 		}
 		rowHeights = newRowHeights;
@@ -70,10 +90,10 @@ import{H as z,s as k,b as m,e as H,g as L,h as o,d as g,k as h,n as c,t as q,v a
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> <span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span> <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
-		{#snippet row({ style, index }:{style:string, index:number})}
+	<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> {<span class="hljs-attr">itemCount</span>} <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
+		{#snippet slot({ item, style, index }:SlotAttributes<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
-				Item #{index}
+				{item.text}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		{/snippet}
 	<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -94,4 +114,4 @@ import{H as z,s as k,b as m,e as H,g as L,h as o,d as g,k as h,n as c,t as q,v a
 		<span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
 	}
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,B={code:T,highlightedHTML:P,component:O};var D=h("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function N(e){var a=D(),l=d(a),p=t(t(l,!0)),i=t(t(p,!0));R(i,{example:B}),o(e,a)}export{N as component,K as universal};
+`,K={code:G,highlightedHTML:J,component:F};var N=h("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function Y(p){var n=N(),l=v(n),i=t(t(l,!0)),e=t(t(i,!0));D(e,{example:K}),o(p,n)}export{Y as component,X as universal};
