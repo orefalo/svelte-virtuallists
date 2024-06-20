@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.3...v1.1.0) (2024-06-20)
+
+
+### Features
+
+* store the model inside the component, rename [@row](https://github.com/row)  [@slot](https://github.com/slot) ([3b01d44](https://github.com/orefalo/svelte-virtuallists/commit/3b01d44fcb353dfb6cfc520e8af2b14f73519641))
+
 ## [1.0.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.2...v1.0.3) (2024-06-18)
 
 ### Miscellaneous Chores
