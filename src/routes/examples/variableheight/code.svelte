@@ -33,7 +33,7 @@
 
 <div class="list">
 	<VirtualList bind:this={virtualList} items={myItems} height={500} width="auto" {itemCount} itemSize={rowHeights}>
-		{#snippet slot({ item, style, index }:SlotAttributes<MyItemsData>)}
+		{#snippet slot({ item, style, index }: SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
 				{item.text}
 			</div>

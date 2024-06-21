@@ -19,7 +19,6 @@
 	// that's the model, which we don't use for this example
 	const myItems: Array<number> = new Array(10000).fill(1).map((v, i) => i);
 
-
 	let virtualList: VirtualList;
 
 	// on the UI

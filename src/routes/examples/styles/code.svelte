@@ -5,7 +5,7 @@
 
 <div class="list">
 	<VirtualList width="100%" height={600} items={data} itemCount={data.length} itemSize={50}>
-		{#snippet slot({ item, style, index }:{item:any, style:string, index:number})}
+		{#snippet slot({ item, style, index }: { item: any; style: string; index: number })}
 			<div class="row" {style}>
 				Letter: {item}, Row: #{index}
 			</div>

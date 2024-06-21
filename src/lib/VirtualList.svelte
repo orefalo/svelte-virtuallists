@@ -50,7 +50,7 @@
 		itemCount,
 		// provided or calculated size of item n
 		itemSize,
-		// usefull when using the progressive loader
+		// usefull when using a partial loader
 		estimatedItemSize,
 		getKey,
 
@@ -69,7 +69,10 @@
 
 		// events
 		onVisibleRangeUpdate,
-		onAfterScroll
+		onAfterScroll,
+
+		...attributes
+	
 	}: {
 		height: number | string;
 		width: number | string;
@@ -92,6 +95,7 @@
 		// events
 		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
 		onAfterScroll?: (event: AfterScrollEvent) => void;
+	
 	} = $props();
 
 	const SCROLL_PROP = {
@@ -379,7 +383,7 @@
 	}
 </script>
 
-<div bind:this={container} class="virtual-list-wrapper" style={wrapperStyle}>
+<div bind:this={container} class="virtual-list-wrapper" style={wrapperStyle} {...attributes}>
 	{#if header}
 		{@render header()}
 	{/if}

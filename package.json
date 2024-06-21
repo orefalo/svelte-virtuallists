@@ -15,6 +15,10 @@
 		"url": "https://github.com/orefalo/svelte-virtuallists.git"
 	},
 	"license": "MIT",
+	"author": {
+		"name": "Olivier Refalo",
+		"url": "https://github.com/orefalo"
+	},
 	"type": "module",
 	"exports": {
 		"./package.json": "./package.json",
@@ -67,7 +71,6 @@
 		"copyfiles": "^2.4.1",
 		"cross-env": "^7.0.3",
 		"cz-customizable": "^7.0.0",
-		"dts-minify": "^0.3.3",
 		"eslint": "^9.5.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-gitignore": "^0.1.0",

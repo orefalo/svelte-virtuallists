@@ -11,8 +11,7 @@ const simpleErrorCB = (err) => {
 };
 
 async function processPackage(path) {
-
-	console.log("Minimizing package...")
+	console.log('Minimizing package...');
 
 	try {
 		const files = fs.readdirSync(path);
