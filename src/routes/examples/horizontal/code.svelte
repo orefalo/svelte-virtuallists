@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DIRECTION, VirtualList } from 'svelte-virtuallists';
+	import { DIRECTION, VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 
 	interface MyItemsData {
 		text: string;
@@ -7,7 +7,7 @@
 		width: string;
 	}
 
-	const myItems: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
+	const myModel: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
 		text: 'Item ' + i,
 		lineHeight: 20 + (i % 20) + 'px',
 		width: 100 + (i % 30) + 'px'
@@ -19,11 +19,11 @@
 		height="200px"
 		width={680}
 		scrollDirection={DIRECTION.HORIZONTAL}
-		items={myItems}
-		itemCount={10000}
+		model={myModel}
+		modelCount={myModel.length}
 		itemSize={150}
 	>
-		{#snippet slot({ item, style, index })}
+		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
 			<div class="col" {style}>
 				Item #{index}
 			</div>

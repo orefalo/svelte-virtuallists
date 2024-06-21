@@ -7,7 +7,7 @@
 		width: string;
 	}
 
-	const myItems: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
+	const myModel: Array<MyItemsData> = new Array(10000).fill(1).map((v, i) => ({
 		text: 'Item ' + i,
 		lineHeight: 20 + (i % 20) + 'px',
 		width: 100 + (i % 30) + 'px'
@@ -26,7 +26,7 @@
 </div>
 
 <div class="list">
-	<VirtualList items={myItems} height={500} width="auto" itemCount={myItems.length} {itemSize}>
+	<VirtualList model={myModel} height={500} width="auto" modelCount={myModel.length} {itemSize}>
 		{#snippet slot({ item, style, index }: SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
 				{item.text}

@@ -8,18 +8,18 @@
 import { ALIGNMENT, type VirtualItemSize, type VirtualRange, type VirtualPosition } from '.';
 
 export default class SizeAndPositionManager {
-	private items: Array<any>;
+	private model: Array<any>;
+	private modelCount: number;
 	private itemSize: VirtualItemSize;
-	private itemCount: number;
 	private estimatedItemSize?: number;
 	private itemSizeAndPositionData: Record<number, VirtualPosition>;
 	private lastMeasuredIndex: number;
 	private totalSize?: number;
 
-	constructor(items: Array<any>, itemSize: VirtualItemSize, itemCount: number, estimatedItemSize?: number) {
-		this.items = items;
+	constructor(model: Array<any>, modelCount: number, itemSize: VirtualItemSize, estimatedItemSize?: number) {
+		this.model = model;
 		this.itemSize = itemSize;
-		this.itemCount = itemCount;
+		this.modelCount = modelCount;
 		this.estimatedItemSize = estimatedItemSize;
 		this.itemSizeAndPositionData = {};
 		this.lastMeasuredIndex = -1;
@@ -35,7 +35,7 @@ export default class SizeAndPositionManager {
 
 	updateConfig(itemSize: VirtualItemSize, itemCount: number, estimatedItemSize?: number) {
 		if (itemCount !== undefined) {
-			this.itemCount = itemCount;
+			this.modelCount = itemCount;
 		}
 
 		if (estimatedItemSize !== undefined) {
@@ -56,7 +56,7 @@ export default class SizeAndPositionManager {
 	}
 
 	checkForMismatchItemSizeAndItemCount() {
-		if (Array.isArray(this.itemSize) && this.itemSize.length < this.itemCount) {
+		if (Array.isArray(this.itemSize) && this.itemSize.length < this.modelCount) {
 			throw Error(`When itemSize is an array, itemSize.length can't be smaller than itemCount`);
 		}
 	}
@@ -65,7 +65,7 @@ export default class SizeAndPositionManager {
 		const { itemSize } = this;
 
 		if (typeof itemSize === 'function') {
-			return itemSize(this.items[index], index);
+			return itemSize(this.model[index], index);
 		}
 
 		return Array.isArray(itemSize) ? itemSize[index] : itemSize;
@@ -77,7 +77,7 @@ export default class SizeAndPositionManager {
 	 */
 	computeTotalSizeAndPositionData() {
 		let totalSize = 0;
-		for (let i = 0; i < this.itemCount; i++) {
+		for (let i = 0; i < this.modelCount; i++) {
 			const size = this.getSize(i);
 			const offset = totalSize;
 			totalSize += size;
@@ -100,8 +100,8 @@ export default class SizeAndPositionManager {
 	 *
 	 */
 	getSizeAndPositionForIndex(index: number) {
-		if (index < 0 || index >= this.itemCount) {
-			throw Error(`Requested index ${index} is outside of range 0..${this.itemCount}`);
+		if (index < 0 || index >= this.modelCount) {
+			throw Error(`Requested index ${index} is outside of range 0..${this.modelCount}`);
 		}
 
 		return this.justInTime ? this.getJustInTimeSizeAndPositionForIndex(index) : this.itemSizeAndPositionData[index];
@@ -162,7 +162,7 @@ export default class SizeAndPositionManager {
 		return (
 			lastMeasuredSizeAndPosition.offset +
 			lastMeasuredSizeAndPosition.size +
-			(this.itemCount - this.lastMeasuredIndex - 1) * this.getEstimatedItemSize()
+			(this.modelCount - this.lastMeasuredIndex - 1) * this.getEstimatedItemSize()
 		);
 	}
 
@@ -227,14 +227,14 @@ export default class SizeAndPositionManager {
 
 		let end = start;
 
-		while (offset < maxOffset && end < this.itemCount - 1) {
+		while (offset < maxOffset && end < this.modelCount - 1) {
 			end++;
 			offset += this.getSizeAndPositionForIndex(end).size;
 		}
 
 		if (windowOverPadding) {
 			start = Math.max(0, start - windowOverPadding);
-			end = Math.min(end + windowOverPadding, this.itemCount - 1);
+			end = Math.min(end + windowOverPadding, this.modelCount - 1);
 		}
 
 		return {
@@ -310,11 +310,11 @@ export default class SizeAndPositionManager {
 	private exponentialSearch(index: number, offset: number): number {
 		let interval = 1;
 
-		while (index < this.itemCount && this.getSizeAndPositionForIndex(index).offset < offset) {
+		while (index < this.modelCount && this.getSizeAndPositionForIndex(index).offset < offset) {
 			index += interval;
 			interval *= 2;
 		}
 
-		return this.binarySearch(Math.floor(index / 2), Math.min(index, this.itemCount - 1), offset);
+		return this.binarySearch(Math.floor(index / 2), Math.min(index, this.modelCount - 1), offset);
 	}
 }

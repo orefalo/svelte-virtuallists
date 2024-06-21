@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { VirtualList } from 'svelte-virtuallists';
+	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 	import TextArea from '$comp/TextAreaAutosize.svelte';
 
 	let val = $state('// Event name: Event params   (Last event at the top)');
@@ -17,7 +17,7 @@
 	}
 
 	// that's the model, which we don't use for this example
-	const myItems: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+	const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
 
 	let virtualList: VirtualList;
 
@@ -69,15 +69,15 @@
 		bind:this={virtualList}
 		height={500}
 		width="auto"
-		items={myItems}
-		itemCount={10000}
+		model={myModel}
+		modelCount={myModel.length}
 		itemSize={40}
 		{scrollToIndex}
 		scrollOffset={scrollOffet}
 		onAfterScroll={handleMessage}
 		onVisibleRangeUpdate={handleMessage}
 	>
-		{#snippet slot({ item, style, index })}
+		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>
 				Item #{item}
 			</div>

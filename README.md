@@ -75,7 +75,7 @@ This component can be used two different ways:
 	const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 </script>
 
-<VirtualList width="100%" height={600} items={data} itemCount={data.length} itemSize={50}>
+<VirtualList width="100%" height={600} model={data} modelCount={data.length} itemSize={50}>
 	{#snippet slot({ item, style, index })}
 		<div class="row" {style}>
 			Item: {item}, Row: #{index}
@@ -84,10 +84,10 @@ This component can be used two different ways:
 </VirtualList>
 ```
 
-You can also perform dynamic loading
+You can also perform dynamic loading with a PartialLoader.
 
 ```svelte
-TODO
+TODO: explain that model vs views, which translates into model and items
 ```
 
 ### Props
@@ -98,8 +98,8 @@ The component accepts the following properties
 | ----------------- | ----------- | :-------: | ------------ |
 | width             | `number` or `string`\*             |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                   |
 | height            | `number` or `string`\*             |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                          |
-| items | any[] | ✓ | the model, the data for the items to display in the list. |
-| itemCount         | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
+| model | any[] | ✓ | the model, the data for the items to display in the list. |
+| modelCount         | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
 | itemSize          | `number                            | number[]  | (index: number) => number`                                                                                                                                                                                           | ✓   | Either a fixed height/width (depending on the scrollDirection), an array containing the heights of all the items in your list, or a function that returns the height of an item given its index: `(index: number): number` |
 | row               | (r:RowAttributes) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
 | scrollDirection   | `string`                           |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                           |
@@ -112,16 +112,17 @@ The component accepts the following properties
 | getKey            | `(index: number) => any`           |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.    |
 
 _\* `height` must be a number when `scrollDirection` is `'vertical'`. Similarly, `width` must be a number if `scrollDirection` is `'horizontal'`_
+_\** `model` is stored, `items` are rendered
 
 ### Snippets
 
 - `header` - a snippet for the elements that should appear at the top of the list
-- `footer` - a snippet for the elements that should appear at the bottom of the list (e.g. `InfiniteLoading` component from `svelte-infinite-loading`)
-- `slot` - a required snipper property called to render each row of the list with the signature `slot(r:RowAttributes)`
+- `footer` - a snippet for the elements that should appear at the bottom of the list
+- `slot` - a required snipper property called to render each row of the list with the signature `slot(r:RowAttributes<T>)`
 
 ```typescript
-export interface RowAttributes {
-  item: any // the element from the items array at index
+export interface RowAttributes<T> {
+  item: T // the element from the model array to be rendered
 	index: number; // Item index
 	style: string; //  Item style, must be applied to the slot (look above for example)
 }

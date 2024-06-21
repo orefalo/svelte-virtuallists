@@ -45,10 +45,10 @@
 	const {
 		height,
 		width = '100%',
-		items = [],
-		// total item count, regardless of progressive loading. helps define the viewport size
-		itemCount,
-		// provided or calculated size of item n
+		model = [],
+		// total model count, typically model.length unless a partial loader is used
+		modelCount,
+		// items are the view, size of item n, can be a function
 		itemSize,
 		// usefull when using a partial loader
 		estimatedItemSize,
@@ -71,13 +71,12 @@
 		onVisibleRangeUpdate,
 		onAfterScroll,
 
-		...attributes
-	
+		...props
 	}: {
 		height: number | string;
 		width: number | string;
-		items: Array<any>;
-		itemCount: number;
+		model: Array<any>;
+		modelCount: number;
 		itemSize: VirtualItemSize;
 		estimatedItemSize?: number;
 		getKey?: (i: number | string) => string;
@@ -95,7 +94,6 @@
 		// events
 		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
 		onAfterScroll?: (event: AfterScrollEvent) => void;
-	
 	} = $props();
 
 	const SCROLL_PROP = {
@@ -117,19 +115,19 @@
 		scrollToIndex?: number;
 		scrollToAlignment?: string;
 		scrollOffset?: number;
-		itemCount?: number;
+		modelCount?: number;
 		itemSize?: VirtualItemSize;
 		estimatedItemSize?: number;
 	}
 
-	const sizeAndPositionManager = new SizeAndPositionManager(items, itemSize, itemCount, estimatedItemSize);
+	const sizeAndPositionManager = new SizeAndPositionManager(model, modelCount, itemSize, estimatedItemSize);
 
 	let mounted: boolean = false;
 	let container: HTMLDivElement;
 	let visibleItems: Array<SlotAttributes<any>> = $state([]);
 
 	let curState: VState = $state({
-		offset: scrollOffset || (scrollToIndex !== undefined && itemCount && getOffsetForIndex(scrollToIndex)) || 0,
+		offset: scrollOffset || (scrollToIndex !== undefined && modelCount && getOffsetForIndex(scrollToIndex)) || 0,
 		scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
 	});
 
@@ -139,7 +137,7 @@
 		scrollToIndex,
 		scrollToAlignment,
 		scrollOffset,
-		itemCount,
+		modelCount,
 		itemSize,
 		estimatedItemSize
 	};
@@ -151,7 +149,7 @@
 	$effect(() => {
 		// listen to updates:
 		//@ts-expect-error unused no side effect
-		scrollToIndex, scrollToAlignment, scrollOffset, itemCount, itemSize, estimatedItemSize;
+		scrollToIndex, scrollToAlignment, scrollOffset, modelCount, itemSize, estimatedItemSize;
 
 		// on update:
 		propsUpdated();
@@ -210,12 +208,12 @@
 		const scrollPropsHaveChanged =
 			prevProps.scrollToIndex !== scrollToIndex || prevProps.scrollToAlignment !== scrollToAlignment;
 		const itemPropsHaveChanged =
-			prevProps.itemCount !== itemCount ||
+			prevProps.modelCount !== modelCount ||
 			prevProps.itemSize !== itemSize ||
 			prevProps.estimatedItemSize !== estimatedItemSize;
 
 		if (itemPropsHaveChanged) {
-			sizeAndPositionManager.updateConfig(itemSize, itemCount, estimatedItemSize);
+			sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
 
 			recomputeSizes();
 		}
@@ -228,7 +226,7 @@
 			};
 		} else if (typeof scrollToIndex === 'number' && (scrollPropsHaveChanged || itemPropsHaveChanged)) {
 			curState = {
-				offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, itemCount),
+				offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, modelCount),
 
 				scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
 			};
@@ -238,7 +236,7 @@
 			scrollToIndex,
 			scrollToAlignment,
 			scrollOffset,
-			itemCount,
+			modelCount,
 			itemSize,
 			estimatedItemSize
 		};
@@ -286,7 +284,7 @@
 		if (start !== undefined && end !== undefined) {
 			for (let index = start; index <= end; index++) {
 				updatedItems.push({
-					item: items[index],
+					item: model[index],
 					index,
 					style: getStyle(index)
 				});
@@ -333,12 +331,12 @@
 	function getOffsetForIndex(
 		index: number,
 		align: ALIGNMENT = scrollToAlignment,
-		_itemCount: number = itemCount
+		_modelCount: number = modelCount
 	): number {
 		if (index < 0) {
 			index = 0;
-		} else if (index >= _itemCount) {
-			index = _itemCount - 1;
+		} else if (index >= _modelCount) {
+			index = _modelCount - 1;
 		}
 
 		return sizeAndPositionManager.getUpdatedOffsetForIndex(
@@ -383,7 +381,7 @@
 	}
 </script>
 
-<div bind:this={container} class="virtual-list-wrapper" style={wrapperStyle} {...attributes}>
+<div bind:this={container} class="virtual-list-wrapper" style={wrapperStyle} {...props}>
 	{#if header}
 		{@render header()}
 	{/if}

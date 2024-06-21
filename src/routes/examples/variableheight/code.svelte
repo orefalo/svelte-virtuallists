@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 
-	const itemCount = 10000;
+	const modelCount = 10000;
 
 	let virtualList: VirtualList;
 
@@ -12,13 +12,13 @@
 		text: string;
 	}
 
-	const myItems: Array<MyItemsData> = new Array(itemCount).fill(1).map((v, i) => ({
+	const myModel: Array<MyItemsData> = new Array(modelCount).fill(1).map((v, i) => ({
 		text: 'Item ' + i
 	}));
 
 	function randomize() {
 		let newRowHeights = [];
-		for (let i = 0; i < itemCount; i++) {
+		for (let i = 0; i < modelCount; i++) {
 			newRowHeights.push(Math.random() * (155 - 50) + 50);
 		}
 		rowHeights = newRowHeights;
@@ -32,7 +32,7 @@
 </script>
 
 <div class="list">
-	<VirtualList bind:this={virtualList} items={myItems} height={500} width="auto" {itemCount} itemSize={rowHeights}>
+	<VirtualList bind:this={virtualList} model={myModel} height={500} width="auto" {modelCount} itemSize={rowHeights}>
 		{#snippet slot({ item, style, index }: SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
 				{item.text}

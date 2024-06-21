@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { VirtualList } from 'svelte-virtuallists';
+	import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 	const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 </script>
 
 <div class="list">
-	<VirtualList width="100%" height={600} items={data} itemCount={data.length} itemSize={50}>
-		{#snippet slot({ item, style, index }: { item: any; style: string; index: number })}
+	<VirtualList width="100%" height={600} model={data} modelCount={data.length} itemSize={50}>
+		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
 			<div class="row" {style}>
 				Letter: {item}, Row: #{index}
 			</div>

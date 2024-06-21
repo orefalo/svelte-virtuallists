@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { VirtualList, ALIGNMENT, SCROLL_BEHAVIOR } from 'svelte-virtuallists';
+	import { VirtualList, ALIGNMENT, SCROLL_BEHAVIOR, type SlotAttributes } from 'svelte-virtuallists';
 
 	let virtualList: VirtualList;
 
@@ -23,7 +23,7 @@
 	}
 
 	// that's the model, which we don't use for this example
-	const myItems: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+	const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
 
 	$effect(() => {
 		// scrollToIndex and scrollOffset shall not be used together.
@@ -101,8 +101,8 @@
 		bind:this={virtualList}
 		height={500}
 		width="auto"
-		items={myItems}
-		itemCount={10000}
+		model={myModel}
+		modelCount={myModel.length}
 		itemSize={rowHeights}
 		{scrollToIndex}
 		scrollOffset={scrollOffet}
@@ -110,7 +110,7 @@
 		{scrollToBehaviour}
 		onVisibleRangeUpdate={handleMessage}
 	>
-		{#snippet slot({ item, style, index })}
+		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>
 				Item #{index}
 			</div>
