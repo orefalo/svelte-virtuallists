@@ -75,10 +75,10 @@ This component can be used two different ways:
 	const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 </script>
 
-<VirtualList width="100%" height={600} itemCount={data.length} itemSize={50}>
-	{#snippet row({ style, index })}
+<VirtualList width="100%" height={600} items={data} itemCount={data.length} itemSize={50}>
+	{#snippet slot({ item, style, index })}
 		<div class="row" {style}>
-			Item: {data[index]}, Row: #{index}
+			Item: {item}, Row: #{index}
 		</div>
 	{/snippet}
 </VirtualList>
