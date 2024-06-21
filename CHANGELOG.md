@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.1.0...v1.2.0) (2024-06-21)
+
+
+### Features
+
+* minimize npm package ([69e6dd0](https://github.com/orefalo/svelte-virtuallists/commit/69e6dd04d7c60020dce60d17bf1d37153734b322))
+
 ## [1.1.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.0.3...v1.1.0) (2024-06-20)
 
 
