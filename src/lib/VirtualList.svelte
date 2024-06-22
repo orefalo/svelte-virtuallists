@@ -71,6 +71,10 @@
 		onVisibleRangeUpdate,
 		onAfterScroll,
 
+		// dom
+		zclass = '',
+		zstyle = '',
+
 		...props
 	}: {
 		height: number | string;
@@ -94,6 +98,8 @@
 		// events
 		onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
 		onAfterScroll?: (event: AfterScrollEvent) => void;
+		zclass?: string;
+		zstyle?: string;
 	} = $props();
 
 	const SCROLL_PROP = {
@@ -381,7 +387,7 @@
 	}
 </script>
 
-<div bind:this={container} class="virtual-list-wrapper" style={wrapperStyle} {...props}>
+<div bind:this={container} class="virtual-list-wrapper ${zclass}" style={wrapperStyle} {...props}>
 	{#if header}
 		{@render header()}
 	{/if}
