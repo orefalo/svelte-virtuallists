@@ -27,7 +27,7 @@
 
 <div class="list">
 	<VirtualList model={myModel} height={500} width="auto" modelCount={myModel.length} {itemSize}>
-		{#snippet slot({ item, style, index }: SlotAttributes<MyItemsData>)}
+		{#snippet slot({ item, style, index: _index }: SlotAttributes<MyItemsData>)}
 			<div class="row" {style}>
 				{item.text}
 			</div>

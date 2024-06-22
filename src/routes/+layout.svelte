@@ -28,6 +28,7 @@
 				{ title: 'Horizontal', path: '/examples/horizontal' },
 				{ title: 'Variable Height', path: '/examples/variableheight' },
 				{ title: 'Positioning', path: '/examples/positioning' },
+				{ title: 'Partial Loader', path: '/examples/partialloader' },
 				{ title: 'Events', path: '/examples/events' },
 				{ title: 'Styles', path: '/examples/styles' }
 			]

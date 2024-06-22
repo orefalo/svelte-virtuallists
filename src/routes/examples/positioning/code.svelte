@@ -110,7 +110,7 @@
 		{scrollToBehaviour}
 		onVisibleRangeUpdate={handleMessage}
 	>
-		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
+		{#snippet slot({ item: _item, style, index }: SlotAttributes<any>)}
 			<div class="row" {style} class:highlighted={index === scrollToIndex}>
 				Item #{index}
 			</div>

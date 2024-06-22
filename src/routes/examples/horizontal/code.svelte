@@ -23,7 +23,7 @@
 		modelCount={myModel.length}
 		itemSize={150}
 	>
-		{#snippet slot({ item, style, index }: SlotAttributes<any>)}
+		{#snippet slot({ item: _item, style, index }: SlotAttributes<any>)}
 			<div class="col" {style}>
 				Item #{index}
 			</div>
