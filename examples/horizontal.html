@@ -8,13 +8,13 @@
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.COOXtoJP.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/4.ErBVmrg2.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.BdpoP9H2.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.DvB2ine7.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.Cme6Ksn_.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/4.CkUjnKRK.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.eE4E0hkm.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.DHOrxcnk.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.B4Q1iBXW.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.BPpIJIx1.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.CPYYv9Eu.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.NMok9UpG.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/4.DElPE8YT.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.DwcMytTj.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.ChZJuPxm.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!--[--><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -48,7 +48,7 @@ SOFTWARE.
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents"><!--[--><!--[--><!--[--><div class="page-container svelte-1xp6paq"><div role="presentation" class="toc-container-space svelte-1xp6paq"></div> <main class="svelte-1xp6paq "><!--[--><!--[--><h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!--[--><div><!--[--><div class="list horizontal svelte-1vy46ks"><!--[--><div class="virtual-list-wrapper svelte-1qhxbsx" style="height:200px;width:680px;"><!--[--><!--]!--> <div class="virtual-list-inner svelte-1qhxbsx" style="min-height:100%;width:1500000px;"><!--[--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:0px;">Item #0</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:150px;">Item #1</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:300px;">Item #2</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:450px;">Item #3</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:600px;">Item #4</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:750px;">Item #5</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:900px;">Item #6</div><!--]--><!--]--><!--[--><!--[--><div class="col svelte-1vy46ks" style="top:0;width:150px;position:absolute;height:100%;left:1050px;">Item #7</div><!--]--><!--]--><!--]--></div> <!--[--><!--]!--></div><!--]--></div><!--]--> <!--[--><pre data-language="svelte"><code class="hljs"><!--[--><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-	<span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+	<span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
 	interface <span class="hljs-title class_">MyItemsData</span> {
 		<span class="hljs-attr">text</span>: string;
@@ -56,7 +56,7 @@ SOFTWARE.
 		<span class="hljs-attr">width</span>: string;
 	}
 
-	<span class="hljs-keyword">const</span> <span class="hljs-attr">myItems</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">MyItemsData</span>&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">myModel</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">MyItemsData</span>&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
 		<span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i,
 		<span class="hljs-attr">lineHeight</span>: <span class="hljs-number">20</span> + (i % <span class="hljs-number">20</span>) + <span class="hljs-string">&#x27;px&#x27;</span>,
 		<span class="hljs-attr">width</span>: <span class="hljs-number">100</span> + (i % <span class="hljs-number">30</span>) + <span class="hljs-string">&#x27;px&#x27;</span>
@@ -68,11 +68,11 @@ SOFTWARE.
 		<span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200px&quot;</span>
 		<span class="hljs-attr">width</span>=<span class="hljs-string">{680}</span>
 		<span class="hljs-attr">scrollDirection</span>=<span class="hljs-string">{DIRECTION.HORIZONTAL}</span>
-		<span class="hljs-attr">items</span>=<span class="hljs-string">{myItems}</span>
-		<span class="hljs-attr">itemCount</span>=<span class="hljs-string">{10000}</span>
+		<span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span>
+		<span class="hljs-attr">modelCount</span>=<span class="hljs-string">{myModel.length}</span>
 		<span class="hljs-attr">itemSize</span>=<span class="hljs-string">{150}</span>
 	&gt;</span>
-		{#snippet slot({ item, style, index })}
+		{#snippet slot({ item: _item, style, index }: SlotAttributes<span class="hljs-tag">&lt;<span class="hljs-name">any</span>&gt;</span>)}
 			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
 				Item #{index}
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -117,11 +117,11 @@ SOFTWARE.
 		<span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span> auto;
 	}
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<!--]--></code></pre><!--]--></div><!--]--><!--]--><!--]--> <div class="controls svelte-1xp6paq"><div class="svelte-1xp6paq"><span class="svelte-1xp6paq ">previous</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/vertical" class="svelte-1xp6paq">Vertical</a><!--]--></div> <div class="svelte-1xp6paq"><span class="svelte-1xp6paq ">next</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/variableheight" class="svelte-1xp6paq">Variable Height</a><!--]--></div></div></main> <div class="toc-container svelte-1xp6paq"><div role="presentation" class="toc-contents-wrap svelte-1xp6paq"><h1 class="toc-head svelte-1xp6paq"><img src="/svelte-virtuallists/favicon.svg" alt="Icon" width="30" height="30"> Svelte-Virtuallists</h1> <!--[--><nav aria-label="Docs" class="svelte-6bn3ki"><ul class="sidebar svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><span class="section svelte-6bn3ki">Getting started</span> <ul class="svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/">Introduction</a></li><!--]--><!--]--></ul></li><!--]--><!--[--><li class="svelte-6bn3ki"><span class="section svelte-6bn3ki">General Examples</span> <ul class="svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/vertical">Vertical</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" aria-current="page" href="/svelte-virtuallists/examples/horizontal">Horizontal</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/variableheight">Variable Height</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/positioning">Positioning</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/events">Events</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/styles">Styles</a></li><!--]--><!--]--></ul></li><!--]--><!--]--></ul></nav><!--]--></div> <!--[--><div class="input-output-toggle svelte-snxs5h">Direction: <span aria-hidden="true">LTR</span> <!--[--><button aria-pressed="false" class="svelte-cxfede"><span style="display: none;">RTL direction</span></button><!--]--> <span aria-hidden="true">RTL</span></div><!--]--></div></div><!--]--><!--]--> <!--[--><!--]!--><!--]-->
+<!--]--></code></pre><!--]--></div><!--]--><!--]--><!--]--> <div class="controls svelte-1xp6paq"><div class="svelte-1xp6paq"><span class="svelte-1xp6paq ">previous</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/vertical" class="svelte-1xp6paq">Vertical</a><!--]--></div> <div class="svelte-1xp6paq"><span class="svelte-1xp6paq ">next</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/variableheight" class="svelte-1xp6paq">Variable Height</a><!--]--></div></div></main> <div class="toc-container svelte-1xp6paq"><div role="presentation" class="toc-contents-wrap svelte-1xp6paq"><h1 class="toc-head svelte-1xp6paq"><img src="/svelte-virtuallists/favicon.svg" alt="Icon" width="30" height="30"> Svelte-Virtuallists</h1> <!--[--><nav aria-label="Docs" class="svelte-6bn3ki"><ul class="sidebar svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><span class="section svelte-6bn3ki">Getting started</span> <ul class="svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/">Introduction</a></li><!--]--><!--]--></ul></li><!--]--><!--[--><li class="svelte-6bn3ki"><span class="section svelte-6bn3ki">General Examples</span> <ul class="svelte-6bn3ki"><!--[--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/vertical">Vertical</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" aria-current="page" href="/svelte-virtuallists/examples/horizontal">Horizontal</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/variableheight">Variable Height</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/positioning">Positioning</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/partialloader">Partial Loader</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/events">Events</a></li><!--]--><!--[--><li class="svelte-6bn3ki"><a data-sveltekit-preload-data="" class="page svelte-6bn3ki" href="/svelte-virtuallists/examples/styles">Styles</a></li><!--]--><!--]--></ul></li><!--]--><!--]--></ul></nav><!--]--></div> <!--[--><div class="input-output-toggle svelte-snxs5h">Direction: <span aria-hidden="true">LTR</span> <!--[--><button aria-pressed="false" class="svelte-cxfede"><span style="display: none;">RTL direction</span></button><!--]--> <span aria-hidden="true">RTL</span></div><!--]--></div></div><!--]--><!--]--> <!--[--><!--]!--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_h6wom3 = {
+					__sveltekit_1mzb8l5 = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -131,8 +131,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.BG0UGrNF.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.dGb3CR7I.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.B4Q1iBXW.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.CPYYv9Eu.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
