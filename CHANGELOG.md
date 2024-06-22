@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.1...v1.2.2) (2024-06-22)
+
+
+### Bug Fixes
+
+* add zclass and zstyle to the component ([8ecbd3c](https://github.com/orefalo/svelte-virtuallists/commit/8ecbd3c98bee3f34e9911c4510d885a29e176eb4))
+
 ## [1.2.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.0...v1.2.1) (2024-06-22)
 
 
