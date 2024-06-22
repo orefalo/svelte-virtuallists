@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.0...v1.2.1) (2024-06-22)
+
+
+### Bug Fixes
+
+* unminimize npm code - it requires more testing ([7d78a3e](https://github.com/orefalo/svelte-virtuallists/commit/7d78a3e35f4110f482b7f2d83c1ab55abbaa5dc6))
+
 ## [1.2.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.1.0...v1.2.0) (2024-06-21)
 
 
