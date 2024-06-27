@@ -6,4 +6,4 @@ const removeTrailingSlash = (path: string) => (path.endsWith('/') ? path.slice(0
 
 // use by the menu to highlight the current selection
 export const pathIsCurrent = (path: string, currentPage: Page) =>
-	removeTrailingSlash(base + path) === removeTrailingSlash(currentPage.url.pathname);
+  removeTrailingSlash(base + path) === removeTrailingSlash(currentPage.url.pathname);

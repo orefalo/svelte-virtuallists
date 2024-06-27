@@ -1,7 +1,7 @@
 <script>
-	import ExampleArea from '$comp/ExampleArea.svelte';
+  import ExampleArea from '$comp/ExampleArea.svelte';
 
-	import example from './code.svelte?example';
+  import example from './code.svelte?example';
 </script>
 
 <h2>Variable heights</h2>

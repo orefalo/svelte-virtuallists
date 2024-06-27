@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { type Component } from 'svelte';
-	import type { SvelteExample } from './example';
-	import Highlighted from './Highlighted.svelte';
+  import { type Component } from 'svelte';
+  import type { SvelteExample } from './example';
+  import Highlighted from './Highlighted.svelte';
 
-	let { example }: { example: SvelteExample } = $props();
+  let { example }: { example: SvelteExample } = $props();
 
-	//@ts-ignore
-	const p = example.component as Component<SvelteExample>;
+  //@ts-ignore
+  const p = example.component as Component<SvelteExample>;
 </script>
 
 <div>
-	<svelte:component this={p} />
-	<Highlighted lang="svelte" highlighted={example.highlightedHTML} />
+  <svelte:component this={p} />
+  <Highlighted lang="svelte" highlighted={example.highlightedHTML} />
 </div>

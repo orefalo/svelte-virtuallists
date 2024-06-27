@@ -1,98 +1,98 @@
 {
-	"name": "svelte-virtuallists",
+  "name": "svelte-virtuallists",
 	"version": "1.2.2",
-	"private": false,
-	"description": "A component that renders only what is visible",
-	"keywords": [
-		"svelte",
-		"virtual",
-		"list"
-	],
-	"homepage": "https://orefalo.github.io/svelte-virtuallists/",
-	"bugs": "https://github.com/orefalo/svelte-virtuallists/issues",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/orefalo/svelte-virtuallists.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Olivier Refalo",
-		"url": "https://github.com/orefalo"
-	},
-	"type": "module",
-	"exports": {
-		"./package.json": "./package.json",
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
-	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build": "vite build && node ./scripts/create-minified-size-badges.js",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-		"commit": "cross-env node ./node_modules/cz-customizable/standalone.js",
-		"dev": "cross-env DEV=1 vite dev --port 3000",
-		"fetch-and-publish": "node scripts/fetch-and-publish.js",
-		"format": "prettier --write --cache .",
-		"lint": "pnpm run lint-es",
-		"lint-es": "eslint --cache .",
-		"package": "pnpm run package:build && pnpm run package:pack",
-		"package:build": "rimraf -g ./package/* && svelte-package -o ./package/dist && copyfiles ./README.md ./LICENSE ./package/ && node scripts/package-clean-copy.js",
-		"package:pack": "cd package && pnpm pack",
-		"prepare": "husky",
-		"preview": "vite preview --port 3000",
-		"static-serv": "pnpm build && serve -l 3000 --no-clipboard docs",
-		"test": "playwright test"
-	},
-	"config": {
-		"cz-customizable": {
-			"config": ".cz-config.cjs"
-		}
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^19.3.0",
-		"@commitlint/config-conventional": "^19.2.2",
-		"@playwright/test": "^1.44.1",
-		"@sveltejs/adapter-static": "^3.0.2",
-		"@sveltejs/kit": "^2.5.17",
-		"@sveltejs/package": "2.3.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.3",
-		"@types/eslint": "^8.56.10",
-		"@types/node": "^20.14.7",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
-		"badge-maker": "^3.3.1",
-		"copyfiles": "^2.4.1",
-		"cross-env": "^7.0.3",
-		"cz-customizable": "^7.0.0",
-		"eslint": "^9.5.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-gitignore": "^0.1.0",
-		"eslint-plugin-svelte": "^2.40.0",
-		"globals": "^15.6.0",
-		"highlight.js": "^11.9.0",
-		"husky": "^9.0.11",
-		"minify": "^11.2.1",
-		"prettier": "^3.3.2",
-		"prettier-plugin-svelte": "^3.2.5",
-		"rimraf": "^5.0.7",
-		"sass": "^1.77.6",
-		"serve": "^14.2.3",
-		"svelte-check": "^3.8.1",
-		"svelte-highlight": "^7.6.1",
-		"svelte-preprocess": "^6.0.1",
-		"tslib": "^2.6.3",
-		"typescript": "^5.5.2",
-		"typescript-eslint": "^8.0.0-alpha.30",
-		"vite": "^5.3.1"
-	},
-	"peerDependencies": {
-		"svelte": "5.0.0-next.164"
-	}
+  "private": false,
+  "description": "A component that renders only what is visible",
+  "keywords": [
+    "svelte",
+    "virtual",
+    "list"
+  ],
+  "homepage": "https://orefalo.github.io/svelte-virtuallists/",
+  "bugs": "https://github.com/orefalo/svelte-virtuallists/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orefalo/svelte-virtuallists.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Olivier Refalo",
+    "url": "https://github.com/orefalo"
+  },
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && node ./scripts/create-minified-size-badges.js",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "commit": "cross-env node ./node_modules/cz-customizable/standalone.js",
+    "dev": "cross-env DEV=1 vite dev --port 3000",
+    "fetch-and-publish": "node scripts/fetch-and-publish.js",
+    "format": "prettier --write --cache .",
+    "lint": "pnpm run lint-es",
+    "lint-es": "eslint --cache .",
+    "package": "pnpm run package:build && pnpm run package:pack",
+    "package:build": "rimraf -g ./package/* && svelte-package -o ./package/dist && copyfiles ./README.md ./LICENSE ./package/ && node scripts/package-clean-copy.js",
+    "package:pack": "cd package && pnpm pack",
+    "prepare": "husky",
+    "preview": "vite preview --port 3000",
+    "static-serv": "pnpm build && serve -l 3000 --no-clipboard docs",
+    "test": "playwright test"
+  },
+  "config": {
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@playwright/test": "^1.45.0",
+    "@sveltejs/adapter-static": "^3.0.2",
+    "@sveltejs/kit": "^2.5.17",
+    "@sveltejs/package": "2.3.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0-next.3",
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "badge-maker": "^4.0.0",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^7.0.0",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-svelte": "^2.41.0",
+    "globals": "^15.6.0",
+    "highlight.js": "^11.9.0",
+    "husky": "^9.0.11",
+    "minify": "^11.2.1",
+    "prettier": "^3.3.2",
+    "prettier-plugin-svelte": "^3.2.5",
+    "rimraf": "^5.0.7",
+    "sass": "^1.77.6",
+    "serve": "^14.2.3",
+    "svelte-check": "^3.8.4",
+    "svelte-highlight": "^7.6.1",
+    "svelte-preprocess": "^6.0.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^8.0.0-alpha.30",
+    "vite": "^5.3.1"
+  },
+  "peerDependencies": {
+    "svelte": "5.0.0-next.166"
+  }
 }
