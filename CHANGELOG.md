@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.2...v1.2.3) (2024-10-06)
+
+
+### Bug Fixes
+
+* updated dependencies, fixes typing and linting issues ([b246cf6](https://github.com/orefalo/svelte-virtuallists/commit/b246cf63022b9a676d77eca80d09af2a4c32ab6d))
+
 ## [1.2.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.1...v1.2.2) (2024-06-22)
 
 
