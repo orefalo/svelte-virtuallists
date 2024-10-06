@@ -1,4 +1,4 @@
-import{h as c,k as r,q as o,t as m,n as v,G as x,x as t,z as b}from"../chunks/external.CEs9Ysyu.js";import{E as y}from"../chunks/ExampleArea.C8HxGlJx.js";import{V as f}from"../chunks/svelte-virtuallists.CuVeN2vA.js";const _=!0,D=Object.freeze(Object.defineProperty({__proto__:null,prerender:_},Symbol.toStringTag,{value:"Module"}));var w=r('<div class="row"> </div>'),L=r('<div class="list svelte-80s6"><!></div>');function S(l){const a=["A","B","C","D","E","F"];var n=L(),p=o(n);{var e=(h,s)=>{let j=()=>s==null?void 0:s().item,g=()=>s==null?void 0:s().style,d=()=>s==null?void 0:s().index;var i=w(),u=o(i);m(()=>{v(i,"style",g()),x(u,`Letter: ${j()??""}, Row: #${d()??""}`)}),c(h,i)};f(p,{width:"100%",height:600,model:a,get modelCount(){return a.length},itemSize:50,slot:e,$$legacy:!0})}c(l,n)}const q=`<script lang="ts">
+import{h as p,k as e,m as i,t as m,r as c,v as u,K as v,l as x,y as b}from"../chunks/external.ClML6rh5.js";import{E as y}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as f}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const _=!0,O=Object.freeze(Object.defineProperty({__proto__:null,prerender:_},Symbol.toStringTag,{value:"Module"}));var w=e('<div class="row"> </div>'),L=e('<div class="list svelte-80s6"><!></div>');function S(l){const a=["A","B","C","D","E","F"];var n=L(),r=i(n);f(r,{width:"100%",height:600,model:a,get modelCount(){return a.length},itemSize:50,slot:(o,s)=>{let h=()=>s==null?void 0:s().item,j=()=>s==null?void 0:s().style,d=()=>s==null?void 0:s().index;var t=w(),g=i(t);c(t),m(()=>{u(t,"style",j()),v(g,`Letter: ${h()??""}, Row: #${d()??""}`)}),p(o,t)},$$slots:{slot:!0}}),c(n),p(l,n)}const k=`<script lang="ts">
   import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
   const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 <\/script>
@@ -24,7 +24,7 @@ import{h as c,k as r,q as o,t as m,n as v,G as x,x as t,z as b}from"../chunks/ex
     /* ... */
   }
 </style>
-`,k=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,q=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
   <span class="hljs-keyword">const</span> data = [<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;E&#x27;</span>, <span class="hljs-string">&#x27;F&#x27;</span> <span class="hljs-comment">/* ... */</span>];
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -50,4 +50,4 @@ import{h as c,k as r,q as o,t as m,n as v,G as x,x as t,z as b}from"../chunks/ex
     <span class="hljs-comment">/* ... */</span>
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,A={code:q,highlightedHTML:k,component:S};var V=r("<h2>Styling</h2> <p>TODO WIP</p> <!>",1);function O(l){var a=V(),n=b(a),p=t(t(n,!0)),e=t(t(p,!0));y(e,{example:A,$$legacy:!0}),c(l,a)}export{O as component,D as universal};
+`,A={code:k,highlightedHTML:q,component:S};var V=e("<h2>Styling</h2> <p>TODO WIP</p> <!>",1);function B(l){var a=V(),n=x(b(a),4);y(n,{example:A}),p(l,a)}export{B as component,O as universal};

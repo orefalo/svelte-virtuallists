@@ -1,4 +1,4 @@
-import{p as g,J as d,h as i,j as x,k as c,q as o,t as f,n as y,G as v,x as t,z as _}from"../chunks/external.CEs9Ysyu.js";import{E as w}from"../chunks/ExampleArea.C8HxGlJx.js";import{V as I,D as k}from"../chunks/svelte-virtuallists.CuVeN2vA.js";const A=!0,N=Object.freeze(Object.defineProperty({__proto__:null,prerender:A},Symbol.toStringTag,{value:"Module"}));var M=c('<div class="col svelte-18cdkus"> </div>'),z=c('<div class="list horizontal svelte-18cdkus"><!></div>');function D(p,a){g(a,!1);const n=new Array(1e4).fill(1).map((h,s)=>({text:"Item "+s,lineHeight:20+s%20+"px",width:100+s%30+"px"}));d();var l=z(),e=o(l);{var j=(h,s)=>{let u=()=>s==null?void 0:s().style,m=()=>s==null?void 0:s().index;var r=M(),b=o(r);f(()=>{y(r,"style",u()),v(b,`Item #${m()??""}`)}),i(h,r)};I(e,{height:"200px",width:680,get scrollDirection(){return k.HORIZONTAL},model:n,get modelCount(){return n.length},itemSize:150,slot:j,$$legacy:!0})}i(p,l),x()}const O=`<script lang="ts">
+import{p as g,M as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l as _,y as w}from"../chunks/external.ClML6rh5.js";import{E as I}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as k,D as M}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const A=!0,R=Object.freeze(Object.defineProperty({__proto__:null,prerender:A},Symbol.toStringTag,{value:"Module"}));var z=r('<div class="col svelte-18cdkus"> </div>'),D=r('<div class="list horizontal svelte-18cdkus"><!></div>');function O(p,n){g(n,!1);const l=new Array(1e4).fill(1).map((j,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));d();var e=D(),o=c(e);k(o,{height:"200px",width:680,get scrollDirection(){return M.HORIZONTAL},model:l,get modelCount(){return l.length},itemSize:150,slot:(a,s)=>{let u=()=>s==null?void 0:s().style,m=()=>s==null?void 0:s().index;var t=z(),b=c(t);h(t),f(()=>{y(t,"style",u()),v(b,`Item #${m()??""}`)}),i(a,t)},$$slots:{slot:!0}}),h(e),i(p,e),x()}const H=`<script lang="ts">
   import { DIRECTION, VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 
   interface MyItemsData {
@@ -67,7 +67,7 @@ import{p as g,J as d,h as i,j as x,k as c,q as o,t as f,n as y,G as v,x as t,z a
     margin: 50px auto;
   }
 </style>
-`,H=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,L=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   interface <span class="hljs-title class_">MyItemsData</span> {
@@ -136,4 +136,4 @@ import{p as g,J as d,h as i,j as x,k as c,q as o,t as f,n as y,G as v,x as t,z a
     <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span> auto;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,L={code:O,highlightedHTML:H,component:D};var S=c("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function R(p){var a=S(),n=_(a),l=t(t(n,!0)),e=t(t(l,!0));w(e,{example:L,$$legacy:!0}),i(p,a)}export{R as component,N as universal};
+`,S={code:H,highlightedHTML:L,component:O};var T=r("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function V(p){var n=T(),l=_(w(n),4);I(l,{example:S}),i(p,n)}export{V as component,R as universal};

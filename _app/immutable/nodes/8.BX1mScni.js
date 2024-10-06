@@ -1,9 +1,9 @@
-import{K as H,p as S,s as M,b as d,e as L,g as A,h as r,j as V,d as b,k as h,q as o,t as C,x as a,n as R,G as I,z as v}from"../chunks/external.CEs9Ysyu.js";import{E as D}from"../chunks/ExampleArea.C8HxGlJx.js";import{V as E}from"../chunks/svelte-virtuallists.CuVeN2vA.js";const O=!0,X=Object.freeze(Object.defineProperty({__proto__:null,prerender:O},Symbol.toStringTag,{value:"Module"}));function T(p,t){b(t,50)}var G=h('<div class="row svelte-1q7rqk5"> </div>'),K=h('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function P(p,t){S(t,!0);const l=1e4;let i,e=M(d([]));const w=new Array(l).fill(1).map((n,s)=>({text:"Item "+s}));function u(){let n=[];for(let s=0;s<l;s++)n.push(Math.random()*105+50);b(e,d(n))}u();var j=K(),m=v(j),y=o(m);{var f=(n,s)=>{let k=()=>s==null?void 0:s().item,z=()=>s==null?void 0:s().style;var c=G(),q=o(c);C(()=>{R(c,"style",z()),I(q,k().text)}),r(n,c)};L(E(y,{model:w,height:500,width:"auto",modelCount:l,get itemSize(){return A(e)},slot:f}),n=>i=n,()=>i)}var _=a(a(m,!0)),g=o(_);g.__click=u;var x=a(a(g,!0));x.__click=[T,e],r(p,j),V()}H(["click"]);const B=`<script lang="ts">
+import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c,t as I,l as j,r,v as V,K as D}from"../chunks/external.ClML6rh5.js";import{E}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as O}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const T=!0,Y=Object.freeze(Object.defineProperty({__proto__:null,prerender:T},Symbol.toStringTag,{value:"Module"}));function K(l,a){f(a,50)}var N=m('<div class="row svelte-1q7rqk5"> </div>'),P=m('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function B(l,a){M(a,!0);const t=1e4;let u,i=L(v([]));const _=new Array(t).fill(1).map((e,s)=>({text:"Item "+s}));function g(){let e=[];for(let s=0;s<t;(s+=1)-1)e.push(Math.random()*105+50);f(i,v(e))}g();var d=P(),o=y(d),x=c(o);A(O(x,{model:_,height:500,width:"auto",modelCount:t,get itemSize(){return C(i)},slot:(s,n)=>{let z=()=>n==null?void 0:n().item,H=()=>n==null?void 0:n().style;var p=N(),S=c(p);r(p),I(()=>{V(p,"style",H()),D(S,z().text)}),h(s,p)},$$slots:{slot:!0}}),s=>u=s,()=>u),r(o);var b=j(o,2),w=c(b);w.__click=g;var k=j(w,2);k.__click=[K,i],r(b),h(l,d),R()}q(["click"]);const F=`<script lang="ts">
   import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 
   const modelCount = 10000;
 
-  let virtualList: VirtualList;
+  let virtualList;
 
   // on the component
   let rowHeights: Array<number> | number = $state([]);
@@ -62,12 +62,12 @@ import{K as H,p as S,s as M,b as d,e as L,g as A,h as r,j as V,d as b,k as h,q a
     background: #fff;
   }
 </style>
-`,F=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,G=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> modelCount = <span class="hljs-number">10000</span>;
 
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">virtualList</span>: <span class="hljs-title class_">VirtualList</span>;
+  <span class="hljs-keyword">let</span> virtualList;
 
   <span class="hljs-comment">// on the component</span>
   <span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; | number = $state([]);
@@ -126,4 +126,4 @@ import{K as H,p as S,s as M,b as d,e as L,g as A,h as r,j as V,d as b,k as h,q a
     <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,J={code:B,highlightedHTML:F,component:P};var N=h("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function Y(p){var t=N(),l=v(t),i=a(a(l,!0)),e=a(a(i,!0));D(e,{example:J,$$legacy:!0}),r(p,t)}export{Y as component,X as universal};
+`,J={code:F,highlightedHTML:G,component:B};var Q=m("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function Z(l){var a=Q(),t=j(y(a),4);E(t,{example:J}),h(l,a)}export{Z as component,Y as universal};

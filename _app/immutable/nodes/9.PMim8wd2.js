@@ -1,4 +1,4 @@
-import{p as _,J as z,g as j,L as q,h,j as M,k as u,q as l,t as S,P as A,N as H,n as I,G as L,d as V,x as a,z as g}from"../chunks/external.CEs9Ysyu.js";import{E as D}from"../chunks/ExampleArea.C8HxGlJx.js";import{V as B}from"../chunks/svelte-virtuallists.CuVeN2vA.js";const C=!0,R=Object.freeze(Object.defineProperty({__proto__:null,prerender:C},Symbol.toStringTag,{value:"Module"}));var F=u('<div class="row svelte-hvu9xx"> </div>'),P=u('<div class="actions svelte-hvu9xx"><label for="item-height" class="svelte-hvu9xx">Item Height: <div class="range svelte-hvu9xx"><input type="range" id="item-height" step="5" min="50" max="155" class="svelte-hvu9xx"></div></label></div> <div class="list svelte-hvu9xx"><!></div>',1);function T(r,t){_(t,!1);const p=new Array(1e4).fill(1).map((i,s)=>({text:"Item "+s,lineHeight:20+s%20+"px",width:100+s%30+"px"}));let n=A(50);z();var e=P(),o=g(e),m=l(o),d=a(l(m)),b=l(d);H(b);var x=a(a(o,!0)),f=l(x);{var y=(i,s)=>{let v=()=>s==null?void 0:s().item,w=()=>s==null?void 0:s().style;var c=F(),k=l(c);S(()=>{I(c,"style",w()),L(k,v().text)}),h(i,c)};B(f,{model:p,height:500,width:"auto",get modelCount(){return p.length},get itemSize(){return j(n)},slot:y,$$legacy:!0})}q(b,()=>j(n),i=>V(n,i)),h(r,e),M()}const E=`<script lang="ts">
+import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d as H,S as I,Q as L,r as l,v as V,K as D}from"../chunks/external.ClML6rh5.js";import{E as B}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as C}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const F=!0,U=Object.freeze(Object.defineProperty({__proto__:null,prerender:F},Symbol.toStringTag,{value:"Module"}));var O=b('<div class="row svelte-hvu9xx"> </div>'),T=b('<div class="actions svelte-hvu9xx"><label for="item-height" class="svelte-hvu9xx">Item Height: <div class="range svelte-hvu9xx"><input type="range" id="item-height" step="5" min="50" max="155" class="svelte-hvu9xx"></div></label></div> <div class="list svelte-hvu9xx"><!></div>',1);function E(i,t){z(t,!1);const p=new Array(1e4).fill(1).map((h,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));let r=I(50);q();var j=T(),c=y(j),g=n(c),m=u(n(g)),d=n(m);L(d),l(m),l(g),l(c);var x=u(c,2),v=n(x);C(v,{model:p,height:500,width:"auto",get modelCount(){return p.length},get itemSize(){return f(r)},slot:(a,s)=>{let w=()=>s==null?void 0:s().item,k=()=>s==null?void 0:s().style;var e=O(),_=n(e);l(e),A(()=>{V(e,"style",k()),D(_,w().text)}),o(a,e)},$$slots:{slot:!0}}),l(x),M(d,()=>f(r),h=>H(r,h)),o(i,j),S()}const P=`<script lang="ts">
   import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
 
   interface MyItemsData {
@@ -154,7 +154,7 @@ import{p as _,J as z,g as j,L as q,h,j as M,k as u,q as l,t as S,P as A,N as H,n
     border: 0;
   }
 </style>
-`,O=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,K=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   interface <span class="hljs-title class_">MyItemsData</span> {
@@ -251,8 +251,8 @@ import{p as _,J as z,g as j,L as q,h,j as M,k as u,q as l,t as S,P as A,N as H,n
   }
 
   :<span class="hljs-built_in">global</span>(input[type=<span class="hljs-string">&#x27;range&#x27;</span>]) {
-    appearance: none;
-    -webkit-appearance: none;
+    <span class="hljs-attribute">appearance</span>: none;
+    -webkit-<span class="hljs-attribute">appearance</span>: none;
     <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
     <span class="hljs-attribute">height</span>: <span class="hljs-number">10px</span>;
     <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;
@@ -270,8 +270,8 @@ import{p as _,J as z,g as j,L as q,h,j as M,k as u,q as l,t as S,P as A,N as H,n
   }
 
   :<span class="hljs-built_in">global</span>(input[type=<span class="hljs-string">&#x27;range&#x27;</span>]::-webkit-slider-thumb) {
-    -webkit-appearance: none;
-    appearance: none;
+    -webkit-<span class="hljs-attribute">appearance</span>: none;
+    <span class="hljs-attribute">appearance</span>: none;
     <span class="hljs-attribute">width</span>: <span class="hljs-number">20px</span>;
     <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;
     <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
@@ -310,4 +310,4 @@ import{p as _,J as z,g as j,L as q,h,j as M,k as u,q as l,t as S,P as A,N as H,n
     <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,G={code:E,highlightedHTML:O,component:T};var J=u("<h2>List Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function U(r){var t=J(),p=g(t),n=a(a(p,!0)),e=a(a(n,!0));D(e,{example:G,$$legacy:!0}),h(r,t)}export{U as component,R as universal};
+`,Q={code:P,highlightedHTML:K,component:E};var G=b("<h2>List Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function W(i){var t=G(),p=u(y(t),4);B(p,{example:Q}),o(i,t)}export{W as component,U as universal};

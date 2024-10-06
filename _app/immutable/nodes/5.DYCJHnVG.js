@@ -1,0 +1,1 @@
+import{h as t,k as e,B as n}from"../chunks/external.ClML6rh5.js";var p=e("<h2>Partial Loader (TO IMPLEMENT)</h2> <p>Lazy load data on demand</p>",1);function d(a){var o=p();n(2),t(a,o)}export{d as component};
