@@ -6,7 +6,7 @@
     type SlotAttributes
   } from 'svelte-virtuallists';
 
-  let virtualList: VirtualList;
+  let virtualList;
 
   // on the UI
   let theScrollToIndex: number | undefined = $state();

@@ -3,7 +3,7 @@
 
   const modelCount = 10000;
 
-  let virtualList: VirtualList;
+  let virtualList;
 
   // on the component
   let rowHeights: Array<number> | number = $state([]);

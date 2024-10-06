@@ -6,10 +6,10 @@
   let { example }: { example: SvelteExample } = $props();
 
   //@ts-ignore
-  const p = example.component as Component<SvelteExample>;
+  const Comp = example.component as Component;
 </script>
 
 <div>
-  <svelte:component this={p} />
+  <Comp></Comp>
   <Highlighted lang="svelte" highlighted={example.highlightedHTML} />
 </div>
