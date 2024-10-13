@@ -2,11 +2,8 @@
   import VirtualList from '$lib/VirtualList2.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'ITEM ' + i +' - Item ' + i };
+    return { text: 'ITEM ' + i + ' - Item ' + i };
   });
-
-  console.log(myModel);
-  // let itemSize = () => 25;
 </script>
 
 <VirtualList items={myModel} style="height:600px">

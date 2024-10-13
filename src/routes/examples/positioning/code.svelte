@@ -143,7 +143,9 @@
   {scrollToBehaviour}
   onVisibleRangeUpdate={handleMessage}>
   {#snippet vl_slot({ item, index })}
-    <div style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;" class:highlighted={index === scrollToIndex}>
+    <div
+      style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;"
+      class:highlighted={index === scrollToIndex}>
       {item.text}
     </div>
   {/snippet}
@@ -155,7 +157,6 @@
 </div>
 
 <style>
-
   .highlighted {
     background: #efefef;
   }

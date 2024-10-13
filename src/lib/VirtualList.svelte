@@ -93,7 +93,7 @@
     scrollToBehaviour?: SCROLL_BEHAVIOR;
     // snippets
     header?: Snippet;
-    slot: Snippet<[VirtualListModel<any>]>;
+    slot: Snippet<[VirtualListModel]>;
     footer?: Snippet;
     // events
     onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
@@ -135,7 +135,7 @@
 
   let mounted: boolean = false;
   let container: HTMLDivElement;
-  let visibleItems: Array<VirtualListModel<any>> = $state([]);
+  let visibleItems: Array<VirtualListModel> = $state([]);
 
   let curState: VState = $state({
     offset:
@@ -170,11 +170,17 @@
   });
 
   $effect(() => {
-    // listen to updates:
-    curState;
+    const { offset, scrollChangeReason } = curState;
 
-    // on update:
-    stateUpdated();
+    if (prevState.offset !== offset || prevState.scrollChangeReason !== scrollChangeReason) {
+      refresh();
+    }
+
+    if (prevState.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
+      scrollTo(offset);
+    }
+
+    prevState = curState;
   });
 
   $effect(() => {
@@ -215,7 +221,7 @@
     if (!mounted) return;
 
     if (scrollToIndex && scrollOffset) {
-      console.log('VirtualList: scrollToIndex and scrollOffset shall not be used together.');
+      console.log('VirtualList: scrollToIndex and scrollOffset MUST NOT be used together.');
     }
 
     const scrollPropsHaveChanged =
@@ -228,7 +234,6 @@
 
     if (itemPropsHaveChanged) {
       sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
-
       recomputeSizes();
     }
 
@@ -257,23 +262,6 @@
       itemSize,
       estimatedItemSize
     };
-  }
-
-  // updates component state and triggers refresh or scrollto accotdingly
-  function stateUpdated() {
-    if (!mounted) return;
-
-    const { offset, scrollChangeReason } = curState;
-
-    if (prevState.offset !== offset || prevState.scrollChangeReason !== scrollChangeReason) {
-      refresh();
-    }
-
-    if (prevState.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
-      scrollTo(offset);
-    }
-
-    prevState = curState;
   }
 
   function refresh() {

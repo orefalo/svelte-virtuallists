@@ -15,7 +15,7 @@
     rowHeights = (item: any, index: number) => 25;
   }
 
-  randomize()
+  randomize();
 </script>
 
 <h2>Horizontal</h2>
@@ -32,7 +32,7 @@
 
 <VirtualList items={myModel} style="height:600px">
   {#snippet vl_slot({ item, index })}
-    <div style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item,index)}px;">
+    <div style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;">
       {item.text}
     </div>
   {/snippet}

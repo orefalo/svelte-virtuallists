@@ -105,20 +105,41 @@
     style?: string;
   } = $props();
 
+  enum SCROLL_CHANGE_REASON {
+    OBSERVED = 0,
+    REQUESTED = 1
+  }
+
+  interface VState {
+    offset: number;
+    scrollChangeReason: number;
+  }
+
   let mounted: boolean = false;
   let listContainer: HTMLDivElement;
+  // svelte-ignore non_reactive_update
   let listInner: HTMLDivElement;
 
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
 
   let buffer: number = 100;
-  let prevScroll: number;
+  // let prevScroll: number;
   let itemKey: 'index' | ((item: any, index: number) => any);
 
   let start = $state(0);
   let end = $state(firstRender - 1);
   let avgSize = $state(0);
+
+  let curState: VState = $state({
+    offset:
+      scrollOffset ||
+      (scrollToIndex !== undefined /*&& modelCount && getOffsetForIndex(scrollToIndex)*/ && 1) ||
+      0,
+    scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
+  });
+
+  let prevState: VState | undefined;
 
   const end2 = $derived.by(() => {
     const max = (items?.length || 1) - 1;
@@ -158,7 +179,7 @@
   onMount(() => {
     listContainer.addEventListener('scroll', onscroll, thirdEventArg);
     mounted = true;
-    update();
+    updatePositions();
   });
 
   onDestroy(() => {
@@ -192,20 +213,54 @@
     )
   );
 
+  //TODO see if effect.pre not a better option
   $effect(() => {
-    // items, clientWidth, clientHeight;
-    update();
+    const { offset, scrollChangeReason } = curState;
+
+    if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
+      // refresh();
+      updatePositions();
+    }
+
+    if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
+      scrollTo(offset);
+    }
+
+    prevState = curState;
   });
 
-  function onscroll() {
-    // tracks the scroll position
-    const currentScroll = getScroll(listContainer);
-    if (prevScroll != null && buffer - Math.abs(currentScroll - prevScroll) >= 10) {
+  function onscroll(event: Event) {
+    const offset = getScroll(listContainer);
+
+    if (
+      offset < 0 ||
+      curState.offset === offset ||
+      event.target !== listContainer ||
+      buffer - Math.abs(offset - curState.offset) >= 1
+    )
       return;
+
+    curState = {
+      offset,
+      scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
+    };
+
+    if (onAfterScroll) {
+      onAfterScroll({ type: 'scroll.update', offset, event });
     }
-    prevScroll = currentScroll;
-    update();
+
+    // updatePositions();
   }
+
+  // function onscroll() {
+  //   // tracks the scroll position
+  //   const currentScroll = getScroll(listContainer);
+  //   if (prevScroll != null && buffer - Math.abs(currentScroll - prevScroll) >= 10) {
+  //     return;
+  //   }
+  //   prevScroll = currentScroll;
+  //   updatePositions();
+  // }
 
   function getStart() {
     const startPosition = getScroll(listContainer) - getPaddingStart(listContainer) - buffer;
@@ -225,7 +280,8 @@
     return r.index;
   }
 
-  function update() {
+  function updatePositions() {
+    console.log('updatePositions');
     if (!avgSize) {
       avgSize = getAvgSize();
     }
@@ -330,6 +386,19 @@
     return !isHorizontal ? parseFloat(style.paddingTop) : parseFloat(style.paddingLeft);
   }
 
+  // scrolls the contrainer to
+  // TODO: How is this going to work with the onscoll hook?
+  function scrollTo(value: number) {
+    if ('scroll' in listContainer) {
+      const p: Record<string, any> = { behavior: scrollToBehaviour };
+      p[!isHorizontal ? 'top' : 'left'] = value;
+      listContainer.scroll(p);
+    } else {
+      //@ts-expect-error no index signature
+      listContainer[!isHorizontal ? scrollTop : scrollLeft] = value;
+    }
+  }
+
   function getItemKey(item: any, index: number) {
     if (itemKey) {
       if (/*typeof itemKey === 'string' &&*/ itemKey === 'index') {
@@ -352,7 +421,6 @@
       {#if header}
         {@render header()}
       {/if}
-      <!-- svelte-ignore node_invalid_placement_ssr -->
       <tbody>
         {#if isDisabled}
           {#each items as item, index}
