@@ -1,5 +1,5 @@
-import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d as H,S as I,Q as L,r as l,v as V,K as D}from"../chunks/external.ClML6rh5.js";import{E as B}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as C}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const F=!0,U=Object.freeze(Object.defineProperty({__proto__:null,prerender:F},Symbol.toStringTag,{value:"Module"}));var O=b('<div class="row svelte-hvu9xx"> </div>'),T=b('<div class="actions svelte-hvu9xx"><label for="item-height" class="svelte-hvu9xx">Item Height: <div class="range svelte-hvu9xx"><input type="range" id="item-height" step="5" min="50" max="155" class="svelte-hvu9xx"></div></label></div> <div class="list svelte-hvu9xx"><!></div>',1);function E(i,t){z(t,!1);const p=new Array(1e4).fill(1).map((h,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));let r=I(50);q();var j=T(),c=y(j),g=n(c),m=u(n(g)),d=n(m);L(d),l(m),l(g),l(c);var x=u(c,2),v=n(x);C(v,{model:p,height:500,width:"auto",get modelCount(){return p.length},get itemSize(){return f(r)},slot:(a,s)=>{let w=()=>s==null?void 0:s().item,k=()=>s==null?void 0:s().style;var e=O(),_=n(e);l(e),A(()=>{V(e,"style",k()),D(_,w().text)}),o(a,e)},$$slots:{slot:!0}}),l(x),M(d,()=>f(r),h=>H(r,h)),o(i,j),S()}const P=`<script lang="ts">
-  import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
+import{p as z,J as q,y,g as f,S as M,h as o,j as S,k as b,l as u,m as n,t as H,d as L,M as I,U as V,r as l,v as A,K as D}from"../chunks/external.B56iKtsd.js";import{E as B}from"../chunks/ExampleArea.DWmN8iNl.js";import{a as C}from"../chunks/svelte-virtuallists.6csm501w.js";const F=!0,R=Object.freeze(Object.defineProperty({__proto__:null,prerender:F},Symbol.toStringTag,{value:"Module"}));var T=b('<div class="row svelte-hvu9xx"> </div>'),E=b('<div class="actions svelte-hvu9xx"><label for="item-height" class="svelte-hvu9xx">Item Height: <div class="range svelte-hvu9xx"><input type="range" id="item-height" step="5" min="50" max="155" class="svelte-hvu9xx"></div></label></div> <div class="list svelte-hvu9xx"><!></div>',1);function O(i,t){z(t,!1);const p=new Array(1e4).fill(1).map((h,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));let r=I(50);q();var j=E(),c=y(j),g=n(c),m=u(n(g)),d=n(m);V(d),l(m),l(g),l(c);var x=u(c,2),v=n(x);C(v,{model:p,height:500,width:"auto",get modelCount(){return p.length},get itemSize(){return f(r)},slot:(a,s)=>{let w=()=>s==null?void 0:s().item,k=()=>s==null?void 0:s().style;var e=T(),_=n(e);l(e),H(()=>{A(e,"style",k()),D(_,w().text)}),o(a,e)},$$slots:{slot:!0}}),l(x),M(d,()=>f(r),h=>L(r,h)),o(i,j),S()}const P=`<script lang="ts">
+  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
 
   interface MyItemsData {
     text: string;
@@ -27,7 +27,7 @@ import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d
 
 <div class="list">
   <VirtualList model={myModel} height={500} width="auto" modelCount={myModel.length} {itemSize}>
-    {#snippet slot({ item, style, index: _index }: SlotAttributes<MyItemsData>)}
+    {#snippet slot({ item, style, index: _index }: VirtualListModel<MyItemsData>)}
       <div class="row" {style}>
         {item.text}
       </div>
@@ -154,8 +154,8 @@ import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d
     border: 0;
   }
 </style>
-`,K=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+`,J=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   interface <span class="hljs-title class_">MyItemsData</span> {
     <span class="hljs-attr">text</span>: string;
@@ -183,7 +183,7 @@ import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> <span class="hljs-attr">modelCount</span>=<span class="hljs-string">{myModel.length}</span> {<span class="hljs-attr">itemSize</span>}&gt;</span>
-    {#snippet slot({ item, style, index: _index }: SlotAttributes<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
+    {#snippet slot({ item, style, index: _index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
         {item.text}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -310,4 +310,4 @@ import{p as z,M as q,y,g as f,O as M,h as o,j as S,k as b,l as u,m as n,t as A,d
     <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,Q={code:P,highlightedHTML:K,component:E};var G=b("<h2>List Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function W(i){var t=G(),p=u(y(t),4);B(p,{example:Q}),o(i,t)}export{W as component,U as universal};
+`,K={code:P,highlightedHTML:J,component:O};var U=b("<h2>List Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function W(i){var t=U(),p=u(y(t),4);B(p,{example:K}),o(i,t)}export{W as component,R as universal};

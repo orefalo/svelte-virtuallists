@@ -1,5 +1,5 @@
-import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c,t as I,l as j,r,v as V,K as D}from"../chunks/external.ClML6rh5.js";import{E}from"../chunks/ExampleArea.DqjhyFIj.js";import{V as O}from"../chunks/svelte-virtuallists.Cbo0UehG.js";const T=!0,Y=Object.freeze(Object.defineProperty({__proto__:null,prerender:T},Symbol.toStringTag,{value:"Module"}));function K(l,a){f(a,50)}var N=m('<div class="row svelte-1q7rqk5"> </div>'),P=m('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function B(l,a){M(a,!0);const t=1e4;let u,i=L(v([]));const _=new Array(t).fill(1).map((e,s)=>({text:"Item "+s}));function g(){let e=[];for(let s=0;s<t;(s+=1)-1)e.push(Math.random()*105+50);f(i,v(e))}g();var d=P(),o=y(d),x=c(o);A(O(x,{model:_,height:500,width:"auto",modelCount:t,get itemSize(){return C(i)},slot:(s,n)=>{let z=()=>n==null?void 0:n().item,H=()=>n==null?void 0:n().style;var p=N(),S=c(p);r(p),I(()=>{V(p,"style",H()),D(S,z().text)}),h(s,p)},$$slots:{slot:!0}}),s=>u=s,()=>u),r(o);var b=j(o,2),w=c(b);w.__click=g;var k=j(w,2);k.__click=[K,i],r(b),h(l,d),R()}q(["click"]);const F=`<script lang="ts">
-  import { VirtualList, type SlotAttributes } from 'svelte-virtuallists';
+import{L as H,p as q,s as S,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c,t as I,l as j,r,v as A,K as D}from"../chunks/external.B56iKtsd.js";import{E}from"../chunks/ExampleArea.DWmN8iNl.js";import{a as O}from"../chunks/svelte-virtuallists.6csm501w.js";const T=!0,Y=Object.freeze(Object.defineProperty({__proto__:null,prerender:T},Symbol.toStringTag,{value:"Module"}));function K(l,a){f(a,50)}var P=m('<div class="row svelte-1q7rqk5"> </div>'),B=m('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function F(l,a){q(a,!0);const t=1e4;let u,i=S(v([]));const _=new Array(t).fill(1).map((e,s)=>({text:"Item "+s}));function d(){let e=[];for(let s=0;s<t;(s+=1)-1)e.push(Math.random()*105+50);f(i,v(e))}d();var g=B(),o=y(g),x=c(o);V(O(x,{model:_,height:500,width:"auto",modelCount:t,get itemSize(){return C(i)},slot:(s,n)=>{let z=()=>n==null?void 0:n().item,M=()=>n==null?void 0:n().style;var p=P(),L=c(p);r(p),I(()=>{A(p,"style",M()),D(L,z().text)}),h(s,p)},$$slots:{slot:!0}}),s=>u=s,()=>u),r(o);var b=j(o,2),w=c(b);w.__click=d;var k=j(w,2);k.__click=[K,i],r(b),h(l,g),R()}H(["click"]);const G=`<script lang="ts">
+  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
 
   const modelCount = 10000;
 
@@ -39,7 +39,7 @@ import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c
     width="auto"
     {modelCount}
     itemSize={rowHeights}>
-    {#snippet slot({ item, style, index: _index }: SlotAttributes<MyItemsData>)}
+    {#snippet slot({ item, style, index: _index }: VirtualListModel<MyItemsData>)}
       <div class="row" {style}>
         {item.text}
       </div>
@@ -62,8 +62,8 @@ import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c
     background: #fff;
   }
 </style>
-`,G=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">SlotAttributes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+`,J=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> modelCount = <span class="hljs-number">10000</span>;
 
@@ -103,7 +103,7 @@ import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c
     <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span>
     {<span class="hljs-attr">modelCount</span>}
     <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
-    {#snippet slot({ item, style, index: _index }: SlotAttributes<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
+    {#snippet slot({ item, style, index: _index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
         {item.text}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -126,4 +126,4 @@ import{N as q,p as M,s as L,b as v,y,e as A,g as C,h,j as R,d as f,k as m,m as c
     <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,J={code:F,highlightedHTML:G,component:B};var Q=m("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function Z(l){var a=Q(),t=j(y(a),4);E(t,{example:J}),h(l,a)}export{Z as component,Y as universal};
+`,N={code:G,highlightedHTML:J,component:F};var Q=m("<h2>Variable heights</h2> <p>list items can have different sizes</p> <!>",1);function Z(l){var a=Q(),t=j(y(a),4);E(t,{example:N}),h(l,a)}export{Z as component,Y as universal};
