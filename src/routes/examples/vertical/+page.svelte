@@ -1,12 +1,8 @@
 <script lang="ts">
   import ExampleArea from '$comp/ExampleArea.svelte';
-
   import example from './code.svelte?example';
 </script>
 
-<h2>List Positioning</h2>
-<p>
-  The component provides properties to position the list either on an element, or on a pixel offset.
-</p>
+<h2>Internal: VirtualList</h2>
 
 <ExampleArea {example} />

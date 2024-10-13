@@ -26,11 +26,11 @@
       pages: [
         { title: 'Vertical', path: '/examples/vertical' },
         { title: 'Horizontal', path: '/examples/horizontal' },
-        { title: 'Variable Height', path: '/examples/variableheight' },
+        { title: 'Table', path: '/examples/table' },
+        { title: 'Variable Sizing', path: '/examples/variablesizing' },
         { title: 'Positioning', path: '/examples/positioning' },
         { title: 'Partial Loader', path: '/examples/partialloader' },
         { title: 'Events', path: '/examples/events' },
-        { title: 'Styles', path: '/examples/styles' }
       ]
     }
   ];

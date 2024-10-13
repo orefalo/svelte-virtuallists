@@ -1,23 +1,10 @@
 <script lang="ts">
-  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
-  import TextArea from '$comp/TextAreaAutosize.svelte';
-
-  let val = $state('// Event name: Event params   (Last event at the top)');
-
-  let start = $state(0);
-  let end = $state(0);
-
-  function handleMessage(event: any) {
-    val = JSON.stringify(event) + '\n' + val;
-
-    if (event.type === 'range.update') {
-      start = event.start;
-      end = event.end;
-    }
-  }
-
-  // that's the model, which we don't use for this example
-  const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+  import {
+    VirtualList,
+    ALIGNMENT,
+    SCROLL_BEHAVIOR,
+    type VirtualListModel
+  } from 'svelte-virtuallists';
 
   let virtualList;
 
@@ -26,8 +13,22 @@
   let theScrollOffet: number | undefined = $state();
 
   // on the component
+  let rowHeights: Array<number> | number = $state([]);
   let scrollToIndex: number | undefined = $state();
   let scrollOffet: number | undefined = $state();
+
+  let start = $state(0);
+  let end = $state(0);
+
+  function handleMessage(event: any) {
+    if (event.type === 'range.update') {
+      start = event.start;
+      end = event.end;
+    }
+  }
+
+  // that's the model, which we don't use for this example
+  const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
 
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
@@ -40,9 +41,24 @@
     scrollOffet = undefined;
     scrollToIndex = theScrollToIndex;
   });
-</script>
 
-<TextArea value={val} minRows={4} maxRows={15} />
+  let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
+  let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
+
+  function randomize() {
+    let newRowHeights = [];
+    for (let i = 0; i < 10000; i++) {
+      newRowHeights.push(Math.random() * (155 - 50) + 50);
+    }
+    rowHeights = newRowHeights;
+  }
+
+  function sameSize() {
+    rowHeights = 50;
+  }
+
+  randomize();
+</script>
 
 <div class="actions">
   <div class="select">
@@ -67,6 +83,27 @@
         bind:value={theScrollOffet} />
     </span>
   </div>
+  <div class="select">
+    <span>
+      Alignment
+      <select id="alignment" bind:value={scrollToAlignment}>
+        <option value="auto">auto</option>
+        <option value="start">start</option>
+        <option value="center">center</option>
+        <option value="end">end</option>
+      </select>
+    </span>
+  </div>
+  <div class="select">
+    <span>
+      Behaviour
+      <select id="behaviour" bind:value={scrollToBehaviour}>
+        <option value="auto">auto</option>
+        <option value="smooth">smooth</option>
+        <option value="instant">instant</option>
+      </select>
+    </span>
+  </div>
 </div>
 <div style="float: right;font-weight: bold">
   <span>Visible Area: start</span>
@@ -82,17 +119,23 @@
     width="auto"
     model={myModel}
     modelCount={myModel.length}
-    itemSize={40}
+    itemSize={rowHeights}
     {scrollToIndex}
     scrollOffset={scrollOffet}
-    onAfterScroll={handleMessage}
+    {scrollToAlignment}
+    {scrollToBehaviour}
     onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item, style, index }: VirtualListModel<any>)}
+    {#snippet slot({ item: _item, style, index }: VirtualListModel<any>)}
       <div class="row" {style} class:highlighted={index === scrollToIndex}>
-        Item #{item}
+        Item #{index}
       </div>
     {/snippet}
   </VirtualList>
+</div>
+
+<div class="actions">
+  <button onclick={randomize} class="button">Randomize row heights</button>
+  <button onclick={sameSize} class="button">Same row heights</button>
 </div>
 
 <style>
