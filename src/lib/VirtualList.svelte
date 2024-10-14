@@ -71,7 +71,7 @@
     onVisibleRangeUpdate,
     onAfterScroll,
 
-    // dom
+    // css
     class: className = '',
     style = '',
 

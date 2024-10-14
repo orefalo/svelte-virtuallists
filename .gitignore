@@ -12,3 +12,4 @@
 *.log
 .eslintcache
 vite.config.js.timestamp-*
+.idea

@@ -60,13 +60,13 @@ export default class SizeAndPositionManager {
     }
   }
 
-  checkForMismatchItemSizeAndItemCount() {
+  private checkForMismatchItemSizeAndItemCount() {
     if (Array.isArray(this.itemSize) && this.itemSize.length < this.modelCount) {
       throw Error(`When itemSize is an array, itemSize.length can't be smaller than itemCount`);
     }
   }
 
-  getSize(index: number) {
+  private getSize(index: number) {
     const { itemSize } = this;
 
     if (typeof itemSize === 'function') {
@@ -96,9 +96,6 @@ export default class SizeAndPositionManager {
     this.totalSize = totalSize;
   }
 
-  getLastMeasuredIndex() {
-    return this.lastMeasuredIndex;
-  }
 
   /**
    * This method returns the size and position for the item at the specified index.
@@ -118,7 +115,7 @@ export default class SizeAndPositionManager {
    * This is used when itemSize is a function.
    * just-in-time calculates (or used cached values) for items leading up to the index.
    */
-  getJustInTimeSizeAndPositionForIndex(index: number) {
+  private getJustInTimeSizeAndPositionForIndex(index: number) {
     if (index > this.lastMeasuredIndex) {
       const lastMeasuredSizeAndPosition = this.getSizeAndPositionOfLastMeasuredItem();
       let offset = lastMeasuredSizeAndPosition.offset + lastMeasuredSizeAndPosition.size;
@@ -144,13 +141,13 @@ export default class SizeAndPositionManager {
     return this.itemSizeAndPositionData[index];
   }
 
-  getSizeAndPositionOfLastMeasuredItem() {
+  private getSizeAndPositionOfLastMeasuredItem() {
     return this.lastMeasuredIndex >= 0
       ? this.itemSizeAndPositionData[this.lastMeasuredIndex]
       : { offset: 0, size: 0 };
   }
 
-  getEstimatedItemSize(): number {
+  private getEstimatedItemSize(): number {
     return this.estimatedItemSize || (typeof this.itemSize === 'number' && this.itemSize) || 50;
   }
 
@@ -273,7 +270,7 @@ export default class SizeAndPositionManager {
    * This allows partially visible items (with offsets just before/above the fold) to be visible.
    *
    */
-  findNearestItem(offset: number): number {
+  private findNearestItem(offset: number): number {
     if (isNaN(offset)) {
       throw Error(`Invalid offset ${offset} specified`);
     }

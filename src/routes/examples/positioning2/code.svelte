@@ -125,7 +125,7 @@
     {scrollToAlignment}
     {scrollToBehaviour}
     onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item: _item, style, index }: VirtualListModel<any>)}
+    {#snippet slot({ item: _item, style, index })}
       <div class="row" {style} class:highlighted={index === scrollToIndex}>
         Item #{index}
       </div>
