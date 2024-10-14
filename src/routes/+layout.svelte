@@ -29,7 +29,7 @@
         { title: 'Table', path: '/examples/table' },
         { title: 'Variable Sizing', path: '/examples/variablesizing' },
         { title: 'Positioning', path: '/examples/positioning' },
-        { title: 'OLDPositioning', path: '/examples/positioning2' },
+        { title: 'OLDPositioning', path: '/examples/positioningOLD' },
         { title: 'Partial Loader', path: '/examples/partialloader' },
         { title: 'Events', path: '/examples/events' }
       ]

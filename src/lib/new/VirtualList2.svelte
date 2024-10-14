@@ -38,7 +38,7 @@
     type AfterScrollEvent,
     type VirtualListModel,
     type VirtualRangeEvent
-  } from '.';
+  } from '..';
 
   import { binarySearch } from './jshelper';
   import clsx from 'clsx';

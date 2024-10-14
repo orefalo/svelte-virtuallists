@@ -2,8 +2,7 @@
   import {
     VirtualList,
     ALIGNMENT,
-    SCROLL_BEHAVIOR,
-    type VirtualListModel
+    SCROLL_BEHAVIOR
   } from 'svelte-virtuallists';
 
   let virtualList;

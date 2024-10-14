@@ -1,10 +1,14 @@
 <script lang="ts">
-  import VirtualList from '$lib/VirtualList2.svelte';
+  import VirtualList from 'svelte-virtuallists/new/VirtualList2.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'Item ' + i + ' item ' + i, lineHeight: 20 + (i % 30) + 'px' };
+    return {
+      text: 'Item ' + i + ' item ' + i,
+      lineHeight: 20 + (i % 30) + 'px',
+      width: 20 + (i % 30) + 'px'
+    };
   });
-
+  
   let rowHeights = (item: any, index: number) => 25;
 
   function randomize() {

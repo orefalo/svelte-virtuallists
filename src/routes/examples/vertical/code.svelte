@@ -1,5 +1,5 @@
 <script lang="ts">
-  import VirtualList from '$lib/VirtualList2.svelte';
+  import VirtualList from 'svelte-virtuallists/new/VirtualList2.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return { text: 'ITEM ' + i + ' - Item ' + i };
