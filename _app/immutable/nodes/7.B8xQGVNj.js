@@ -1,10 +1,10 @@
-import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as ts,T as ps,h as z,j as fs,d as p,k as B,l as s,m as a,U as es,r as n,v as bs,V as _s,K as V}from"../chunks/external.B56iKtsd.js";import{E as ys}from"../chunks/ExampleArea.DWmN8iNl.js";import{A as ws,S as xs,a as qs}from"../chunks/svelte-virtuallists.6csm501w.js";const Ts=!0,Bs=Object.freeze(Object.defineProperty({__proto__:null,prerender:Ts},Symbol.toStringTag,{value:"Module"}));function ks(j,i){p(i,50)}var Os=B('<div class="row svelte-ufwu3t"> </div>'),Ss=B('<div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option>auto</option><option>start</option><option>center</option><option>end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option>auto</option><option>smooth</option><option>instant</option></select></span></div></div> <div style="float: right;font-weight: bold"><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function As(j,i){ms(i,!0);let u,g=e(void 0),m=e(void 0),v=e(c([])),d=e(void 0),f=e(void 0),E=e(0),N=e(0);function cs(l){l.type==="range.update"&&(p(E,c(l.start)),p(N,c(l.end)))}const C=new Array(1e4).fill(1).map((l,o)=>o);ns(()=>{p(d,void 0),p(f,c(t(m)))}),ns(()=>{p(f,void 0),p(d,c(t(g)))});let b=e(c(ws.AUTO)),_=e(c(xs.SMOOTH));function U(){let l=[];for(let o=0;o<1e4;(o+=1)-1)l.push(Math.random()*105+50);p(v,c(l))}U();var $=Ss(),y=os($),w=a(y),G=a(w),F=s(a(G));es(F),n(G),n(w);var x=s(w,2),P=a(x),K=s(a(P));es(K),n(P),n(x);var q=s(x,2),D=a(q),T=s(a(D)),k=a(T);k.value=(k.__value="auto")==null?"":"auto";var O=s(k);O.value=(O.__value="start")==null?"":"start";var S=s(O);S.value=(S.__value="center")==null?"":"center";var J=s(S);J.value=(J.__value="end")==null?"":"end",n(T),n(D),n(q);var Q=s(q,2),W=a(Q),A=s(a(W)),I=a(A);I.value=(I.__value="auto")==null?"":"auto";var L=s(I);L.value=(L.__value="smooth")==null?"":"smooth";var X=s(L);X.value=(X.__value="instant")==null?"":"instant",n(A),n(W),n(Q),n(y);var M=s(y,2),H=s(a(M),2),is=a(H);n(H);var Y=s(H,4),rs=a(Y);n(Y),n(M);var R=s(M,2),hs=a(R);vs(qs(hs,{height:500,width:"auto",model:C,get modelCount(){return C.length},get itemSize(){return t(v)},get scrollToIndex(){return t(d)},get scrollOffset(){return t(f)},get scrollToAlignment(){return t(b)},get scrollToBehaviour(){return t(_)},onVisibleRangeUpdate:cs,slot:(o,r)=>{let us=()=>r==null?void 0:r().style,as=()=>r==null?void 0:r().index;var h=Os(),ds=a(h);n(h),ls(()=>{bs(h,"style",us()),_s(h,"highlighted",as()===t(d)),V(ds,`Item #${as()??""}`)}),z(o,h)},$$slots:{slot:!0}}),o=>u=o,()=>u),n(R);var Z=s(R,2),ss=a(Z);ss.__click=U;var js=s(ss,2);js.__click=[ks,v],n(Z),ls(()=>{V(is,t(E)),V(rs,t(N))}),ts(F,()=>t(g),l=>p(g,l)),ts(K,()=>t(m),l=>p(m,l)),ps(T,()=>t(b),l=>p(b,l)),ps(A,()=>t(_),l=>p(_,l)),z(j,$),fs()}gs(["click"]);const Is=`<script lang="ts">
-  import {
-    VirtualList,
-    ALIGNMENT,
-    SCROLL_BEHAVIOR,
-    type VirtualListModel
-  } from 'svelte-virtuallists';
+import{L as gs,p as ms,u as as,s as p,b as c,y as os,g as t,t as ls,S as ts,T as es,h as R,j as vs,k as B,d as e,l as s,m as n,U as ps,r as a,v as fs,V as bs,K as H,C as xs}from"../chunks/external.C8cba1ez.js";import{E as _s}from"../chunks/ExampleArea.DYttOl7s.js";import{A as ys,S as Ts,V as qs}from"../chunks/svelte-virtuallists.BpvElS_U.js";const ws=!0,Bs=Object.freeze(Object.defineProperty({__proto__:null,prerender:ws},Symbol.toStringTag,{value:"Module"}));var Os=B('<div class="svelte-1bng65z"> </div>'),Is=B('<div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option>auto</option><option>start</option><option>center</option><option>end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option>auto</option><option>smooth</option><option>instant</option></select></span></div></div> <div><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <!> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function Ls(u,h){ms(h,!0);const j=new Array(1e4).fill(1).map((l,o)=>({text:"Item "+o+" item "+o,lineHeight:20+o%30+"px"}));let g=p(void 0),m=p(void 0),d=p(void 0),v=p(void 0),z=p(0),E=p(0);function is(l){l.type==="range.update"&&(e(z,c(l.start)),e(E,c(l.end)))}as(()=>{e(d,void 0),e(v,c(t(m)))}),as(()=>{e(v,void 0),e(d,c(t(g)))});let f=p(c(ys.AUTO)),b=p(c(Ts.SMOOTH)),x;function N(){x=(l,o)=>Math.round(Math.random()*125+30)}function cs(){x=(l,o)=>25}N();var C=Is(),_=os(C),y=n(_),U=n(y),$=s(n(U));ps($),a(U),a(y);var T=s(y,2),G=n(T),F=s(n(G));ps(F),a(G),a(T);var q=s(T,2),P=n(q),w=s(n(P)),O=n(w);O.value=(O.__value="auto")==null?"":"auto";var I=s(O);I.value=(I.__value="start")==null?"":"start";var L=s(I);L.value=(L.__value="center")==null?"":"center";var K=s(L);K.value=(K.__value="end")==null?"":"end",a(w),a(P),a(q);var D=s(q,2),J=n(D),S=s(n(J)),A=n(S);A.value=(A.__value="auto")==null?"":"auto";var M=s(A);M.value=(M.__value="smooth")==null?"":"smooth";var Q=s(M);Q.value=(Q.__value="instant")==null?"":"instant",a(S),a(J),a(D),a(_);var k=s(_,2),V=s(n(k),2),rs=n(V);a(V);var W=s(V,4),hs=n(W);a(W),a(k);var X=s(k,2);qs(X,{items:j,style:"height:500px",get scrollToIndex(){return t(d)},get scrollOffset(){return t(v)},get scrollToAlignment(){return t(f)},get scrollToBehaviour(){return t(b)},onVisibleRangeUpdate:is,vl_slot:(o,i)=>{let ss=()=>i==null?void 0:i().item,ns=()=>i==null?void 0:i().index;var r=Os();const us=xs(()=>`border: 1px solid rgb(204, 204, 204); line-height: ${x(ss(),ns())??""}px;`);var js=n(r);a(r),ls(()=>{fs(r,"style",t(us)),bs(r,"highlighted",ns()===t(d)),H(js,ss().text)}),R(o,r)},$$slots:{vl_slot:!0}});var Y=s(X,2),Z=n(Y);Z.__click=N;var ds=s(Z,2);ds.__click=cs,a(Y),ls(()=>{H(rs,t(z)),H(hs,t(E))}),ts($,()=>t(g),l=>e(g,l)),ts(F,()=>t(m),l=>e(m,l)),es(w,()=>t(f),l=>e(f,l)),es(S,()=>t(b),l=>e(b,l)),R(u,C),vs()}gs(["click"]);const Ss=`<script lang="ts">
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VirtualListModel } from '$lib';
+  import VirtualList from '$lib/VirtualList2.svelte';
+
+  const myModel = new Array(10000).fill(1).map((v, i) => {
+    return { text: 'Item ' + i + ' item ' + i, lineHeight: 20 + (i % 30) + 'px' };
+  });
 
   let virtualList;
 
@@ -13,7 +13,6 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   let theScrollOffet: number | undefined = $state();
 
   // on the component
-  let rowHeights: Array<number> | number = $state([]);
   let scrollToIndex: number | undefined = $state();
   let scrollOffet: number | undefined = $state();
 
@@ -28,7 +27,7 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   }
 
   // that's the model, which we don't use for this example
-  const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
+  // const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
 
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
@@ -45,16 +44,14 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
   let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
 
+  let rowHeights: Function;
+
   function randomize() {
-    let newRowHeights = [];
-    for (let i = 0; i < 10000; i++) {
-      newRowHeights.push(Math.random() * (155 - 50) + 50);
-    }
-    rowHeights = newRowHeights;
+    rowHeights = (item: any, index: number) => Math.round(Math.random() * (155 - 30) + 30);
   }
 
   function sameSize() {
-    rowHeights = 50;
+    rowHeights = (item: any, index: number) => 25;
   }
 
   randomize();
@@ -105,13 +102,16 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
     </span>
   </div>
 </div>
-<div style="float: right;font-weight: bold">
+
+<div>
   <span>Visible Area: start</span>
   <span>{start}</span>
   -
   <span>end</span>
   <span>{end}</span>
 </div>
+
+<!--
 <div class="list">
   <VirtualList
     bind:this={virtualList}
@@ -131,7 +131,25 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
       </div>
     {/snippet}
   </VirtualList>
-</div>
+
+-->
+
+<VirtualList
+  items={myModel}
+  style="height:500px"
+  {scrollToIndex}
+  scrollOffset={scrollOffet}
+  {scrollToAlignment}
+  {scrollToBehaviour}
+  onVisibleRangeUpdate={handleMessage}>
+  {#snippet vl_slot({ item, index })}
+    <div
+      style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;"
+      class:highlighted={index === scrollToIndex}>
+      {item.text}
+    </div>
+  {/snippet}
+</VirtualList>
 
 <div class="actions">
   <button onclick={randomize} class="button">Randomize row heights</button>
@@ -139,44 +157,17 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
 </div>
 
 <style>
-  :global(body),
-  :global(html) {
-    height: 100%;
-    margin: 0;
-    background-color: rgb(249, 249, 249);
-    display: block;
-  }
-
-  :global(.virtual-list-wrapper) {
-    margin: 20px;
-    background: #fff;
-    border-radius: 2px;
-    background: #fafafa;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-    color: #333;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .row {
-    padding: 0 15px;
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
-    line-height: 50px;
-    font-weight: 500;
-    background: #fff;
-  }
-
-  .row.highlighted {
+  .highlighted {
     background: #efefef;
   }
 </style>
-`,Ls=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> {
-    <span class="hljs-title class_">VirtualList</span>,
-    <span class="hljs-variable constant_">ALIGNMENT</span>,
-    <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>,
-    type <span class="hljs-title class_">VirtualListModel</span>
-  } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+`,As=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">ALIGNMENT</span>, <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
+  <span class="hljs-keyword">import</span> <span class="hljs-title class_">VirtualList</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib/VirtualList2.svelte&#x27;</span>;
+
+  <span class="hljs-keyword">const</span> myModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i + <span class="hljs-string">&#x27; item &#x27;</span> + i, <span class="hljs-attr">lineHeight</span>: <span class="hljs-number">20</span> + (i % <span class="hljs-number">30</span>) + <span class="hljs-string">&#x27;px&#x27;</span> };
+  });
 
   <span class="hljs-keyword">let</span> virtualList;
 
@@ -185,7 +176,6 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   <span class="hljs-keyword">let</span> <span class="hljs-attr">theScrollOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
 
   <span class="hljs-comment">// on the component</span>
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; | number = $state([]);
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
 
@@ -200,7 +190,7 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   }
 
   <span class="hljs-comment">// that&#x27;s the model, which we don&#x27;t use for this example</span>
-  <span class="hljs-keyword">const</span> <span class="hljs-attr">myModel</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i);
+  <span class="hljs-comment">// const myModel: Array&lt;number&gt; = new Array(10000).fill(1).map((v, i) =&gt; i);</span>
 
   $effect(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
@@ -217,16 +207,14 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToAlignment</span>: <span class="hljs-variable constant_">ALIGNMENT</span> = $state(<span class="hljs-variable constant_">ALIGNMENT</span>.<span class="hljs-property">AUTO</span>);
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToBehaviour</span>: <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span> = $state(<span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>.<span class="hljs-property">SMOOTH</span>);
 
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Function</span>;
+
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">randomize</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">let</span> newRowHeights = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000</span>; i++) {
-      newRowHeights.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">50</span>) + <span class="hljs-number">50</span>);
-    }
-    rowHeights = newRowHeights;
+    rowHeights = <span class="hljs-function">(<span class="hljs-params">item: any, index: number</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">30</span>) + <span class="hljs-number">30</span>);
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">sameSize</span>(<span class="hljs-params"></span>) {
-    rowHeights = <span class="hljs-number">50</span>;
+    rowHeights = <span class="hljs-function">(<span class="hljs-params">item: any, index: number</span>) =&gt;</span> <span class="hljs-number">25</span>;
   }
 
   <span class="hljs-title function_">randomize</span>();
@@ -277,33 +265,54 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;float: right;font-weight: bold&quot;</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Visible Area: start<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{start}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   -
   <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>end<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{end}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span>
-    <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span>
-    <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span>
-    <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span>
-    <span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span>
-    <span class="hljs-attr">modelCount</span>=<span class="hljs-string">{myModel.length}</span>
-    <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>
-    {<span class="hljs-attr">scrollToIndex</span>}
-    <span class="hljs-attr">scrollOffset</span>=<span class="hljs-string">{scrollOffet}</span>
-    {<span class="hljs-attr">scrollToAlignment</span>}
-    {<span class="hljs-attr">scrollToBehaviour</span>}
-    <span class="hljs-attr">onVisibleRangeUpdate</span>=<span class="hljs-string">{handleMessage}</span>&gt;</span>
-    {#snippet slot({ item: _item, style, index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">any</span>&gt;</span>)}
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>} <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--
+&lt;div class=&quot;list&quot;&gt;
+  &lt;VirtualList
+    bind:this={virtualList}
+    height={500}
+    width=&quot;auto&quot;
+    model={myModel}
+    modelCount={myModel.length}
+    itemSize={rowHeights}
+    {scrollToIndex}
+    scrollOffset={scrollOffet}
+    {scrollToAlignment}
+    {scrollToBehaviour}
+    onVisibleRangeUpdate={handleMessage}&gt;
+    {#snippet slot({ item: _item, style, index }: VirtualListModel&lt;any&gt;)}
+      &lt;div class=&quot;row&quot; {style} class:highlighted={index === scrollToIndex}&gt;
         Item #{index}
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      &lt;/div&gt;
     {/snippet}
-  <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  &lt;/VirtualList&gt;
+
+--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span>
+  <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span>
+  <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:500px&quot;</span>
+  {<span class="hljs-attr">scrollToIndex</span>}
+  <span class="hljs-attr">scrollOffset</span>=<span class="hljs-string">{scrollOffet}</span>
+  {<span class="hljs-attr">scrollToAlignment</span>}
+  {<span class="hljs-attr">scrollToBehaviour</span>}
+  <span class="hljs-attr">onVisibleRangeUpdate</span>=<span class="hljs-string">{handleMessage}</span>&gt;</span>
+  {#snippet vl_slot({ item, index })}
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;&quot;</span>
+      <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
+      {item.text}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  {/snippet}
+<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;actions&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">{randomize}</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>Randomize row heights<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
@@ -311,35 +320,8 @@ import{L as gs,p as ms,s as e,b as c,u as ns,y as os,e as vs,g as t,t as ls,S as
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
-  :<span class="hljs-built_in">global</span>(body),
-  :<span class="hljs-built_in">global</span>(html) {
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">249</span>, <span class="hljs-number">249</span>, <span class="hljs-number">249</span>);
-    <span class="hljs-attribute">display</span>: block;
-  }
-
-  :<span class="hljs-built_in">global</span>(.virtual-list-wrapper) {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fafafa</span>;
-    <span class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;
-    -webkit-<span class="hljs-attribute">font-smoothing</span>: antialiased;
-  }
-
-  <span class="hljs-selector-class">.row</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">15px</span>;
-    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eee</span>;
-    <span class="hljs-attribute">box-sizing</span>: border-box;
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50px</span>;
-    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">500</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
-  }
-
-  <span class="hljs-selector-class">.row</span><span class="hljs-selector-class">.highlighted</span> {
+  <span class="hljs-selector-class">.highlighted</span> {
     <span class="hljs-attribute">background</span>: <span class="hljs-number">#efefef</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,Ms={code:Is,highlightedHTML:Ls,component:As};var Hs=B("<h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function Es(j){var i=Hs(),u=s(os(i),4);ys(u,{example:Ms}),z(j,i)}export{Es as component,Bs as universal};
+`,Ms={code:Ss,highlightedHTML:As,component:Ls};var ks=B("<h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <!>",1);function zs(u){var h=ks(),j=s(os(h),4);_s(j,{example:Ms}),R(u,h)}export{zs as component,Bs as universal};
