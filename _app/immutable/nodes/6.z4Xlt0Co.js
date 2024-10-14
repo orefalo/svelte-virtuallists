@@ -1,1 +1,0 @@
-import{h as t,k as e,G as n}from"../chunks/external.C8cba1ez.js";var p=e("<h2>Partial Loader (TO IMPLEMENT)</h2> <p>Lazy load data on demand</p>",1);function d(a){var o=p();n(2),t(a,o)}export{d as component};
