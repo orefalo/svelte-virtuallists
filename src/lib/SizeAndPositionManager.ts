@@ -5,14 +5,23 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type VirtualItemSize, type VirtualRange, type VirtualPosition } from '.';
+import { ALIGNMENT, type VirtualItemSize, type VirtualRange } from '.';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;
+  // implicitly this is model.length
   private modelCount: number;
+
+  // size of the row in px, either calculate or constant
   private itemSize: VirtualItemSize;
   private estimatedItemSize?: number;
-  private itemSizeAndPositionData: Record<number, VirtualPosition>;
+  private itemSizeAndPositionData: Record<
+    number,
+    {
+      size: number;
+      offset: number;
+    }
+  >;
   private lastMeasuredIndex: number;
   private totalSize?: number;
 
@@ -81,21 +90,19 @@ export default class SizeAndPositionManager {
    * only when itemSize is a number or an array.
    */
   computeTotalSizeAndPositionData() {
-    let totalSize = 0;
+    let offset = 0;
     for (let i = 0; i < this.modelCount; i++) {
-      const size = this.getSize(i);
-      const offset = totalSize;
-      totalSize += size;
+      const size = this.getSize(i); 
 
       this.itemSizeAndPositionData[i] = {
         offset,
         size
       };
+      offset += size;
     }
 
-    this.totalSize = totalSize;
+    this.totalSize = offset;
   }
-
 
   /**
    * This method returns the size and position for the item at the specified index.
