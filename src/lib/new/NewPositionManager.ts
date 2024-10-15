@@ -5,20 +5,23 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type VirtualItemSize, type VirtualRange } from '.';
+import { ALIGNMENT, type VirtualRange } from '..';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;
-  // implicitly this is model.length
-  private modelCount: number;
 
-  // size of the row in px, either calculate or constant
-  private itemSize: VirtualItemSize;
-  private estimatedItemSize?: number;
-  private itemSizeAndPositionData: Record<
+  // calculate the size of a given index
+  private sizingCalculator?: (index: number, item: unknown) => number;
+  private estimatedSize?: number;
+
+  private indexToSizeAndPosition: Record<
+    // index
     number,
     {
+      // width or height
       size: number;
+
+      // pixel offset from top
       offset: number;
     }
   >;
@@ -27,42 +30,33 @@ export default class SizeAndPositionManager {
 
   constructor(
     model: Array<any>,
-    modelCount: number,
-    itemSize: VirtualItemSize,
-    estimatedItemSize?: number
+    sizingCalculator?: (index: number, item: unknown) => number,
+    estimatedSize?: number
   ) {
     this.model = model;
-    this.itemSize = itemSize;
-    this.modelCount = modelCount;
-    this.estimatedItemSize = estimatedItemSize;
-    this.itemSizeAndPositionData = {};
+    this.sizingCalculator = sizingCalculator;
+    this.estimatedSize = estimatedSize;
+    this.indexToSizeAndPosition = {};
     this.lastMeasuredIndex = -1;
 
     this.checkForMismatchItemSizeAndItemCount();
 
-    if (!this.justInTime) this.computeTotalSizeAndPositionData();
+    if (!this.sizingCalculator) this.computeTotalSizeAndPositionData();
   }
 
-  get justInTime() {
-    return typeof this.itemSize === 'function';
-  }
-
-  updateConfig(itemSize: VirtualItemSize, itemCount: number, estimatedItemSize?: number) {
-    if (itemCount !== undefined) {
-      this.modelCount = itemCount;
-    }
-
+  //TODO add model update
+  updateConfig(itemSize: (index: number, item: unknown) => number, estimatedItemSize?: number) {
     if (estimatedItemSize !== undefined) {
-      this.estimatedItemSize = estimatedItemSize;
+      this.estimatedSize = estimatedItemSize;
     }
 
     if (itemSize !== undefined) {
-      this.itemSize = itemSize;
+      this.sizingCalculator = itemSize;
     }
 
     this.checkForMismatchItemSizeAndItemCount();
 
-    if (this.justInTime && this.totalSize !== undefined) {
+    if (this.sizingCalculator && this.totalSize !== undefined) {
       this.totalSize = undefined;
     } else {
       this.computeTotalSizeAndPositionData();
@@ -70,19 +64,21 @@ export default class SizeAndPositionManager {
   }
 
   private checkForMismatchItemSizeAndItemCount() {
-    if (Array.isArray(this.itemSize) && this.itemSize.length < this.modelCount) {
+    if (Array.isArray(this.sizingCalculator) && this.sizingCalculator.length < this.model.length) {
       throw Error(`When itemSize is an array, itemSize.length can't be smaller than itemCount`);
     }
   }
 
-  private getSize(index: number) {
-    const { itemSize } = this;
+  // get the size at index, defaults to average size
+  private getSize(index: number): number {
+    // const { sizingCalculator: itemSize } = this;
 
-    if (typeof itemSize === 'function') {
-      return itemSize(this.model[index], index);
+    if (this.sizingCalculator) {
+      return this.sizingCalculator(index, this.model[index]);
     }
 
-    return Array.isArray(itemSize) ? itemSize[index] : itemSize;
+    //return Array.isArray(itemSize) ? itemSize[index] : itemSize;
+    return this.estimatedSize || 0;
   }
 
   /**
@@ -91,12 +87,12 @@ export default class SizeAndPositionManager {
    */
   computeTotalSizeAndPositionData() {
     let offset = 0;
-    for (let i = 0; i < this.modelCount; i++) {
+    for (let i = 0; i < this.model.length; i++) {
       const size = this.getSize(i);
 
-      this.itemSizeAndPositionData[i] = {
-        offset,
-        size
+      this.indexToSizeAndPosition[i] = {
+        size,
+        offset
       };
       offset += size;
     }
@@ -109,13 +105,13 @@ export default class SizeAndPositionManager {
    *
    */
   getSizeAndPositionForIndex(index: number) {
-    if (index < 0 || index >= this.modelCount) {
-      throw Error(`Requested index ${index} is outside of range 0..${this.modelCount}`);
+    if (index < 0 || index >= this.model.length) {
+      throw Error(`Requested index ${index} is outside of range 0..${this.model.length}`);
     }
 
-    return this.justInTime
+    return this.sizingCalculator
       ? this.getJustInTimeSizeAndPositionForIndex(index)
-      : this.itemSizeAndPositionData[index];
+      : this.indexToSizeAndPosition[index];
   }
 
   /**
@@ -134,7 +130,7 @@ export default class SizeAndPositionManager {
           throw Error(`Invalid size returned for index ${i} of value ${size}`);
         }
 
-        this.itemSizeAndPositionData[i] = {
+        this.indexToSizeAndPosition[i] = {
           offset,
           size
         };
@@ -145,17 +141,21 @@ export default class SizeAndPositionManager {
       this.lastMeasuredIndex = index;
     }
 
-    return this.itemSizeAndPositionData[index];
+    return this.indexToSizeAndPosition[index];
   }
 
   private getSizeAndPositionOfLastMeasuredItem() {
     return this.lastMeasuredIndex >= 0
-      ? this.itemSizeAndPositionData[this.lastMeasuredIndex]
+      ? this.indexToSizeAndPosition[this.lastMeasuredIndex]
       : { offset: 0, size: 0 };
   }
 
   private getEstimatedItemSize(): number {
-    return this.estimatedItemSize || (typeof this.itemSize === 'number' && this.itemSize) || 50;
+    return (
+      this.estimatedSize ||
+      (typeof this.sizingCalculator === 'number' && this.sizingCalculator) ||
+      50
+    );
   }
 
   /**
@@ -175,7 +175,7 @@ export default class SizeAndPositionManager {
     return (
       lastMeasuredSizeAndPosition.offset +
       lastMeasuredSizeAndPosition.size +
-      (this.modelCount - this.lastMeasuredIndex - 1) * this.getEstimatedItemSize()
+      (this.model.length - this.lastMeasuredIndex - 1) * this.getEstimatedItemSize()
     );
   }
 
@@ -244,14 +244,14 @@ export default class SizeAndPositionManager {
 
     let end = start;
 
-    while (offset < maxOffset && end < this.modelCount - 1) {
+    while (offset < maxOffset && end < this.model.length - 1) {
       end++;
       offset += this.getSizeAndPositionForIndex(end).size;
     }
 
     if (windowOverPadding) {
       start = Math.max(0, start - windowOverPadding);
-      end = Math.min(end + windowOverPadding, this.modelCount - 1);
+      end = Math.min(end + windowOverPadding, this.model.length - 1);
     }
 
     return {
@@ -327,11 +327,11 @@ export default class SizeAndPositionManager {
   private exponentialSearch(index: number, offset: number): number {
     let interval = 1;
 
-    while (index < this.modelCount && this.getSizeAndPositionForIndex(index).offset < offset) {
+    while (index < this.model.length && this.getSizeAndPositionForIndex(index).offset < offset) {
       index += interval;
       interval *= 2;
     }
 
-    return this.binarySearch(Math.floor(index / 2), Math.min(index, this.modelCount - 1), offset);
+    return this.binarySearch(Math.floor(index / 2), Math.min(index, this.model.length - 1), offset);
   }
 }

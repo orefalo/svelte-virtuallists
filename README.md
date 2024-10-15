@@ -35,10 +35,10 @@ This package originated from [svelte-tiny-virtual-list](https://github.com/jonas
   Customize width, heigh, position, style, content.
   
 - 💠 **Layout Control**
-  Support fixed and variables sizing, dynamic loading along with vertical and horizontal lists.
+  Headless, support fixed and variables sizing, along with vertical and horizontal lists.
 
 - 🧩 **Programming Interface**
-  Set list positions and properties, and respond promptly to events.
+  Set positions and properties, raises events on state mutation.
 
 - 💼 **Small**
   Compact and dependency free – Only ~5kb when compressed.

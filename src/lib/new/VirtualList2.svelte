@@ -57,11 +57,10 @@
     scrollOffset,
     // windowOverPadding = 3,
 
-    // Render count at start. For ssr.
-    firstRender = 6,
+    // Render count at start, used for SSR
+    preRenderCount = 6,
 
-    // layout options
-    // scrollDirection = DIRECTION.VERTICAL,
+    // scroll attributes
     scrollToAlignment = ALIGNMENT.AUTO,
     scrollToBehaviour = SCROLL_BEHAVIOR.INSTANT,
 
@@ -74,9 +73,12 @@
     onVisibleRangeUpdate,
     onAfterScroll,
 
-    // dom
+    // css
     class: className = '',
-    style = ''
+    style = '',
+
+    // calculate the size of a given index
+    sizingCalculator
   }: {
     items: any[];
 
@@ -88,10 +90,11 @@
     scrollToIndex?: number | undefined;
     scrollOffset?: number | undefined;
 
+    // scroll attributes
     scrollToAlignment?: ALIGNMENT;
     scrollToBehaviour?: SCROLL_BEHAVIOR;
 
-    firstRender?: number;
+    preRenderCount?: number;
 
     // snippets
     header?: Snippet;
@@ -101,8 +104,12 @@
     // events
     onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
     onAfterScroll?: (event: AfterScrollEvent) => void;
+
+    // css
     class?: string;
     style?: string;
+
+    sizingCalculator?: (index: number, item: unknown) => number;
   } = $props();
 
   enum SCROLL_CHANGE_REASON {
@@ -116,9 +123,6 @@
   }
 
   let mounted: boolean = false;
-  let listContainer: HTMLDivElement;
-  // svelte-ignore non_reactive_update
-  let listInner: HTMLDivElement;
 
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
@@ -128,7 +132,9 @@
   let itemKey: 'index' | ((item: any, index: number) => any);
 
   let start = $state(0);
-  let end = $state(firstRender - 1);
+  let end = $state(preRenderCount - 1);
+
+  // used when sizing is not calculated yet
   let avgSize = $state(0);
 
   let curState: VState = $state({
@@ -148,6 +154,7 @@
 
   const runtimeSizes: (number | null)[] = $derived(new Array(items.length));
 
+  // this is index -> height or width
   const sizes: number[] = $derived.by(() => {
     const p = items.map((item, index) => {
       if (runtimeSizes[index] != null) {
@@ -159,6 +166,7 @@
     return p;
   });
 
+  // this is index -> offset
   const positions: number[] = $derived.by(() => {
     const p: number[] = [];
     sizes.reduce((a, b) => {
@@ -201,6 +209,12 @@
     return r;
   }) as VirtualListModel[];
 
+  // dom references
+  let listContainer: HTMLDivElement;
+  // svelte-ignore non_reactive_update  - not sure where its updated?!
+  let listInner: HTMLDivElement;
+
+  // css
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
 
   const listInnerStyle = $derived.by(() =>
@@ -233,10 +247,10 @@
     const offset = getScroll(listContainer);
 
     if (
-      offset < 0 ||
-      curState.offset === offset ||
       event.target !== listContainer ||
-      buffer - Math.abs(offset - curState.offset) >= 1
+      offset < 0 ||
+      curState.offset === offset
+      //|| buffer - Math.abs(offset - curState.offset) >= 1
     )
       return;
 
@@ -245,30 +259,21 @@
       scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
     };
 
-    if (onAfterScroll) {
-      onAfterScroll({ type: 'scroll.update', offset, event });
-    }
+    onAfterScroll?.({ type: 'scroll.update', offset, event });
 
-    // updatePositions();
+    //updatePositions();
   }
 
-  // function onscroll() {
-  //   // tracks the scroll position
-  //   const currentScroll = getScroll(listContainer);
-  //   if (prevScroll != null && buffer - Math.abs(currentScroll - prevScroll) >= 10) {
-  //     return;
-  //   }
-  //   prevScroll = currentScroll;
-  //   updatePositions();
-  // }
-
-  function getStart() {
+  // return the index of the starting boundary
+  function getStart(): number {
     const startPosition = getScroll(listContainer) - getPaddingStart(listContainer) - buffer;
     const r = binarySearch(positions, mid => mid - startPosition, {
       returnNearestIfNoHit: true
     })!;
     return r.index;
   }
+
+  // return the index of the closing boundary
   function getEnd() {
     const endPosition =
       getScroll(listContainer) -
@@ -280,6 +285,7 @@
     return r.index;
   }
 
+  // recalculates the viewport position
   function updatePositions() {
     console.log('updatePositions');
     if (!avgSize) {
@@ -319,6 +325,8 @@
         runtimeSizes[index] = runtimeSizesTemp[index];
       }
     }
+
+    onVisibleRangeUpdate?.({ type: 'range.update', start, end });
   }
 
   function getAvgSize() {
@@ -395,11 +403,12 @@
       listContainer.scroll(p);
     } else {
       //@ts-expect-error no index signature
-      listContainer[!isHorizontal ? scrollTop : scrollLeft] = value;
+      listContainer[!isHorizontal ? 'scrollTop' : 'scrollLeft'] = value;
     }
   }
 
-  function getItemKey(item: any, index: number) {
+  //TODO implement
+  function getItemKey(index: number, item: any) {
     if (itemKey) {
       if (/*typeof itemKey === 'string' &&*/ itemKey === 'index') {
         return index;

@@ -1,4 +1,3 @@
-
 type BinarySearchReturn<T> = {
   index: number;
   value: T;

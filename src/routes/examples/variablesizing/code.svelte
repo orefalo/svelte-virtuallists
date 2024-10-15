@@ -8,7 +8,7 @@
       width: 20 + (i % 30) + 'px'
     };
   });
-  
+
   let rowHeights = (item: any, index: number) => 25;
 
   function randomize() {

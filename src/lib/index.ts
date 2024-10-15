@@ -11,7 +11,6 @@ export interface VirtualListModel {
   index: number | string;
 }
 
-
 export interface VirtualRange {
   // index of the first visible item
   start: number;
