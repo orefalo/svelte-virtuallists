@@ -7,13 +7,13 @@
     
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.DLFELkxF.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.AGB8zajX.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.B7giMy8n.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.CLekpqux.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.C-y8hbZI.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.3Ij8quJz.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/10.BL7Ibp4J.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.CPDYrG9L.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.BU5kGoI3.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DbYL8hXZ.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.XxHSezL0.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.1-ssOOes.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.BtGUXGPZ.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/10.CH416jUy.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.CQkmjKMx.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.De9BByWX.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -46,25 +46,24 @@ SOFTWARE.
 .hljs-selector-pseudo{color:#c792ea;font-style:italic}.hljs-template-tag{color:#c792ea}.hljs-template-variable{color:#addb67}.hljs-addition{color:#addb67ff;font-style:italic}.hljs-deletion{color:#EF535090;font-style:italic}</style><!----><!--]--><title>Svelte-Virtuallists - Variable Sizing</title>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-113h04q"><div role="presentation" class="toc-container-space svelte-113h04q"></div> <main class="svelte-113h04q "><!----><h2>Variable Sizing</h2> <div><h2>Horizontal</h2> <div class="vtlist" style="overflow:auto; width:100%"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:row; margin-left:0px;margin-right:0px;width:0px"><!--[!--><!--]--> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204)">Item 0 item 0</div><!----><div style="border: 1px solid rgb(204, 204, 204)">Item 1 item 1</div><!----><div style="border: 1px solid rgb(204, 204, 204)">Item 2 item 2</div><!----><div style="border: 1px solid rgb(204, 204, 204)">Item 3 item 3</div><!----><div style="border: 1px solid rgb(204, 204, 204)">Item 4 item 4</div><!----><div style="border: 1px solid rgb(204, 204, 204)">Item 5 item 5</div><!----><!--]--><!--]--> <!--[!--><!--]--></div><!--]--></div><!----> <h2>Vertical</h2> <div class="vtlist" style="overflow:auto; height:600px"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:column; margin-top:0px;margin-bottom:0px"><!--[!--><!--]--> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); line-height: 38px;">Item 0 item 0</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 39px;">Item 1 item 1</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 122px;">Item 2 item 2</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 113px;">Item 3 item 3</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 144px;">Item 4 item 4</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 107px;">Item 5 item 5</div><!----><!--]--><!--]--> <!--[!--><!--]--></div><!--]--></div><!----> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+    <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-113h04q"><div role="presentation" class="toc-container-space svelte-113h04q"></div> <main class="svelte-113h04q "><!----><h2>Variable Sizing</h2> <div><h2>Horizontal</h2> <div class="vtlist" style="overflow:auto; width:100%"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:row; margin-left:0px;margin-right:0px;width:NaNpx"><!--[!--><!--]--> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 0 item 0</div><!----><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 1 item 1</div><!----><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 2 item 2</div><!----><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 3 item 3</div><!----><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 4 item 4</div><!----><div style="border: 1px solid rgb(204, 204, 204); width: px;">Item 5 item 5</div><!----><!--]--><!--]--> <!--[!--><!--]--></div><!--]--></div><!----> <h2>Vertical</h2> <div class="vtlist" style="overflow:auto; height:600px"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:column; margin-top:0px;margin-bottom:0px"><!--[!--><!--]--> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 0 item 0</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 1 item 1</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 2 item 2</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 3 item 3</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 4 item 4</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: px;">Item 5 item 5</div><!----><!--]--><!--]--> <!--[!--><!--]--></div><!--]--></div><!----> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
   <span class="hljs-keyword">import</span> <span class="hljs-title class_">VirtualList</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists/new/VirtualListNew.svelte&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> {
-      <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i + <span class="hljs-string">&#x27; item &#x27;</span> + i,
-      <span class="hljs-attr">lineHeight</span>: <span class="hljs-number">20</span> + (i % <span class="hljs-number">30</span>) + <span class="hljs-string">&#x27;px&#x27;</span>,
-      <span class="hljs-attr">width</span>: <span class="hljs-number">20</span> + (i % <span class="hljs-number">30</span>) + <span class="hljs-string">&#x27;px&#x27;</span>
+      <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Item &#x27;</span> + i + <span class="hljs-string">&#x27; item &#x27;</span> + i
     };
   });
 
-  <span class="hljs-keyword">let</span> <span class="hljs-title function_">rowHeights</span> = (<span class="hljs-params">item: any, index: number</span>) =&gt; <span class="hljs-number">25</span>;
+  <span class="hljs-keyword">let</span> rowHeights = $state();
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">randomize</span>(<span class="hljs-params"></span>) {
-    rowHeights = <span class="hljs-function">(<span class="hljs-params">item: any, index: number</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">30</span>) + <span class="hljs-number">30</span>);
+    rowHeights = <span class="hljs-function">(<span class="hljs-params">index: number, item: any</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-number">155</span> - <span class="hljs-number">30</span>) + <span class="hljs-number">30</span>);
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">sameSize</span>(<span class="hljs-params"></span>) {
-    rowHeights = <span class="hljs-function">(<span class="hljs-params">item: any, index: number</span>) =&gt;</span> <span class="hljs-number">25</span>;
+    rowHeights = <span class="hljs-function">(<span class="hljs-params">index: number, item: any</span>) =&gt;</span> <span class="hljs-number">25</span>;
   }
 
   <span class="hljs-title function_">randomize</span>();
@@ -73,8 +72,8 @@ SOFTWARE.
 <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Horizontal<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%&quot;</span> <span class="hljs-attr">isHorizontal</span>=<span class="hljs-string">{true}</span>&gt;</span>
-  {#snippet vl_slot({ item, index })}
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204)&quot;</span>&gt;</span>
+  {#snippet vl_slot({ index, item, size }: VirtualListModel)}
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); width: {size}px;&quot;</span>&gt;</span>
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   {/snippet}
@@ -83,8 +82,8 @@ SOFTWARE.
 <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Vertical<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:600px&quot;</span>&gt;</span>
-  {#snippet vl_slot({ item, index })}
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;&quot;</span>&gt;</span>
+  {#snippet vl_slot({ index, item, size }: VirtualListModel)}
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); line-height: {size}px;&quot;</span>&gt;</span>
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   {/snippet}
@@ -98,7 +97,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_fswtx0 = {
+					__sveltekit_1gfr775 = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -108,8 +107,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.B7giMy8n.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.C-y8hbZI.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.DbYL8hXZ.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.1-ssOOes.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 10],
