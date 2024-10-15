@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ALIGNMENT, SCROLL_BEHAVIOR, type VirtualListModel } from '$lib';
-  import VirtualList from 'svelte-virtuallists/new/VirtualList2.svelte';
+  import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return { text: 'Item ' + i + ' item ' + i, lineHeight: 20 + (i % 30) + 'px' };
@@ -44,14 +44,14 @@
   let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
   let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
 
-  let rowHeights: Function;
+  let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
 
   function randomize() {
-    rowHeights = (item: any, index: number) => Math.round(Math.random() * (155 - 30) + 30);
+    szCalculator = (_index: number, _item: any) => Math.round(Math.random() * (155 - 30) + 30);
   }
 
   function sameSize() {
-    rowHeights = (item: any, index: number) => 25;
+    szCalculator = (_index: number, _item: any) => 25;
   }
 
   randomize();
@@ -111,29 +111,6 @@
   <span>{end}</span>
 </div>
 
-<!--
-<div class="list">
-  <VirtualList
-    bind:this={virtualList}
-    height={500}
-    width="auto"
-    model={myModel}
-    modelCount={myModel.length}
-    itemSize={rowHeights}
-    {scrollToIndex}
-    scrollOffset={scrollOffet}
-    {scrollToAlignment}
-    {scrollToBehaviour}
-    onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item: _item, style, index }: VirtualListModel<any>)}
-      <div class="row" {style} class:highlighted={index === scrollToIndex}>
-        Item #{index}
-      </div>
-    {/snippet}
-  </VirtualList>
-
--->
-
 <VirtualList
   items={myModel}
   style="height:500px"
@@ -141,10 +118,11 @@
   scrollOffset={scrollOffet}
   {scrollToAlignment}
   {scrollToBehaviour}
+  sizingCalculator={szCalculator}
   onVisibleRangeUpdate={handleMessage}>
-  {#snippet vl_slot({ item, index })}
+  {#snippet vl_slot({ item, index, size })}
     <div
-      style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;"
+      style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
       class:highlighted={index === scrollToIndex}>
       {item.text}
     </div>

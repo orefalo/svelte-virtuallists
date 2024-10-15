@@ -127,15 +127,16 @@
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
 
-  let buffer: number = 100;
-  // let prevScroll: number;
+  // viewport overfetch trigger in px
+  let overfetchBufferInPx: number = 100;
+
   let itemKey: 'index' | ((item: any, index: number) => any);
 
-  let start = $state(0);
-  let end = $state(preRenderCount - 1);
+  let startIdx = $state(0);
+  let endIdx = $state(preRenderCount - 1);
 
-  // used when sizing is not calculated yet
-  let avgSize = $state(0);
+  // used when rendering didn't happen yet
+  let avgSizeInPx = $state(0);
 
   let curState: VState = $state({
     offset:
@@ -149,7 +150,7 @@
 
   const end2 = $derived.by(() => {
     const max = (items?.length || 1) - 1;
-    return end < max ? end : max;
+    return endIdx < max ? endIdx : max;
   });
 
   const runtimeSizes: (number | null)[] = $derived(new Array(items.length));
@@ -160,7 +161,7 @@
       if (runtimeSizes[index] != null) {
         return runtimeSizes[index];
       }
-      return avgSize;
+      return avgSizeInPx;
     });
 
     return p;
@@ -176,13 +177,15 @@
     return p;
   });
 
-  const startSize = $derived(positions[start] ? positions[start] : 0);
+  const startOffset = $derived(positions[startIdx] ? positions[startIdx] : 0);
 
-  const totalSize = $derived(
+  const totalViewportSize = $derived(
     positions.length > 0 ? positions[positions.length - 1] + sizes[sizes.length - 1] : 0
   );
 
-  const endSize = $derived(positions[end2] ? totalSize - positions[end2] - sizes[end2] : 0);
+  const endOffset = $derived(
+    positions[end2] ? totalViewportSize - positions[end2] - sizes[end2] : 0
+  );
 
   onMount(() => {
     listContainer.addEventListener('scroll', onscroll, thirdEventArg);
@@ -199,12 +202,12 @@
       return;
     }
     const r: VirtualListModel[] = [];
-    for (let index = start; index <= end2; index++) {
+    for (let index = startIdx; index <= end2; index++) {
       const item = items[index];
       if (!item) {
         break;
       }
-      r.push({ item, index });
+      r.push({ item, index: startIdx + index });
     }
     return r;
   }) as VirtualListModel[];
@@ -222,8 +225,8 @@
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),
       !isDisabled &&
-        ((!isHorizontal && `margin-top:${startSize}px;margin-bottom:${endSize}px`) ||
-          `margin-left:${startSize}px;margin-right:${endSize}px;width:${totalSize - endSize - startSize}px`)
+        ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
+          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize - endOffset - startOffset}px`)
     )
   );
 
@@ -243,14 +246,16 @@
     prevState = curState;
   });
 
+  $effect(() => onVisibleRangeUpdate?.({ type: 'range.update', start: startIdx, end: endIdx }));
+
   function onscroll(event: Event) {
     const offset = getScroll(listContainer);
 
     if (
       event.target !== listContainer ||
       offset < 0 ||
-      curState.offset === offset
-      //|| buffer - Math.abs(offset - curState.offset) >= 1
+      curState.offset === offset ||
+      overfetchBufferInPx - Math.abs(offset - curState.offset) >= 1
     )
       return;
 
@@ -266,7 +271,8 @@
 
   // return the index of the starting boundary
   function getStart(): number {
-    const startPosition = getScroll(listContainer) - getPaddingStart(listContainer) - buffer;
+    const startPosition =
+      getScroll(listContainer) - getPaddingStart(listContainer) - overfetchBufferInPx;
     const r = binarySearch(positions, mid => mid - startPosition, {
       returnNearestIfNoHit: true
     })!;
@@ -279,7 +285,7 @@
       getScroll(listContainer) -
       getPaddingStart(listContainer) +
       getClientSize(listContainer) +
-      buffer;
+      overfetchBufferInPx;
 
     const r = binarySearch(positions, mid => mid - endPosition, { returnNearestIfNoHit: true })!;
     return r.index;
@@ -288,15 +294,16 @@
   // recalculates the viewport position
   function updatePositions() {
     console.log('updatePositions');
-    if (!avgSize) {
-      avgSize = getAvgSize();
+    if (!avgSizeInPx) {
+      avgSizeInPx = getAvgSize();
     }
 
-    start = getStart();
-    end = getEnd();
+    startIdx = getStart();
+    endIdx = getEnd();
 
     let vi0 = 0;
 
+    // index -> offset
     const runtimeSizesTemp: Record<number, number> = {};
     const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
 
@@ -311,22 +318,18 @@
 
       const size = stl.display !== 'none' ? getOuterSize(el as HTMLElement) : 0;
 
-      // todo: the hell is that?
-      // const vi = el.getAttribute('vt-index');
-      // const index = vi ? parseInt(vi) : start + vi0;
-
-      const index = start + vi0;
+      const index = startIdx + vi0;
       runtimeSizesTemp[index] = (runtimeSizesTemp[index] || 0) + size;
       vi0++;
     }
+
+    //TODO see if a simple array copy could suffice
     for (const indexS of Object.keys(runtimeSizesTemp)) {
       const index = parseInt(indexS);
       if (runtimeSizes[index] !== runtimeSizesTemp[index]) {
         runtimeSizes[index] = runtimeSizesTemp[index];
       }
     }
-
-    onVisibleRangeUpdate?.({ type: 'range.update', start, end });
   }
 
   function getAvgSize() {

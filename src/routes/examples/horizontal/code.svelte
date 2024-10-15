@@ -1,12 +1,12 @@
 <script lang="ts">
-  import VirtualList from 'svelte-virtuallists/new/VirtualList2.svelte';
+  import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return { text: 'ITEM ' + i + ' - Item ' + i };
   });
 </script>
 
-<VirtualList items={myModel} style="width:600px" isHorizontal={true}>
+<VirtualList items={myModel} style="width:100%" isHorizontal={true}>
   {#snippet vl_slot({ item, index })}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
