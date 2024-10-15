@@ -57,7 +57,7 @@
     // positioning
     scrollToIndex,
     scrollOffset,
-    windowOverPadding = 3,
+    windowOverPadding: windowOverPaddingCount = 3,
     scrollDirection = DIRECTION.VERTICAL,
     scrollToAlignment = ALIGNMENT.AUTO,
     scrollToBehaviour = SCROLL_BEHAVIOR.INSTANT,
@@ -270,7 +270,7 @@
       //@ts-expect-error wrong type assignment
       scrollDirection === DIRECTION.VERTICAL ? height : width,
       offset,
-      windowOverPadding
+      windowOverPaddingCount
     );
 
     let updatedItems = [];

@@ -220,11 +220,12 @@ export default class SizeAndPositionManager {
     const totalSize = this.getTotalSize();
     return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
   }
-
+  
+  // returns an index range
   getVisibleRange(
     containerSize: number = 0,
     offset: number,
-    windowOverPadding: number
+    windowOverPaddingCount: number
   ): VirtualRange {
     const totalSize = this.getTotalSize();
 
@@ -233,30 +234,30 @@ export default class SizeAndPositionManager {
     }
 
     const maxOffset = offset + containerSize;
-    let start = this.findNearestItem(offset);
+    let startIdx = this.findNearestItem(offset);
 
-    if (start === undefined) {
+    if (startIdx === undefined) {
       throw Error(`Invalid offset ${offset} specified`);
     }
 
-    const datum = this.getSizeAndPositionForIndex(start);
+    const datum = this.getSizeAndPositionForIndex(startIdx);
     offset = datum.offset + datum.size;
 
-    let end = start;
+    let endIdx = startIdx;
 
-    while (offset < maxOffset && end < this.modelCount - 1) {
-      end++;
-      offset += this.getSizeAndPositionForIndex(end).size;
+    while (offset < maxOffset && endIdx < this.modelCount - 1) {
+      endIdx++;
+      offset += this.getSizeAndPositionForIndex(endIdx).size;
     }
 
-    if (windowOverPadding) {
-      start = Math.max(0, start - windowOverPadding);
-      end = Math.min(end + windowOverPadding, this.modelCount - 1);
+    if (windowOverPaddingCount) {
+      startIdx = Math.max(0, startIdx - windowOverPaddingCount);
+      endIdx = Math.min(endIdx + windowOverPaddingCount, this.modelCount - 1);
     }
 
     return {
-      start,
-      end
+      start: startIdx,
+      end: endIdx
     };
   }
 

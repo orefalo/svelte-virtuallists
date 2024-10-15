@@ -2,13 +2,19 @@ export type VirtualItemSize = number | number[] | ((item: unknown, index: number
 
 export { default as VirtualList } from './VirtualList.svelte';
 
+export type SizingCalculatorFn=(index: number, item: unknown) => number
+
 // use by the row() snippet
 export interface VirtualListModel {
   // the actual item value
   item: any;
+
   // The row's index being rendered, from the original dataset
   // The index is a string if the IDs are processed via the getKey() function
   index: number | string;
+
+  // only there if there a custom sizing calculator, calculated size in px
+  size?: number;
 }
 
 export interface VirtualRange {

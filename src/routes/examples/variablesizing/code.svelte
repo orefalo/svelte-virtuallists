@@ -1,22 +1,21 @@
 <script lang="ts">
+  import { type VirtualListModel } from 'svelte-virtuallists';
   import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return {
-      text: 'Item ' + i + ' item ' + i,
-      lineHeight: 20 + (i % 30) + 'px',
-      width: 20 + (i % 30) + 'px'
+      text: 'Item ' + i + ' item ' + i
     };
   });
 
-  let rowHeights = (item: any, index: number) => 25;
+  let rowHeights = $state();
 
   function randomize() {
-    rowHeights = (item: any, index: number) => Math.round(Math.random() * (155 - 30) + 30);
+    rowHeights = (index: number, item: any) => Math.round(Math.random() * (155 - 30) + 30);
   }
 
   function sameSize() {
-    rowHeights = (item: any, index: number) => 25;
+    rowHeights = (index: number, item: any) => 25;
   }
 
   randomize();
@@ -25,8 +24,8 @@
 <h2>Horizontal</h2>
 
 <VirtualList items={myModel} style="width:100%" isHorizontal={true}>
-  {#snippet vl_slot({ item, index })}
-    <div style="border: 1px solid rgb(204, 204, 204)">
+  {#snippet vl_slot({ index, item, size }: VirtualListModel)}
+    <div style="border: 1px solid rgb(204, 204, 204); width: {size}px;">
       {item.text}
     </div>
   {/snippet}
@@ -35,8 +34,8 @@
 <h2>Vertical</h2>
 
 <VirtualList items={myModel} style="height:600px">
-  {#snippet vl_slot({ item, index })}
-    <div style="border: 1px solid rgb(204, 204, 204); line-height: {rowHeights(item, index)}px;">
+  {#snippet vl_slot({ index, item, size }: VirtualListModel)}
+    <div style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;">
       {item.text}
     </div>
   {/snippet}

@@ -36,12 +36,26 @@
     ALIGNMENT,
     SCROLL_BEHAVIOR,
     type AfterScrollEvent,
+    type SizingCalculatorFn,
     type VirtualListModel,
     type VirtualRangeEvent
   } from '..';
-
   import { binarySearch } from './jshelper';
   import clsx from 'clsx';
+
+  // ====== INTERNAL TYPES ============
+
+  enum SCROLL_CHANGE_REASON {
+    OBSERVED = 0,
+    REQUESTED = 1
+  }
+
+  interface VState {
+    offset: number;
+    scrollChangeReason: number;
+  }
+
+  // ====== PROPERTIES ================
 
   const {
     // TODO: implement a partial loader
@@ -98,7 +112,8 @@
 
     // snippets
     header?: Snippet;
-    vl_slot: Snippet<[{ item: any; index: number }]>;
+    // size is passed when a sizingCalculator is defined
+    vl_slot: Snippet<[VirtualListModel]>;
     footer?: Snippet;
 
     // events
@@ -109,20 +124,18 @@
     class?: string;
     style?: string;
 
-    sizingCalculator?: (index: number, item: unknown) => number;
+    sizingCalculator?: SizingCalculatorFn;
   } = $props();
 
-  enum SCROLL_CHANGE_REASON {
-    OBSERVED = 0,
-    REQUESTED = 1
-  }
-
-  interface VState {
-    offset: number;
-    scrollChangeReason: number;
-  }
+  // ======== VARIABLES ========
 
   let mounted: boolean = false;
+
+  // dom references
+  let listContainer: HTMLDivElement;
+  // svelte-ignore non_reactive_update  - not sure where its updated?!
+  let listInner: HTMLDivElement;
+
 
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
@@ -132,10 +145,13 @@
 
   let itemKey: 'index' | ((item: any, index: number) => any);
 
+  // virtual list first visible index
   let startIdx = $state(0);
+  
+  // virtual list last visible index
   let endIdx = $state(preRenderCount - 1);
 
-  // used when rendering didn't happen yet
+  // used when rendering didn't happen yet, the average size
   let avgSizeInPx = $state(0);
 
   let curState: VState = $state({
@@ -158,7 +174,10 @@
   // this is index -> height or width
   const sizes: number[] = $derived.by(() => {
     const p = items.map((item, index) => {
-      if (runtimeSizes[index] != null) {
+      const s = sizingCalculator?.(index, item);
+      if (typeof s === 'number') return s;
+
+      if (runtimeSizes[index] !== null) {
         return runtimeSizes[index];
       }
       return avgSizeInPx;
@@ -177,6 +196,22 @@
     return p;
   });
 
+  const visibleItemsInfo: VirtualListModel[] = $derived.by(() => {
+    if (!items || isDisabled) {
+      return [];
+    }
+    const r: VirtualListModel[] = [];
+    for (let index = startIdx; index <= end2; index++) {
+      console.log(index)
+      const item = items[index];
+      if (!item) {
+        break;
+      }
+      r.push({ item, index: startIdx + index });
+    }
+    return r;
+  });
+
   const startOffset = $derived(positions[startIdx] ? positions[startIdx] : 0);
 
   const totalViewportSize = $derived(
@@ -187,35 +222,6 @@
     positions[end2] ? totalViewportSize - positions[end2] - sizes[end2] : 0
   );
 
-  onMount(() => {
-    listContainer.addEventListener('scroll', onscroll, thirdEventArg);
-    mounted = true;
-    updatePositions();
-  });
-
-  onDestroy(() => {
-    if (mounted) listContainer.removeEventListener('scroll', onscroll);
-  });
-
-  const visibleItemsInfo: VirtualListModel[] = $derived.by(() => {
-    if (!items || isDisabled) {
-      return;
-    }
-    const r: VirtualListModel[] = [];
-    for (let index = startIdx; index <= end2; index++) {
-      const item = items[index];
-      if (!item) {
-        break;
-      }
-      r.push({ item, index: startIdx + index });
-    }
-    return r;
-  }) as VirtualListModel[];
-
-  // dom references
-  let listContainer: HTMLDivElement;
-  // svelte-ignore non_reactive_update  - not sure where its updated?!
-  let listInner: HTMLDivElement;
 
   // css
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
@@ -229,6 +235,18 @@
           `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize - endOffset - startOffset}px`)
     )
   );
+
+  // ======= FUNCTIONS =======
+
+  onMount(() => {
+    listContainer.addEventListener('scroll', onscroll, thirdEventArg);
+    mounted = true;
+    updatePositions();
+  });
+
+  onDestroy(() => {
+    if (mounted) listContainer.removeEventListener('scroll', onscroll);
+  });
 
   //TODO see if effect.pre not a better option
   $effect(() => {
@@ -265,8 +283,6 @@
     };
 
     onAfterScroll?.({ type: 'scroll.update', offset, event });
-
-    //updatePositions();
   }
 
   // return the index of the starting boundary
@@ -435,12 +451,12 @@
       {/if}
       <tbody>
         {#if isDisabled}
-          {#each items as item, index}
-            {@render vl_slot({ item: item.item, index })}
+          {#each items as item}
+            {@render vl_slot(item)}
           {/each}
         {:else}
-          {#each visibleItemsInfo as item, index}
-            {@render vl_slot({ item: item.item, index })}
+          {#each visibleItemsInfo as item}
+            {@render vl_slot(item)}
           {/each}
         {/if}
       </tbody>
@@ -454,12 +470,12 @@
         {@render header()}
       {/if}
       {#if isDisabled}
-        {#each items as item, index}
-          {@render vl_slot({ item: item.item, index })}
+        {#each items as item}
+          {@render vl_slot(item)}
         {/each}
       {:else}
-        {#each visibleItemsInfo as item, index}
-          {@render vl_slot({ item: item.item, index })}
+        {#each visibleItemsInfo as item}
+          {@render vl_slot(item)}
         {/each}
       {/if}
       {#if footer}

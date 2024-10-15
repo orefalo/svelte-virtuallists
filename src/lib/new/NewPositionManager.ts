@@ -5,13 +5,13 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type VirtualRange } from '..';
+import { ALIGNMENT, type SizingCalculatorFn, type VirtualRange } from '..';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;
 
   // calculate the size of a given index
-  private sizingCalculator?: (index: number, item: unknown) => number;
+  private sizingCalculator?: SizingCalculatorFn;
   private estimatedSize?: number;
 
   private indexToSizeAndPosition: Record<
@@ -26,13 +26,11 @@ export default class SizeAndPositionManager {
     }
   >;
   private lastMeasuredIndex: number;
+
+  // total viewport size
   private totalSize?: number;
 
-  constructor(
-    model: Array<any>,
-    sizingCalculator?: (index: number, item: unknown) => number,
-    estimatedSize?: number
-  ) {
+  constructor(model: Array<any>, sizingCalculator?: SizingCalculatorFn, estimatedSize?: number) {
     this.model = model;
     this.sizingCalculator = sizingCalculator;
     this.estimatedSize = estimatedSize;
@@ -45,13 +43,13 @@ export default class SizeAndPositionManager {
   }
 
   //TODO add model update
-  updateConfig(itemSize: (index: number, item: unknown) => number, estimatedItemSize?: number) {
+  mutateState(sizingCalculator: SizingCalculatorFn, estimatedItemSize: number) {
     if (estimatedItemSize !== undefined) {
       this.estimatedSize = estimatedItemSize;
     }
 
-    if (itemSize !== undefined) {
-      this.sizingCalculator = itemSize;
+    if (sizingCalculator !== undefined) {
+      this.sizingCalculator = sizingCalculator;
     }
 
     this.checkForMismatchItemSizeAndItemCount();
@@ -221,10 +219,11 @@ export default class SizeAndPositionManager {
     return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
   }
 
+  // returns an index range
   getVisibleRange(
     containerSize: number = 0,
     offset: number,
-    windowOverPadding: number
+    windowOverPaddingCount: number
   ): VirtualRange {
     const totalSize = this.getTotalSize();
 
@@ -233,30 +232,30 @@ export default class SizeAndPositionManager {
     }
 
     const maxOffset = offset + containerSize;
-    let start = this.findNearestItem(offset);
+    let startIdx = this.findNearestItem(offset);
 
-    if (start === undefined) {
+    if (startIdx === undefined) {
       throw Error(`Invalid offset ${offset} specified`);
     }
 
-    const datum = this.getSizeAndPositionForIndex(start);
+    const datum = this.getSizeAndPositionForIndex(startIdx);
     offset = datum.offset + datum.size;
 
-    let end = start;
+    let endIdx = startIdx;
 
-    while (offset < maxOffset && end < this.model.length - 1) {
-      end++;
-      offset += this.getSizeAndPositionForIndex(end).size;
+    while (offset < maxOffset && endIdx < this.model.length - 1) {
+      endIdx++;
+      offset += this.getSizeAndPositionForIndex(endIdx).size;
     }
 
-    if (windowOverPadding) {
-      start = Math.max(0, start - windowOverPadding);
-      end = Math.min(end + windowOverPadding, this.model.length - 1);
+    if (windowOverPaddingCount) {
+      startIdx = Math.max(0, startIdx - windowOverPaddingCount);
+      endIdx = Math.min(endIdx + windowOverPaddingCount, this.model.length - 1);
     }
 
     return {
-      start,
-      end
+      start: startIdx,
+      end: endIdx
     };
   }
 
@@ -329,6 +328,7 @@ export default class SizeAndPositionManager {
 
     while (index < this.model.length && this.getSizeAndPositionForIndex(index).offset < offset) {
       index += interval;
+      //todo interval>>=1
       interval *= 2;
     }
 
