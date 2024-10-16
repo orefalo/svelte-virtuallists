@@ -2,7 +2,7 @@ export type VirtualItemSize = number | number[] | ((item: unknown, index: number
 
 export { default as VirtualList } from './VirtualList.svelte';
 
-export type SizingCalculatorFn=(index: number, item: unknown) => number
+export type SizingCalculatorFn = (index: number, item: unknown) => number;
 
 // use by the row() snippet
 export interface VLSlotSignature {

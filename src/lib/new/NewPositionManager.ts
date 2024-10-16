@@ -62,7 +62,10 @@ export default class SizeAndPositionManager {
   }
 
   private checkForMismatchItemSizeAndItemCount() {
-    if (Array.isArray(this.sizingCalculatorFn) && this.sizingCalculatorFn.length < this.model.length) {
+    if (
+      Array.isArray(this.sizingCalculatorFn) &&
+      this.sizingCalculatorFn.length < this.model.length
+    ) {
       throw Error(`When itemSize is an array, itemSize.length can't be smaller than itemCount`);
     }
   }

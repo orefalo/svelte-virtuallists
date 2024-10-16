@@ -220,7 +220,7 @@ export default class SizeAndPositionManager {
     const totalSize = this.getTotalSize();
     return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
   }
-  
+
   // returns an index range
   getVisibleRange(
     containerSize: number = 0,

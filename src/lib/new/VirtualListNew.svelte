@@ -136,7 +136,6 @@
   // svelte-ignore non_reactive_update  - not sure where its updated?!
   let listInner: HTMLDivElement;
 
-
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
 
@@ -147,7 +146,7 @@
 
   // virtual list first visible index
   let startIdx = $state(0);
-  
+
   // virtual list last visible index
   let endIdx = $state(preRenderCount - 1);
 
@@ -169,17 +168,15 @@
     return endIdx < max ? endIdx : max;
   });
 
-  const runtimeSizes: (number | null)[] = $derived(new Array(items.length));
+  const runtimeSizes: (number | undefined)[] = $derived(new Array(items.length));
 
   // this is index -> height or width
   const sizes: number[] = $derived.by(() => {
     const p = items.map((item, index) => {
-      const s = sizingCalculator?.(index, item);
-      if (typeof s === 'number') return s;
-
-      if (runtimeSizes[index] !== null) {
-        return runtimeSizes[index];
-      }
+      let s = sizingCalculator?.(index, item);
+      if (s !== undefined) return s;
+      s = runtimeSizes[index];
+      if (s !== undefined) return s;
       return avgSizeInPx;
     });
 
@@ -202,7 +199,7 @@
     }
     const r: VLSlotSignature[] = [];
     for (let index = startIdx; index <= end2; index++) {
-      console.log(index)
+      // console.log(index);
       const item = items[index];
       if (!item) {
         break;
@@ -221,7 +218,6 @@
   const endOffset = $derived(
     positions[end2] ? totalViewportSize - positions[end2] - sizes[end2] : 0
   );
-
 
   // css
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
@@ -266,7 +262,7 @@
 
   $effect(() => onVisibleRangeUpdate?.({ type: 'range.update', start: startIdx, end: endIdx }));
 
-  function onscroll(event: Event) {
+  function onscroll(event: Event): void {
     const offset = getScroll(listContainer);
 
     if (
@@ -309,15 +305,15 @@
 
   // recalculates the viewport position
   function updatePositions() {
-    console.log('updatePositions');
+    // console.log('updatePositions');
     if (!avgSizeInPx) {
       avgSizeInPx = getAvgSize();
     }
 
     startIdx = getStart();
-    console.log("starIdx"+startIdx)
+    // console.log('starIdx' + startIdx);
     endIdx = getEnd();
-    console.log("endIdx"+endIdx)
+    // console.log('endIdx' + endIdx);
 
     let vi0 = 0;
 
@@ -337,7 +333,7 @@
       const size = stl.display !== 'none' ? getOuterSize(el as HTMLElement) : 0;
       const index = startIdx + vi0;
       runtimeSizesTemp[index] = (runtimeSizesTemp[index] || 0) + size;
-      console.log("rt size "+index+" -> "+runtimeSizesTemp[index])
+      // console.log('rt size ' + index + ' -> ' + runtimeSizesTemp[index]);
       vi0++;
     }
 
