@@ -5,7 +5,7 @@ export { default as VirtualList } from './VirtualList.svelte';
 export type SizingCalculatorFn=(index: number, item: unknown) => number
 
 // use by the row() snippet
-export interface VirtualListModel {
+export interface VLSlotSignature {
   // the actual item value
   item: any;
 
@@ -17,14 +17,14 @@ export interface VirtualListModel {
   size?: number;
 }
 
-export interface VirtualRange {
+export interface VLRange {
   // index of the first visible item
   start: number;
   // index of the last visible item
   end: number;
 }
 
-export interface VirtualRangeEvent extends VirtualRange {
+export interface VLRangeEvent extends VLRange {
   type: 'range.update';
 }
 

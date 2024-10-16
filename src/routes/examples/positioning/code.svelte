@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VirtualListModel } from '$lib';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLSlotSignature } from '$lib';
   import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {

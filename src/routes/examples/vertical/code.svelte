@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { type VLSlotSignature } from 'svelte-virtuallists';
   import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
@@ -7,7 +8,7 @@
 </script>
 
 <VirtualList items={myModel} style="height:600px">
-  {#snippet vl_slot({ item, index })}
+  {#snippet vl_slot({ item }: VLSlotSignature)}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
     </div>

@@ -37,8 +37,8 @@
     SCROLL_BEHAVIOR,
     type AfterScrollEvent,
     type SizingCalculatorFn,
-    type VirtualListModel,
-    type VirtualRangeEvent
+    type VLSlotSignature,
+    type VLRangeEvent
   } from '..';
   import { binarySearch } from './jshelper';
   import clsx from 'clsx';
@@ -113,11 +113,11 @@
     // snippets
     header?: Snippet;
     // size is passed when a sizingCalculator is defined
-    vl_slot: Snippet<[VirtualListModel]>;
+    vl_slot: Snippet<[VLSlotSignature]>;
     footer?: Snippet;
 
     // events
-    onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
+    onVisibleRangeUpdate?: (range: VLRangeEvent) => void;
     onAfterScroll?: (event: AfterScrollEvent) => void;
 
     // css
@@ -196,11 +196,11 @@
     return p;
   });
 
-  const visibleItemsInfo: VirtualListModel[] = $derived.by(() => {
+  const visibleItemsInfo: VLSlotSignature[] = $derived.by(() => {
     if (!items || isDisabled) {
       return [];
     }
-    const r: VirtualListModel[] = [];
+    const r: VLSlotSignature[] = [];
     for (let index = startIdx; index <= end2; index++) {
       console.log(index)
       const item = items[index];
@@ -315,11 +315,13 @@
     }
 
     startIdx = getStart();
+    console.log("starIdx"+startIdx)
     endIdx = getEnd();
+    console.log("endIdx"+endIdx)
 
     let vi0 = 0;
 
-    // index -> offset
+    // holds index -> offset
     const runtimeSizesTemp: Record<number, number> = {};
     const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
 
@@ -333,9 +335,9 @@
       }
 
       const size = stl.display !== 'none' ? getOuterSize(el as HTMLElement) : 0;
-
       const index = startIdx + vi0;
       runtimeSizesTemp[index] = (runtimeSizesTemp[index] || 0) + size;
+      console.log("rt size "+index+" -> "+runtimeSizesTemp[index])
       vi0++;
     }
 
@@ -413,8 +415,7 @@
     return !isHorizontal ? parseFloat(style.paddingTop) : parseFloat(style.paddingLeft);
   }
 
-  // scrolls the contrainer to
-  // TODO: How is this going to work with the onscoll hook?
+  // scrolls the contrainer to px
   function scrollTo(value: number) {
     if ('scroll' in listContainer) {
       const p: Record<string, any> = { behavior: scrollToBehaviour };

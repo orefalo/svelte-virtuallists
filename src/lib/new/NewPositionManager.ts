@@ -5,13 +5,13 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type SizingCalculatorFn, type VirtualRange } from '..';
+import { ALIGNMENT, type SizingCalculatorFn, type VLRange } from '..';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;
 
   // calculate the size of a given index
-  private sizingCalculator?: SizingCalculatorFn;
+  private sizingCalculatorFn?: SizingCalculatorFn;
   private estimatedSize?: number;
 
   private indexToSizeAndPosition: Record<
@@ -32,14 +32,14 @@ export default class SizeAndPositionManager {
 
   constructor(model: Array<any>, sizingCalculator?: SizingCalculatorFn, estimatedSize?: number) {
     this.model = model;
-    this.sizingCalculator = sizingCalculator;
+    this.sizingCalculatorFn = sizingCalculator;
     this.estimatedSize = estimatedSize;
     this.indexToSizeAndPosition = {};
     this.lastMeasuredIndex = -1;
 
     this.checkForMismatchItemSizeAndItemCount();
 
-    if (!this.sizingCalculator) this.computeTotalSizeAndPositionData();
+    if (!this.sizingCalculatorFn) this.computeTotalSizeAndPositionData();
   }
 
   //TODO add model update
@@ -49,12 +49,12 @@ export default class SizeAndPositionManager {
     }
 
     if (sizingCalculator !== undefined) {
-      this.sizingCalculator = sizingCalculator;
+      this.sizingCalculatorFn = sizingCalculator;
     }
 
     this.checkForMismatchItemSizeAndItemCount();
 
-    if (this.sizingCalculator && this.totalSize !== undefined) {
+    if (this.sizingCalculatorFn && this.totalSize !== undefined) {
       this.totalSize = undefined;
     } else {
       this.computeTotalSizeAndPositionData();
@@ -62,7 +62,7 @@ export default class SizeAndPositionManager {
   }
 
   private checkForMismatchItemSizeAndItemCount() {
-    if (Array.isArray(this.sizingCalculator) && this.sizingCalculator.length < this.model.length) {
+    if (Array.isArray(this.sizingCalculatorFn) && this.sizingCalculatorFn.length < this.model.length) {
       throw Error(`When itemSize is an array, itemSize.length can't be smaller than itemCount`);
     }
   }
@@ -71,8 +71,8 @@ export default class SizeAndPositionManager {
   private getSize(index: number): number {
     // const { sizingCalculator: itemSize } = this;
 
-    if (this.sizingCalculator) {
-      return this.sizingCalculator(index, this.model[index]);
+    if (this.sizingCalculatorFn) {
+      return this.sizingCalculatorFn(index, this.model[index]);
     }
 
     //return Array.isArray(itemSize) ? itemSize[index] : itemSize;
@@ -107,7 +107,7 @@ export default class SizeAndPositionManager {
       throw Error(`Requested index ${index} is outside of range 0..${this.model.length}`);
     }
 
-    return this.sizingCalculator
+    return this.sizingCalculatorFn
       ? this.getJustInTimeSizeAndPositionForIndex(index)
       : this.indexToSizeAndPosition[index];
   }
@@ -151,7 +151,7 @@ export default class SizeAndPositionManager {
   private getEstimatedItemSize(): number {
     return (
       this.estimatedSize ||
-      (typeof this.sizingCalculator === 'number' && this.sizingCalculator) ||
+      (typeof this.sizingCalculatorFn === 'number' && this.sizingCalculatorFn) ||
       50
     );
   }
@@ -224,7 +224,7 @@ export default class SizeAndPositionManager {
     containerSize: number = 0,
     offset: number,
     windowOverPaddingCount: number
-  ): VirtualRange {
+  ): VLRange {
     const totalSize = this.getTotalSize();
 
     if (totalSize === 0) {

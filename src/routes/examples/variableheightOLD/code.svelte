@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
+  import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   const modelCount = 10000;
 
@@ -39,7 +39,7 @@
     width="auto"
     {modelCount}
     itemSize={rowHeights}>
-    {#snippet slot({ item, style, index: _index }: VirtualListModel<MyItemsData>)}
+    {#snippet slot({ item, style, index: _index }: VLSlotSignature<MyItemsData>)}
       <div class="row" {style}>
         {item.text}
       </div>

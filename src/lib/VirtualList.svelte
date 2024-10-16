@@ -37,8 +37,8 @@
     SCROLL_BEHAVIOR,
     SCROLL_CHANGE_REASON,
     type AfterScrollEvent,
-    type VirtualListModel,
-    type VirtualRangeEvent,
+    type VLSlotSignature,
+    type VLRangeEvent,
     type VirtualItemSize
   } from '.';
 
@@ -93,10 +93,10 @@
     scrollToBehaviour?: SCROLL_BEHAVIOR;
     // snippets
     header?: Snippet;
-    slot: Snippet<[VirtualListModel]>;
+    slot: Snippet<[VLSlotSignature]>;
     footer?: Snippet;
     // events
-    onVisibleRangeUpdate?: (range: VirtualRangeEvent) => void;
+    onVisibleRangeUpdate?: (range: VLRangeEvent) => void;
     onAfterScroll?: (event: AfterScrollEvent) => void;
     class?: string;
     style?: string;
@@ -135,7 +135,7 @@
 
   let mounted: boolean = false;
   let container: HTMLDivElement;
-  let visibleItems: Array<VirtualListModel> = $state([]);
+  let visibleItems: Array<VLSlotSignature> = $state([]);
 
   let curState: VState = $state({
     offset:

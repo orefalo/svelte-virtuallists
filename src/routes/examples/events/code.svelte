@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
+  import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
   import TextArea from '$comp/TextAreaAutosize.svelte';
 
   let val = $state('// Event name: Event params   (Last event at the top)');
@@ -87,7 +87,7 @@
     scrollOffset={scrollOffet}
     onAfterScroll={handleMessage}
     onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item, style, index }: VirtualListModel<any>)}
+    {#snippet slot({ item, style, index }: VLSlotSignature<any>)}
       <div class="row" {style} class:highlighted={index === scrollToIndex}>
         Item #{item}
       </div>

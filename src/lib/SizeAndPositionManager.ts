@@ -5,7 +5,7 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type VirtualItemSize, type VirtualRange } from '.';
+import { ALIGNMENT, type VirtualItemSize, type VLRange } from '.';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;
@@ -226,7 +226,7 @@ export default class SizeAndPositionManager {
     containerSize: number = 0,
     offset: number,
     windowOverPaddingCount: number
-  ): VirtualRange {
+  ): VLRange {
     const totalSize = this.getTotalSize();
 
     if (totalSize === 0) {
