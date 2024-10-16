@@ -8,13 +8,13 @@
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.DLFELkxF.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/12.BpNBnjP1.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.AGB8zajX.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DbYL8hXZ.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.XxHSezL0.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.1-ssOOes.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.BtGUXGPZ.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/12.DFPG_OJd.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.CQkmjKMx.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.De9BByWX.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.Bk6sazki.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.DZ8ltDyt.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.DXYgMuFJ.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.B0VfIRiS.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/12.B7fFVdAn.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.BJhje2p9.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.BtcFkJbB.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -48,7 +48,7 @@ SOFTWARE.
   </head>
   <body data-sveltekit-preload-data="hover">
     <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-113h04q"><div role="presentation" class="toc-container-space svelte-113h04q"></div> <main class="svelte-113h04q "><!----><h2>List Positioning</h2> <p>The component provides properties to position the list either on an element, or on a pixel offset.</p> <div><div class="actions svelte-hvu9xx"><label for="item-height" class="svelte-hvu9xx">Item Height: <div class="range svelte-hvu9xx"><input type="range" id="item-height" step="5" min="50" max="155" value="50" class="svelte-hvu9xx"></div></label></div> <div class="list svelte-hvu9xx"><div class="virtual-list-wrapper $ svelte-f32i87" style="height:500px;width:auto;"><!--[!--><!--]--> <div class="virtual-list-inner svelte-f32i87" style="flex-direction:column;height:500000px;"><!--[--><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:0px;">Item 0</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:50px;">Item 1</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:100px;">Item 2</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:150px;">Item 3</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:200px;">Item 4</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:250px;">Item 5</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:300px;">Item 6</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:350px;">Item 7</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:400px;">Item 8</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:450px;">Item 9</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:500px;">Item 10</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:550px;">Item 11</div><!----><div class="row svelte-hvu9xx" style="left:0;width:100%;height:50px;position:absolute;top:600px;">Item 12</div><!----><!--]--></div> <!--[!--><!--]--></div><!----></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   interface <span class="hljs-title class_">MyItemsData</span> {
     <span class="hljs-attr">text</span>: string;
@@ -76,7 +76,7 @@ SOFTWARE.
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">height</span>=<span class="hljs-string">{500}</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span> <span class="hljs-attr">modelCount</span>=<span class="hljs-string">{myModel.length}</span> {<span class="hljs-attr">itemSize</span>}&gt;</span>
-    {#snippet slot({ item, style, index: _index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
+    {#snippet slot({ item, style, index: _index }: VLSlotSignature<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
         {item.text}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -207,7 +207,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_1gfr775 = {
+					__sveltekit_1nmlzjp = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -217,8 +217,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.DbYL8hXZ.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.1-ssOOes.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.Bk6sazki.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.DXYgMuFJ.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 12],

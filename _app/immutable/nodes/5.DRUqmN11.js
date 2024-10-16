@@ -1,5 +1,5 @@
-import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l as _,y as w}from"../chunks/external.XxHSezL0.js";import{E as I}from"../chunks/ExampleArea.CQkmjKMx.js";import{a as k,D as M}from"../chunks/svelte-virtuallists.De9BByWX.js";const L=!0,R=Object.freeze(Object.defineProperty({__proto__:null,prerender:L},Symbol.toStringTag,{value:"Module"}));var z=r('<div class="col svelte-18cdkus"> </div>'),D=r('<div class="list horizontal svelte-18cdkus"><!></div>');function O(p,n){g(n,!1);const l=new Array(1e4).fill(1).map((j,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));d();var e=D(),o=c(e);k(o,{height:"200px",width:680,get scrollDirection(){return M.HORIZONTAL},model:l,get modelCount(){return l.length},itemSize:150,slot:(a,s)=>{let u=()=>s==null?void 0:s().style,m=()=>s==null?void 0:s().index;var t=z(),b=c(t);h(t),f(()=>{y(t,"style",u()),v(b,`Item #${m()??""}`)}),i(a,t)},$$slots:{slot:!0}}),h(e),i(p,e),x()}const H=`<script lang="ts">
-  import { DIRECTION, VirtualList, type VirtualListModel } from 'svelte-virtuallists';
+import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l as _,y as w}from"../chunks/external.DZ8ltDyt.js";import{E as I}from"../chunks/ExampleArea.BJhje2p9.js";import{a as k,D as L}from"../chunks/svelte-virtuallists.BtcFkJbB.js";const M=!0,N=Object.freeze(Object.defineProperty({__proto__:null,prerender:M},Symbol.toStringTag,{value:"Module"}));var S=r('<div class="col svelte-18cdkus"> </div>'),z=r('<div class="list horizontal svelte-18cdkus"><!></div>');function D(p,n){g(n,!1);const l=new Array(1e4).fill(1).map((j,a)=>({text:"Item "+a,lineHeight:20+a%20+"px",width:100+a%30+"px"}));d();var e=z(),o=c(e);k(o,{height:"200px",width:680,get scrollDirection(){return L.HORIZONTAL},model:l,get modelCount(){return l.length},itemSize:150,slot:(a,s)=>{let u=()=>s==null?void 0:s().style,m=()=>s==null?void 0:s().index;var t=S(),b=c(t);h(t),f(()=>{y(t,"style",u()),v(b,`Item #${m()??""}`)}),i(a,t)},$$slots:{slot:!0}}),h(e),i(p,e),x()}const O=`<script lang="ts">
+  import { DIRECTION, VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   interface MyItemsData {
     text: string;
@@ -22,7 +22,7 @@ import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l a
     model={myModel}
     modelCount={myModel.length}
     itemSize={150}>
-    {#snippet slot({ item: _item, style, index }: VirtualListModel<any>)}
+    {#snippet slot({ item: _item, style, index }: VLSlotSignature<any>)}
       <div class="col" {style}>
         Item #{index}
       </div>
@@ -67,8 +67,8 @@ import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l a
     margin: 50px auto;
   }
 </style>
-`,A=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+`,H=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">DIRECTION</span>, <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   interface <span class="hljs-title class_">MyItemsData</span> {
     <span class="hljs-attr">text</span>: string;
@@ -91,7 +91,7 @@ import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l a
     <span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span>
     <span class="hljs-attr">modelCount</span>=<span class="hljs-string">{myModel.length}</span>
     <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{150}</span>&gt;</span>
-    {#snippet slot({ item: _item, style, index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">any</span>&gt;</span>)}
+    {#snippet slot({ item: _item, style, index }: VLSlotSignature<span class="hljs-tag">&lt;<span class="hljs-name">any</span>&gt;</span>)}
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
         Item #{index}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -136,4 +136,4 @@ import{p as g,J as d,h as i,j as x,k as r,m as c,t as f,r as h,v as y,K as v,l a
     <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span> auto;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,T={code:H,highlightedHTML:A,component:O};var V=r("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function E(p){var n=V(),l=_(w(n),4);I(l,{example:T}),i(p,n)}export{E as component,R as universal};
+`,A={code:O,highlightedHTML:H,component:D};var T=r("<h2>Horizontal</h2> <p>The component can layout its content horizontaly</p> <!>",1);function R(p){var n=T(),l=_(w(n),4);I(l,{example:A}),i(p,n)}export{R as component,N as universal};

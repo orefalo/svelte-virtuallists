@@ -1,5 +1,5 @@
-import{L as H,p as q,s as S,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c,t as I,l as j,r,v as A,K as D}from"../chunks/external.XxHSezL0.js";import{E}from"../chunks/ExampleArea.CQkmjKMx.js";import{a as O}from"../chunks/svelte-virtuallists.De9BByWX.js";const T=!0,Y=Object.freeze(Object.defineProperty({__proto__:null,prerender:T},Symbol.toStringTag,{value:"Module"}));function K(l,a){f(a,50)}var P=m('<div class="row svelte-1q7rqk5"> </div>'),B=m('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function F(l,a){q(a,!0);const t=1e4;let u,i=S(v([]));const _=new Array(t).fill(1).map((e,s)=>({text:"Item "+s}));function d(){let e=[];for(let s=0;s<t;(s+=1)-1)e.push(Math.random()*105+50);f(i,v(e))}d();var g=B(),o=y(g),x=c(o);V(O(x,{model:_,height:500,width:"auto",modelCount:t,get itemSize(){return C(i)},slot:(s,n)=>{let z=()=>n==null?void 0:n().item,M=()=>n==null?void 0:n().style;var p=P(),L=c(p);r(p),I(()=>{A(p,"style",M()),D(L,z().text)}),h(s,p)},$$slots:{slot:!0}}),s=>u=s,()=>u),r(o);var b=j(o,2),w=c(b);w.__click=d;var k=j(w,2);k.__click=[K,i],r(b),h(l,g),R()}H(["click"]);const G=`<script lang="ts">
-  import { VirtualList, type VirtualListModel } from 'svelte-virtuallists';
+import{L as H,p as q,s as M,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c,t as I,l as j,r,v as A,K as D}from"../chunks/external.DZ8ltDyt.js";import{E}from"../chunks/ExampleArea.BJhje2p9.js";import{a as O}from"../chunks/svelte-virtuallists.BtcFkJbB.js";const T=!0,Y=Object.freeze(Object.defineProperty({__proto__:null,prerender:T},Symbol.toStringTag,{value:"Module"}));function K(l,a){f(a,50)}var P=m('<div class="row svelte-1q7rqk5"> </div>'),B=m('<div class="list"><!></div> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button></div>',1);function F(l,a){q(a,!0);const t=1e4;let u,i=M(v([]));const _=new Array(t).fill(1).map((e,s)=>({text:"Item "+s}));function g(){let e=[];for(let s=0;s<t;(s+=1)-1)e.push(Math.random()*105+50);f(i,v(e))}g();var d=B(),o=y(d),x=c(o);V(O(x,{model:_,height:500,width:"auto",modelCount:t,get itemSize(){return C(i)},slot:(s,n)=>{let z=()=>n==null?void 0:n().item,S=()=>n==null?void 0:n().style;var p=P(),L=c(p);r(p),I(()=>{A(p,"style",S()),D(L,z().text)}),h(s,p)},$$slots:{slot:!0}}),s=>u=s,()=>u),r(o);var b=j(o,2),w=c(b);w.__click=g;var k=j(w,2);k.__click=[K,i],r(b),h(l,d),R()}H(["click"]);const G=`<script lang="ts">
+  import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   const modelCount = 10000;
 
@@ -39,7 +39,7 @@ import{L as H,p as q,s as S,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c
     width="auto"
     {modelCount}
     itemSize={rowHeights}>
-    {#snippet slot({ item, style, index: _index }: VirtualListModel<MyItemsData>)}
+    {#snippet slot({ item, style, index: _index }: VLSlotSignature<MyItemsData>)}
       <div class="row" {style}>
         {item.text}
       </div>
@@ -63,7 +63,7 @@ import{L as H,p as q,s as S,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c
   }
 </style>
 `,J=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VirtualListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> modelCount = <span class="hljs-number">10000</span>;
 
@@ -103,7 +103,7 @@ import{L as H,p as q,s as S,b as v,y,e as V,g as C,h,j as R,d as f,k as m,m as c
     <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;auto&quot;</span>
     {<span class="hljs-attr">modelCount</span>}
     <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>&gt;</span>
-    {#snippet slot({ item, style, index: _index }: VirtualListModel<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
+    {#snippet slot({ item, style, index: _index }: VLSlotSignature<span class="hljs-tag">&lt;<span class="hljs-name">MyItemsData</span>&gt;</span>)}
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span> {<span class="hljs-attr">style</span>}&gt;</span>
         {item.text}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
