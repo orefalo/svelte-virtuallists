@@ -172,15 +172,13 @@
 
   // this is index -> height or width
   const sizes: number[] = $derived.by(() => {
-    const p = items.map((item, index) => {
+    return items.map((item, index) => {
       let s = sizingCalculator?.(index, item);
       if (s !== undefined) return s;
       s = runtimeSizes[index];
       if (s !== undefined) return s;
       return avgSizeInPx;
     });
-
-    return p;
   });
 
   // this is index -> offset
@@ -201,10 +199,10 @@
     for (let index = startIdx; index <= end2; index++) {
       // console.log(index);
       const item = items[index];
-      if (!item) {
-        break;
+      if (item) {
+        //  console.log(sizes[index])
+        r.push({ item, index: index, size: sizes[index] });
       }
-      r.push({ item, index: startIdx + index });
     }
     return r;
   });

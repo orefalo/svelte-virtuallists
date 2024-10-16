@@ -99,15 +99,15 @@ The component accepts the following properties
 | width             | `number` or `string`\*             |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                   |
 | height            | `number` or `string`\*             |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                          |
 | model | any[] | ✓ | the model, the data for the items to display in the list. |
-| modelCount         | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
-| itemSize          | `number                            | number[]  | (index: number) => number`                                                                                                                                                                                           | ✓   | Either a fixed height/width (depending on the scrollDirection), an array containing the heights of all the items in your list, or a function that returns the height of an item given its index: `(index: number): number` |
+| modelCount        | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
+| sizeCalculator    | `(index: number, item:any) => number   or   SizingCalculatorFn`                                                                                                                                                                                           | ✓   | A function that returns the size (height or width) of the row/column being rendered. the output of this function is used for scrollbar positioning and is passed to the `vl_slot` |
 | row               | (r:RowAttributes) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
 | scrollDirection   | `string`                           |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                           |
-| scrollOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset.             |
+| scrollToOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset.             |
 | scrollToIndex     | `number`                           |           | Item index to scroll to (by forcefully scrolling if necessary).              |
 | scrollToAlignment | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the alignment of the scrolled to item. One of: `'start'`, `'center'`, `'end'` or `'auto'`. Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
 | scrollToBehaviour | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the behaviour of the scrolling. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                                                                                   |
-| windowOverPadding | `number`                           |           | Number of extra buffer items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers/devices.                                                                                                                                                                                                                                                                                    |
+| windowOverPadding | `number`                           |           | Number of extra items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers and devices.                                                                                                                                                                                                                                                                                    |
 | estimatedItemSize | `number`                           |           | Used to estimate the total size of the list before all of its items have actually been measured. The estimated total height is progressively adjusted as items are rendered.                                                                                                                                                                                                                                                          |
 | getKey            | `(index: number) => any`           |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.    |
 
@@ -116,28 +116,22 @@ _\** `model` is stored, `items` are rendered
 
 ### Snippets
 
-- `header` - a snippet for the elements that should appear at the top of the list
-- `footer` - a snippet for the elements that should appear at the bottom of the list
-- `slot` - a required snipper property called to render each row of the list with the signature `slot(r:RowAttributes<T>)`
+- `header` - an optional snippet for the elements that should appear at the top of the list, typically used in table mode
+- `footer` - an optional snippet for the elements that should appear at the bottom of the list, typically used in table mode
+- `vl_slot` - a required snipper property called to render each row of the list with the signature `vl_slot({index, item, size?})`. `size` is only present if a custom **sizeCalculator** is in place.
 
-```typescript
-export interface RowAttributes<T> {
-  item: T // the element from the model array to be rendered
-	index: number; // Item index
-	style: string; //  Item style, must be applied to the slot (look above for example)
-}
-```
+
 
 for instance,
 
 ```svelte
-<VirtualList  ...>
-  {#snippet slot({ item, style, index }:RowAttributes)}
-    <div class="row" {style}>
-      Item: {item}, Row: #{index}
+<VirtualList items={myModel} style="height:600px">
+  {#snippet vl_slot({ index, item }: VLSlotSignature)}
+    <div style="border: 1px solid rgb(204, 204, 204);">
+      Index:{index} Content:{item.text}
     </div>
   {/snippet}
- </VirtualList>
+</VirtualList>
 ```
 
 ### Events
