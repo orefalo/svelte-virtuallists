@@ -7,6 +7,7 @@
 
 import { ALIGNMENT, type SizingCalculatorFn, type VLRange } from './index.js';
 
+// TODO: convert this to an Array
 type SizeAndOffsetData = Record<
   number,
   {
@@ -23,8 +24,10 @@ export default class SizeAndPositionManager {
   // size of the row in px, either calculate or constant
   private sizeCalculatorFn?: SizingCalculatorFn;
   private averageSize?: number;
-  private itemSizeAndPositionData: SizeAndOffsetData = {};
+  itemSizeAndPositionData: SizeAndOffsetData = {};
   private lastMeasuredIndex: number = -1;
+
+
   private totalSize?: number;
 
   constructor(
@@ -215,10 +218,51 @@ export default class SizeAndPositionManager {
     return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
   }
 
+  // // returns an index range
+  // getVisibleRangeOffsets(
+  //   containerSize: number = 0,
+  //   scrollbarOffset: number
+  // ): VLRange {
+  //   const totalSize = this.getTotalSize();
+
+  //   if (totalSize === 0) {
+  //     return { start: 0, end: 0 };
+  //   }
+
+  //   const maxOffset = scrollbarOffset + containerSize;
+  // //  let startIdx = this.findNearestItem(scrollbarOffset);
+
+  //   if (startIdx === undefined) {
+  //     throw Error(`Invalid offset ${scrollbarOffset} specified`);
+  //   }
+
+  //   const datum = this.getSizeAndPositionForIndex(startIdx);
+  //   scrollbarOffset = datum.offset + datum.size;
+
+  //   let endIdx = startIdx;
+
+  //   while (scrollbarOffset < maxOffset && endIdx < this.model.length - 1) {
+  //     endIdx++;
+  //     scrollbarOffset += this.getSizeAndPositionForIndex(endIdx).size;
+  //   }
+
+  //   if (windowOverPaddingCount) {
+  //     startIdx = Math.max(0, startIdx - windowOverPaddingCount);
+  //     endIdx = Math.min(endIdx + windowOverPaddingCount, this.model.length - 1);
+  //   }
+
+  //   return {
+  //     start: startIdx,
+  //     end: endIdx
+  //   };
+  // }
+
+
+
   // returns an index range
-  getVisibleRange(
+  getVisibleRangeIndex(
     containerSize: number = 0,
-    offset: number,
+    scrollbarOffset: number,
     windowOverPaddingCount: number
   ): VLRange {
     const totalSize = this.getTotalSize();
@@ -227,21 +271,21 @@ export default class SizeAndPositionManager {
       return { start: 0, end: 0 };
     }
 
-    const maxOffset = offset + containerSize;
-    let startIdx = this.findNearestItem(offset);
+    const maxOffset = scrollbarOffset + containerSize;
+    let startIdx = this.findNearestItem(scrollbarOffset);
 
     if (startIdx === undefined) {
-      throw Error(`Invalid offset ${offset} specified`);
+      throw Error(`Invalid offset ${scrollbarOffset} specified`);
     }
 
     const datum = this.getSizeAndPositionForIndex(startIdx);
-    offset = datum.offset + datum.size;
+    scrollbarOffset = datum.offset + datum.size;
 
     let endIdx = startIdx;
 
-    while (offset < maxOffset && endIdx < this.model.length - 1) {
+    while (scrollbarOffset < maxOffset && endIdx < this.model.length - 1) {
       endIdx++;
-      offset += this.getSizeAndPositionForIndex(endIdx).size;
+      scrollbarOffset += this.getSizeAndPositionForIndex(endIdx).size;
     }
 
     if (windowOverPaddingCount) {

@@ -116,12 +116,12 @@
     modelCount={myModel.length}
     itemSize={rowHeights}
     {scrollToIndex}
-    scrollOffset={scrollOffet}
+    scrollToOffset={scrollOffet}
     {scrollToAlignment}
     {scrollToBehaviour}
     onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item: _item, style, index })}
-      <div class="row" {style} class:highlighted={index === scrollToIndex}>
+    {#snippet slot({ index, item,  size })}
+      <div class:highlighted={index === scrollToIndex}>
         Item #{index}
       </div>
     {/snippet}
@@ -142,26 +142,7 @@
     display: block;
   }
 
-  :global(.virtual-list-wrapper) {
-    margin: 20px;
-    background: #fff;
-    border-radius: 2px;
-    background: #fafafa;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-    color: #333;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .row {
-    padding: 0 15px;
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
-    line-height: 50px;
-    font-weight: 500;
-    background: #fff;
-  }
-
-  .row.highlighted {
+  .highlighted {
     background: #efefef;
   }
 </style>
