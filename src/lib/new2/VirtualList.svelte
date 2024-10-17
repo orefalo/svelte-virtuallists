@@ -86,9 +86,7 @@
 
     // css
     class: className = '',
-    style = '',
-
-    ...props
+    style = ''
   }: {
     model: Array<any>;
 
@@ -384,13 +382,13 @@
   bind:this={container}
   bind:clientHeight
   bind:clientWidth
-  class="virtual-list-wrapper ${className}"
+  class="vtlist ${className}"
   style={listStyle}
-  {...props}>
+  >
   {#if header}
     {@render header()}
   {/if}
-  <div class="virtual-list-inner" style={listInnerStyle}>
+  <div class="vtlist-inner" style={listInnerStyle}>
     {#each visibleItems as el}
       {@render slot({
         index: getKey ? getKey(el.index) : el.index,

@@ -110,10 +110,8 @@
 <div class="list">
   <VirtualList
     bind:this={virtualList}
-    height={500}
-    width="auto"
+    style="height:500px"
     model={myModel}
-    modelCount={myModel.length}
     itemSize={rowHeights}
     {scrollToIndex}
     scrollToOffset={scrollOffet}
