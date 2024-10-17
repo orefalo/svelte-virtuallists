@@ -39,7 +39,8 @@
     type AfterScrollEvent,
     type VLSlotSignature,
     type VLRangeEvent,
-    type VirtualItemSize
+    type SizingCalculatorFn
+
   } from '.';
 
   const {
@@ -47,9 +48,9 @@
     width = '100%',
     model = [],
     // total model count, typically model.length unless a partial loader is used
-    modelCount,
+
     // items are the view, size of item n, can be a function
-    itemSize,
+    sizeCalculator,
     // usefull when using a partial loader
     estimatedItemSize,
     getKey,
@@ -80,8 +81,10 @@
     height: number | string;
     width: number | string;
     model: Array<any>;
-    modelCount: number;
-    itemSize: VirtualItemSize;
+
+    sizeCalculator?: SizingCalculatorFn;
+
+    //TODO: remove , use get avg function
     estimatedItemSize?: number;
     getKey?: (i: number | string) => string;
     // positioning
@@ -122,14 +125,13 @@
     scrollToAlignment?: string;
     scrollOffset?: number;
     modelCount?: number;
-    itemSize?: VirtualItemSize;
+    sizeCalculator?: SizingCalculatorFn;
     estimatedItemSize?: number;
   }
 
   const sizeAndPositionManager = new SizeAndPositionManager(
     model,
-    modelCount,
-    itemSize,
+    sizeCalculator,
     estimatedItemSize
   );
 
@@ -140,7 +142,7 @@
   let curState: VState = $state({
     offset:
       scrollOffset ||
-      (scrollToIndex !== undefined && modelCount && getOffsetForIndex(scrollToIndex)) ||
+      (scrollToIndex !== undefined /*&& modelCount*/ && getOffsetForIndex(scrollToIndex)) ||
       0,
     scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
   });
@@ -151,8 +153,8 @@
     scrollToIndex,
     scrollToAlignment,
     scrollOffset,
-    modelCount,
-    itemSize,
+    // modelCount,
+    sizeCalculator,
     estimatedItemSize
   };
 
@@ -228,12 +230,12 @@
       prevProps.scrollToIndex !== scrollToIndex ||
       prevProps.scrollToAlignment !== scrollToAlignment;
     const itemPropsHaveChanged =
-      prevProps.modelCount !== modelCount ||
-      prevProps.itemSize !== itemSize ||
+      // prevProps.modelCount !== modelCount ||
+      prevProps.sizeCalculator !== sizeCalculator ||
       prevProps.estimatedItemSize !== estimatedItemSize;
 
     if (itemPropsHaveChanged) {
-      sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
+      sizeAndPositionManager.mutateState(sizeCalculator, model, estimatedItemSize);
       recomputeSizes();
     }
 
@@ -248,7 +250,7 @@
       (scrollPropsHaveChanged || itemPropsHaveChanged)
     ) {
       curState = {
-        offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, modelCount),
+        offset: getOffsetForIndex(scrollToIndex, scrollToAlignment),
 
         scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
       };
@@ -258,8 +260,8 @@
       scrollToIndex,
       scrollToAlignment,
       scrollOffset,
-      modelCount,
-      itemSize,
+      // modelCount,
+      sizeCalculator,
       estimatedItemSize
     };
   }
@@ -335,13 +337,12 @@
 
   function getOffsetForIndex(
     index: number,
-    align: ALIGNMENT = scrollToAlignment,
-    _modelCount: number = modelCount
+    align: ALIGNMENT = scrollToAlignment
   ): number {
     if (index < 0) {
       index = 0;
-    } else if (index >= _modelCount) {
-      index = _modelCount - 1;
+    } else if (index >= model.length) {
+      index = model.length - 1;
     }
 
     return sizeAndPositionManager.getUpdatedOffsetForIndex(
