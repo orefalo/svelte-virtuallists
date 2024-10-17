@@ -33,7 +33,6 @@
   import SizeAndPositionManager from './SizeAndPositionManager';
   import {
     ALIGNMENT,
-    DIRECTION,
     SCROLL_BEHAVIOR,
     SCROLL_CHANGE_REASON,
     type AfterScrollEvent,
@@ -156,8 +155,13 @@
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
 
   const listInnerStyle = $derived.by(() => {
-    const startOffset = curState.offset;
-    const endOffset = startOffset + (isHorizontal ? clientWidth : clientHeight);
+    const { offset } = curState;
+    const p = sizeAndPositionManager.getVisibleRangeOffsets(
+      isHorizontal ? clientWidth : clientHeight,
+      offset
+    );
+    const startOffset = p.startOffset;
+    const endOffset = p.endOffset;
     return clsx(
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),

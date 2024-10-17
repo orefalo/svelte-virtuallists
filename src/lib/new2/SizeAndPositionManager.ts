@@ -27,7 +27,6 @@ export default class SizeAndPositionManager {
   itemSizeAndPositionData: SizeAndOffsetData = {};
   private lastMeasuredIndex: number = -1;
 
-
   private totalSize?: number;
 
   constructor(
@@ -219,45 +218,38 @@ export default class SizeAndPositionManager {
   }
 
   // // returns an index range
-  // getVisibleRangeOffsets(
-  //   containerSize: number = 0,
-  //   scrollbarOffset: number
-  // ): VLRange {
-  //   const totalSize = this.getTotalSize();
+  getVisibleRangeOffsets(containerSize: number = 0, scrollbarOffset: number) {
+    const totalSize = this.getTotalSize();
 
-  //   if (totalSize === 0) {
-  //     return { start: 0, end: 0 };
-  //   }
+    if (totalSize === 0) {
+      return { start: 0, end: 0 };
+    }
 
-  //   const maxOffset = scrollbarOffset + containerSize;
-  // //  let startIdx = this.findNearestItem(scrollbarOffset);
+    const maxOffset = scrollbarOffset + containerSize;
 
-  //   if (startIdx === undefined) {
-  //     throw Error(`Invalid offset ${scrollbarOffset} specified`);
-  //   }
+    const startOffset = scrollbarOffset;
+    let startIdx = this.findNearestItem(scrollbarOffset);
 
-  //   const datum = this.getSizeAndPositionForIndex(startIdx);
-  //   scrollbarOffset = datum.offset + datum.size;
+    if (startIdx === undefined) {
+      throw Error(`Invalid offset ${scrollbarOffset} specified`);
+    }
 
-  //   let endIdx = startIdx;
+    const datum = this.getSizeAndPositionForIndex(startIdx);
 
-  //   while (scrollbarOffset < maxOffset && endIdx < this.model.length - 1) {
-  //     endIdx++;
-  //     scrollbarOffset += this.getSizeAndPositionForIndex(endIdx).size;
-  //   }
+    scrollbarOffset = datum.offset + datum.size;
 
-  //   if (windowOverPaddingCount) {
-  //     startIdx = Math.max(0, startIdx - windowOverPaddingCount);
-  //     endIdx = Math.min(endIdx + windowOverPaddingCount, this.model.length - 1);
-  //   }
+    let endIdx = startIdx;
 
-  //   return {
-  //     start: startIdx,
-  //     end: endIdx
-  //   };
-  // }
+    while (scrollbarOffset < maxOffset && endIdx < this.model.length - 1) {
+      endIdx++;
+      scrollbarOffset += this.getSizeAndPositionForIndex(endIdx).size;
+    }
 
-
+    return {
+      startOffset,
+      endOffset: scrollbarOffset
+    };
+  }
 
   // returns an index range
   getVisibleRangeIndex(
