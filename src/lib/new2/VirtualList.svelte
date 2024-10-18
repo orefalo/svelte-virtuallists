@@ -77,7 +77,7 @@
 
     // snippets
     footer,
-    slot,
+    vl_slot,
     header,
 
     // events
@@ -106,7 +106,7 @@
     scrollToBehaviour?: SCROLL_BEHAVIOR;
     // snippets
     header?: Snippet;
-    slot: Snippet<[VLSlotSignature]>;
+    vl_slot: Snippet<[VLSlotSignature]>;
     footer?: Snippet;
     // events
     onVisibleRangeUpdate?: (range: VLRangeEvent) => void;
@@ -390,7 +390,7 @@
   {/if}
   <div class="vtlist-inner" style={listInnerStyle}>
     {#each visibleItems as el}
-      {@render slot({
+      {@render vl_slot({
         index: getKey ? getKey(el.index) : el.index,
         item: el.item,
         size: sizeAndPositionManager.itemSizeAndPositionData[el.index].size

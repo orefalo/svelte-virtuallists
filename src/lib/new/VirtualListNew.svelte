@@ -40,7 +40,7 @@
     type VLSlotSignature,
     type VLRangeEvent
   } from '..';
-  import { binarySearch } from './jshelper';
+
   import clsx from 'clsx';
 
   // ====== INTERNAL TYPES ============
@@ -68,7 +68,7 @@
 
     // reactive variable related to positioning
     scrollToIndex,
-    scrollOffset,
+    scrollToOffset,
     // windowOverPadding = 3,
 
     // Render count at start, used for SSR
@@ -102,7 +102,7 @@
 
     // positioning
     scrollToIndex?: number | undefined;
-    scrollOffset?: number | undefined;
+    scrollToOffset?: number | undefined;
 
     // scroll attributes
     scrollToAlignment?: ALIGNMENT;
@@ -155,8 +155,8 @@
 
   let curState: VState = $state({
     offset:
-      scrollOffset ||
-      (scrollToIndex !== undefined /*&& modelCount && getOffsetForIndex(scrollToIndex)*/ && 1) ||
+      scrollToOffset ||
+      (scrollToIndex !== undefined && items.length && getOffsetForIndex(scrollToIndex) && 1) ||
       0,
     scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
   });
@@ -182,6 +182,7 @@
   });
 
   // this is index -> offset
+  //TODO: rename to offets[]
   const positions: number[] = $derived.by(() => {
     const p: number[] = [];
     sizes.reduce((a, b) => {
@@ -234,8 +235,15 @@
 
   onMount(() => {
     listContainer.addEventListener('scroll', onscroll, thirdEventArg);
-    mounted = true;
     updatePositions();
+
+    if (scrollToOffset !== undefined) {
+      scrollTo(scrollToOffset);
+    } else if (scrollToIndex !== undefined) {
+      scrollTo(getOffsetForIndex(scrollToIndex));
+    }
+
+    mounted = true;
   });
 
   onDestroy(() => {
@@ -247,8 +255,10 @@
     const { offset, scrollChangeReason } = curState;
 
     if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
-      // refresh();
       updatePositions();
+
+      const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
+      onVisibleRangeUpdate?.({ type: 'range.update', start: vr.start, end: vr.end });
     }
 
     if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
@@ -258,16 +268,14 @@
     prevState = curState;
   });
 
-  $effect(() => onVisibleRangeUpdate?.({ type: 'range.update', start: startIdx, end: endIdx }));
-
   function onscroll(event: Event): void {
     const offset = getScroll(listContainer);
 
     if (
       event.target !== listContainer ||
       offset < 0 ||
-      curState.offset === offset ||
-      overfetchBufferInPx - Math.abs(offset - curState.offset) >= 1
+      curState.offset === offset
+      // || overfetchBufferInPx - Math.abs(offset - curState.offset) >= 1
     )
       return;
 
@@ -283,10 +291,7 @@
   function getStart(): number {
     const startPosition =
       getScroll(listContainer) - getPaddingStart(listContainer) - overfetchBufferInPx;
-    const r = binarySearch(positions, mid => mid - startPosition, {
-      returnNearestIfNoHit: true
-    })!;
-    return r.index;
+    return findNearestItem(startPosition);
   }
 
   // return the index of the closing boundary
@@ -297,8 +302,144 @@
       getClientSize(listContainer) +
       overfetchBufferInPx;
 
-    const r = binarySearch(positions, mid => mid - endPosition, { returnNearestIfNoHit: true })!;
-    return r.index;
+    return findNearestItem(endPosition);
+  }
+
+  function getOffsetForIndex(
+    index: number,
+    align: ALIGNMENT = scrollToAlignment,
+    _modelCount: number = items.length
+  ): number {
+    if (index < 0) {
+      index = 0;
+    } else if (index >= _modelCount) {
+      index = _modelCount - 1;
+    }
+
+    return getUpdatedOffsetForIndex(
+      align,
+      //@ts-expect-error wrong type assignment
+      scrollDirection === DIRECTION.VERTICAL ? height : width,
+      curState.offset || 0,
+      index
+    );
+  }
+
+  /**
+   * Determines a new offset that ensures a certain item is visible, given the alignment.
+   *
+   * @param align Desired alignment within container
+   * @param containerSize Size (width or height) of the container viewport
+   * @return Offset to use to ensure the specified item is visible
+   */
+  function getUpdatedOffsetForIndex(
+    align: ALIGNMENT = ALIGNMENT.START,
+    containerSize: number,
+    currentOffset: number,
+    targetIndex: number
+  ): number {
+    if (containerSize <= 0) {
+      return 0;
+    }
+
+    // const datum = this.getSizeAndPositionForIndex(targetIndex);
+
+    const datumS = sizes[targetIndex];
+
+    const maxOffset = positions[targetIndex];
+    const minOffset = maxOffset - containerSize + datumS;
+
+    let idealOffset;
+
+    switch (align) {
+      case ALIGNMENT.END:
+        idealOffset = minOffset;
+        break;
+      case ALIGNMENT.CENTER:
+        idealOffset = maxOffset - (containerSize - datumS) / 2;
+        break;
+      case ALIGNMENT.START:
+        idealOffset = maxOffset;
+        break;
+      default:
+        idealOffset = Math.max(minOffset, Math.min(maxOffset, currentOffset));
+    }
+
+    const totalSize = totalViewportSize;
+    return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
+  }
+
+  /**
+   * Searches for the item (index) nearest the specified offset.
+   *
+   * If no exact match is found the next lowest item index will be returned.
+   * This allows partially visible items (with offsets just before/above the fold) to be visible.
+   *
+   */
+  let lastMeasuredIndex = -1;
+
+  function findNearestItem(offset: number): number {
+    if (isNaN(offset)) {
+      throw Error(`Invalid offset ${offset} specified`);
+    }
+
+    // Our search algorithms find the nearest match at or below the specified offset.
+    // So make sure the offset is at least 0 or no match will be found.
+    offset = Math.max(0, offset);
+
+    const lastMeasuredSizeAndPosition = getSizeAndPositionOfLastMeasuredItem();
+    const i = Math.max(0, lastMeasuredIndex);
+
+    if (lastMeasuredSizeAndPosition.offset >= offset) {
+      // If we've already measured items within this range just use a binary search as it's faster.
+      return binarySearch2(0, i, offset);
+    } else {
+      // If we haven't yet measured this high, fallback to an exponential search with an inner binary search.
+      // The exponential search avoids pre-computing sizes for the full set of items as a binary search would.
+      // The overall complexity for this approach is O(log n).
+      return exponentialSearch(i, offset);
+    }
+  }
+
+  function getSizeAndPositionOfLastMeasuredItem() {
+    return lastMeasuredIndex >= 0
+      ? { offset: positions[lastMeasuredIndex], size: sizes[lastMeasuredIndex] }
+      : { offset: 0, size: 0 };
+  }
+
+  function binarySearch2(low: number, high: number, offset: number): number {
+    let middle = 0;
+    let currentOffset = 0;
+
+    while (low <= high) {
+      middle = low + Math.floor((high - low) / 2);
+      currentOffset = positions[middle];
+
+      if (currentOffset === offset) {
+        return middle;
+      } else if (currentOffset < offset) {
+        low = middle + 1;
+      } else if (currentOffset > offset) {
+        high = middle - 1;
+      }
+    }
+
+    if (low > 0) {
+      return low - 1;
+    }
+
+    return 0;
+  }
+
+  function exponentialSearch(index: number, offset: number): number {
+    let interval = 1;
+
+    while (index < items.length && positions[index] < offset) {
+      index += interval;
+      interval *= 2;
+    }
+
+    return binarySearch2(Math.floor(index / 2), Math.min(index, items.length - 1), offset);
   }
 
   // recalculates the viewport position
@@ -309,9 +450,7 @@
     }
 
     startIdx = getStart();
-    // console.log('starIdx' + startIdx);
     endIdx = getEnd();
-    // console.log('endIdx' + endIdx);
 
     let vi0 = 0;
 
@@ -323,6 +462,7 @@
       const el = children[i];
       const stl = getComputedStyle(el);
 
+      // ignore entries marked as fixed or absolute
       const cssPosition = stl.position;
       if (cssPosition && ['absolute', 'fixed'].includes(cssPosition)) {
         continue;
@@ -335,9 +475,9 @@
       vi0++;
     }
 
-    //TODO see if a simple array copy could suffice
-    for (const indexS of Object.keys(runtimeSizesTemp)) {
-      const index = parseInt(indexS);
+    // only update the elements that moved
+    for (const k of Object.keys(runtimeSizesTemp)) {
+      const index = parseInt(k);
       if (runtimeSizes[index] !== runtimeSizesTemp[index]) {
         runtimeSizes[index] = runtimeSizesTemp[index];
       }
@@ -378,6 +518,33 @@
       }
     }
     return r;
+  }
+
+  // returns an index range
+  function getVisibleRange(containerSize: number = 0, scrollbarOffset: number) {
+    const totalSize = totalViewportSize;
+
+    if (totalSize === 0) return { start: 0, end: 0 };
+
+    const maxOffset = scrollbarOffset + containerSize;
+    let startIdx = findNearestItem(scrollbarOffset);
+
+    if (startIdx === undefined) {
+      throw Error(`Invalid offset ${scrollbarOffset} specified`);
+    }
+
+    let offset = positions[startIdx] + sizes[startIdx];
+    let endIdx = startIdx;
+
+    while (offset < maxOffset && endIdx < items.length - 1) {
+      endIdx++;
+      offset += sizes[endIdx];
+    }
+
+    return {
+      start: startIdx,
+      end: endIdx
+    };
   }
 
   function getOuterSize(el: HTMLElement) {
@@ -424,7 +591,7 @@
   //TODO implement
   function getItemKey(index: number, item: any) {
     if (itemKey) {
-      if (/*typeof itemKey === 'string' &&*/ itemKey === 'index') {
+      if (itemKey === 'index') {
         return index;
       } else if (typeof itemKey === 'function') {
         return itemKey(item, index);

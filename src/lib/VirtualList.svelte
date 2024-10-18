@@ -249,7 +249,6 @@
     ) {
       curState = {
         offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, modelCount),
-
         scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
       };
     }

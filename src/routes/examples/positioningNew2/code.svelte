@@ -10,7 +10,7 @@
   // on the component
   let rowHeights: Array<number> | number = $state([]);
   let scrollToIndex: number | undefined = $state();
-  let scrollOffet: number | undefined = $state();
+  let scrollToOffset: number | undefined = $state();
 
   let start = $state(0);
   let end = $state(0);
@@ -28,12 +28,12 @@
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
     scrollToIndex = undefined;
-    scrollOffet = theScrollOffet;
+    scrollToOffset = theScrollOffet;
   });
 
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
-    scrollOffet = undefined;
+    scrollToOffset = undefined;
     scrollToIndex = theScrollToIndex;
   });
 
@@ -112,15 +112,16 @@
     bind:this={virtualList}
     style="height:500px"
     model={myModel}
-    itemSize={rowHeights}
     {scrollToIndex}
-    scrollToOffset={scrollOffet}
+    {scrollToOffset}
     {scrollToAlignment}
     {scrollToBehaviour}
     onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ index, item,  size })}
-      <div class:highlighted={index === scrollToIndex}>
-        Item #{index}
+    {#snippet vl_slot({ item, index, size })}
+      <div
+        style="border: 1px solid rgb(204, 204, 204); "
+        class:highlighted={index === scrollToIndex}>
+        {item.text}
       </div>
     {/snippet}
   </VirtualList>

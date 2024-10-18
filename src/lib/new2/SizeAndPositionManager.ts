@@ -84,7 +84,6 @@ export default class SizeAndPositionManager {
     for (let i = 0; i < this.model.length; i++) {
       let size = this.getSize(i);
       if (!size) {
-        console.log('item size is undefined');
         size = 0;
       }
 
