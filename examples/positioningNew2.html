@@ -8,13 +8,13 @@
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.4oI-2eLT.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/7.DXchiTpc.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.AGB8zajX.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.jb151gmm.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.B2XIb3UX.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.Ba5LTeqX.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.9GZ0D419.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/7.DuSlFq0V.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.DauRvbGK.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.C5xEC3WX.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.C4jBnWtt.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.bflEojmh.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.DVykHsnQ.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.DLEfUfNE.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/7.MF0bm35B.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.BuQoPj8o.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.BsDTonD8.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -59,7 +59,7 @@ SOFTWARE.
   <span class="hljs-comment">// on the component</span>
   <span class="hljs-keyword">let</span> <span class="hljs-attr">rowHeights</span>: <span class="hljs-title class_">Array</span>&lt;number&gt; | number = $state([]);
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToOffset</span>: number | <span class="hljs-literal">undefined</span> = $state();
 
   <span class="hljs-keyword">let</span> start = $state(<span class="hljs-number">0</span>);
   <span class="hljs-keyword">let</span> end = $state(<span class="hljs-number">0</span>);
@@ -77,12 +77,12 @@ SOFTWARE.
   $effect(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
     scrollToIndex = <span class="hljs-literal">undefined</span>;
-    scrollOffet = theScrollOffet;
+    scrollToOffset = theScrollOffet;
   });
 
   $effect(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
-    scrollOffet = <span class="hljs-literal">undefined</span>;
+    scrollToOffset = <span class="hljs-literal">undefined</span>;
     scrollToIndex = theScrollToIndex;
   });
 
@@ -161,15 +161,16 @@ SOFTWARE.
     <span class="hljs-attr">bind:this</span>=<span class="hljs-string">{virtualList}</span>
     <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:500px&quot;</span>
     <span class="hljs-attr">model</span>=<span class="hljs-string">{myModel}</span>
-    <span class="hljs-attr">itemSize</span>=<span class="hljs-string">{rowHeights}</span>
     {<span class="hljs-attr">scrollToIndex</span>}
-    <span class="hljs-attr">scrollToOffset</span>=<span class="hljs-string">{scrollOffet}</span>
+    {<span class="hljs-attr">scrollToOffset</span>}
     {<span class="hljs-attr">scrollToAlignment</span>}
     {<span class="hljs-attr">scrollToBehaviour</span>}
     <span class="hljs-attr">onVisibleRangeUpdate</span>=<span class="hljs-string">{handleMessage}</span>&gt;</span>
-    {#snippet slot({ index, item,  size })}
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
-        Item #{index}
+    {#snippet vl_slot({ item, index, size })}
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); &quot;</span>
+        <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
+        {item.text}
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     {/snippet}
   <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -197,7 +198,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_1wzo2es = {
+					__sveltekit_1n1d8jf = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -207,8 +208,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.jb151gmm.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.Ba5LTeqX.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.C4jBnWtt.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.DVykHsnQ.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 7],
