@@ -55,6 +55,15 @@
     scrollChangeReason: number;
   }
 
+  interface VProps {
+    scrollToIndex?: number;
+    scrollToAlignment?: string;
+    scrollToOffset?: number;
+    modelCount?: number;
+    sizingCalculator?: SizingCalculatorFn;
+    avgSizeInPx?: number;
+  }
+
   // ====== PROPERTIES ================
 
   const {
@@ -169,22 +178,22 @@
   });
 
   // holds the raw rendered position of each item in the list
-  const itemOffsets: (number | undefined)[] = $derived(new Array(items.length));
+  // TODO: since rawSizes is only used for sizes calculations, there is probably a better way to get it with out reactivity and memory
+  const rawSizes: (number | undefined)[] = $derived(new Array(items.length));
 
   // holds the calculated size (height or width) of each item in the list
   const sizes: number[] = $derived.by(() => {
     return items.map((item, index) => {
       let s = sizingCalculator?.(index, item);
       if (s !== undefined) return s;
-      s = itemOffsets[index];
+      s = rawSizes[index];
       if (s !== undefined) return s;
       return avgSizeInPx;
     });
   });
 
-  // this is index -> offset
-  //TODO: rename to offets[]
-  const positions: number[] = $derived.by(() => {
+  // this is index -> viewport offset
+  const offsets: number[] = $derived.by(() => {
     const p: number[] = [];
     sizes.reduce((a, b) => {
       p.push(a);
@@ -209,15 +218,13 @@
     return r;
   });
 
-  const startOffset = $derived(positions[startIdx] ? positions[startIdx] : 0);
+  const startOffset = $derived(offsets[startIdx] ? offsets[startIdx] : 0);
 
   const totalViewportSize = $derived(
-    positions.length > 0 ? positions[positions.length - 1] + sizes[sizes.length - 1] : 0
+    offsets.length > 0 ? offsets[offsets.length - 1] + sizes[sizes.length - 1] : 0
   );
 
-  const endOffset = $derived(
-    positions[end2] ? totalViewportSize - positions[end2] - sizes[end2] : 0
-  );
+  const endOffset = $derived(offsets[end2] ? totalViewportSize - offsets[end2] - sizes[end2] : 0);
 
   // css
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
@@ -251,6 +258,22 @@
     if (mounted) listContainer.removeEventListener('scroll', onscroll);
   });
 
+  $effect(() => {
+    // listen to updates:
+    //@ts-expect-error unused no side effect
+    scrollToIndex, scrollToAlignment, scrollToOffset, items.length, sizingCalculator;
+
+    console.log('propUpdated');
+    // on update:
+    propsUpdated();
+  });
+
+  $effect(() => {
+    console.log('onVisibleRangeUpdate');
+    // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
+    onVisibleRangeUpdate?.({ start: startIdx, end: endIdx });
+  });
+
   //TODO see if effect.pre not a better option
   $effect(() => {
     const { offset, scrollChangeReason } = curState;
@@ -258,8 +281,8 @@
     if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
       refreshOffsets();
 
-      const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
-      onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
+      // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
+      // onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
     }
 
     if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
@@ -272,15 +295,74 @@
   $effect(() => {
     // listen to updates:
     //@ts-expect-error unused no side effect
-    clientHeight, clientWidth;
+    //clientHeight, clientWidth;
     // on update:
+    console.log('component is resized ' + clientHeight + ' ' + clientWidth);
     if (mounted) recomputeSizes(0); // call scroll.reset
   });
 
+  let prevProps: VProps = {
+    scrollToIndex,
+    scrollToAlignment,
+    scrollToOffset,
+    modelCount: items.length,
+    //todo: store a present boolean rather than a ref to the function
+    sizingCalculator,
+    avgSizeInPx
+  };
+
+  function propsUpdated() {
+    if (!mounted) return;
+
+    if (scrollToIndex && scrollToOffset) {
+      console.log('VirtualList: scrollToIndex and scrollToOffset MUST NOT be used together.');
+    }
+
+    const scrollPropsHaveChanged =
+      prevProps.scrollToIndex !== scrollToIndex ||
+      prevProps.scrollToAlignment !== scrollToAlignment;
+    const itemPropsHaveChanged =
+      prevProps.modelCount !== items.length ||
+      prevProps.sizingCalculator !== sizingCalculator ||
+      prevProps.avgSizeInPx !== avgSizeInPx;
+
+    if (itemPropsHaveChanged) {
+      // sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
+      recomputeSizes();
+    }
+
+    const scrollOffsetHaveChanged = prevProps.scrollToOffset !== scrollToOffset;
+    if (scrollOffsetHaveChanged) {
+      curState = {
+        offset: scrollToOffset || 0,
+        scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
+      };
+    } else if (
+      typeof scrollToIndex === 'number' &&
+      (scrollPropsHaveChanged || itemPropsHaveChanged)
+    ) {
+      curState = {
+        offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, items.length),
+        scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
+      };
+    }
+
+    prevProps = {
+      scrollToIndex,
+      scrollToAlignment,
+      scrollToOffset,
+      modelCount: items.length,
+      sizingCalculator,
+      avgSizeInPx
+    };
+  }
+
   function recomputeSizes(startIndex: number = 0) {
-    // styleCache = {};
+    //resetItem
     lastMeasuredIndex = Math.min(lastMeasuredIndex, startIndex - 1);
     refreshOffsets();
+    // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
+    // onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
   }
 
   function onscroll(event: Event): void {
@@ -290,6 +372,7 @@
       event.target !== listContainer ||
       offset < 0 ||
       curState.offset === offset
+      // todo: bring this back if we find the right location for the range evernt
       // || overfetchBufferInPx - Math.abs(offset - curState.offset) >= 1
     )
       return;
@@ -333,8 +416,7 @@
 
     return getUpdatedOffsetForIndex(
       align,
-      //@ts-expect-error wrong type assignment
-      scrollDirection === DIRECTION.VERTICAL ? height : width,
+      isHorizontal ? clientWidth : clientHeight,
       curState.offset || 0,
       index
     );
@@ -361,7 +443,7 @@
 
     const datumS = sizes[targetIndex];
 
-    const maxOffset = positions[targetIndex];
+    const maxOffset = offsets[targetIndex];
     const minOffset = maxOffset - containerSize + datumS;
 
     let idealOffset;
@@ -407,7 +489,7 @@
 
     if (lastMeasuredSizeAndPosition.offset >= offset) {
       // If we've already measured items within this range just use a binary search as it's faster.
-      return binarySearch2(0, i, offset);
+      return binarySearch(0, i, offset);
     } else {
       // If we haven't yet measured this high, fallback to an exponential search with an inner binary search.
       // The exponential search avoids pre-computing sizes for the full set of items as a binary search would.
@@ -418,17 +500,17 @@
 
   function getSizeAndPositionOfLastMeasuredItem() {
     return lastMeasuredIndex >= 0
-      ? { offset: positions[lastMeasuredIndex], size: sizes[lastMeasuredIndex] }
+      ? { offset: offsets[lastMeasuredIndex], size: sizes[lastMeasuredIndex] }
       : { offset: 0, size: 0 };
   }
 
-  function binarySearch2(low: number, high: number, offset: number): number {
+  function binarySearch(low: number, high: number, offset: number): number {
     let middle = 0;
     let currentOffset = 0;
 
     while (low <= high) {
       middle = low + Math.floor((high - low) / 2);
-      currentOffset = positions[middle];
+      currentOffset = offsets[middle];
 
       if (currentOffset === offset) {
         return middle;
@@ -449,12 +531,12 @@
   function exponentialSearch(index: number, offset: number): number {
     let interval = 1;
 
-    while (index < items.length && positions[index] < offset) {
+    while (index < items.length && offsets[index] < offset) {
       index += interval;
       interval *= 2;
     }
 
-    return binarySearch2(Math.floor(index / 2), Math.min(index, items.length - 1), offset);
+    return binarySearch(Math.floor(index / 2), Math.min(index, items.length - 1), offset);
   }
 
   // recalculates the viewport position
@@ -486,15 +568,14 @@
       const size = stl.display !== 'none' ? getOuterSize(el as HTMLElement) : 0;
       const index = startIdx + vi0;
       itemOffsetsTemp[index] = (itemOffsetsTemp[index] || 0) + size;
-      // console.log('rt size ' + index + ' -> ' + runtimeSizesTemp[index]);
       vi0++;
     }
 
     // only update the elements that moved
     for (const k of Object.keys(itemOffsetsTemp)) {
       const index = parseInt(k);
-      if (itemOffsets[index] !== itemOffsetsTemp[index]) {
-        itemOffsets[index] = itemOffsetsTemp[index];
+      if (rawSizes[index] !== itemOffsetsTemp[index]) {
+        rawSizes[index] = itemOffsetsTemp[index];
       }
     }
   }
@@ -548,7 +629,7 @@
       throw Error(`Invalid offset ${scrollbarOffset} specified`);
     }
 
-    let offset = positions[startIdx] + sizes[startIdx];
+    let offset = offsets[startIdx] + sizes[startIdx];
     let endIdx = startIdx;
 
     while (offset < maxOffset && endIdx < items.length - 1) {
