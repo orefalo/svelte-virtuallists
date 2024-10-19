@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.3...v1.3.0) (2024-10-19)
+
+
+### Features
+
+* major rework ([936bfd6](https://github.com/orefalo/svelte-virtuallists/commit/936bfd6e653d96fa8e70ea3f96c3aac69eeba3a2))
+* major rework of the project ([111f758](https://github.com/orefalo/svelte-virtuallists/commit/111f7587accb20bb8256ef795f730f916b5388ff))
+
+
+### Bug Fixes
+
+* 2nd bug ([8eb88cf](https://github.com/orefalo/svelte-virtuallists/commit/8eb88cf09dfee05100e6ef4917b9232a8ebb89dd))
+* better implementation ([e8a924b](https://github.com/orefalo/svelte-virtuallists/commit/e8a924b93981aec8abbe4f933007c8edb682008a))
+* bug fixed ([1fb7b49](https://github.com/orefalo/svelte-virtuallists/commit/1fb7b4990cd78e620387e8532cf6987993797194))
+* husky commit-msg ([8f0f52c](https://github.com/orefalo/svelte-virtuallists/commit/8f0f52c47e9ed3705359f426c9895fdcf0a8f731))
+* new documentatio and code fixes ([4814b67](https://github.com/orefalo/svelte-virtuallists/commit/4814b6742d61a929a27d2211ba44409e047839f4))
+
 ## [1.2.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.2...v1.2.3) (2024-10-06)
 
 
