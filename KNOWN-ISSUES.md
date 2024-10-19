@@ -2,7 +2,4 @@
 
 For now it breaks Svelte preview REPL as it can't compile ts on the fly
 
-[ ] Problem with positioning
-[ ] Problem with visible index range events
-[ ] Problem with offset scrolling
-[ ] Problem with focus positioning
+[ ] Problem with focus positioning on the edge size

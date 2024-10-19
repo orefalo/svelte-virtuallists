@@ -2,11 +2,7 @@
   import { ALIGNMENT, SCROLL_BEHAVIOR, type VLSlotSignature } from '$lib';
   import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
-  const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'Item ' + i + ' item ' + i, lineHeight: 20 + (i % 30) + 'px' };
-  });
-
-  let virtualList;
+  const myModel = $state(new Array(10000));
 
   // on the UI
   let theScrollToIndex: number | undefined = $state();
@@ -46,15 +42,32 @@
 
   let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
 
-  function randomize() {
-    szCalculator = (_index: number, _item: any) => Math.round(Math.random() * (155 - 30) + 30);
+  let randSizes: Array<number>;
+  function randomizeSize() {
+    randSizes = new Array(myModel.length);
+    for (let i = 0; i < randSizes.length; i++) {
+      randSizes[i] = Math.round(Math.random() * 65 + 30);
+    }
+
+    szCalculator = (_index: number, _item: any) => randSizes[_index];
   }
 
   function sameSize() {
-    szCalculator = (_index: number, _item: any) => 25;
+    szCalculator = () => 25;
   }
 
-  randomize();
+  function randomizeContent() {
+    for (let i = 0; i < myModel.length; i++) {
+      myModel[i] = { text: Math.floor(Math.random() * myModel.length) }; // Random number between 0 and 9999
+    }
+  }
+
+  function stripItemsBy10() {
+    for (let i = 0; i < 10; i++) myModel.pop();
+  }
+
+  randomizeContent();
+  randomizeSize();
 </script>
 
 <div class="actions">
@@ -120,18 +133,21 @@
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
   onVisibleRangeUpdate={handleMessage}>
-  {#snippet vl_slot({ item, index, size })}
+  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
       class:highlighted={index === scrollToIndex}>
+      #{index}
       {item.text}
     </div>
   {/snippet}
 </VirtualList>
 
 <div class="actions">
-  <button onclick={randomize} class="button">Randomize row heights</button>
+  <button onclick={randomizeSize} class="button">Randomize row heights</button>
   <button onclick={sameSize} class="button">Same row heights</button>
+  <button onclick={randomizeContent} class="button">Randomize content</button>
+  <button onclick={stripItemsBy10} class="button">array size -10</button>
 </div>
 
 <style>
