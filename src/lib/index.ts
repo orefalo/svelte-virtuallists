@@ -1,19 +1,18 @@
-export type VirtualItemSize = number | number[] | ((item: unknown, index: number) => number);
+export { default as VirtualList } from './VirtualListNew.svelte';
 
-export { default as VirtualList } from './VirtualList.svelte';
-
+// sizing calculator signature, used to programmatically size elements. recommendation: stick to css and defaults
 export type SizingCalculatorFn = (index: number, item: unknown) => number;
 
-// use by the row() snippet
+// used by the vl_slot() snippet
 export interface VLSlotSignature {
-  // the actual item value
-  item: any;
-
   // The row's index being rendered, from the original dataset
   // The index is a string if the IDs are processed via the getKey() function
   index: number | string;
 
-  // only there if there a custom sizing calculator, calculated size in px
+  // the item being rendered
+  item: any;
+
+  // only present if there a custom sizing calculator configured, holds calculated size in pixels
   size?: number;
 }
 
@@ -24,12 +23,7 @@ export interface VLRange {
   end: number;
 }
 
-export interface VLRangeEvent extends VLRange {
-  type: 'range.update';
-}
-
-export interface AfterScrollEvent {
-  type: 'scroll.update';
+export interface VLScrollEvent {
   // either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
   offset: number | string;
   // the original event
@@ -47,14 +41,4 @@ export enum ALIGNMENT {
   START = 'start',
   CENTER = 'center',
   END = 'end'
-}
-
-export enum DIRECTION {
-  HORIZONTAL = 'horizontal',
-  VERTICAL = 'vertical'
-}
-
-export enum SCROLL_CHANGE_REASON {
-  OBSERVED = 0,
-  REQUESTED = 1
 }

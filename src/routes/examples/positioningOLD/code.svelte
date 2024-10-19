@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { VirtualList, ALIGNMENT, SCROLL_BEHAVIOR } from 'svelte-virtuallists';
+  import { VirtualList, ALIGNMENT, SCROLL_BEHAVIOR } from '$lib/old';
 
   let virtualList;
 

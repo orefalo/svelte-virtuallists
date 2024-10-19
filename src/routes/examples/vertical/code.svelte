@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { type VLSlotSignature } from 'svelte-virtuallists';
-  import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
+  import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return { text: 'ITEM ' + i + ' - Item ' + i };

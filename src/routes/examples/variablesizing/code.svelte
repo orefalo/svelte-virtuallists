@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { type SizingCalculatorFn, type VLSlotSignature } from 'svelte-virtuallists';
-  import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
+  import { VirtualList, type SizingCalculatorFn, type VLSlotSignature } from 'svelte-virtuallists';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
     return {
@@ -9,11 +8,11 @@
   });
 
   function randomize() {
-    calculator = (index: number, item: any) => Math.round(Math.random() * (155 - 30) + 30);
+    calculator = () => Math.round(Math.random() * (155 - 30) + 30);
   }
 
   function sameSize() {
-    calculator = (index: number, item: any) => 25;
+    calculator = () => 25;
   }
 
   // @ts-expect-error undefined
@@ -27,6 +26,7 @@
 <VirtualList items={myModel} style="width:100%" isHorizontal={true} sizingCalculator={calculator}>
   {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
     <div style="border: 1px solid rgb(204, 204, 204); width: {size}px;">
+      #{index}
       {item.text}
     </div>
   {/snippet}
@@ -37,7 +37,7 @@
 <VirtualList items={myModel} style="height:600px" sizingCalculator={calculator}>
   {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
     <div style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;">
-      Index:{index} Content:{item.text}
+      #{index} Content:{item.text}
     </div>
   {/snippet}
 </VirtualList>

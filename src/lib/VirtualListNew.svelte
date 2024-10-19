@@ -78,7 +78,6 @@
     // reactive variable related to positioning
     scrollToIndex,
     scrollToOffset,
-    // windowOverPadding = 3,
 
     // Render count at start, used for SSR
     preRenderCount = 6,
@@ -100,7 +99,7 @@
     class: className = '',
     style = '',
 
-    // calculate the size of a given index
+    // calculates the size of a given index
     sizingCalculator
   }: {
     items: any[];
@@ -138,7 +137,12 @@
 
   // ======== VARIABLES ========
 
+  // number of elements to pad above & below the visible range to prevent glitching
+  const WINDOW_PASSING_COUNT = 3;
+
   let mounted: boolean = false;
+
+  let lastMeasuredIndex = -1;
 
   // dom references
   let listContainer: HTMLDivElement;
@@ -147,9 +151,6 @@
 
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
-
-  // viewport overfetch trigger in px
-  // let overfetchBufferInPx: number = 100;
 
   let itemKey: 'index' | ((item: any, index: number) => any);
 
@@ -208,10 +209,8 @@
     }
     const r: VLSlotSignature[] = [];
     for (let index = startIdx; index <= end2; index++) {
-      // console.log(index);
       const item = items[index];
       if (item) {
-        //  console.log(sizes[index])
         r.push({ item, index: index, size: sizes[index] });
       }
     }
@@ -284,9 +283,6 @@
 
     if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
       refreshOffsets();
-
-      // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
-      // onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
     }
 
     if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
@@ -297,10 +293,7 @@
   });
 
   $effect(() => {
-    // listen to updates:
-    //@ts-expect-error unused no side effect
-    //clientHeight, clientWidth;
-    // on update:
+    //TODO there is a bug with client sizing
     console.log('component is resized ' + clientHeight + ' ' + clientWidth);
     if (mounted) recomputeSizes(0); // call scroll.reset
   });
@@ -387,24 +380,6 @@
     onAfterScroll?.({ offset, event });
   }
 
-  // return the index of the starting boundary
-  // function getStart(): number {
-  //   const startPosition =
-  //     getScroll(listContainer) - getPaddingStart(listContainer) - overfetchBufferInPx;
-  //   return findNearestItem(startPosition);
-  // }
-
-  // return the index of the closing boundary
-  // function getEnd() {
-  //   const endPosition =
-  //     getScroll(listContainer) -
-  //     getPaddingStart(listContainer) +
-  //     getClientSize(listContainer) +
-  //     overfetchBufferInPx;
-
-  //   return findNearestItem(endPosition);
-  // }
-
   function getOffsetForIndex(
     index: number,
     align: ALIGNMENT = scrollToAlignment,
@@ -443,10 +418,9 @@
 
     // const datum = this.getSizeAndPositionForIndex(targetIndex);
 
-    const datumS = sizes[targetIndex];
-
+    const size = sizes[targetIndex];
     const maxOffset = offsets[targetIndex];
-    const minOffset = maxOffset - containerSize + datumS;
+    const minOffset = maxOffset - containerSize + size;
 
     let idealOffset;
 
@@ -455,7 +429,7 @@
         idealOffset = minOffset;
         break;
       case ALIGNMENT.CENTER:
-        idealOffset = maxOffset - (containerSize - datumS) / 2;
+        idealOffset = maxOffset - (containerSize - size) / 2;
         break;
       case ALIGNMENT.START:
         idealOffset = maxOffset;
@@ -475,7 +449,6 @@
    * This allows partially visible items (with offsets just before/above the fold) to be visible.
    *
    */
-  let lastMeasuredIndex = -1;
 
   function findNearestItem(offset: number): number {
     if (isNaN(offset)) {
@@ -543,13 +516,16 @@
 
   // recalculates the viewport position
   function refreshOffsets() {
-    // console.log('updatePositions');
     if (!avgSizeInPx) {
       avgSizeInPx = getAvgSize();
     }
 
-    const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset,3);
- 
+    const vr = getVisibleRange(
+      isHorizontal ? clientWidth : clientHeight,
+      curState.offset,
+      WINDOW_PASSING_COUNT
+    );
+
     startIdx = vr.start;
     endIdx = vr.end;
 
@@ -660,40 +636,40 @@
     const style = getComputedStyle(el);
 
     let r = getClientSize(el);
-    if (!isHorizontal) {
-      r +=
-        parseFloat(style.borderTopWidth) +
-        parseFloat(style.borderBottomWidth) +
-        parseFloat(style.marginTop) +
-        parseFloat(style.marginBottom);
-    } else {
+    if (isHorizontal) {
       r +=
         parseFloat(style.borderLeftWidth) +
         parseFloat(style.borderRightWidth) +
         parseFloat(style.marginLeft) +
         parseFloat(style.marginRight);
+    } else {
+      r +=
+        parseFloat(style.borderTopWidth) +
+        parseFloat(style.borderBottomWidth) +
+        parseFloat(style.marginTop) +
+        parseFloat(style.marginBottom);
     }
     return Number.isNaN(r) ? 0 : r;
   }
 
   function getScroll(el: HTMLElement) {
-    return !isHorizontal ? el.scrollTop : el.scrollLeft;
+    return isHorizontal ? el.scrollLeft : el.scrollTop;
   }
 
-  function getPaddingStart(el: HTMLElement) {
-    const style = getComputedStyle(el);
-    return !isHorizontal ? parseFloat(style.paddingTop) : parseFloat(style.paddingLeft);
-  }
+  // function getPaddingStart(el: HTMLElement) {
+  //   const style = getComputedStyle(el);
+  //   return isHorizontal ? parseFloat(style.paddingLeft) : parseFloat(style.paddingTop);
+  // }
 
-  // scrolls the contrainer to px
+  // scrolls the contrainer to give px value
   function scrollTo(value: number) {
     if ('scroll' in listContainer) {
       const p: Record<string, any> = { behavior: scrollToBehaviour };
-      p[!isHorizontal ? 'top' : 'left'] = value;
+      p[isHorizontal ? 'left' : 'top'] = value;
       listContainer.scroll(p);
     } else {
       //@ts-expect-error no index signature
-      listContainer[!isHorizontal ? 'scrollTop' : 'scrollLeft'] = value;
+      listContainer[isHorizontal ? 'scrollLeft' : 'scrollTop'] = value;
     }
   }
 

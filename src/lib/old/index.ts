@@ -1,6 +1,6 @@
-// export type VirtualItemSize = number | number[] | ((item: unknown, index: number) => number);
+export { default as VirtualList } from './VirtualList.svelte';
 
-export { default as VirtualList } from './VirtualListNew.svelte';
+export type VirtualItemSize = number | number[] | ((item: unknown, index: number) => number);
 
 export type SizingCalculatorFn = (index: number, item: unknown) => number;
 
@@ -24,11 +24,12 @@ export interface VLRange {
   end: number;
 }
 
-// export interface VLRangeEvent extends VLRange {
-//   type: 'range.update';
-// }
+export interface VLRangeEvent extends VLRange {
+  type: 'range.update';
+}
 
-export interface VLScrollEvent {
+export interface AfterScrollEvent {
+  type: 'scroll.update';
   // either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
   offset: number | string;
   // the original event
@@ -48,7 +49,12 @@ export enum ALIGNMENT {
   END = 'end'
 }
 
-// export enum DIRECTION {
-//   HORIZONTAL = 'horizontal',
-//   VERTICAL = 'vertical'
-// }
+export enum DIRECTION {
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical'
+}
+
+export enum SCROLL_CHANGE_REASON {
+  OBSERVED = 0,
+  REQUESTED = 1
+}

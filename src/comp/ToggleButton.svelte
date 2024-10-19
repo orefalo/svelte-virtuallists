@@ -6,7 +6,7 @@
   }: {
     pressed: boolean;
     label: string;
-    onclick?: Function;
+    onclick?: () => void;
   } = $props();
 
   function clicked() {

@@ -28,7 +28,7 @@
         { title: 'Horizontal', path: '/examples/horizontal' },
         { title: 'Table', path: '/examples/table' },
         { title: 'Variable Sizing', path: '/examples/variablesizing' },
-        { title: 'Positioning', path: '/examples/positioningNew' },
+        { title: 'Positioning', path: '/examples/positioning' },
         { title: 'OLDPositioning', path: '/examples/positioningOLD' },
         { title: 'Events', path: '/examples/events' }
       ]
