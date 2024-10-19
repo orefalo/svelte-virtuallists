@@ -3,6 +3,6 @@
   import example from './code.svelte?example';
 </script>
 
-<h2>Table rendering</h2>
+<h2>Table Rendering</h2>
 
 <ExampleArea {example} />

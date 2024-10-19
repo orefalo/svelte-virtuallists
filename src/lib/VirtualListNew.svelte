@@ -548,12 +548,12 @@
     const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
 
     for (let index = 0; index < children.length; index++) {
-      const el = <HTMLElement>children[index];
+      const el = children[index];
       const style = getComputedStyle(el);
       if (['absolute', 'fixed'].includes(style.position)) {
         continue;
       }
-      const outerSize = getOuterSize(el);
+      const outerSize = getOuterSize(el as HTMLElement);
       sizeArr.push(outerSize);
       if (sizeArr.length >= maxSampleCount) {
         break;

@@ -66,7 +66,7 @@
   }
 
   randomizeContent();
-  randomizeSize();
+  sameSize();
 </script>
 
 <div class="actions">

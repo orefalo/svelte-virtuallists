@@ -4,5 +4,5 @@
 </script>
 
 <h2>Events</h2>
-<p>Try interacting with the list below and check the event log below.</p>
+<p>Try interacting with the list below and check the event log in the console.</p>
 <ExampleArea {example} />

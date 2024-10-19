@@ -3,6 +3,6 @@
   import example from './code.svelte?example';
 </script>
 
-<h2>Internal: VirtualList</h2>
+<h2>Vertical List</h2>
 
 <ExampleArea {example} />

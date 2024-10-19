@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       svelte:
-        specifier: 5.0.0-next.270
-        version: 5.0.0-next.270
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.5.0
@@ -23,16 +23,16 @@ importers:
         version: 1.48.1
       '@sveltejs/adapter-static':
         specifier: ^3.0.5
-        version: 3.0.5(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))
+        version: 3.0.5(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))
       '@sveltejs/kit':
         specifier: ^2.7.1
-        version: 2.7.1(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+        version: 2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
       '@sveltejs/package':
-        specifier: 2.3.5
-        version: 2.3.5(svelte@5.0.0-next.270)(typescript@5.6.3)
+        specifier: ^2.3.5
+        version: 2.3.5(svelte@5.0.0)(typescript@5.6.3)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^4.0.0-next.7
-        version: 4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
       '@types/eslint':
         specifier: ^9.6.1
         version: 9.6.1
@@ -71,7 +71,7 @@ importers:
         version: 0.1.0(eslint@9.13.0(jiti@1.21.6))
       eslint-plugin-svelte:
         specifier: ^2.45.1
-        version: 2.45.1(eslint@9.13.0(jiti@1.21.6))(svelte@5.0.0-next.270)
+        version: 2.45.1(eslint@9.13.0(jiti@1.21.6))(svelte@5.0.0)
       globals:
         specifier: ^15.11.0
         version: 15.11.0
@@ -89,7 +89,7 @@ importers:
         version: 3.3.3
       prettier-plugin-svelte:
         specifier: ^3.2.7
-        version: 3.2.7(prettier@3.3.3)(svelte@5.0.0-next.270)
+        version: 3.2.7(prettier@3.3.3)(svelte@5.0.0)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -101,13 +101,13 @@ importers:
         version: 14.2.4
       svelte-check:
         specifier: ^4.0.5
-        version: 4.0.5(svelte@5.0.0-next.270)(typescript@5.6.3)
+        version: 4.0.5(svelte@5.0.0)(typescript@5.6.3)
       svelte-highlight:
         specifier: ^7.7.0
         version: 7.7.0
       svelte-preprocess:
         specifier: ^6.0.3
-        version: 6.0.3(postcss-load-config@4.0.2(postcss@8.4.47))(postcss@8.4.47)(sass@1.80.3)(svelte@5.0.0-next.270)(typescript@5.6.3)
+        version: 6.0.3(postcss-load-config@4.0.2(postcss@8.4.47))(postcss@8.4.47)(sass@1.80.3)(svelte@5.0.0)(typescript@5.6.3)
       tslib:
         specifier: ^2.8.0
         version: 2.8.0
@@ -777,8 +777,8 @@ packages:
       svelte: ^5.0.0-next.96 || ^5.0.0
       vite: ^5.0.0
 
-  '@sveltejs/vite-plugin-svelte@4.0.0-next.7':
-    resolution: {integrity: sha512-yMUnAqquoayvBDztk1rWUgdtvjv7YcHgopCAB7sWl9SQht8U/7lqwTlJU0ZTAY09pFFRe6bbakd7YoiyyIvJiA==}
+  '@sveltejs/vite-plugin-svelte@4.0.0':
+    resolution: {integrity: sha512-kpVJwF+gNiMEsoHaw+FJL76IYiwBikkxYU83+BpqQLdVMff19KeRKLd2wisS8niNBMJ2omv5gG+iGDDwd8jzag==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22}
     peerDependencies:
       svelte: ^5.0.0-next.96 || ^5.0.0
@@ -1984,6 +1984,9 @@ packages:
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
 
+  magic-string@0.30.12:
+    resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
+
   meow@12.1.1:
     resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
     engines: {node: '>=16.10'}
@@ -2594,8 +2597,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.0.0-next.270:
-    resolution: {integrity: sha512-1PPYfFECNuEtltTZf6FbcjBz5T9Uv0HGbDSdjzGnGfnZoXmoAf24pPqlocJiu+JhZTdymfRZ9GFJRjCiGwzISQ==}
+  svelte@5.0.0:
+    resolution: {integrity: sha512-jv2IvTtakG58DqZMo6fY3T6HFmGV4iDQH2lSUyfmCEYaoa+aCNcF+9rERbdDvT4XDF0nQBg6TEoJn0dirED8VQ==}
     engines: {node: '>=18'}
 
   temp@0.9.4:
@@ -2758,10 +2761,10 @@ packages:
       terser:
         optional: true
 
-  vitefu@1.0.2:
-    resolution: {integrity: sha512-0/iAvbXyM3RiPPJ4lyD4w6Mjgtf4ejTK6TPvTNG3H32PLwuT0N/ZjJLiXug7ETE/LWtTeHw9WRv7uX/tIKYyKg==}
+  vitefu@1.0.3:
+    resolution: {integrity: sha512-iKKfOMBHob2WxEJbqbJjHAkmYgvFDPhuqrO82om83S8RLk+17FtyMBfcyeH8GqD0ihShtkMW/zzJgiA51hCNCQ==}
     peerDependencies:
-      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0-beta.0
     peerDependenciesMeta:
       vite:
         optional: true
@@ -3320,13 +3323,13 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
 
-  '@sveltejs/adapter-static@3.0.5(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))':
+  '@sveltejs/adapter-static@3.0.5(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))':
     dependencies:
-      '@sveltejs/kit': 2.7.1(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+      '@sveltejs/kit': 2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
 
-  '@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
+  '@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -3338,40 +3341,40 @@ snapshots:
       sade: 1.8.1
       set-cookie-parser: 2.6.0
       sirv: 3.0.0
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
       tiny-glob: 0.2.9
       vite: 5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)
 
-  '@sveltejs/package@2.3.5(svelte@5.0.0-next.270)(typescript@5.6.3)':
+  '@sveltejs/package@2.3.5(svelte@5.0.0)(typescript@5.6.3)':
     dependencies:
       chokidar: 4.0.1
       kleur: 4.1.5
       sade: 1.8.1
       semver: 7.6.2
-      svelte: 5.0.0-next.270
-      svelte2tsx: 0.7.21(svelte@5.0.0-next.270)(typescript@5.6.3)
+      svelte: 5.0.0
+      svelte2tsx: 0.7.21(svelte@5.0.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/vite-plugin-svelte-inspector@3.0.0-next.2(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@3.0.0-next.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
       debug: 4.3.7
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
       vite: 5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
+  '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 3.0.0-next.2(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0-next.270)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 3.0.0-next.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)))(svelte@5.0.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.11
-      svelte: 5.0.0-next.270
+      magic-string: 0.30.12
+      svelte: 5.0.0
       vite: 5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)
-      vitefu: 1.0.2(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
+      vitefu: 1.0.3(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -4108,7 +4111,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-svelte@2.45.1(eslint@9.13.0(jiti@1.21.6))(svelte@5.0.0-next.270):
+  eslint-plugin-svelte@2.45.1(eslint@9.13.0(jiti@1.21.6))(svelte@5.0.0):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.13.0(jiti@1.21.6))
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -4121,9 +4124,9 @@ snapshots:
       postcss-safe-parser: 6.0.0(postcss@8.4.47)
       postcss-selector-parser: 6.1.0
       semver: 7.6.2
-      svelte-eslint-parser: 0.42.0(svelte@5.0.0-next.270)
+      svelte-eslint-parser: 0.42.0(svelte@5.0.0)
     optionalDependencies:
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
     transitivePeerDependencies:
       - ts-node
 
@@ -4658,6 +4661,10 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  magic-string@0.30.12:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+
   meow@12.1.1: {}
 
   merge-stream@2.0.0: {}
@@ -4906,10 +4913,10 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.0.0-next.270):
+  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.0.0):
     dependencies:
       prettier: 3.3.3
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
 
   prettier@3.3.3: {}
 
@@ -5211,19 +5218,19 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-check@4.0.5(svelte@5.0.0-next.270)(typescript@5.6.3):
+  svelte-check@4.0.5(svelte@5.0.0)(typescript@5.6.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 4.0.1
       fdir: 6.4.0
       picocolors: 1.1.0
       sade: 1.8.1
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
       typescript: 5.6.3
     transitivePeerDependencies:
       - picomatch
 
-  svelte-eslint-parser@0.42.0(svelte@5.0.0-next.270):
+  svelte-eslint-parser@0.42.0(svelte@5.0.0):
     dependencies:
       eslint-scope: 7.2.2
       eslint-visitor-keys: 3.4.3
@@ -5231,29 +5238,29 @@ snapshots:
       postcss: 8.4.47
       postcss-scss: 4.0.9(postcss@8.4.47)
     optionalDependencies:
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
 
   svelte-highlight@7.7.0:
     dependencies:
       highlight.js: 11.10.0
 
-  svelte-preprocess@6.0.3(postcss-load-config@4.0.2(postcss@8.4.47))(postcss@8.4.47)(sass@1.80.3)(svelte@5.0.0-next.270)(typescript@5.6.3):
+  svelte-preprocess@6.0.3(postcss-load-config@4.0.2(postcss@8.4.47))(postcss@8.4.47)(sass@1.80.3)(svelte@5.0.0)(typescript@5.6.3):
     dependencies:
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
     optionalDependencies:
       postcss: 8.4.47
       postcss-load-config: 4.0.2(postcss@8.4.47)
       sass: 1.80.3
       typescript: 5.6.3
 
-  svelte2tsx@0.7.21(svelte@5.0.0-next.270)(typescript@5.6.3):
+  svelte2tsx@0.7.21(svelte@5.0.0)(typescript@5.6.3):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 5.0.0-next.270
+      svelte: 5.0.0
       typescript: 5.6.3
 
-  svelte@5.0.0-next.270:
+  svelte@5.0.0:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -5413,7 +5420,7 @@ snapshots:
       sass: 1.80.3
       terser: 5.31.1
 
-  vitefu@1.0.2(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)):
+  vitefu@1.0.3(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)):
     optionalDependencies:
       vite: 5.4.9(@types/node@22.7.7)(sass@1.80.3)(terser@5.31.1)
 
