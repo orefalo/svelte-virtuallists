@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.0...v1.3.1) (2024-10-19)
+
+
+### Bug Fixes
+
+* code clean up and doc updates ([f7682b0](https://github.com/orefalo/svelte-virtuallists/commit/f7682b0e31e2df1ed8cfb58bee559ea868902f93))
+
 ## [1.3.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.2.3...v1.3.0) (2024-10-19)
 
 
