@@ -2,7 +2,7 @@
   import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'ITEM ' + i + ' - Item ' + i };
+    return { text: '#' + i + ' - Item ' + i };
   });
 </script>
 

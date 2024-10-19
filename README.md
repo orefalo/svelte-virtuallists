@@ -25,7 +25,7 @@ This package originated from [svelte-tiny-virtual-list](https://github.com/jonas
 
 ## Features
 
-- ❺➎⓹ **Svelte 5+ only**
+- ❺❺➎⓹⓹ **Svelte 5+ only**
   Build for Svelte 5+ in Typescript.
 
 - 🚀 **Performant**
@@ -35,7 +35,7 @@ This package originated from [svelte-tiny-virtual-list](https://github.com/jonas
   Customize width, heigh, position, style, content.
   
 - 💠 **Layout Control**
-  Headless, support fixed and variables sizing, along with vertical and horizontal lists.
+  Headless, support fixed and variables sizing, along with vertical and horizontal lists and tables.
 
 - 🧩 **Programming Interface**
   Set positions and properties, raises events on state mutation.
@@ -75,19 +75,13 @@ This component can be used two different ways:
 	const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 </script>
 
-<VirtualList width="100%" height={600} model={data} modelCount={data.length} itemSize={50}>
-	{#snippet slot({ item, style, index })}
-		<div class="row" {style}>
-			Item: {item}, Row: #{index}
+<VirtualList class='mystyle' style='width:100%;height=600px' items={data}>
+	{#snippet vl_slot({ index, item })}
+		<div>
+			Row: #{index} Item: {item}
 		</div>
 	{/snippet}
 </VirtualList>
-```
-
-You can also perform dynamic loading with a PartialLoader.
-
-```svelte
-TODO: explain that model vs views, which translates into model and items
 ```
 
 ### Props
@@ -96,23 +90,18 @@ The component accepts the following properties
 
 | Property          | Type        | Required? | Description  |
 | ----------------- | ----------- | :-------: | ------------ |
-| width             | `number` or `string`\*             |     ✓     | Width of List. This property will determine the number of rendered items when scrollDirection is `'horizontal'`.                                                                                                   |
-| height            | `number` or `string`\*             |     ✓     | Height of List. This property will determine the number of rendered items when scrollDirection is `'vertical'`.                                                                                                          |
-| model | any[] | ✓ | the model, the data for the items to display in the list. |
-| modelCount        | `number`                           |     ✓     | The number of items you want to render.                                                                                                |
-| sizeCalculator    | `(index: number, item:any) => number   or   SizingCalculatorFn`                                                                                                                                                                                           | ✓   | A function that returns the size (height or width) of the row/column being rendered. the output of this function is used for scrollbar positioning and is passed to the `vl_slot` |
-| row               | (r:RowAttributes) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
-| scrollDirection   | `string`                           |           | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`.                           |
-| scrollToOffset      | `number`                           |           | Can be used to control the scroll offset; Also useful for setting an initial scroll offset.             |
-| scrollToIndex     | `number`                           |           | Item index to scroll to (by forcefully scrolling if necessary).              |
-| scrollToAlignment | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the alignment of the scrolled to item. One of: `'start'`, `'center'`, `'end'` or `'auto'`. Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
-| scrollToBehaviour | `string`                           |           | Used in combination with `scrollToIndex`, this prop controls the behaviour of the scrolling. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                                                                                   |
-| windowOverPadding | `number`                           |           | Number of extra items to render above/below the visible items. Tweaking this can help reduce scroll flickering on certain browsers and devices.                                                                                                                                                                                                                                                                                    |
-| estimatedItemSize | `number`                           |           | Used to estimate the total size of the list before all of its items have actually been measured. The estimated total height is progressively adjusted as items are rendered.                                                                                                                                                                                                                                                          |
+| items | any[] | ✓ | the model, the data for the items to display in the list. |
+| vl_slot         | (index, item, size) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
+| isHorizontal | boolean (false) |  | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`. |
+| isTable | boolean (false) |  | Whether the rendering should be a table layout |
+| header | () => SnippetResult |  | Useful in table mode to render the table header columns. |
+| footer | () => SnippetResult |  | Useful in table mode to render any table footer. |
+| sizeCalculator    | `(index: number, item:any) => number   alias   SizingCalculatorFn`                                                                                                                                                                                      |    | Not recommended, as the component will adjust to the css rendering. If you need to control the sizing programmatically, use a function that returns the size (height or width) of the rendered row or column. This function's output is used for scrollbar positioning and is passed to the vl_slot. |
+| scrollToOffset      | `number`                           |           | It can be used to control the scrollbar offset. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
+| scrollToIndex     | `number`                           |           | Moved scrollbar to display the given index. Follow scroll behavior and alignment policies. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
+| scrollToAlignment | `string`                           |           | Used in combination with **scrollToIndex** and **scrollToOffset**.  Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
+| scrollToBehaviour | `string`                           |           | Used in combination with **scrollToIndex** and **scrollToOffset**,  controls the scrolling behaviour movement. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                          |
 | getKey            | `(index: number) => any`           |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.    |
-
-_\* `height` must be a number when `scrollDirection` is `'vertical'`. Similarly, `width` must be a number if `scrollDirection` is `'horizontal'`_
-_\** `model` is stored, `items` are rendered
 
 ### Snippets
 
@@ -120,9 +109,7 @@ _\** `model` is stored, `items` are rendered
 - `footer` - an optional snippet for the elements that should appear at the bottom of the list, typically used in table mode
 - `vl_slot` - a required snipper property called to render each row of the list with the signature `vl_slot({index, item, size?})`. `size` is only present if a custom **sizeCalculator** is in place.
 
-
-
-for instance,
+For instance,
 
 ```svelte
 <VirtualList items={myModel} style="height:600px">
@@ -138,27 +125,27 @@ for instance,
 
 - `onAfterScroll` - Fired after handling the scroll event
 
-Accepts a function with the following signature `(event: AfterScrollEvent) => void`
+Accepts a function with the following signature `(event):VLScrollEvent => void`
 
 ```typescript
-export interface AfterScrollEvent {
-	type: 'range.update';
-	// either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
-	offset: number | string;
-	// the original event
-	event: Event;
+export interface VLScrollEvent {
+  // either the value of `wrapper.scrollTop` or `wrapper.scrollLeft`
+  offset: number | string;
+  // the original event
+  event: Event;
 }
 ```
 
-- `onVisibleRangeUpdate` - Fired when the visible items are updated
+- `onVisibleRangeUpdate` - Fired when the visible window is sliding to display new items
 
-Accepts a function with the following signature `(range: VirtualRange) => void`
+Accepts a function with the following signature `(range):VLRange => void`
 
 ```typescript
-export interface VirtualRangeEvent {
-	type: 'scroll.update';
-	start: number; //Index of the first visible item
-	end: number; //Index of the last visible item
+export interface VLRange {
+  // index of the first visible item
+  start: number;
+  // index of the last visible item
+  end: number;
 }
 ```
 

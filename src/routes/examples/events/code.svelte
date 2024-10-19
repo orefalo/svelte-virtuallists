@@ -1,25 +1,11 @@
 <script lang="ts">
-  import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
+  import { VirtualList } from 'svelte-virtuallists';
   import TextArea from '$comp/TextAreaAutosize.svelte';
 
   let val = $state('// Event name: Event params   (Last event at the top)');
 
-  let start = $state(0);
-  let end = $state(0);
-
-  function handleMessage(event: any) {
-    val = JSON.stringify(event) + '\n' + val;
-
-    if (event.type === 'range.update') {
-      start = event.start;
-      end = event.end;
-    }
-  }
-
-  // that's the model, which we don't use for this example
-  const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
-
-  let virtualList;
+  const myModel = $state(new Array(10000));
 
   // on the UI
   let theScrollToIndex: number | undefined = $state();
@@ -27,19 +13,58 @@
 
   // on the component
   let scrollToIndex: number | undefined = $state();
-  let scrollOffet: number | undefined = $state();
+  let scrollToOffet: number | undefined = $state();
 
+  let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
+  let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
+
+  let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
+
+  // holds randomized sizes
+  let randSizes: Array<number>;
+
+  function handleMessage(prefix: string, event: any) {
+    val = prefix + JSON.stringify(event) + '\n' + val;
+  }
+
+  // The two effects below are an elegant way to ensure only one fo the value is defined
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
     scrollToIndex = undefined;
-    scrollOffet = theScrollOffet;
+    scrollToOffet = theScrollOffet;
   });
 
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
-    scrollOffet = undefined;
+    scrollToOffet = undefined;
     scrollToIndex = theScrollToIndex;
   });
+
+  function randomizeSize() {
+    randSizes = new Array(myModel.length);
+    for (let i = 0; i < randSizes.length; i++) {
+      randSizes[i] = Math.round(Math.random() * 65 + 30);
+    }
+
+    szCalculator = (_index: number, _item: any) => randSizes[_index];
+  }
+
+  function sameSize() {
+    szCalculator = () => 25;
+  }
+
+  function randomizeContent() {
+    for (let i = 0; i < myModel.length; i++) {
+      myModel[i] = { text: Math.floor(Math.random() * myModel.length) }; // Random number between 0 and 9999
+    }
+  }
+
+  function stripItemsBy10() {
+    for (let i = 0; i < 10; i++) myModel.pop();
+  }
+
+  randomizeContent();
+  randomizeSize();
 </script>
 
 <TextArea value={val} minRows={4} maxRows={15} />
@@ -67,63 +92,59 @@
         bind:value={theScrollOffet} />
     </span>
   </div>
+  <div class="select">
+    <span>
+      Alignment
+      <select id="alignment" bind:value={scrollToAlignment}>
+        <option value="auto">auto</option>
+        <option value="start">start</option>
+        <option value="center">center</option>
+        <option value="end">end</option>
+      </select>
+    </span>
+  </div>
+  <div class="select">
+    <span>
+      Behaviour
+      <select id="behaviour" bind:value={scrollToBehaviour}>
+        <option value="auto">auto</option>
+        <option value="smooth">smooth</option>
+        <option value="instant">instant</option>
+      </select>
+    </span>
+  </div>
 </div>
-<div style="float: right;font-weight: bold">
-  <span>Visible Area: start</span>
-  <span>{start}</span>
-  -
-  <span>end</span>
-  <span>{end}</span>
-</div>
-<div class="list">
-  <VirtualList
-    bind:this={virtualList}
-    height={500}
-    width="auto"
-    model={myModel}
-    modelCount={myModel.length}
-    itemSize={40}
-    {scrollToIndex}
-    scrollOffset={scrollOffet}
-    onAfterScroll={handleMessage}
-    onVisibleRangeUpdate={handleMessage}>
-    {#snippet slot({ item, style, index }: VLSlotSignature<any>)}
-      <div class="row" {style} class:highlighted={index === scrollToIndex}>
-        Item #{item}
-      </div>
-    {/snippet}
-  </VirtualList>
+
+<VirtualList
+  items={myModel}
+  style="height:500px"
+  {scrollToIndex}
+  scrollToOffset={scrollToOffet}
+  {scrollToAlignment}
+  {scrollToBehaviour}
+  sizingCalculator={szCalculator}
+  onAfterScroll={(...props) => handleMessage('onAfterScroll:', props)}
+  onVisibleRangeUpdate={(...props) => handleMessage('onVisibleRangeUpdate:', props)}
+  >
+  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
+    <div
+      style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
+      class:highlighted={index === scrollToIndex}>
+      #{index}
+      {item.text}
+    </div>
+  {/snippet}
+</VirtualList>
+
+<div class="actions">
+  <button onclick={randomizeSize} class="button">Randomize row heights</button>
+  <button onclick={sameSize} class="button">Same row heights</button>
+  <button onclick={randomizeContent} class="button">Randomize content</button>
+  <button onclick={stripItemsBy10} class="button">array size -10</button>
 </div>
 
 <style>
-  :global(body),
-  :global(html) {
-    height: 100%;
-    margin: 0;
-    background-color: rgb(249, 249, 249);
-    display: block;
-  }
-
-  :global(.virtual-list-wrapper) {
-    margin: 20px;
-    background: #fff;
-    border-radius: 2px;
-    background: #fafafa;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-    color: #333;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .row {
-    padding: 0 15px;
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
-    line-height: 50px;
-    font-weight: 500;
-    background: #fff;
-  }
-
-  .row.highlighted {
+  .highlighted {
     background: #efefef;
   }
 </style>

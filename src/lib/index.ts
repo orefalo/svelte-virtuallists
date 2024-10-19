@@ -16,6 +16,7 @@ export interface VLSlotSignature {
   size?: number;
 }
 
+//TODO VLRangeEvent?
 export interface VLRange {
   // index of the first visible item
   start: number;

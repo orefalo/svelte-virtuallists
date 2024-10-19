@@ -62,6 +62,8 @@
     modelCount?: number;
     sizingCalculator?: SizingCalculatorFn;
     avgSizeInPx?: number;
+    clientHeight?: number;
+    clientWidth?: number;
   }
 
   // ====== PROPERTIES ================
@@ -146,7 +148,7 @@
 
   // dom references
   let listContainer: HTMLDivElement;
-  // svelte-ignore non_reactive_update  - not sure where its updated?!
+  // svelte-ignore non_reactive_update
   let listInner: HTMLDivElement;
 
   let clientHeight: number = $state(0);
@@ -258,18 +260,13 @@
   });
 
   $effect(() => {
-    // listen to updates:
     //@ts-expect-error unused no side effect
     scrollToIndex, scrollToAlignment, scrollToOffset, items.length, sizingCalculator;
 
-    console.log('propUpdated');
-    // on update:
     propsUpdated();
   });
 
   $effect(() => {
-    console.log('onVisibleRangeUpdate');
-
     if (onVisibleRangeUpdate) {
       const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
       //onVisibleRangeUpdate({ start: startIdx, end: endIdx });
@@ -292,20 +289,22 @@
     prevState = curState;
   });
 
-  $effect(() => {
-    //TODO there is a bug with client sizing
-    console.log('component is resized ' + clientHeight + ' ' + clientWidth);
-    if (mounted) recomputeSizes(0); // call scroll.reset
-  });
+  // $effect(() => {
+  //   //TODO there is a bug with client sizing
+  //   console.log('component is resized ' + clientHeight + ' ' + clientWidth);
+  //   if (mounted) recomputeSizes(0); // call scroll.reset
+  // });
 
   let prevProps: VProps = {
-    scrollToIndex,
-    scrollToAlignment,
-    scrollToOffset,
-    modelCount: items.length,
-    //todo: store a present boolean rather than a ref to the function
-    sizingCalculator,
-    avgSizeInPx
+    // scrollToIndex,
+    // scrollToAlignment,
+    // scrollToOffset,
+    // modelCount: items.length,
+    // //todo: store a present boolean rather than a ref to the function
+    // sizingCalculator,
+    // avgSizeInPx,
+    // clientHeight,
+    // clientWidth
   };
 
   function propsUpdated() {
@@ -316,19 +315,21 @@
     }
 
     const scrollPropsHaveChanged =
-      prevProps.scrollToIndex !== scrollToIndex ||
-      prevProps.scrollToAlignment !== scrollToAlignment;
+      prevProps?.scrollToIndex !== scrollToIndex ||
+      prevProps?.scrollToAlignment !== scrollToAlignment;
     const itemPropsHaveChanged =
-      prevProps.modelCount !== items.length ||
-      prevProps.sizingCalculator !== sizingCalculator ||
-      prevProps.avgSizeInPx !== avgSizeInPx;
+      prevProps?.modelCount !== items.length ||
+      prevProps?.sizingCalculator !== sizingCalculator ||
+      prevProps?.avgSizeInPx !== avgSizeInPx ||
+      prevProps?.clientHeight !== clientHeight ||
+      prevProps?.clientWidth !== clientWidth;
 
     if (itemPropsHaveChanged) {
       // sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
       recomputeSizes();
     }
 
-    const scrollOffsetHaveChanged = prevProps.scrollToOffset !== scrollToOffset;
+    const scrollOffsetHaveChanged = prevProps?.scrollToOffset !== scrollToOffset;
     if (scrollOffsetHaveChanged) {
       curState = {
         offset: scrollToOffset || 0,
@@ -350,7 +351,9 @@
       scrollToOffset,
       modelCount: items.length,
       sizingCalculator,
-      avgSizeInPx
+      avgSizeInPx,
+      clientHeight,
+      clientWidth
     };
   }
 
