@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLSlotSignature } from '$lib';
   import { VirtualList } from 'svelte-virtuallists';
-  import TextArea from '$comp/TextAreaAutosize.svelte';
-
-  let val = $state('// Event name: Event params   (Last event at the top)');
 
   const myModel = $state(new Array(10000));
 
@@ -24,7 +21,7 @@
   let randSizes: Array<number>;
 
   function handleMessage(prefix: string, event: any) {
-    val = prefix + JSON.stringify(event) + '\n' + val;
+    console.log(prefix + JSON.stringify(event));
   }
 
   // The two effects below are an elegant way to ensure only one fo the value is defined
@@ -67,8 +64,7 @@
   randomizeSize();
 </script>
 
-<TextArea value={val} minRows={4} maxRows={15} />
-
+<b>Please check the browser console to see event traces</b>
 <div class="actions">
   <div class="select">
     <span>
@@ -124,8 +120,7 @@
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
   onAfterScroll={(...props) => handleMessage('onAfterScroll:', props)}
-  onVisibleRangeUpdate={(...props) => handleMessage('onVisibleRangeUpdate:', props)}
-  >
+  onVisibleRangeUpdate={(...props) => handleMessage('onVisibleRangeUpdate:', props)}>
   {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"

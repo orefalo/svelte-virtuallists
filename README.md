@@ -19,9 +19,9 @@
 
 ## About
 
-Keep your page efficient and fast: only shows the visible items, instead of displaying all your data in large lists.
+Keep your tables and lists efficient and fast: only render the visible items, instead of displaying all your data in large lists.
 
-This package originated from [svelte-tiny-virtual-list](https://github.com/jonasgeiler/svelte-tiny-virtual-list) and was modified to support Svelte 5, improved model handling, types, bug fixes, and overall project enhancement. Many thanks to the original [author](https://github.com/jonasgeiler).
+This package is a merge of [svelte-tiny-virtual-list](https://github.com/jonasgeiler/svelte-tiny-virtual-list) and [he-virtual-list](https://github.com/phphe/virtual-list), ported to Svelte 5. I spend many many hours to learn and build an improved version. Many thanks to the original authors.
 
 ## Features
 
@@ -63,7 +63,7 @@ This component can be used two different ways:
 
 ## Demos
 
-- [REPL Demo](https://svelte.dev/repl/1e96cbd4bcd148e3b85a4c8ca76d7309)
+- [REPL Demo](https://svelte-5-preview.vercel.app/#H4sIAAAAAAAAE02PyWrDMBCGX2VQKGqDG7uXHrwE0g0KPfXQSxyKsZVmQJKFZ-IkCL17kdPQXP7Zvtm82KJWJPK1F7YxSuRi5ZxIBJ9cDGhUmpVIBPX7oY2ZktoBHS9rWzMa1w8MHr5w4H2jP5AYAmyH3oA8t96P55JGYpJFbWNf21ti6BpuoIK1XMkE5FOU5ygvUV6jvElI57BYLGCeboralun_clteL211Q1RJcyI-aSVhMpU8YMe7_CHLboqdwp8dV49Z5o4SkJWhyscTwvSKn5FF5xTDqL9J93zrAW2njsnEQrgLEau57HBcnt2aP_tDDjM_gQHeWZkcfOQvcHqhffo3P8Q3rk5fikSYvsMtqk7kPOxV2IRfKJu_spcBAAA=)  Will eventually work when REPL is out of BETA
 - [More complex demos and examples](https://orefalo.github.io/svelte-virtuallists/)
 
 ## Samples
@@ -90,18 +90,18 @@ The component accepts the following properties
 
 | Property          | Type        | Required? | Description  |
 | ----------------- | ----------- | :-------: | ------------ |
-| items | any[] | ✓ | the model, the data for the items to display in the list. |
-| vl_slot         | (index, item, size) => SnippetResult |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
-| isHorizontal | boolean (false) |  | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`. |
-| isTable | boolean (false) |  | Whether the rendering should be a table layout |
-| header | () => SnippetResult |  | Useful in table mode to render the table header columns. |
-| footer | () => SnippetResult |  | Useful in table mode to render any table footer. |
+| items | `any[]` | ✓ | the model, the data for the items to display in the list. |
+| vl_slot         | `(index, item, size) => SnippetResult` |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
+| isHorizontal | `boolean (false)` |  | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`. |
+| isDisabled | `boolean (false)` | | When the component is disabled it renders as a regular list |
+| isTable | `boolean (false)` |  | Whether the rendering should be a table layout |
+| header | `() => SnippetResult` |  | Useful in table mode to render the table header columns. |
+| footer | `() => SnippetResult` |  | Useful in table mode to render any table footer. |
 | sizeCalculator    | `(index: number, item:any) => number   alias   SizingCalculatorFn`                                                                                                                                                                                      |    | Not recommended, as the component will adjust to the css rendering. If you need to control the sizing programmatically, use a function that returns the size (height or width) of the rendered row or column. This function's output is used for scrollbar positioning and is passed to the vl_slot. |
 | scrollToOffset      | `number`                           |           | It can be used to control the scrollbar offset. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
 | scrollToIndex     | `number`                           |           | Moved scrollbar to display the given index. Follow scroll behavior and alignment policies. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
-| scrollToAlignment | `string`                           |           | Used in combination with **scrollToIndex** and **scrollToOffset**.  Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
-| scrollToBehaviour | `string`                           |           | Used in combination with **scrollToIndex** and **scrollToOffset**,  controls the scrolling behaviour movement. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                          |
-| getKey            | `(index: number) => any`           |           | Function that returns the key of an item in the list, which is used to uniquely identify an item. This is useful for dynamic data coming from a database or similar. By default, it's using the item's index.    |
+| scrollToAlignment | `string (AUTO)`                     |           | Used in combination with **scrollToIndex** and **scrollToOffset**.  Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
+| scrollToBehaviour | `string (AUTO)`               |           | Used in combination with **scrollToIndex** and **scrollToOffset**,  controls the scrolling behaviour movement. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                          |
 
 ### Snippets
 

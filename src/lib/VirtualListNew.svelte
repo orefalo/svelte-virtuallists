@@ -154,8 +154,6 @@
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
 
-  let itemKey: 'index' | ((item: any, index: number) => any);
-
   // virtual list first visible index
   let startIdx = $state(0);
 
@@ -262,19 +260,16 @@
   $effect(() => {
     //@ts-expect-error unused no side effect
     scrollToIndex, scrollToAlignment, scrollToOffset, items.length, sizingCalculator;
-
     propsUpdated();
   });
 
   $effect(() => {
     if (onVisibleRangeUpdate) {
       const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
-      //onVisibleRangeUpdate({ start: startIdx, end: endIdx });
       onVisibleRangeUpdate(vr);
     }
   });
 
-  //TODO see if effect.pre not a better option
   $effect(() => {
     const { offset, scrollChangeReason } = curState;
 
@@ -289,23 +284,7 @@
     prevState = curState;
   });
 
-  // $effect(() => {
-  //   //TODO there is a bug with client sizing
-  //   console.log('component is resized ' + clientHeight + ' ' + clientWidth);
-  //   if (mounted) recomputeSizes(0); // call scroll.reset
-  // });
-
-  let prevProps: VProps = {
-    // scrollToIndex,
-    // scrollToAlignment,
-    // scrollToOffset,
-    // modelCount: items.length,
-    // //todo: store a present boolean rather than a ref to the function
-    // sizingCalculator,
-    // avgSizeInPx,
-    // clientHeight,
-    // clientWidth
-  };
+  let prevProps: VProps = {};
 
   function propsUpdated() {
     if (!mounted) return;
@@ -673,17 +652,6 @@
     } else {
       //@ts-expect-error no index signature
       listContainer[isHorizontal ? 'scrollLeft' : 'scrollTop'] = value;
-    }
-  }
-
-  //TODO implement
-  function getItemKey(index: number, item: any) {
-    if (itemKey) {
-      if (itemKey === 'index') {
-        return index;
-      } else if (typeof itemKey === 'function') {
-        return itemKey(item, index);
-      }
     }
   }
 </script>

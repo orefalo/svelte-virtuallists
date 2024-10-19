@@ -115,7 +115,7 @@
   </div>
 </div>
 
-<div style='font-weight: bold'>
+<div style="font-weight: bold">
   <span>Visible Area: start</span>
   <span>{start}</span>
   -
