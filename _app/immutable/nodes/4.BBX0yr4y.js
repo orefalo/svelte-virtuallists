@@ -1,12 +1,12 @@
-import{p as h,J as m,h as j,t as g,f as e,j as i,w as u,y as d,K as v,q as x,m as y}from"../chunks/external.DepRz0zj.js";import{E as f}from"../chunks/ExampleArea.CqFsZ60u.js";import{V as _}from"../chunks/svelte-virtuallists.CXsgq9DL.js";var L=i('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function V(t,s){h(s,!1);const n=new Array(1e4).fill(1).map((r,a)=>({text:"ITEM "+a+" - Item "+a}));m(),_(t,{items:n,style:"height:600px",vl_slot:(a,l)=>{let o=()=>l==null?void 0:l().item;var p=L(),c=u(p);d(p),g(()=>v(c,o().text)),e(a,p)},$$slots:{vl_slot:!0}}),j()}const w=`<script lang="ts">
+import{p as h,G as m,h as j,t as u,f as e,j as i,w as d,y as g,H as v,q as y,m as x}from"../chunks/external.BPYV-2In.js";import{E as f}from"../chunks/ExampleArea.39uEUG_U.js";import{V as _}from"../chunks/svelte-virtuallists.LCdqknQ3.js";var w=i('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function L(t,s){h(s,!1);const n=new Array(1e4).fill(1).map((r,a)=>({text:"#"+a+" - Item "+a}));m(),_(t,{items:n,style:"width:100%",isHorizontal:!0,vl_slot:(a,l)=>{let o=()=>l==null?void 0:l().item;var p=w(),c=d(p);g(p),u(()=>v(c,o().text)),e(a,p)},$$slots:{vl_slot:!0}}),j()}const V=`<script lang="ts">
   import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'ITEM ' + i + ' - Item ' + i };
+    return { text: '#' + i + ' - Item ' + i };
   });
 <\/script>
 
-<VirtualList items={myModel} style="height:600px">
+<VirtualList items={myModel} style="width:100%" isHorizontal={true}>
   {#snippet vl_slot({ item }: VLSlotSignature)}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
@@ -17,15 +17,15 @@ import{p as h,J as m,h as j,t as g,f as e,j as i,w as u,y as d,K as v,q as x,m a
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;ITEM &#x27;</span> + i + <span class="hljs-string">&#x27; - Item &#x27;</span> + i };
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;#&#x27;</span> + i + <span class="hljs-string">&#x27; - Item &#x27;</span> + i };
   });
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:600px&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%&quot;</span> <span class="hljs-attr">isHorizontal</span>=<span class="hljs-string">{true}</span>&gt;</span>
   {#snippet vl_slot({ item }: VLSlotSignature)}
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204)&quot;</span>&gt;</span>
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   {/snippet}
 <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
-`,M={code:w,highlightedHTML:b,component:V};var S=i("<h2>Internal: VirtualList</h2> <!>",1);function E(t){var s=S(),n=x(y(s),2);f(n,{example:M}),e(t,s)}export{E as component};
+`,S={code:V,highlightedHTML:b,component:L};var q=i("<h2>Internal: VirtualList</h2> <!>",1);function A(t){var s=q(),n=y(x(s),2);f(n,{example:S}),e(t,s)}export{A as component};
