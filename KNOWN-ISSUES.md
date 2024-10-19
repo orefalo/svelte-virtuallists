@@ -2,4 +2,3 @@
 
 For now it breaks Svelte preview REPL as it can't compile ts on the fly
 
-[ ] Problem with focus positioning on the edge size

@@ -6,7 +6,7 @@
 
 <h2>List Positioning</h2>
 <p>
-  The component provides properties to position the list either on an element, or on a pixel offset.
+  The component provides properties to position the list either on an element, or at a pixel offset.
 </p>
 
 <ExampleArea {example} />

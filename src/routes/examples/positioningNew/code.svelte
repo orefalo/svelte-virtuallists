@@ -1,8 +1,12 @@
 <script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLSlotSignature } from '$lib';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
   import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
 
   const myModel = $state(new Array(10000));
+
+  // used for the positioning pointers
+  let start = $state(0);
+  let end = $state(0);
 
   // on the UI
   let theScrollToIndex: number | undefined = $state();
@@ -12,19 +16,21 @@
   let scrollToIndex: number | undefined = $state();
   let scrollToOffet: number | undefined = $state();
 
-  let start = $state(0);
-  let end = $state(0);
+  let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
+  let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
 
-  function handleMessage(event: any) {
-    if (event.type === 'range.update') {
-      start = event.start;
-      end = event.end;
-    }
+  let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
+
+  // holds randomized sizes
+  let randSizes: Array<number>;
+
+
+  function handleVisualRangeChange(event: VLRange) {
+    start = event.start;
+    end = event.end;
   }
 
-  // that's the model, which we don't use for this example
-  // const myModel: Array<number> = new Array(10000).fill(1).map((v, i) => i);
-
+  // The two effects below are an elegant way to ensure only one fo the value is defined
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
     scrollToIndex = undefined;
@@ -37,12 +43,6 @@
     scrollToIndex = theScrollToIndex;
   });
 
-  let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
-  let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
-
-  let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
-
-  let randSizes: Array<number>;
   function randomizeSize() {
     randSizes = new Array(myModel.length);
     for (let i = 0; i < randSizes.length; i++) {
@@ -132,7 +132,7 @@
   {scrollToAlignment}
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
-  onVisibleRangeUpdate={handleMessage}>
+  onVisibleRangeUpdate={handleVisualRangeChange}>
   {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"

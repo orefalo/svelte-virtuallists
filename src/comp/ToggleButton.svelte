@@ -1,14 +1,21 @@
 <script lang="ts">
   let {
     pressed = $bindable(),
-    label
+    label,
+    onclick
   }: {
     pressed: boolean;
     label: string;
+    onclick?: Function;
   } = $props();
+
+  function clicked() {
+    pressed = !pressed;
+    onclick?.();
+  }
 </script>
 
-<button aria-pressed={pressed ? 'true' : 'false'} onclick={() => (pressed = !pressed)}>
+<button aria-pressed={pressed ? 'true' : 'false'} onclick={clicked}>
   <span style="display: none;">{label}</span>
 </button>
 

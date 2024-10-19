@@ -149,7 +149,7 @@
   let clientWidth: number = $state(0);
 
   // viewport overfetch trigger in px
-  let overfetchBufferInPx: number = 100;
+  // let overfetchBufferInPx: number = 100;
 
   let itemKey: 'index' | ((item: any, index: number) => any);
 
@@ -270,8 +270,12 @@
 
   $effect(() => {
     console.log('onVisibleRangeUpdate');
-    // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
-    onVisibleRangeUpdate?.({ start: startIdx, end: endIdx });
+
+    if (onVisibleRangeUpdate) {
+      const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
+      //onVisibleRangeUpdate({ start: startIdx, end: endIdx });
+      onVisibleRangeUpdate(vr);
+    }
   });
 
   //TODO see if effect.pre not a better option
@@ -361,8 +365,6 @@
     //resetItem
     lastMeasuredIndex = Math.min(lastMeasuredIndex, startIndex - 1);
     refreshOffsets();
-    // const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
-    // onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
   }
 
   function onscroll(event: Event): void {
@@ -386,22 +388,22 @@
   }
 
   // return the index of the starting boundary
-  function getStart(): number {
-    const startPosition =
-      getScroll(listContainer) - getPaddingStart(listContainer) - overfetchBufferInPx;
-    return findNearestItem(startPosition);
-  }
+  // function getStart(): number {
+  //   const startPosition =
+  //     getScroll(listContainer) - getPaddingStart(listContainer) - overfetchBufferInPx;
+  //   return findNearestItem(startPosition);
+  // }
 
   // return the index of the closing boundary
-  function getEnd() {
-    const endPosition =
-      getScroll(listContainer) -
-      getPaddingStart(listContainer) +
-      getClientSize(listContainer) +
-      overfetchBufferInPx;
+  // function getEnd() {
+  //   const endPosition =
+  //     getScroll(listContainer) -
+  //     getPaddingStart(listContainer) +
+  //     getClientSize(listContainer) +
+  //     overfetchBufferInPx;
 
-    return findNearestItem(endPosition);
-  }
+  //   return findNearestItem(endPosition);
+  // }
 
   function getOffsetForIndex(
     index: number,
@@ -546,8 +548,10 @@
       avgSizeInPx = getAvgSize();
     }
 
-    startIdx = getStart();
-    endIdx = getEnd();
+    const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset,3);
+ 
+    startIdx = vr.start;
+    endIdx = vr.end;
 
     let vi0 = 0;
 
@@ -617,7 +621,11 @@
   }
 
   // returns an index range
-  function getVisibleRange(containerSize: number = 0, scrollbarOffset: number) {
+  function getVisibleRange(
+    containerSize: number = 0,
+    scrollbarOffset: number,
+    windowOverPaddingCount: number = 0
+  ) {
     const totalSize = totalViewportSize;
 
     if (totalSize === 0) return { start: 0, end: 0 };
@@ -635,6 +643,11 @@
     while (offset < maxOffset && endIdx < items.length - 1) {
       endIdx++;
       offset += sizes[endIdx];
+    }
+
+    if (windowOverPaddingCount > 0) {
+      startIdx = Math.max(0, startIdx - windowOverPaddingCount);
+      endIdx = Math.min(endIdx + windowOverPaddingCount, items.length - 1);
     }
 
     return {

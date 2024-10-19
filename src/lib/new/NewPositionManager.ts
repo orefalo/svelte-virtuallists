@@ -237,9 +237,9 @@ export default class SizeAndPositionManager {
     const maxOffset = offset + containerSize;
     let startIdx = this.findNearestItem(offset);
 
-    if (startIdx === undefined) {
-      throw Error(`Invalid offset ${offset} specified`);
-    }
+    // if (startIdx === undefined) {
+    //   throw Error(`Invalid offset ${offset} specified`);
+    // }
 
     const datum = this.getSizeAndPositionForIndex(startIdx);
     offset = datum.offset + datum.size;

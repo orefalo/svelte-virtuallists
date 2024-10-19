@@ -29,7 +29,6 @@
         { title: 'Table', path: '/examples/table' },
         { title: 'Variable Sizing', path: '/examples/variablesizing' },
         { title: 'Positioning', path: '/examples/positioningNew' },
-        { title: 'Positioning2', path: '/examples/positioningNew2' },
         { title: 'OLDPositioning', path: '/examples/positioningOLD' },
         { title: 'Events', path: '/examples/events' }
       ]
