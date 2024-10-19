@@ -190,6 +190,7 @@
     // on update:
     if (mounted) recomputeSizes(0); // call scroll.reset
   });
+
   (() => {
     // init run before the DOM is even ready
     if (scrollDirection === DIRECTION.VERTICAL && typeof height !== 'number') {

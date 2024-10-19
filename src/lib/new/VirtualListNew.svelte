@@ -35,11 +35,11 @@
   import {
     ALIGNMENT,
     SCROLL_BEHAVIOR,
-    type AfterScrollEvent,
+    type VLScrollEvent,
     type SizingCalculatorFn,
     type VLSlotSignature,
-    type VLRangeEvent
-  } from '..';
+    type VLRange
+  } from '.';
 
   import clsx from 'clsx';
 
@@ -117,8 +117,8 @@
     footer?: Snippet;
 
     // events
-    onVisibleRangeUpdate?: (range: VLRangeEvent) => void;
-    onAfterScroll?: (event: AfterScrollEvent) => void;
+    onVisibleRangeUpdate?: (range: VLRange) => void;
+    onAfterScroll?: (event: VLScrollEvent) => void;
 
     // css
     class?: string;
@@ -168,14 +168,15 @@
     return endIdx < max ? endIdx : max;
   });
 
-  const runtimeSizes: (number | undefined)[] = $derived(new Array(items.length));
+  // holds the raw rendered position of each item in the list
+  const itemOffsets: (number | undefined)[] = $derived(new Array(items.length));
 
-  // this is index -> height or width
+  // holds the calculated size (height or width) of each item in the list
   const sizes: number[] = $derived.by(() => {
     return items.map((item, index) => {
       let s = sizingCalculator?.(index, item);
       if (s !== undefined) return s;
-      s = runtimeSizes[index];
+      s = itemOffsets[index];
       if (s !== undefined) return s;
       return avgSizeInPx;
     });
@@ -235,7 +236,7 @@
 
   onMount(() => {
     listContainer.addEventListener('scroll', onscroll, thirdEventArg);
-    updatePositions();
+    refreshOffsets();
 
     if (scrollToOffset !== undefined) {
       scrollTo(scrollToOffset);
@@ -255,10 +256,10 @@
     const { offset, scrollChangeReason } = curState;
 
     if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
-      updatePositions();
+      refreshOffsets();
 
       const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, offset);
-      onVisibleRangeUpdate?.({ type: 'range.update', start: vr.start, end: vr.end });
+      onVisibleRangeUpdate?.({ start: vr.start, end: vr.end });
     }
 
     if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
@@ -267,6 +268,20 @@
 
     prevState = curState;
   });
+
+  $effect(() => {
+    // listen to updates:
+    //@ts-expect-error unused no side effect
+    clientHeight, clientWidth;
+    // on update:
+    if (mounted) recomputeSizes(0); // call scroll.reset
+  });
+
+  function recomputeSizes(startIndex: number = 0) {
+    // styleCache = {};
+    lastMeasuredIndex = Math.min(lastMeasuredIndex, startIndex - 1);
+    refreshOffsets();
+  }
 
   function onscroll(event: Event): void {
     const offset = getScroll(listContainer);
@@ -284,7 +299,7 @@
       scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
     };
 
-    onAfterScroll?.({ type: 'scroll.update', offset, event });
+    onAfterScroll?.({ offset, event });
   }
 
   // return the index of the starting boundary
@@ -443,7 +458,7 @@
   }
 
   // recalculates the viewport position
-  function updatePositions() {
+  function refreshOffsets() {
     // console.log('updatePositions');
     if (!avgSizeInPx) {
       avgSizeInPx = getAvgSize();
@@ -455,7 +470,7 @@
     let vi0 = 0;
 
     // holds index -> offset
-    const runtimeSizesTemp: Record<number, number> = {};
+    const itemOffsetsTemp: Record<number, number> = {};
     const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
 
     for (let i = 0; i < children.length; i++) {
@@ -470,16 +485,16 @@
 
       const size = stl.display !== 'none' ? getOuterSize(el as HTMLElement) : 0;
       const index = startIdx + vi0;
-      runtimeSizesTemp[index] = (runtimeSizesTemp[index] || 0) + size;
+      itemOffsetsTemp[index] = (itemOffsetsTemp[index] || 0) + size;
       // console.log('rt size ' + index + ' -> ' + runtimeSizesTemp[index]);
       vi0++;
     }
 
     // only update the elements that moved
-    for (const k of Object.keys(runtimeSizesTemp)) {
+    for (const k of Object.keys(itemOffsetsTemp)) {
       const index = parseInt(k);
-      if (runtimeSizes[index] !== runtimeSizesTemp[index]) {
-        runtimeSizes[index] = runtimeSizesTemp[index];
+      if (itemOffsets[index] !== itemOffsetsTemp[index]) {
+        itemOffsets[index] = itemOffsetsTemp[index];
       }
     }
   }

@@ -5,7 +5,7 @@
  * which was forked from react-virtualized.
  */
 
-import { ALIGNMENT, type SizingCalculatorFn, type VLRange } from '..';
+import { ALIGNMENT, type SizingCalculatorFn, type VLRange } from '.';
 
 export default class SizeAndPositionManager {
   private model: Array<any>;

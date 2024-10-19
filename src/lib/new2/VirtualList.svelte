@@ -383,8 +383,7 @@
   bind:clientHeight
   bind:clientWidth
   class="vtlist ${className}"
-  style={listStyle}
-  >
+  style={listStyle}>
   {#if header}
     {@render header()}
   {/if}
