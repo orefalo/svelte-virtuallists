@@ -1,164 +1,61 @@
-import{L as fs,p as bs,b as r,s as c,u as es,y as rs,g as t,t as ps,R as os,S as cs,h as R,j as _s,d as e,k as C,l as n,m as a,T as is,r as l,v as ys,U as xs,K as V}from"../chunks/external.DlXsjIqe.js";import{E as zs}from"../chunks/ExampleArea.B4Ip24Dj.js";import{A as Ts,S as Ss,V as qs}from"../chunks/svelte-virtuallists.To6s1RFa.js";const ws=!0,Hs=Object.freeze(Object.defineProperty({__proto__:null,prerender:ws},Symbol.toStringTag,{value:"Module"}));function ks(h,i){e(i,()=>25)}function Os(h,i){for(let p=0;p<10;(p+=1)-1)i.pop()}var Is=C('<div class="svelte-1bng65z"> </div>'),As=C('<div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option>auto</option><option>start</option><option>center</option><option>end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option>auto</option><option>smooth</option><option>instant</option></select></span></div></div> <div><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <!> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div>',1);function Ls(h,i){bs(i,!0);const p=r(new Array(1e4));let B=c(0),N=c(0),g=c(void 0),m=c(void 0),j=c(void 0),v=c(void 0),f=c(r(Ts.AUTO)),b=c(r(Ss.SMOOTH)),_=c(void 0),d;function hs(s){e(B,r(s.start)),e(N,r(s.end))}es(()=>{e(j,void 0),e(v,r(t(m)))}),es(()=>{e(v,void 0),e(j,r(t(g)))});function E(){d=new Array(p.length);for(let s=0;s<d.length;(s+=1)-1)d[s]=Math.round(Math.random()*65+30);e(_,(s,ls)=>d[s])}function H(){for(let s=0;s<p.length;(s+=1)-1)p[s]={text:Math.floor(Math.random()*p.length)}}H(),E();var U=As(),y=rs(U),x=a(y),G=a(x),$=n(a(G));is($),l(G),l(x);var z=n(x,2),P=a(z),K=n(a(P));is(K),l(P),l(z);var T=n(z,2),D=a(T),S=n(a(D)),q=a(S);q.value=(q.__value="auto")==null?"":"auto";var w=n(q);w.value=(w.__value="start")==null?"":"start";var k=n(w);k.value=(k.__value="center")==null?"":"center";var F=n(k);F.value=(F.__value="end")==null?"":"end",l(S),l(D),l(T);var J=n(T,2),Q=a(J),O=n(a(Q)),I=a(O);I.value=(I.__value="auto")==null?"":"auto";var A=n(I);A.value=(A.__value="smooth")==null?"":"smooth";var W=n(A);W.value=(W.__value="instant")==null?"":"instant",l(O),l(Q),l(J),l(y);var L=n(y,2),M=n(a(L),2),us=a(M);l(M);var X=n(M,4),js=a(X);l(X),l(L);var Y=n(L,2);qs(Y,{get items(){return p},style:"height:500px",get scrollToIndex(){return t(j)},get scrollToOffset(){return t(v)},get scrollToAlignment(){return t(f)},get scrollToBehaviour(){return t(b)},get sizingCalculator(){return t(_)},onVisibleRangeUpdate:hs,vl_slot:(ls,o)=>{let ts=()=>o==null?void 0:o().index,gs=()=>o==null?void 0:o().item,ms=()=>o==null?void 0:o().size;var u=Is(),vs=a(u);l(u),ps(()=>{ys(u,"style",`border: 1px solid rgb(204, 204, 204); line-height: ${ms()??""}px;`),xs(u,"highlighted",ts()===t(j)),V(vs,`#${ts()??""}
-      ${gs().text??""}`)}),R(ls,u)},$$slots:{vl_slot:!0}});var Z=n(Y,2),ss=a(Z);ss.__click=E;var ns=n(ss,2);ns.__click=[ks,_];var as=n(ns,2);as.__click=H;var ds=n(as,2);ds.__click=[Os,p],l(Z),ps(()=>{V(us,t(B)),V(js,t(N))}),os($,()=>t(g),s=>e(g,s)),os(K,()=>t(m),s=>e(m,s)),cs(S,()=>t(f),s=>e(f,s)),cs(O,()=>t(b),s=>e(b,s)),R(h,U),_s()}fs(["click"]);const Ms=`<script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
-  import VirtualList from 'svelte-virtuallists/new/VirtualListNew.svelte';
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/svelte-virtuallists/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+		<link href="/svelte-virtuallists/_app/immutable/assets/0.4oI-2eLT.css" rel="stylesheet">
+		<link href="/svelte-virtuallists/_app/immutable/assets/5.mJcC2sBO.css" rel="stylesheet">
+		<link href="/svelte-virtuallists/_app/immutable/assets/svelte-virtuallists.AGB8zajX.css" rel="stylesheet">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DrcTMonX.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.DepRz0zj.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.Bw91ZSAz.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.zfrWgkFu.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/5.rlX-q-Py.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.CqFsZ60u.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.CXsgq9DL.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+/*
 
-  const myModel = $state(new Array(10000));
+Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
 
-  // used for the positioning pointers
-  let start = $state(0);
-  let end = $state(0);
+An adaptation of Sarah Drasner's Night Owl VS Code Theme
+https://github.com/sdras/night-owl-vscode-theme
 
-  // on the UI
-  let theScrollToIndex: number | undefined = $state();
-  let theScrollOffet: number | undefined = $state();
+Copyright (c) 2018 Sarah Drasner
 
-  // on the component
-  let scrollToIndex: number | undefined = $state();
-  let scrollToOffet: number | undefined = $state();
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-  let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
-  let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-  let szCalculator: ((index: number, item: unknown) => number) | undefined = $state();
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-  // holds randomized sizes
-  let randSizes: Array<number>;
-
-
-  function handleVisualRangeChange(event: VLRange) {
-    start = event.start;
-    end = event.end;
-  }
-
-  // The two effects below are an elegant way to ensure only one fo the value is defined
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToIndex = undefined;
-    scrollToOffet = theScrollOffet;
-  });
-
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToOffet = undefined;
-    scrollToIndex = theScrollToIndex;
-  });
-
-  function randomizeSize() {
-    randSizes = new Array(myModel.length);
-    for (let i = 0; i < randSizes.length; i++) {
-      randSizes[i] = Math.round(Math.random() * 65 + 30);
-    }
-
-    szCalculator = (_index: number, _item: any) => randSizes[_index];
-  }
-
-  function sameSize() {
-    szCalculator = () => 25;
-  }
-
-  function randomizeContent() {
-    for (let i = 0; i < myModel.length; i++) {
-      myModel[i] = { text: Math.floor(Math.random() * myModel.length) }; // Random number between 0 and 9999
-    }
-  }
-
-  function stripItemsBy10() {
-    for (let i = 0; i < 10; i++) myModel.pop();
-  }
-
-  randomizeContent();
-  randomizeSize();
-<\/script>
-
-<div class="actions">
-  <div class="select">
-    <span>
-      Scroll to row index
-      <input
-        id="index"
-        type="number"
-        placeholder="pick an index..."
-        class="input"
-        bind:value={theScrollToIndex} />
-    </span>
-  </div>
-  <div class="select">
-    <span>
-      Scroll to pixel offset
-      <input
-        id="offset"
-        type="number"
-        placeholder="pick an offset..."
-        class="input"
-        bind:value={theScrollOffet} />
-    </span>
-  </div>
-  <div class="select">
-    <span>
-      Alignment
-      <select id="alignment" bind:value={scrollToAlignment}>
-        <option value="auto">auto</option>
-        <option value="start">start</option>
-        <option value="center">center</option>
-        <option value="end">end</option>
-      </select>
-    </span>
-  </div>
-  <div class="select">
-    <span>
-      Behaviour
-      <select id="behaviour" bind:value={scrollToBehaviour}>
-        <option value="auto">auto</option>
-        <option value="smooth">smooth</option>
-        <option value="instant">instant</option>
-      </select>
-    </span>
-  </div>
-</div>
-
-<div>
-  <span>Visible Area: start</span>
-  <span>{start}</span>
-  -
-  <span>end</span>
-  <span>{end}</span>
-</div>
-
-<VirtualList
-  items={myModel}
-  style="height:500px"
-  {scrollToIndex}
-  scrollToOffset={scrollToOffet}
-  {scrollToAlignment}
-  {scrollToBehaviour}
-  sizingCalculator={szCalculator}
-  onVisibleRangeUpdate={handleVisualRangeChange}>
-  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
-    <div
-      style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
-      class:highlighted={index === scrollToIndex}>
-      #{index}
-      {item.text}
-    </div>
-  {/snippet}
-</VirtualList>
-
-<div class="actions">
-  <button onclick={randomizeSize} class="button">Randomize row heights</button>
-  <button onclick={sameSize} class="button">Same row heights</button>
-  <button onclick={randomizeContent} class="button">Randomize content</button>
-  <button onclick={stripItemsBy10} class="button">array size -10</button>
-</div>
-
-<style>
-  .highlighted {
-    background: #efefef;
-  }
-</style>
-`,Vs=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+*/.hljs{background:#011627;color:#d6deeb}.hljs-keyword{color:#c792ea;font-style:italic}.hljs-built_in{color:#addb67;font-style:italic}.hljs-type{color:#82aaff}.hljs-literal{color:#ff5874}.hljs-number{color:#F78C6C}.hljs-regexp{color:#5ca7e4}.hljs-string{color:#ecc48d}.hljs-subst{color:#d3423e}.hljs-symbol{color:#82aaff}.hljs-class{color:#ffcb8b}.hljs-function{color:#82AAFF}.hljs-title{color:#DCDCAA;font-style:italic}.hljs-params{color:#7fdbca}.hljs-comment{color:#637777;font-style:italic}.hljs-doctag{color:#7fdbca}.hljs-meta{color:#82aaff}.hljs-meta .hljs-keyword{color:#82aaff}.hljs-meta .hljs-string{color:#ecc48d}.hljs-section{color:#82b1ff}.hljs-tag,
+.hljs-name{color:#7fdbca}.hljs-attr{color:#7fdbca}.hljs-attribute{color:#80cbc4}.hljs-variable{color:#addb67}.hljs-bullet{color:#d9f5dd}.hljs-code{color:#80CBC4}.hljs-emphasis{color:#c792ea;font-style:italic}.hljs-strong{color:#addb67;font-weight:bold}.hljs-formula{color:#c792ea}.hljs-link{color:#ff869a}.hljs-quote{color:#697098;font-style:italic}.hljs-selector-tag{color:#ff6363}.hljs-selector-id{color:#fad430}.hljs-selector-class{color:#addb67;font-style:italic}.hljs-selector-attr,
+.hljs-selector-pseudo{color:#c792ea;font-style:italic}.hljs-template-tag{color:#c792ea}.hljs-template-variable{color:#addb67}.hljs-addition{color:#addb67ff;font-style:italic}.hljs-deletion{color:#EF535090;font-style:italic}</style><!----><!--]--><title>Svelte-Virtuallists - Positioning</title>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-113h04q"><div role="presentation" class="toc-container-space svelte-113h04q"></div> <main class="svelte-113h04q "><!----><h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or at a pixel offset.</p> <div><div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option value="auto">auto</option><option value="start">start</option><option value="center">center</option><option value="end">end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option value="auto">auto</option><option value="smooth">smooth</option><option value="instant">instant</option></select></span></div></div> <div><span>Visible Area: start</span> <span>0</span> - <span>end</span> <span>0</span></div> <div class="vtlist" style="overflow:auto; height:500px"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:column; margin-top:0px;margin-bottom:622801px"><!--[!--><!--]--> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); line-height: 63px;" class="svelte-1bng65z ">#0
+      3252</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 31px;" class="svelte-1bng65z ">#1
+      6708</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 70px;" class="svelte-1bng65z ">#2
+      9157</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 38px;" class="svelte-1bng65z ">#3
+      3409</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 85px;" class="svelte-1bng65z ">#4
+      310</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 49px;" class="svelte-1bng65z ">#5
+      1487</div><!----><!--]--><!--]--> <!--[!--><!--]--></div><!--]--></div><!----> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">ALIGNMENT</span>, <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>, type <span class="hljs-title class_">VLRange</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
-  <span class="hljs-keyword">import</span> <span class="hljs-title class_">VirtualList</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists/new/VirtualListNew.svelte&#x27;</span>;
+  <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = $state(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>));
 
@@ -181,7 +78,6 @@ import{L as fs,p as bs,b as r,s as c,u as es,y as rs,g as t,t as ps,R as os,S as
 
   <span class="hljs-comment">// holds randomized sizes</span>
   <span class="hljs-keyword">let</span> <span class="hljs-attr">randSizes</span>: <span class="hljs-title class_">Array</span>&lt;number&gt;;
-
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleVisualRangeChange</span>(<span class="hljs-params">event: VLRange</span>) {
     start = event.<span class="hljs-property">start</span>;
@@ -313,4 +209,32 @@ import{L as fs,p as bs,b as r,s as c,u as es,y as rs,g as t,t as ps,R as os,S as
     <span class="hljs-attribute">background</span>: <span class="hljs-number">#efefef</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,Rs={code:Ms,highlightedHTML:Vs,component:Ls};var Cs=C("<h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or at a pixel offset.</p> <!>",1);function Us(h){var i=Cs(),p=n(rs(i),4);zs(p,{example:Rs}),R(h,i)}export{Us as component,Hs as universal};
+<!----></code></pre><!----></div><!----><!----><!----> <div class="controls svelte-113h04q"><div class="svelte-113h04q"><span class="svelte-113h04q ">previous</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/variablesizing" class="svelte-113h04q">Variable Sizing</a><!--]--></div> <div class="svelte-113h04q"><span class="svelte-113h04q ">next</span> <!--[--><a data-sveltekit-preload-data="" href="/svelte-virtuallists/examples/positioningOLD" class="svelte-113h04q">OLDPositioning</a><!--]--></div></div></main> <div class="toc-container svelte-113h04q"><div role="presentation" class="toc-contents-wrap svelte-113h04q"><h1 class="toc-head svelte-113h04q"><img src="/svelte-virtuallists/favicon.svg" alt="Icon" width="30" height="30"> Svelte-Virtuallists</h1> <nav aria-label="Docs" class="svelte-1bjdx71"><ul class="sidebar svelte-1bjdx71"><!--[--><li class="svelte-1bjdx71"><span class="section svelte-1bjdx71">Getting started</span> <ul class="svelte-1bjdx71"><!--[--><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/">Introduction</a></li><!--]--></ul></li><li class="svelte-1bjdx71"><span class="section svelte-1bjdx71">General Examples</span> <ul class="svelte-1bjdx71"><!--[--><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/vertical">Vertical</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/horizontal">Horizontal</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/table">Table</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/variablesizing">Variable Sizing</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" aria-current="page" href="/svelte-virtuallists/examples/positioning">Positioning</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/positioningOLD">OLDPositioning</a></li><li class="svelte-1bjdx71"><a data-sveltekit-preload-data="" class="page svelte-1bjdx71" href="/svelte-virtuallists/examples/events">Events</a></li><!--]--></ul></li><!--]--></ul></nav><!----></div> <div class="input-output-toggle svelte-1keqb9b">Direction: <span aria-hidden="true">LTR</span> <button aria-pressed="false" class="svelte-1bsnqe6"><span style="display: none;">RTL direction</span></button><!----> <span aria-hidden="true">RTL</span></div><!----></div></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_136x4k5 = {
+						base: "/svelte-virtuallists",
+						assets: "/svelte-virtuallists"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("/svelte-virtuallists/_app/immutable/entry/start.DrcTMonX.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.Bw91ZSAz.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>
