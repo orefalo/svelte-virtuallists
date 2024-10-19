@@ -1,4 +1,4 @@
-import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}from"../chunks/external.BR_3oSYm.js";import{E as I}from"../chunks/ExampleArea.B1b5SDnM.js";import{V as M}from"../chunks/svelte-virtuallists.DsPTyFtM.js";var E=j("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),L=j("<tr><td> </td><td> </td></tr>");function V(n,a){y(a,!1);const t=new Array(1e4).fill(1).map((u,l)=>({text:"ITEM "+l+" - Item "+l}));f(),M(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:p=>{var s=E();i(p,s)},vl_slot:(p,s)=>{let x=()=>s==null?void 0:s().item,o=()=>s==null?void 0:s().index;var e=L(),c=h(e),b=h(c);r(c);var d=g(c),v=h(d);r(d),r(e),T(()=>{m(b,o()),m(v,`ITEM: ${o()??""} - ${x().text??""}`)}),i(p,e)},$$slots:{header:!0,vl_slot:!0}}),_()}const q=`<script lang="ts">
+import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}from"../chunks/external.DBvdoJEE.js";import{E as I}from"../chunks/ExampleArea.CVL16lgx.js";import{V as M}from"../chunks/svelte-virtuallists.x_EziPhy.js";var E=j("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),L=j("<tr><td> </td><td> </td></tr>");function V(n,a){y(a,!1);const t=new Array(1e4).fill(1).map((u,l)=>({text:"ITEM "+l+" - Item "+l}));f(),M(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:p=>{var s=E();i(p,s)},vl_slot:(p,s)=>{let x=()=>s==null?void 0:s().item,o=()=>s==null?void 0:s().index;var e=L(),c=h(e),b=h(c);r(c);var d=g(c),v=h(d);r(d),r(e),T(()=>{m(b,o()),m(v,`ITEM: ${o()??""} - ${x().text??""}`)}),i(p,e)},$$slots:{header:!0,vl_slot:!0}}),_()}const q=`<script lang="ts">
   import { VirtualList } from 'svelte-virtuallists';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
@@ -70,4 +70,4 @@ import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}f
     <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,A={code:q,highlightedHTML:k,component:V};var H=j("<h2>Table rendering</h2> <!>",1);function z(n){var a=H(),t=g(w(a),2);I(t,{example:A}),i(n,a)}export{z as component};
+`,A={code:q,highlightedHTML:k,component:V};var H=j("<h2>Table Rendering</h2> <!>",1);function R(n){var a=H(),t=g(w(a),2);I(t,{example:A}),i(n,a)}export{R as component};
