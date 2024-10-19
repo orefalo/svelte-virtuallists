@@ -342,7 +342,7 @@
       (scrollPropsHaveChanged || itemPropsHaveChanged)
     ) {
       curState = {
-        offset: getOffsetForIndex(scrollToIndex, scrollToAlignment, items.length),
+        offset: getOffsetForIndex(scrollToIndex),
         scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
       };
     }

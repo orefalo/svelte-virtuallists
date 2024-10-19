@@ -14,7 +14,7 @@
 
   // on the component
   let scrollToIndex: number | undefined = $state();
-  let scrollOffet: number | undefined = $state();
+  let scrollToOffet: number | undefined = $state();
 
   let start = $state(0);
   let end = $state(0);
@@ -32,12 +32,12 @@
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
     scrollToIndex = undefined;
-    scrollOffet = theScrollOffet;
+    scrollToOffet = theScrollOffet;
   });
 
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
-    scrollOffet = undefined;
+    scrollToOffet = undefined;
     scrollToIndex = theScrollToIndex;
   });
 
@@ -115,7 +115,7 @@
   items={myModel}
   style="height:500px"
   {scrollToIndex}
-  scrollOffset={scrollOffet}
+  scrollToOffset={scrollToOffet}
   {scrollToAlignment}
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
