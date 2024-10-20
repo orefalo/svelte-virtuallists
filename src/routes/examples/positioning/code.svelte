@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
-  import { VirtualList } from 'svelte-virtVLRangeEvents';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRangeEvent, type VLSlotSignature } from '$lib';
+  import { VirtualList } from 'svelte-virtuallists';
 
   const myModel = $state(new Array(10000));
 
@@ -24,7 +24,7 @@
   // holds randomized sizes
   let randSizes: Array<number>;
 
-  function handleVisualRangeChange(event: VLRange) {
+  function handleVisualRangeChange(event: VLRangeEvent) {
     start = event.start;
     end = event.end;
   }
