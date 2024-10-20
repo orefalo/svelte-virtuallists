@@ -91,23 +91,22 @@ The component accepts the following properties
 | Property          | Type        | Required? | Description  |
 | ----------------- | ----------- | :-------: | ------------ |
 | items | `any[]` | ✓ | the model, the data for the items to display in the list. |
-| vl_slot         | `(index, item, size) => SnippetResult` |     ✓     | Snippet called to render every item, see description below.                                                                                                                                                                 |
 | isHorizontal | `boolean (false)` |  | Whether the list should scroll vertically or horizontally. One of `'vertical'` (default) or `'horizontal'`. |
 | isDisabled | `boolean (false)` | | When the component is disabled it renders as a regular list |
 | isTable | `boolean (false)` |  | Whether the rendering should be a table layout |
-| header | `() => SnippetResult` |  | Useful in table mode to render the table header columns. |
-| footer | `() => SnippetResult` |  | Useful in table mode to render any table footer. |
 | sizeCalculator    | `(index: number, item:any) => number   alias   SizingCalculatorFn`                                                                                                                                                                                      |    | Not recommended, as the component will adjust to the css rendering. If you need to control the sizing programmatically, use a function that returns the size (height or width) of the rendered row or column. This function's output is used for scrollbar positioning and is passed to the vl_slot. |
-| scrollToOffset      | `number`                           |           | It can be used to control the scrollbar offset. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
-| scrollToIndex     | `number`                           |           | Moved scrollbar to display the given index. Follow scroll behavior and alignment policies. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
+| scrollToOffset      | `number`(in pixels)               |           | Can be used to control the scrollbar offset in pixel. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
+| scrollToIndex     | `number`(item index)               |           | Moves the scrollbar to display the given item (at index). Follows scroll behavior and alignment policies. **scrollToIndex** and **scrollToOffset** MUST not be used together. |
 | scrollToAlignment | `string (AUTO)`                     |           | Used in combination with **scrollToIndex** and **scrollToOffset**.  Use `'start'` to always align items to the top of the container and `'end'` to align them bottom. Use `'center`' to align them in the middle of the container. `'auto'` scrolls the least amount possible to ensure that the specified `scrollToIndex` item is fully visible. |
 | scrollToBehaviour | `string (AUTO)`               |           | Used in combination with **scrollToIndex** and **scrollToOffset**,  controls the scrolling behaviour movement. One of: `'auto'`, `'smooth'` or `'instant'` (default).                                                                                                                                                                                                                          |
 
 ### Snippets
 
-- `header` - an optional snippet for the elements that should appear at the top of the list, typically used in table mode
-- `footer` - an optional snippet for the elements that should appear at the bottom of the list, typically used in table mode
-- `vl_slot` - a required snipper property called to render each row of the list with the signature `vl_slot({index, item, size?})`. `size` is only present if a custom **sizeCalculator** is in place.
+| Property | Type                                                      | Required? | Description                                                  |
+| -------- | --------------------------------------------------------- | :-------: | ------------------------------------------------------------ |
+| vl_slot  | `(index:number, item:any, size?:number) => SnippetResult` |     ✓     | Snippet called to render every item, see description below. Typescript signature **VLSlotSignature** |
+| header   | `() => SnippetResult`                                     |           | Useful in table mode to render the table header columns.     |
+| footer   | `() => SnippetResult`                                     |           | Useful in table mode to render any table footer.             |
 
 For instance,
 
@@ -123,7 +122,14 @@ For instance,
 
 ### Events
 
-- `onAfterScroll` - Fired after handling the scroll event
+| Property             | Type              | Required? | Description                                                  |
+| -------------------- | ----------------- | :-------: | ------------------------------------------------------------ |
+| onAfterScroll        | `{offset, event}` |           | Fired when the scrollbar changes position.                   |
+| onVisibleRangeUpdate | `{start, end}`    |           | Fired when the visible window is sliding to display new items |
+
+
+
+- `onAfterScroll` 
 
 Accepts a function with the following signature `(event):VLScrollEvent => void`
 
@@ -136,12 +142,12 @@ export interface VLScrollEvent {
 }
 ```
 
-- `onVisibleRangeUpdate` - Fired when the visible window is sliding to display new items
+- `onVisibleRangeUpdate` 
 
-Accepts a function with the following signature `(range):VLRange => void`
+Accepts a function with the following signature `(range):VLRangeEvent => void`
 
 ```typescript
-export interface VLRange {
+export interface VLRangeEvent {
   // index of the first visible item
   start: number;
   // index of the last visible item
