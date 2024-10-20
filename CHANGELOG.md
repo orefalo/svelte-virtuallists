@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.2...v1.3.3) (2024-10-20)
+
+
+### Bug Fixes
+
+* aligned the naming of event types, code cleanup ([24585e1](https://github.com/orefalo/svelte-virtuallists/commit/24585e1266b826a1f745a17d2edf130469b29026))
+
 ## [1.3.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.1...v1.3.2) (2024-10-19)
 
 
