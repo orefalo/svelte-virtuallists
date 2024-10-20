@@ -16,8 +16,7 @@ export interface VLSlotSignature {
   size?: number;
 }
 
-//TODO VLRangeEvent?
-export interface VLRange {
+export interface VLRangeEvent {
   // index of the first visible item
   start: number;
   // index of the last visible item

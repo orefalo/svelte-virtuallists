@@ -38,7 +38,7 @@
     type VLScrollEvent,
     type SizingCalculatorFn,
     type VLSlotSignature,
-    type VLRange
+    type VLRangeEvent
   } from '.';
 
   import clsx from 'clsx';
@@ -69,7 +69,6 @@
   // ====== PROPERTIES ================
 
   const {
-    // TODO: implement a partial loader
     items = [],
 
     // When disabled, all items are rendered like a normal html list
@@ -127,7 +126,7 @@
     footer?: Snippet;
 
     // events
-    onVisibleRangeUpdate?: (range: VLRange) => void;
+    onVisibleRangeUpdate?: (range: VLRangeEvent) => void;
     onAfterScroll?: (event: VLScrollEvent) => void;
 
     // css
@@ -139,8 +138,8 @@
 
   // ======== VARIABLES ========
 
-  // number of elements to pad above & below the visible range to prevent glitching
-  const WINDOW_PASSING_COUNT = 3;
+  // number of elements to pad above & below the visible range to prevent visual glitching
+  const WINDOW_OVERSIZE_COUNT = 3;
 
   let mounted: boolean = false;
 
@@ -178,11 +177,10 @@
     return endIdx < max ? endIdx : max;
   });
 
-  // holds the raw rendered position of each item in the list
-  // TODO: since rawSizes is only used for sizes calculations, there is probably a better way to get it with out reactivity and memory
+  // Holds the raw rendered position of each item in the list
   const rawSizes: (number | undefined)[] = $derived(new Array(items.length));
 
-  // holds the calculated size (height or width) of each item in the list
+  // Holds the calculated size (height or width) of each item in the list
   const sizes: number[] = $derived.by(() => {
     return items.map((item, index) => {
       let s = sizingCalculator?.(index, item);
@@ -304,7 +302,6 @@
       prevProps?.clientWidth !== clientWidth;
 
     if (itemPropsHaveChanged) {
-      // sizeAndPositionManager.updateConfig(itemSize, modelCount, estimatedItemSize);
       recomputeSizes();
     }
 
@@ -349,8 +346,6 @@
       event.target !== listContainer ||
       offset < 0 ||
       curState.offset === offset
-      // todo: bring this back if we find the right location for the range evernt
-      // || overfetchBufferInPx - Math.abs(offset - curState.offset) >= 1
     )
       return;
 
@@ -398,8 +393,6 @@
       return 0;
     }
 
-    // const datum = this.getSizeAndPositionForIndex(targetIndex);
-
     const size = sizes[targetIndex];
     const maxOffset = offsets[targetIndex];
     const minOffset = maxOffset - containerSize + size;
@@ -431,7 +424,6 @@
    * This allows partially visible items (with offsets just before/above the fold) to be visible.
    *
    */
-
   function findNearestItem(offset: number): number {
     if (isNaN(offset)) {
       throw Error(`Invalid offset ${offset} specified`);
@@ -505,7 +497,7 @@
     const vr = getVisibleRange(
       isHorizontal ? clientWidth : clientHeight,
       curState.offset,
-      WINDOW_PASSING_COUNT
+      WINDOW_OVERSIZE_COUNT
     );
 
     startIdx = vr.start;
@@ -637,11 +629,6 @@
   function getScroll(el: HTMLElement) {
     return isHorizontal ? el.scrollLeft : el.scrollTop;
   }
-
-  // function getPaddingStart(el: HTMLElement) {
-  //   const style = getComputedStyle(el);
-  //   return isHorizontal ? parseFloat(style.paddingLeft) : parseFloat(style.paddingTop);
-  // }
 
   // scrolls the contrainer to give px value
   function scrollTo(value: number) {

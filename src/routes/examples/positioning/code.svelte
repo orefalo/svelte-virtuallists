@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRange, type VLSlotSignature } from '$lib';
-  import { VirtualList } from 'svelte-virtuallists';
+  import { VirtualList } from 'svelte-virtVLRangeEvents';
 
   const myModel = $state(new Array(10000));
 
@@ -29,7 +29,7 @@
     end = event.end;
   }
 
-  // The two effects below are an elegant way to ensure only one fo the value is defined
+  // The two effects below are an elegant VLRangeEventensure only one fo the value is defined
   $effect(() => {
     // scrollToIndex and scrollOffset shall not be used together.
     scrollToIndex = undefined;
