@@ -30,15 +30,15 @@
   })();
 </script>
 
-<script lang="ts">
-  import { onMount, onDestroy, type Snippet } from 'svelte';
+<script lang="ts" generics="ItemType">
+  import { onDestroy, onMount, type Snippet } from 'svelte';
   import {
     ALIGNMENT,
     SCROLL_BEHAVIOR,
-    type VLScrollEvent,
     type SizingCalculatorFn,
-    type VLSlotSignature,
-    type VLRangeEvent
+    type VLRangeEvent,
+    type VLScrollEvent,
+    type VLSlotSignature
   } from '.';
 
   import clsx from 'clsx';
@@ -103,7 +103,7 @@
     // calculates the size of a given index
     sizingCalculator
   }: {
-    items: any[];
+    items: ItemType[];
 
     isDisabled?: boolean;
     isHorizontal?: boolean;
@@ -122,7 +122,7 @@
     // snippets
     header?: Snippet;
     // size is passed when a sizingCalculator is defined
-    vl_slot: Snippet<[VLSlotSignature]>;
+    vl_slot: Snippet<[VLSlotSignature<ItemType>]>;
     footer?: Snippet;
 
     // events
@@ -201,11 +201,11 @@
     return p;
   });
 
-  const visibleItemsInfo: VLSlotSignature[] = $derived.by(() => {
+  const visibleItemsInfo: VLSlotSignature<ItemType>[] = $derived.by(() => {
     if (!items || isDisabled) {
       return [];
     }
-    const r: VLSlotSignature[] = [];
+    const r: VLSlotSignature<ItemType>[] = [];
     for (let index = startIdx; index <= end2; index++) {
       const item = items[index];
       if (item) {
@@ -342,12 +342,7 @@
   function onscroll(event: Event): void {
     const offset = getScroll(listContainer);
 
-    if (
-      event.target !== listContainer ||
-      offset < 0 ||
-      curState.offset === offset
-    )
-      return;
+    if (event.target !== listContainer || offset < 0 || curState.offset === offset) return;
 
     curState = {
       offset,
@@ -656,8 +651,8 @@
       {/if}
       <tbody>
         {#if isDisabled}
-          {#each items as item}
-            {@render vl_slot(item)}
+          {#each items as item, index}
+            {@render vl_slot({ index, item })}
           {/each}
         {:else}
           {#each visibleItemsInfo as item}
@@ -675,8 +670,8 @@
         {@render header()}
       {/if}
       {#if isDisabled}
-        {#each items as item}
-          {@render vl_slot(item)}
+        {#each items as item, index}
+          {@render vl_slot({ index, item })}
         {/each}
       {:else}
         {#each visibleItemsInfo as item}

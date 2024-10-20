@@ -4,13 +4,13 @@ export { default as VirtualList } from './VirtualListNew.svelte';
 export type SizingCalculatorFn = (index: number, item: unknown) => number;
 
 // used by the vl_slot() snippet
-export interface VLSlotSignature {
+export interface VLSlotSignature<ItemType> {
   // The row's index being rendered, from the original dataset
   // The index is a string if the IDs are processed via the getKey() function
   index: number | string;
 
   // the item being rendered
-  item: any;
+  item: ItemType;
 
   // only present if there a custom sizing calculator configured, holds calculated size in pixels
   size?: number;
