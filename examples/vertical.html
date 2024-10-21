@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.4oI-2eLT.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.Dp6PRlSE.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.CRE2G0uo.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.BRjGwy3o.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.x5ZdOmsW.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/8.U54B77uM.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.BixNdV5O.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.BQg1dKTL.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.DH4tMiHr.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/external.C0RecZlA.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.CRrdWw99.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.vntqZOSF.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/8.BpmGUy3r.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/ExampleArea.Bapa_yz3.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/svelte-virtuallists.CqqwytNq.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -54,7 +54,7 @@ SOFTWARE.
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:600px&quot;</span>&gt;</span>
-  {#snippet vl_slot({ item }: VLSlotSignature)}
+  {#snippet vl_slot({ item }: VLSlotSignature&lt;(typeof myModel)[0]&gt;)}
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204)&quot;</span>&gt;</span>
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -64,7 +64,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_1nrjt17 = {
+					__sveltekit_12ad7bs = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -74,8 +74,8 @@ SOFTWARE.
 					const data = [null,null];
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.Dp6PRlSE.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.BRjGwy3o.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.DH4tMiHr.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.CRrdWw99.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 8],
