@@ -121,7 +121,7 @@
   sizingCalculator={szCalculator}
   onAfterScroll={(...props) => handleMessage('onAfterScroll:', props)}
   onVisibleRangeUpdate={(...props) => handleMessage('onVisibleRangeUpdate:', props)}>
-  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
+  {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
       class:highlighted={index === scrollToIndex}>

@@ -7,7 +7,7 @@
 </script>
 
 <VirtualList items={myModel} style="width:100%" isHorizontal={true}>
-  {#snippet vl_slot({ item }: VLSlotSignature)}
+  {#snippet vl_slot({ item }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
     </div>

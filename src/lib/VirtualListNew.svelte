@@ -28,6 +28,9 @@
 
     return result;
   })();
+
+  // this line fixes an issue with es-lint and the ItenType generic
+  type ItemType = any;
 </script>
 
 <script lang="ts" generics="ItemType">

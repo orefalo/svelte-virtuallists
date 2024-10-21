@@ -24,7 +24,7 @@
 <h2>Horizontal</h2>
 
 <VirtualList items={myModel} style="width:100%" isHorizontal={true} sizingCalculator={calculator}>
-  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
+  {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204); width: {size}px;">
       #{index}
       {item.text}
@@ -35,7 +35,7 @@
 <h2>Vertical</h2>
 
 <VirtualList items={myModel} style="height:600px" sizingCalculator={calculator}>
-  {#snippet vl_slot({ index, item, size }: VLSlotSignature)}
+  {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;">
       #{index} Content:{item.text}
     </div>
