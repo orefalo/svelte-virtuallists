@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.5](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.4...v1.3.5) (2024-10-21)
+
+
+### Bug Fixes
+
+* typing/linting issue with newly introduced generics ([263bec4](https://github.com/orefalo/svelte-virtuallists/commit/263bec4139bb556a1d9149c2ac2a70d715b87882))
+
 ## [1.3.4](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.3...v1.3.4) (2024-10-21)
 
 
