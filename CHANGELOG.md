@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.6](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.5...v1.3.6) (2024-10-21)
+
+
+### Bug Fixes
+
+* too many onVisibleRangeUpdate event for a given position ([080143c](https://github.com/orefalo/svelte-virtuallists/commit/080143c653f7cb804433e8702ecaf08d626e5114))
+
 ## [1.3.5](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.4...v1.3.5) (2024-10-21)
 
 
