@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.4](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.3...v1.3.4) (2024-10-21)
+
+
+### Bug Fixes
+
+* make component generic + fix isDisabled ([1b84122](https://github.com/orefalo/svelte-virtuallists/commit/1b8412254cec9481b3c171e4d250837788fa93fe))
+* typo in one of the demos ([d9dd76f](https://github.com/orefalo/svelte-virtuallists/commit/d9dd76f462150c93f3187a139fe1f9c0c77ff2e1))
+
 ## [1.3.3](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.2...v1.3.3) (2024-10-20)
 
 
