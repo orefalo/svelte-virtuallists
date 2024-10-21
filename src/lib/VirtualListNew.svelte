@@ -67,6 +67,8 @@
     avgSizeInPx?: number;
     clientHeight?: number;
     clientWidth?: number;
+    startIdx?: number;
+    endIdx?: number;
   }
 
   // ====== PROPERTIES ================
@@ -260,15 +262,14 @@
 
   $effect(() => {
     //@ts-expect-error unused no side effect
-    scrollToIndex, scrollToAlignment, scrollToOffset, items.length, sizingCalculator;
+    scrollToIndex,
+      scrollToAlignment,
+      scrollToOffset,
+      items.length,
+      sizingCalculator,
+      startIdx,
+      endIdx;
     propsUpdated();
-  });
-
-  $effect(() => {
-    if (onVisibleRangeUpdate) {
-      const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
-      onVisibleRangeUpdate(vr);
-    }
   });
 
   $effect(() => {
@@ -324,6 +325,13 @@
       };
     }
 
+    if (onVisibleRangeUpdate) {
+      if (prevProps?.startIdx !== startIdx || prevProps?.endIdx !== endIdx) {
+        const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
+        onVisibleRangeUpdate(vr);
+      }
+    }
+
     prevProps = {
       scrollToIndex,
       scrollToAlignment,
@@ -332,7 +340,9 @@
       sizingCalculator,
       avgSizeInPx,
       clientHeight,
-      clientWidth
+      clientWidth,
+      startIdx,
+      endIdx
     };
   }
 
