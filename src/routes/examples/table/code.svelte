@@ -2,7 +2,7 @@
   import { VirtualList } from 'svelte-virtuallists';
   import { getRandomSushi } from '../sushi';
 
-  const myModel = new Array(10000).fill(1).map((v, i) => {
+  const myModel = new Array(10000).fill(1).map(() => {
     return { text: getRandomSushi() };
   });
 </script>

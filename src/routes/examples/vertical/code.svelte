@@ -8,7 +8,7 @@
 </script>
 
 <VirtualList items={myModel} style="height:600px">
-  {#snippet vl_slot({ index, item }: VLSlotSignature<(typeof myModel)[0]>)}
+  {#snippet vl_slot({ item }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
     </div>
