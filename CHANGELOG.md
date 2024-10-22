@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.7](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.6...v1.3.7) (2024-10-22)
+
+
+### Bug Fixes
+
+* cleaning dead code ([40d73f5](https://github.com/orefalo/svelte-virtuallists/commit/40d73f5e7888d221ae9f8c60e78f0421afe116c2))
+* fix linting issues ([bcba319](https://github.com/orefalo/svelte-virtuallists/commit/bcba319b2a5da7d7c5e6a511e8ce571b50484e2d))
+
 ## [1.3.6](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.5...v1.3.6) (2024-10-21)
 
 
