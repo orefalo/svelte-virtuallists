@@ -10,6 +10,7 @@
 <VirtualList items={myModel} style="height:600px">
   {#snippet vl_slot({ index, item }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204)">
+      <img src="https://picsum.photos/id/{index % 1000}/100/100.webp" alt="nono" />
       {item.text}
     </div>
   {/snippet}

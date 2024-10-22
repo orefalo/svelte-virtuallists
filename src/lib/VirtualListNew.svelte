@@ -182,13 +182,14 @@
 
   // Holds the calculated size (height or width) of each item in the list
   const sizes: number[] = $derived.by(() => {
-    return items.map((item, index) => {
+    const r = items.map((item, index) => {
       let s = sizingCalculator?.(index, item);
       if (s !== undefined) return s;
       s = rawSizes[index];
       if (s !== undefined) return s;
       return avgSizeInPx;
     });
+    return r;
   });
 
   // this is index -> viewport offset
@@ -268,17 +269,11 @@
   });
 
   $effect(() => {
-    const { offset, scrollChangeReason } = curState;
-
-    if (prevState?.offset !== offset || prevState?.scrollChangeReason !== scrollChangeReason) {
+    if (curState.scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
+      scrollTo(curState.offset);
+    } else {
       refreshOffsets();
     }
-
-    if (prevState?.offset !== offset && scrollChangeReason === SCROLL_CHANGE_REASON.REQUESTED) {
-      scrollTo(offset);
-    }
-
-    prevState = curState;
   });
 
   let prevProps: VProps = {};
@@ -350,15 +345,17 @@
 
   function onScroll(event: Event): void {
     const offset = isHorizontal ? listContainer.scrollLeft : listContainer.scrollTop;
-
     if (event.target !== listContainer || offset < 0 || curState.offset === offset) return;
 
-    curState = {
-      offset,
-      scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
-    };
+    if (prevState?.offset !== offset) {
+      console.log(sizes);
+      curState = {
+        offset,
+        scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
+      };
 
-    onAfterScroll?.({ offset, event });
+      onAfterScroll?.({ offset, event });
+    }
   }
 
   function getOffsetForIndex(
