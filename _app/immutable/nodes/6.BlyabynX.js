@@ -1,8 +1,9 @@
-import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}from"../chunks/external.C0RecZlA.js";import{E as I}from"../chunks/ExampleArea.Bapa_yz3.js";import{V as M}from"../chunks/svelte-virtuallists.CqqwytNq.js";var E=j("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),L=j("<tr><td> </td><td> </td></tr>");function V(n,a){y(a,!1);const t=new Array(1e4).fill(1).map((u,l)=>({text:"ITEM "+l+" - Item "+l}));f(),M(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:p=>{var s=E();i(p,s)},vl_slot:(p,s)=>{let x=()=>s==null?void 0:s().item,o=()=>s==null?void 0:s().index;var e=L(),c=h(e),b=h(c);r(c);var d=g(c),v=h(d);r(d),r(e),T(()=>{m(b,o()),m(v,`ITEM: ${o()??""} - ${x().text??""}`)}),i(p,e)},$$slots:{header:!0,vl_slot:!0}}),_()}const q=`<script lang="ts">
+import{p as f,H as y,h as _,f as r,r as m,t as w,j as i,x as c,z as h,I as j,n as L}from"../chunks/external.BW6pQqo1.js";import{E as T}from"../chunks/ExampleArea.D_dBPbyW.js";import{V}from"../chunks/svelte-virtuallists.CWEvJYjh.js";import{g as k}from"../chunks/sushi.BIpvo6ML.js";var q=i("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),M=i("<tr><td> </td><td> </td></tr>");function R(n,a){f(a,!1);const t=new Array(1e4).fill(1).map((d,g)=>({text:k()}));y(),V(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:l=>{var s=q();r(l,s)},vl_slot:(l,s)=>{let u=()=>s==null?void 0:s().item,b=()=>s==null?void 0:s().index;var p=M(),e=c(p),x=c(e);h(e);var o=m(e),v=c(o);h(o),h(p),w(()=>{j(x,b()),j(v,u().text)}),r(l,p)},$$slots:{header:!0,vl_slot:!0}}),_()}const S=`<script lang="ts">
   import { VirtualList } from 'svelte-virtuallists';
+  import { getRandomSushi } from '../sushi';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'ITEM ' + i + ' - Item ' + i };
+    return { text: getRandomSushi() };
   });
 <\/script>
 
@@ -18,7 +19,7 @@ import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}f
   {#snippet vl_slot({ item, index })}
     <tr>
       <td>{index}</td>
-      <td>ITEM: {index} - {item.text}</td>
+      <td>{item.text}</td>
     </tr>
   {/snippet}
 </VirtualList>
@@ -34,11 +35,12 @@ import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}f
     width: 100%;
   }
 </style>
-`,k=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+`,A=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
+  <span class="hljs-keyword">import</span> { getRandomSushi } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../sushi&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;ITEM &#x27;</span> + i + <span class="hljs-string">&#x27; - Item &#x27;</span> + i };
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">text</span>: <span class="hljs-title function_">getRandomSushi</span>() };
   });
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
@@ -54,7 +56,7 @@ import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}f
   {#snippet vl_slot({ item, index })}
     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{index}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>ITEM: {index} - {item.text}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{item.text}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
   {/snippet}
 <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
@@ -70,4 +72,4 @@ import{p as y,G as f,h as _,f as i,q as g,t as T,j,w as h,y as r,H as m,m as w}f
     <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,A={code:q,highlightedHTML:k,component:V};var H=j("<h2>Table Rendering</h2> <!>",1);function R(n){var a=H(),t=g(w(a),2);I(t,{example:A}),i(n,a)}export{R as component};
+`,I={code:S,highlightedHTML:A,component:R};var E=i("<h2>Table Rendering</h2> <!>",1);function B(n){var a=E(),t=m(L(a),2);T(t,{example:I}),r(n,a)}export{B as component};
