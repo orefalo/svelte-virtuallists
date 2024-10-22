@@ -13,7 +13,7 @@
 <ul>
   <li>Optimizes rendering by only displaying visible items</li>
   <li>Supports Horizontal and vertical layouts</li>
-  <li>Supports Lists and Tables</li>
+  <li>Supports Lists and Tables/Grids</li>
   <li>Supports Variable row heights or widths</li>
   <li>Supports Legacy browser such as IE 11</li>
   <li>Supports Touch devices</li>

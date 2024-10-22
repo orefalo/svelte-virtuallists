@@ -1,10 +1,9 @@
 <script lang="ts">
   import { VirtualList, type SizingCalculatorFn, type VLSlotSignature } from 'svelte-virtuallists';
+  import { getRandomSushi } from '../sushi';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return {
-      text: 'Item ' + i
-    };
+    return { text: getRandomSushi() };
   });
 
   function randomize() {
@@ -37,7 +36,8 @@
 <VirtualList items={myModel} style="height:600px" sizingCalculator={calculator}>
   {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;">
-      #{index} Content:{item.text}
+      #{index}
+      {item.text}
     </div>
   {/snippet}
 </VirtualList>

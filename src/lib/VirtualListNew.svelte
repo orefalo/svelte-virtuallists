@@ -34,7 +34,7 @@
 </script>
 
 <script lang="ts" generics="ItemType">
-  import { onDestroy, onMount, type Snippet } from 'svelte';
+  import { onDestroy, onMount, tick, type Snippet } from 'svelte';
   import {
     ALIGNMENT,
     SCROLL_BEHAVIOR,
@@ -177,11 +177,6 @@
 
   let prevState: VState | undefined;
 
-  const end2 = $derived.by(() => {
-    const max = (items?.length || 1) - 1;
-    return endIdx < max ? endIdx : max;
-  });
-
   // Holds the raw rendered position of each item in the list
   const rawSizes: (number | undefined)[] = $derived(new Array(items.length));
 
@@ -211,7 +206,7 @@
       return [];
     }
     const r: VLSlotSignature<ItemType>[] = [];
-    for (let index = startIdx; index <= end2; index++) {
+    for (let index = startIdx; index <= endIdx; index++) {
       const item = items[index];
       if (item) {
         r.push({ item, index: index, size: sizes[index] });
@@ -220,31 +215,31 @@
     return r;
   });
 
-  const startOffset = $derived(offsets[startIdx] ? offsets[startIdx] : 0);
-
-  const totalViewportSize = $derived(
-    offsets.length > 0 ? offsets[offsets.length - 1] + sizes[sizes.length - 1] : 0
-  );
-
-  const endOffset = $derived(offsets[end2] ? totalViewportSize - offsets[end2] - sizes[end2] : 0);
+  const totalViewportSize = () =>
+    offsets.length > 0 ? offsets[offsets.length - 1] + sizes[sizes.length - 1] : 0;
 
   // css
   const listStyle = $derived(clsx(!isDisabled && 'overflow:auto;', style));
 
-  const listInnerStyle = $derived.by(() =>
-    clsx(
+  const listInnerStyle = $derived.by(() => {
+    //TODO: the bug is here
+    const startOffset = offsets[startIdx] ? offsets[startIdx] : 0;
+    const endOffset = offsets[endIdx] ? totalViewportSize() - offsets[endIdx] - sizes[endIdx] : 0;
+
+    return clsx(
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),
       !isDisabled &&
         ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
-          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize - endOffset - startOffset}px`)
-    )
-  );
+          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize() - endOffset - startOffset}px`)
+    );
+  });
 
   // ======= FUNCTIONS =======
 
   onMount(() => {
-    listContainer.addEventListener('scroll', onscroll, thirdEventArg);
+    listContainer.addEventListener('scroll', onScroll, thirdEventArg);
+
     refreshOffsets();
 
     if (scrollToOffset !== undefined) {
@@ -257,18 +252,18 @@
   });
 
   onDestroy(() => {
-    if (mounted) listContainer.removeEventListener('scroll', onscroll);
+    if (mounted) listContainer.removeEventListener('scroll', onScroll);
   });
 
   $effect(() => {
     //@ts-expect-error unused no side effect
-    scrollToIndex,
-      scrollToAlignment,
-      scrollToOffset,
-      items.length,
-      sizingCalculator,
-      startIdx,
-      endIdx;
+    scrollToIndex, scrollToAlignment, scrollToOffset, items.length, sizingCalculator;
+    propsUpdated();
+  });
+
+  $effect(() => {
+    //@ts-expect-error not assigned
+    startIdx, endIdx;
     propsUpdated();
   });
 
@@ -288,7 +283,7 @@
 
   let prevProps: VProps = {};
 
-  function propsUpdated() {
+  async function propsUpdated() {
     if (!mounted) return;
 
     if (scrollToIndex && scrollToOffset) {
@@ -306,7 +301,7 @@
       prevProps?.clientWidth !== clientWidth;
 
     if (itemPropsHaveChanged) {
-      recomputeSizes();
+      await recomputeSizes();
     }
 
     const scrollOffsetHaveChanged = prevProps?.scrollToOffset !== scrollToOffset;
@@ -325,11 +320,12 @@
       };
     }
 
-    if (onVisibleRangeUpdate) {
-      if (prevProps?.startIdx !== startIdx || prevProps?.endIdx !== endIdx) {
-        const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
-        onVisibleRangeUpdate(vr);
-      }
+    if (
+      onVisibleRangeUpdate &&
+      (prevProps?.startIdx !== startIdx || prevProps?.endIdx !== endIdx)
+    ) {
+      const vr = getVisibleRange(isHorizontal ? clientWidth : clientHeight, curState.offset);
+      onVisibleRangeUpdate(vr);
     }
 
     prevProps = {
@@ -346,14 +342,14 @@
     };
   }
 
-  function recomputeSizes(startIndex: number = 0) {
+  async function recomputeSizes(startIndex: number = 0) {
     //resetItem
     lastMeasuredIndex = Math.min(lastMeasuredIndex, startIndex - 1);
-    refreshOffsets();
+    await refreshOffsets();
   }
 
-  function onscroll(event: Event): void {
-    const offset = getScroll(listContainer);
+  function onScroll(event: Event): void {
+    const offset = isHorizontal ? listContainer.scrollLeft : listContainer.scrollTop;
 
     if (event.target !== listContainer || offset < 0 || curState.offset === offset) return;
 
@@ -379,7 +375,7 @@
     return getUpdatedOffsetForIndex(
       align,
       isHorizontal ? clientWidth : clientHeight,
-      curState.offset || 0,
+      curState.offset /*|| 0*/,
       index
     );
   }
@@ -421,8 +417,7 @@
         idealOffset = Math.max(minOffset, Math.min(maxOffset, currentOffset));
     }
 
-    const totalSize = totalViewportSize;
-    return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
+    return Math.max(0, Math.min(totalViewportSize() - containerSize, idealOffset));
   }
 
   /**
@@ -497,7 +492,7 @@
   }
 
   // recalculates the viewport position
-  function refreshOffsets() {
+  async function refreshOffsets() {
     if (!avgSizeInPx) {
       avgSizeInPx = getAvgSize();
     }
@@ -510,6 +505,8 @@
 
     startIdx = vr.start;
     endIdx = vr.end;
+
+    await tick();
 
     let vi0 = 0;
 
@@ -584,9 +581,8 @@
     scrollbarOffset: number,
     windowOverPaddingCount: number = 0
   ) {
-    const totalSize = totalViewportSize;
-
-    if (totalSize === 0) return { start: 0, end: 0 };
+    // TODO: is there a easier way to make this check?
+    if (totalViewportSize() === 0) return { start: 0, end: 0 };
 
     const maxOffset = scrollbarOffset + containerSize;
     let startIdx = findNearestItem(scrollbarOffset);
@@ -632,10 +628,6 @@
         parseFloat(style.marginBottom);
     }
     return Number.isNaN(r) ? 0 : r;
-  }
-
-  function getScroll(el: HTMLElement) {
-    return isHorizontal ? el.scrollLeft : el.scrollTop;
   }
 
   // scrolls the contrainer to give px value

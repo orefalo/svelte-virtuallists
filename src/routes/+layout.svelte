@@ -26,7 +26,7 @@
       pages: [
         { title: 'Vertical', path: '/examples/vertical' },
         { title: 'Horizontal', path: '/examples/horizontal' },
-        { title: 'Table', path: '/examples/table' },
+        { title: 'Table/Grid', path: '/examples/table' },
         { title: 'Variable Sizing', path: '/examples/variablesizing' },
         { title: 'Positioning', path: '/examples/positioning' },
         { title: 'Events', path: '/examples/events' }
@@ -86,52 +86,6 @@
 </div>
 
 <style>
-  :global(body) {
-    font-family: Helvetica, Arial, sans-serif;
-    color: rgba(116, 103, 103);
-    margin: 0;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
-  }
-
-  :global(h1 h2) {
-    color: #000;
-  }
-
-  :global(p) {
-    color: #999;
-    font-size: medium;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    font-style: italic;
-  }
-
-  :global(.splitpanes__pane) {
-    justify-content: center;
-    align-items: center;
-    color: rgba(106, 106, 106, 0.6);
-    display: flex;
-    position: relative;
-    font-size: 3em;
-  }
-
-  :global(em.specs) {
-    font-size: 0.2em;
-    line-height: 1;
-    position: absolute;
-    color: #bbb;
-    bottom: 0.5em;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.5em;
-  }
-
-  /* additional styling to the code area */
-  :global(code.hljs) {
-    tab-size: 4;
-  }
-
   .page-container {
     display: table;
     font-size: 14px;

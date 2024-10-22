@@ -1,8 +1,9 @@
 <script lang="ts">
   import { VirtualList } from 'svelte-virtuallists';
+  import { getRandomSushi } from '../sushi';
 
   const myModel = new Array(10000).fill(1).map((v, i) => {
-    return { text: 'ITEM ' + i + ' - Item ' + i };
+    return { text: getRandomSushi() };
   });
 </script>
 
@@ -18,7 +19,7 @@
   {#snippet vl_slot({ item, index })}
     <tr>
       <td>{index}</td>
-      <td>ITEM: {index} - {item.text}</td>
+      <td>{item.text}</td>
     </tr>
   {/snippet}
 </VirtualList>
