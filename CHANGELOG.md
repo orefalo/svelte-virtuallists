@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.8](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.7...v1.3.8) (2024-10-23)
+
+
+### Bug Fixes
+
+* remove console.logs, update deps ([8bf5a58](https://github.com/orefalo/svelte-virtuallists/commit/8bf5a585911dab9855777f1d2b084d6b82559dc4))
+
 ## [1.3.7](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.6...v1.3.7) (2024-10-22)
 
 
