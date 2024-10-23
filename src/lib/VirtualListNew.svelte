@@ -282,7 +282,7 @@
     if (!mounted) return;
 
     if (scrollToIndex && scrollToOffset) {
-      console.log('VirtualList: scrollToIndex and scrollToOffset MUST NOT be used together.');
+      console.error('VirtualList: scrollToIndex and scrollToOffset MUST NOT be used together.');
     }
 
     const scrollPropsHaveChanged =
@@ -348,7 +348,6 @@
     if (event.target !== listContainer || offset < 0 || curState.offset === offset) return;
 
     if (prevState?.offset !== offset) {
-      console.log(sizes);
       curState = {
         offset,
         scrollChangeReason: SCROLL_CHANGE_REASON.OBSERVED
