@@ -647,9 +647,7 @@
   style={listStyle}>
   {#if isTable}
     <table bind:this={listInner} class="vtlist-inner" style={listInnerStyle}>
-      {#if header}
-        {@render header()}
-      {/if}
+      {@render header?.()}
       <tbody>
         {#if isDisabled}
           {#each items as item, index}
@@ -662,14 +660,10 @@
         {/if}
       </tbody>
     </table>
-    {#if footer}
-      {@render footer()}
-    {/if}
+    {@render footer?.()}
   {:else}
     <div bind:this={listInner} class="vtlist-inner" style={listInnerStyle}>
-      {#if header}
-        {@render header()}
-      {/if}
+      {@render header?.()}
       {#if isDisabled}
         {#each items as item, index}
           {@render vl_slot({ index, item })}
@@ -679,9 +673,7 @@
           {@render vl_slot(item)}
         {/each}
       {/if}
-      {#if footer}
-        {@render footer()}
-      {/if}
+      {@render footer?.()}
     </div>
   {/if}
 </div>
