@@ -61,10 +61,9 @@ This component can be used two different ways:
 
 [![Star History Chart](https://api.star-history.com/svg?repos=orefalo/svelte-virtuallists&type=Date)](https://star-history.com/#orefalo/svelte-virtuallists&Date)
 
-## Demos
+## Examples
 
-- [REPL Demo](https://svelte-5-preview.vercel.app/#H4sIAAAAAAAAE02PyWrDMBCGX2VQKGqDG7uXHrwE0g0KPfXQSxyKsZVmQJKFZ-IkCL17kdPQXP7Zvtm82KJWJPK1F7YxSuRi5ZxIBJ9cDGhUmpVIBPX7oY2ZktoBHS9rWzMa1w8MHr5w4H2jP5AYAmyH3oA8t96P55JGYpJFbWNf21ti6BpuoIK1XMkE5FOU5ygvUV6jvElI57BYLGCeboralun_clteL211Q1RJcyI-aSVhMpU8YMe7_CHLboqdwp8dV49Z5o4SkJWhyscTwvSKn5FF5xTDqL9J93zrAW2njsnEQrgLEau57HBcnt2aP_tDDjM_gQHeWZkcfOQvcHqhffo3P8Q3rk5fikSYvsMtqk7kPOxV2IRfKJu_spcBAAA=)  Will eventually work when REPL is out of BETA
-- [More complex demos and examples](https://orefalo.github.io/svelte-virtuallists/)
+- [Demos](https://orefalo.github.io/svelte-virtuallists/)
 
 ## Samples
 
