@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.10](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.9...v1.3.10) (2024-11-02)
+
+
+### Bug Fixes
+
+* move clsx as a peer dependency ([d68c31f](https://github.com/orefalo/svelte-virtuallists/commit/d68c31f439bc7e083b9100260280f0c141b53cf9))
+
 ## [1.3.9](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.8...v1.3.9) (2024-10-23)
 
 
