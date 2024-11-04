@@ -42,6 +42,9 @@ This package is a merge of [svelte-tiny-virtual-list](https://github.com/jonasge
 
 - 💼 **Small**
   Compact and dependency free – Only ~5kb when compressed.
+  
+## Installation
+`npm i svelte-virtuallists`
 
 ## Usage
 
@@ -50,6 +53,8 @@ This component can be used two different ways:
 - 🤖 As a scrollable listover a large number of items, optionally read incrementally.
 
 - 🧠 As a fondation for more complex components - TreeViews and DataGrids.
+
+
 
 ## Browser Support
 
