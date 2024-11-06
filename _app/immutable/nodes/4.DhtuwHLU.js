@@ -1,4 +1,4 @@
-import{p as h,H as m,h as j,t as g,f as e,j as i,x as u,z as d,I as y,r as v,n as x}from"../chunks/external.9jXxTUNI.js";import{E as f}from"../chunks/ExampleArea.DEJW-4J-.js";import{V as _}from"../chunks/svelte-virtuallists.BphNLO8I.js";import{g as L}from"../chunks/sushi.BIpvo6ML.js";var S=i('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function V(a,s){h(s,!1);const t=new Array(1e4).fill(1).map((r,n)=>({text:"#"+n+" "+L()}));m(),_(a,{items:t,style:"height:600px",vl_slot:(n,l)=>{let o=()=>l==null?void 0:l().item;var p=S(),c=u(p);d(p),g(()=>y(c,o().text)),e(n,p)},$$slots:{vl_slot:!0}}),j()}const w=`<script lang="ts">
+import{p as h,I as m,h as j,t as u,f as e,j as i,y as d,A as g,J as y,q as v,v as f}from"../chunks/external.BjooDgN5.js";import{E as x}from"../chunks/ExampleArea.C-JSldN1.js";import{V as _}from"../chunks/svelte-virtuallists.ClKjKDvk.js";import{g as w}from"../chunks/sushi.BIpvo6ML.js";var L=i('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function S(a,s){h(s,!1);const t=new Array(1e4).fill(1).map((r,n)=>({text:"#"+n+" "+w()}));m(),_(a,{items:t,style:"width:100%",isHorizontal:!0,vl_slot:(n,l)=>{let o=()=>l==null?void 0:l().item;var p=L(),c=d(p,!0);g(p),u(()=>y(c,o().text)),e(n,p)},$$slots:{vl_slot:!0}}),j()}const V=`<script lang="ts">
   import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
   import { getRandomSushi } from '../sushi';
 
@@ -7,7 +7,7 @@ import{p as h,H as m,h as j,t as g,f as e,j as i,x as u,z as d,I as y,r as v,n a
   });
 <\/script>
 
-<VirtualList items={myModel} style="height:600px">
+<VirtualList items={myModel} style="width:100%" isHorizontal={true}>
   {#snippet vl_slot({ item }: VLSlotSignature<(typeof myModel)[0]>)}
     <div style="border: 1px solid rgb(204, 204, 204)">
       {item.text}
@@ -23,11 +23,11 @@ import{p as h,H as m,h as j,t as g,f as e,j as i,x as u,z as d,I as y,r as v,n a
   });
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:600px&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%&quot;</span> <span class="hljs-attr">isHorizontal</span>=<span class="hljs-string">{true}</span>&gt;</span>
   {#snippet vl_slot({ item }: VLSlotSignature&lt;(typeof myModel)[0]&gt;)}
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204)&quot;</span>&gt;</span>
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   {/snippet}
 <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
-`,M={code:w,highlightedHTML:b,component:V};var k=i("<h2>Vertical List</h2> <!>",1);function H(a){var s=k(),t=v(x(s),2);f(t,{example:M}),e(a,s)}export{H as component};
+`,M={code:V,highlightedHTML:b,component:S};var k=i("<h2>Horizontal List</h2> <!>",1);function z(a){var s=k(),t=v(f(s),2);x(t,{example:M}),e(a,s)}export{z as component};
