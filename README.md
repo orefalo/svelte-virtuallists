@@ -17,7 +17,7 @@
   <a href="#samples">Samples</a>
 </p>
 
-![screenshot](./static/screenshot.jpg)
+![screenshot](./static/screenshot.webp)
 
 ## About
 

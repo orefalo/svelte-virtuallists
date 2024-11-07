@@ -1,2 +1,4 @@
 # Make sure the line ending is in LF format (/n), for linting consistency
 * text eol=lf
+*.jpg binary
+*.webp binary
