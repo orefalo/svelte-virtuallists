@@ -17,6 +17,8 @@
   <a href="#samples">Samples</a>
 </p>
 
+![screenshot](./static/screenshot.jpg)
+
 ## About
 
 Keep your tables and lists efficient and fast: only render the visible items, instead of displaying all your data in large lists.
