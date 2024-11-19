@@ -6,4 +6,3 @@
 <h2>Vertical List</h2>
 
 <ExampleArea {example} />
-
