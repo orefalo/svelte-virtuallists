@@ -1,4 +1,4 @@
-import{p as g,I as d,f as r,h as b,j as i,y as c,t as y,A as h,J as f,q as v,v as x}from"../chunks/external.DgMb7onD.js";import{E as S}from"../chunks/ExampleArea.g3WCh56v.js";import{V as _}from"../chunks/svelte-virtuallists.kv-RLIBA.js";import{g as w}from"../chunks/sushi.BIpvo6ML.js";var k=i('<div class="slotStyle svelte-1iooypm"> </div>'),L=i('<div class="gradient myStyle svelte-1iooypm"><!></div>');function V(a,s){g(s,!1);const n=new Array(1e4).fill(1).map((m,t)=>({text:"#"+t+" "+w()}));d();var l=L(),o=c(l);_(o,{items:n,style:"height:600px",vl_slot:(t,p)=>{let j=()=>p==null?void 0:p().item;var e=k(),u=c(e,!0);h(e),y(()=>f(u,j().text)),r(t,e)},$$slots:{vl_slot:!0}}),h(l),r(a,l),b()}const q=`<script lang="ts">
+import{p as g,J as d,f as r,h as b,j as i,y as c,t as y,A as h,K as f,q as v,v as x}from"../chunks/external.XVS9OJZd.js";import{E as S}from"../chunks/ExampleArea.HLz-Ok4E.js";import{V as _}from"../chunks/svelte-virtuallists.CHV1n25C.js";import{g as w}from"../chunks/sushi.BIpvo6ML.js";var k=i('<div class="slotStyle svelte-1iooypm"> </div>'),L=i('<div class="gradient myStyle svelte-1iooypm"><!></div>');function V(a,s){g(s,!1);const n=new Array(1e4).fill(1).map((m,t)=>({text:"#"+t+" "+w()}));d();var l=L(),o=c(l);_(o,{items:n,style:"height:600px",vl_slot:(t,p)=>{let j=()=>p==null?void 0:p().item;var e=k(),u=c(e,!0);h(e),y(()=>f(u,j().text)),r(t,e)},$$slots:{vl_slot:!0}}),h(l),r(a,l),b()}const q=`<script lang="ts">
   import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
   import { getRandomSushi } from '../sushi';
 
@@ -90,4 +90,4 @@ import{p as g,I as d,f as r,h as b,j as i,y as c,t as y,A as h,J as f,q as v,v a
     <span class="hljs-attribute">align-items</span>: center;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,A={code:q,highlightedHTML:M,component:V};var R=i("<h2>Vertical List</h2> <!>",1);function J(a){var s=R(),n=v(x(s),2);S(n,{example:A}),r(a,s)}export{J as component};
+`,A={code:q,highlightedHTML:M,component:V};var R=i("<h2>Vertical List</h2> <!>",1);function K(a){var s=R(),n=v(x(s),2);S(n,{example:A}),r(a,s)}export{K as component};
