@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const libPath = path.resolve('.', 'src/lib/');
-import packageJson from '../../package.json' assert { type: 'json' };
+import packageJson from '../../package.json' with { type: 'json' };
 
 /** @type {unknown} */
 let ssr;
