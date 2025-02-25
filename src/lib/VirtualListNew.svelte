@@ -456,28 +456,21 @@
   }
 
   function binarySearch(low: number, high: number, offset: number): number {
-    let middle = 0;
-    let currentOffset = 0;
+  while (low <= high) {
+    const middle = low + ((high - low) >>> 1); // Faster bitwise right shift
+    const currentOffset = offsets[middle];
 
-    while (low <= high) {
-      middle = low + Math.floor((high - low) / 2);
-      currentOffset = offsets[middle];
-
-      if (currentOffset === offset) {
-        return middle;
-      } else if (currentOffset < offset) {
-        low = middle + 1;
-      } else if (currentOffset > offset) {
-        high = middle - 1;
-      }
+    if (currentOffset === offset) {
+      return middle;
+    } else if (currentOffset < offset) {
+      low = middle + 1;
+    } else {
+      high = middle - 1;
     }
-
-    if (low > 0) {
-      return low - 1;
-    }
-
-    return 0;
   }
+
+  return Math.max(0, low - 1);
+}
 
   function exponentialSearch(index: number, offset: number): number {
     let interval = 1;
