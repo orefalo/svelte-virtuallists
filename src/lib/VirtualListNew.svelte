@@ -223,7 +223,12 @@
   const listInnerStyle = $derived.by(() => {
     //TODO: the bug is here
     const startOffset = offsets[startIdx] ? offsets[startIdx] : 0;
-    const endOffset = offsets[endIdx] ? totalViewportSize() - offsets[endIdx] - sizes[endIdx] : 0;
+    const endOffset =
+      endIdx > 0
+        ? totalViewportSize() -
+          (offsets[Math.min(endIdx, offsets.length - 1)] +
+            sizes[Math.min(endIdx, sizes.length - 1)])
+        : 0;
 
     return clsx(
       !isTable && 'display:flex;',
