@@ -502,13 +502,22 @@
 
     let vi0 = 0;
 
+    // Cache computed styles to avoid layout thrashing
+    const styleCache = new Map<HTMLElement, CSSStyleDeclaration>();
+      const getStyle = (el: HTMLElement) => {
+        if (!styleCache.has(el)) {
+          styleCache.set(el, getComputedStyle(el));
+        }
+        return styleCache.get(el)!;
+      };
+
     // holds index -> offset
     const itemOffsetsTemp: Record<number, number> = {};
     const children = getChildren()
 
     for (let i = 0; i < children.length; i++) {
-      const el = children[i];
-      const stl = getComputedStyle(el);
+      const el = children[i] as HTMLElement
+      const stl = getStyle(el);
 
       // ignore entries marked as fixed or absolute
       const cssPosition = stl.position;
