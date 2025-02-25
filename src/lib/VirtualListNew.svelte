@@ -72,6 +72,16 @@
     endIdx?: number;
   }
 
+  type VariantScrollToIndex = {
+    scrollToIndex: number;
+    scrollToOffset?: undefined;
+  };
+
+  type VariantScrollToOffset = {
+    scrollToIndex?: undefined;
+    scrollToOffset: number;
+  };
+
   // ====== PROPERTIES ================
 
   const {
@@ -115,9 +125,6 @@
     isHorizontal?: boolean;
     isTable?: boolean;
 
-    // positioning
-    scrollToIndex?: number | undefined;
-    scrollToOffset?: number | undefined;
 
     // scroll attributes
     scrollToAlignment?: ALIGNMENT;
@@ -140,7 +147,7 @@
     style?: string;
 
     sizingCalculator?: SizingCalculatorFn;
-  } = $props();
+  } & (VariantScrollToIndex | VariantScrollToOffset) = $props();
 
   // ======== VARIABLES ========
 
@@ -169,10 +176,7 @@
   let avgSizeInPx = $state(0);
 
   let curState: VState = $state({
-    offset:
-      scrollToOffset ||
-      (scrollToIndex !== undefined && items.length && getOffsetForIndex(scrollToIndex) && 1) ||
-      0,
+    offset: scrollToOffset || 0,
     scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
   });
 
@@ -226,14 +230,19 @@
   const listInnerStyle = $derived.by(() => {
     //TODO: the bug is here
     const startOffset = offsets[startIdx] ? offsets[startIdx] : 0;
-    const endOffset = offsets[endIdx] ? totalViewportSize() - offsets[endIdx] - sizes[endIdx] : 0;
+    const endOffset =
+      endIdx > 0
+        ? totalViewportSize() -
+          (offsets[Math.min(endIdx, offsets.length - 1)] +
+            sizes[Math.min(endIdx, sizes.length - 1)])
+        : 0;
 
     return clsx(
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),
       !isDisabled &&
-        ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
-          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize() - endOffset - startOffset}px`)
+  ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
+    `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${offsets[Math.min(endIdx, offsets.length - 1)] + sizes[Math.min(endIdx, sizes.length - 1)] - startOffset}px`)
     );
   });
 
@@ -454,28 +463,21 @@
   }
 
   function binarySearch(low: number, high: number, offset: number): number {
-    let middle = 0;
-    let currentOffset = 0;
+  while (low <= high) {
+    const middle = low + ((high - low) >>> 1); // Faster bitwise right shift
+    const currentOffset = offsets[middle];
 
-    while (low <= high) {
-      middle = low + Math.floor((high - low) / 2);
-      currentOffset = offsets[middle];
-
-      if (currentOffset === offset) {
-        return middle;
-      } else if (currentOffset < offset) {
-        low = middle + 1;
-      } else if (currentOffset > offset) {
-        high = middle - 1;
-      }
+    if (currentOffset === offset) {
+      return middle;
+    } else if (currentOffset < offset) {
+      low = middle + 1;
+    } else {
+      high = middle - 1;
     }
-
-    if (low > 0) {
-      return low - 1;
-    }
-
-    return 0;
   }
+
+  return Math.max(0, low - 1);
+}
 
   function exponentialSearch(index: number, offset: number): number {
     let interval = 1;
@@ -507,13 +509,22 @@
 
     let vi0 = 0;
 
+    // Cache computed styles to avoid layout thrashing
+    const styleCache = new Map<HTMLElement, CSSStyleDeclaration>();
+      const getStyle = (el: HTMLElement) => {
+        if (!styleCache.has(el)) {
+          styleCache.set(el, getComputedStyle(el));
+        }
+        return styleCache.get(el)!;
+      };
+
     // holds index -> offset
     const itemOffsetsTemp: Record<number, number> = {};
-    const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+    const children = getChildren()
 
     for (let i = 0; i < children.length; i++) {
-      const el = children[i];
-      const stl = getComputedStyle(el);
+      const el = children[i] as HTMLElement
+      const stl = getStyle(el);
 
       // ignore entries marked as fixed or absolute
       const cssPosition = stl.position;
@@ -539,7 +550,7 @@
   function getAvgSize() {
     const maxSampleCount = 10;
     const sizeArr: number[] = [];
-    const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+    const children = getChildren()
 
     for (let index = 0; index < children.length; index++) {
       const el = children[index];
@@ -638,6 +649,11 @@
       listContainer[isHorizontal ? 'scrollLeft' : 'scrollTop'] = value;
     }
   }
+
+  function getChildren() {
+    return !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+  }
+
 </script>
 
 <div
