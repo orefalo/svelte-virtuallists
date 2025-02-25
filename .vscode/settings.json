@@ -6,13 +6,11 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    ".husky": true,
     ".vscode": true,
     ".idea": true,
     "node_modules": true
   },
   "hide-files.files": [
-    ".husky",
     ".vscode",
     ".idea",
     "node_modules"
