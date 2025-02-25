@@ -79,7 +79,7 @@ This component can be used two different ways:
 	const data = ['A', 'B', 'C', 'D', 'E', 'F' /* ... */];
 </script>
 
-<VirtualList class='mystyle' style='width:100%;height=600px' items={data}>
+<VirtualList class='mystyle' style='width:100%;height:600px;' items={data}>
 	{#snippet vl_slot({ index, item })}
 		<div>
 			Row: #{index} Item: {item}
