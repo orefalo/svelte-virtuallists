@@ -125,7 +125,6 @@
     isHorizontal?: boolean;
     isTable?: boolean;
 
-
     // scroll attributes
     scrollToAlignment?: ALIGNMENT;
     scrollToBehaviour?: SCROLL_BEHAVIOR;
@@ -241,8 +240,8 @@
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),
       !isDisabled &&
-  ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
-    `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${offsets[Math.min(endIdx, offsets.length - 1)] + sizes[Math.min(endIdx, sizes.length - 1)] - startOffset}px`)
+        ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
+          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${offsets[Math.min(endIdx, offsets.length - 1)] + sizes[Math.min(endIdx, sizes.length - 1)] - startOffset}px`)
     );
   });
 
@@ -463,21 +462,21 @@
   }
 
   function binarySearch(low: number, high: number, offset: number): number {
-  while (low <= high) {
-    const middle = low + ((high - low) >>> 1); // Faster bitwise right shift
-    const currentOffset = offsets[middle];
+    while (low <= high) {
+      const middle = low + ((high - low) >>> 1); // Faster bitwise right shift
+      const currentOffset = offsets[middle];
 
-    if (currentOffset === offset) {
-      return middle;
-    } else if (currentOffset < offset) {
-      low = middle + 1;
-    } else {
-      high = middle - 1;
+      if (currentOffset === offset) {
+        return middle;
+      } else if (currentOffset < offset) {
+        low = middle + 1;
+      } else {
+        high = middle - 1;
+      }
     }
-  }
 
-  return Math.max(0, low - 1);
-}
+    return Math.max(0, low - 1);
+  }
 
   function exponentialSearch(index: number, offset: number): number {
     let interval = 1;
@@ -511,19 +510,19 @@
 
     // Cache computed styles to avoid layout thrashing
     const styleCache = new Map<HTMLElement, CSSStyleDeclaration>();
-      const getStyle = (el: HTMLElement) => {
-        if (!styleCache.has(el)) {
-          styleCache.set(el, getComputedStyle(el));
-        }
-        return styleCache.get(el)!;
-      };
+    const getStyle = (el: HTMLElement) => {
+      if (!styleCache.has(el)) {
+        styleCache.set(el, getComputedStyle(el));
+      }
+      return styleCache.get(el)!;
+    };
 
     // holds index -> offset
     const itemOffsetsTemp: Record<number, number> = {};
-    const children = getChildren()
+    const children = getChildren();
 
     for (let i = 0; i < children.length; i++) {
-      const el = children[i] as HTMLElement
+      const el = children[i] as HTMLElement;
       const stl = getStyle(el);
 
       // ignore entries marked as fixed or absolute
@@ -550,7 +549,7 @@
   function getAvgSize() {
     const maxSampleCount = 10;
     const sizeArr: number[] = [];
-    const children = getChildren()
+    const children = getChildren();
 
     for (let index = 0; index < children.length; index++) {
       const el = children[index];
@@ -653,7 +652,6 @@
   function getChildren() {
     return !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
   }
-
 </script>
 
 <div

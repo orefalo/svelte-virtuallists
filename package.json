@@ -73,6 +73,7 @@
     "cross-env": "^7.0.3",
     "cz-customizable": "^7.4.0",
     "eslint": "^9.21.0",
+    "@eslint/js": "^9.21.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-svelte": "^2.46.1",
@@ -95,5 +96,8 @@
   },
   "peerDependencies": {
     "svelte": "^5.20.4"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.21.0"
   }
 }

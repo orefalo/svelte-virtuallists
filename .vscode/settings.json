@@ -10,11 +10,7 @@
     ".idea": true,
     "node_modules": true
   },
-  "hide-files.files": [
-    ".vscode",
-    ".idea",
-    "node_modules"
-  ],
+  "hide-files.files": [".vscode", ".idea", "node_modules"],
   "files.eol": "\n",
   "editor.insertSpaces": false,
   "[typescript]": {
