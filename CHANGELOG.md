@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.4.0...v1.4.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* update deps packages, fix svelte sync ([29163b6](https://github.com/orefalo/svelte-virtuallists/commit/29163b688c023d59b7e0faef127d8903d9b72a14))
+
 ## [1.4.0](https://github.com/orefalo/svelte-virtuallists/compare/v1.3.10...v1.4.0) (2024-11-06)
 
 
