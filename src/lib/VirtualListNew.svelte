@@ -234,8 +234,8 @@
       !isTable && 'display:flex;',
       !isTable && ((!isHorizontal && 'flex-direction:column;') || 'flex-direction:row;'),
       !isDisabled &&
-        ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
-          `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${totalViewportSize() - endOffset - startOffset}px`)
+  ((!isHorizontal && `margin-top:${startOffset}px;margin-bottom:${endOffset}px`) ||
+    `margin-left:${startOffset}px;margin-right:${endOffset}px;width:${offsets[Math.min(endIdx, offsets.length - 1)] + sizes[Math.min(endIdx, sizes.length - 1)] - startOffset}px`)
     );
   });
 
@@ -511,7 +511,7 @@
 
     // holds index -> offset
     const itemOffsetsTemp: Record<number, number> = {};
-    const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+    const children = getChildren()
 
     for (let i = 0; i < children.length; i++) {
       const el = children[i];
@@ -541,7 +541,7 @@
   function getAvgSize() {
     const maxSampleCount = 10;
     const sizeArr: number[] = [];
-    const children = !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+    const children = getChildren()
 
     for (let index = 0; index < children.length; index++) {
       const el = children[index];
@@ -640,6 +640,11 @@
       listContainer[isHorizontal ? 'scrollLeft' : 'scrollTop'] = value;
     }
   }
+
+  function getChildren() {
+    return !isTable ? listInner.children : listInner.querySelector('tbody')!.children;
+  }
+
 </script>
 
 <div
