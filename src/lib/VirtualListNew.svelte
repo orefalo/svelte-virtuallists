@@ -169,10 +169,7 @@
   let avgSizeInPx = $state(0);
 
   let curState: VState = $state({
-    offset:
-      scrollToOffset ||
-      (scrollToIndex !== undefined && items.length && getOffsetForIndex(scrollToIndex) && 1) ||
-      0,
+    offset: scrollToOffset || 0,
     scrollChangeReason: SCROLL_CHANGE_REASON.REQUESTED
   });
 
