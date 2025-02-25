@@ -72,6 +72,16 @@
     endIdx?: number;
   }
 
+  type VariantScrollToIndex = {
+    scrollToIndex: number;
+    scrollToOffset?: undefined;
+  };
+
+  type VariantScrollToOffset = {
+    scrollToIndex?: undefined;
+    scrollToOffset: number;
+  };
+
   // ====== PROPERTIES ================
 
   const {
@@ -115,9 +125,6 @@
     isHorizontal?: boolean;
     isTable?: boolean;
 
-    // positioning
-    scrollToIndex?: number | undefined;
-    scrollToOffset?: number | undefined;
 
     // scroll attributes
     scrollToAlignment?: ALIGNMENT;
@@ -140,7 +147,7 @@
     style?: string;
 
     sizingCalculator?: SizingCalculatorFn;
-  } = $props();
+  } & (VariantScrollToIndex | VariantScrollToOffset) = $props();
 
   // ======== VARIABLES ========
 
