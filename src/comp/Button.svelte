@@ -132,7 +132,7 @@
     {@render children()}
   </span>
   <svg>
-    {#each $ripples as ripple}
+    {#each $ripples as ripple (ripple)}
       <Ripple
         x={ripple.x}
         y={ripple.y}

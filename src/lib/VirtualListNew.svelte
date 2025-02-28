@@ -72,16 +72,6 @@
     endIdx?: number;
   }
 
-  type VariantScrollToIndex = {
-    scrollToIndex: number;
-    scrollToOffset?: undefined;
-  };
-
-  type VariantScrollToOffset = {
-    scrollToIndex?: undefined;
-    scrollToOffset: number;
-  };
-
   // ====== PROPERTIES ================
 
   const {
@@ -125,6 +115,9 @@
     isHorizontal?: boolean;
     isTable?: boolean;
 
+    scrollToIndex?: number;
+    scrollToOffset?: number;
+
     // scroll attributes
     scrollToAlignment?: ALIGNMENT;
     scrollToBehaviour?: SCROLL_BEHAVIOR;
@@ -146,7 +139,7 @@
     style?: string;
 
     sizingCalculator?: SizingCalculatorFn;
-  } & (VariantScrollToIndex | VariantScrollToOffset) = $props();
+  } = $props();
 
   // ======== VARIABLES ========
 
@@ -159,8 +152,9 @@
 
   // dom references
   let listContainer: HTMLDivElement;
-  // svelte-ignore non_reactive_update
-  let listInner: HTMLDivElement;
+
+  // @ts-expect-error undefined not in type - it's ok, only used for initialization
+  let listInner: HTMLDivElement = $state();
 
   let clientHeight: number = $state(0);
   let clientWidth: number = $state(0);
@@ -665,11 +659,11 @@
       {@render header?.()}
       <tbody>
         {#if isDisabled}
-          {#each items as item, index}
+          {#each items as item, index (index)}
             {@render vl_slot({ index, item })}
           {/each}
         {:else}
-          {#each visibleItemsInfo as item}
+          {#each visibleItemsInfo as item (item.index)}
             {@render vl_slot(item)}
           {/each}
         {/if}
@@ -680,11 +674,11 @@
     <div bind:this={listInner} class="vtlist-inner" style={listInnerStyle}>
       {@render header?.()}
       {#if isDisabled}
-        {#each items as item, index}
+        {#each items as item, index (index)}
           {@render vl_slot({ index, item })}
         {/each}
       {:else}
-        {#each visibleItemsInfo as item}
+        {#each visibleItemsInfo as item (item)}
           {@render vl_slot(item)}
         {/each}
       {/if}

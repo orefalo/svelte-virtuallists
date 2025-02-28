@@ -20,14 +20,14 @@
 
 <nav aria-label="Docs">
   <ul class="sidebar">
-    {#each contents as section}
+    {#each contents as section (section)}
       <li>
         <span class="section">
           {section.title}
         </span>
 
         <ul>
-          {#each section.pages as { title, path }}
+          {#each section.pages as { title, path } (path)}
             <li>
               <a
                 data-sveltekit-preload-data

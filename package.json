@@ -74,9 +74,9 @@
     "cz-customizable": "^7.4.0",
     "eslint": "^9.21.0",
     "@eslint/js": "^9.21.0",
-    "eslint-config-prettier": "^10.0.1",
+    "eslint-config-prettier": "^10.0.2",
     "eslint-gitignore": "^0.1.0",
-    "eslint-plugin-svelte": "^2.46.1",
+    "eslint-plugin-svelte": "^3.0.1",
     "globals": "^16.0.0",
     "highlight.js": "^11.11.1",
     "husky": "^9.1.7",
@@ -95,7 +95,7 @@
     "vite": "^6.2.0"
   },
   "peerDependencies": {
-    "svelte": "^5.20.4"
+    "svelte": "^5.20.5"
   },
   "dependencies": {
     "@eslint/js": "^9.21.0"
