@@ -1,4 +1,4 @@
-import{p as x,J as f,h as y,f as r,q as d,t as v,j as i,y as c,A as h,K as j,v as _}from"../chunks/external.XVS9OJZd.js";import{E as w}from"../chunks/ExampleArea.HLz-Ok4E.js";import{V as L}from"../chunks/svelte-virtuallists.CHV1n25C.js";import{g as T}from"../chunks/sushi.BIpvo6ML.js";var V=i("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),k=i("<tr><td> </td><td> </td></tr>");function q(n,a){x(a,!1);const t=new Array(1e4).fill(1).map(()=>({text:T()}));f(),L(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:l=>{var s=V();r(l,s)},vl_slot:(l,s)=>{let m=()=>s==null?void 0:s().item,g=()=>s==null?void 0:s().index;var p=k(),e=c(p),u=c(e,!0);h(e);var o=d(e),b=c(o,!0);h(o),h(p),v(()=>{j(u,g()),j(b,m().text)}),r(l,p)},$$slots:{header:!0,vl_slot:!0}}),y()}const M=`<script lang="ts">
+import{p as x,J as y,h as f,t as i,B as d,w as c,e as v,g as r,x as h,K as j,y as _}from"../chunks/Hb09kDf2.js";import{E as w}from"../chunks/Be7KHuKK.js";import{V as L}from"../chunks/P-AzkfP4.js";import{g as T}from"../chunks/BIpvo6ML.js";var V=i("<thead><tr><th>Text</th><th>Index</th></tr></thead>"),k=i("<tr><td> </td><td> </td></tr>");function q(n,a){x(a,!1);const t=new Array(1e4).fill(1).map(()=>({text:T()}));y(),L(n,{items:t,class:"list-table",style:"height:600px",isTable:!0,header:l=>{var s=V();r(l,s)},vl_slot:(l,s)=>{let m=()=>s==null?void 0:s().item,g=()=>s==null?void 0:s().index;var p=k(),e=c(p),u=c(e,!0);h(e);var o=d(e),b=c(o,!0);h(o),h(p),v(()=>{j(u,g()),j(b,m().text)}),r(l,p)},$$slots:{header:!0,vl_slot:!0}}),f()}const M=`<script lang="ts">
   import { VirtualList } from 'svelte-virtuallists';
   import { getRandomSushi } from '../sushi';
 
@@ -72,4 +72,4 @@ import{p as x,J as f,h as y,f as r,q as d,t as v,j as i,y as c,A as h,K as j,v a
     <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,A={code:M,highlightedHTML:R,component:q};var S=i("<h2>Table Rendering</h2> <!>",1);function N(n){var a=S(),t=d(_(a),2);w(t,{example:A}),r(n,a)}export{N as component};
+`,S={code:M,highlightedHTML:R,component:q};var A=i("<h2>Table Rendering</h2> <!>",1);function K(n){var a=A(),t=d(_(a),2);w(t,{example:S}),r(n,a)}export{K as component};

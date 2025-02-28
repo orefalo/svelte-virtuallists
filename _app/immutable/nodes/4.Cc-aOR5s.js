@@ -1,4 +1,4 @@
-import{p as h,J as m,h as j,t as u,f as e,j as i,y as d,A as g,K as y,q as v,v as f}from"../chunks/external.XVS9OJZd.js";import{E as x}from"../chunks/ExampleArea.HLz-Ok4E.js";import{V as _}from"../chunks/svelte-virtuallists.CHV1n25C.js";import{g as w}from"../chunks/sushi.BIpvo6ML.js";var L=i('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function S(a,s){h(s,!1);const t=new Array(1e4).fill(1).map((r,n)=>({text:"#"+n+" "+w()}));m(),_(a,{items:t,style:"width:100%",isHorizontal:!0,vl_slot:(n,l)=>{let o=()=>l==null?void 0:l().item;var p=L(),c=d(p,!0);g(p),u(()=>y(c,o().text)),e(n,p)},$$slots:{vl_slot:!0}}),j()}const V=`<script lang="ts">
+import{p as h,J as m,h as j,t as e,e as u,g as i,w as d,x as g,K as y,B as v,y as f}from"../chunks/Hb09kDf2.js";import{E as x}from"../chunks/Be7KHuKK.js";import{V as _}from"../chunks/P-AzkfP4.js";import{g as w}from"../chunks/BIpvo6ML.js";var L=e('<div style="border: 1px solid rgb(204, 204, 204)"> </div>');function S(a,s){h(s,!1);const t=new Array(1e4).fill(1).map((r,n)=>({text:"#"+n+" "+w()}));m(),_(a,{items:t,style:"width:100%",isHorizontal:!0,vl_slot:(n,l)=>{let o=()=>l==null?void 0:l().item;var p=L(),c=d(p,!0);g(p),u(()=>y(c,o().text)),i(n,p)},$$slots:{vl_slot:!0}}),j()}const V=`<script lang="ts">
   import { VirtualList, type VLSlotSignature } from 'svelte-virtuallists';
   import { getRandomSushi } from '../sushi';
 
@@ -30,4 +30,4 @@ import{p as h,J as m,h as j,t as u,f as e,j as i,y as d,A as g,K as y,q as v,v a
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   {/snippet}
 <span class="hljs-tag">&lt;/<span class="hljs-name">VirtualList</span>&gt;</span>
-`,M={code:V,highlightedHTML:b,component:S};var k=i("<h2>Horizontal List</h2> <!>",1);function z(a){var s=k(),t=v(f(s),2);x(t,{example:M}),e(a,s)}export{z as component};
+`,M={code:V,highlightedHTML:b,component:S};var k=e("<h2>Horizontal List</h2> <!>",1);function A(a){var s=k(),t=v(f(s),2);x(t,{example:M}),i(a,s)}export{A as component};
