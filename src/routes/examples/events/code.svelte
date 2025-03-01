@@ -1,16 +1,8 @@
 <script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLSlotSignature } from '$lib';
+  import { ALIGNMENT, SCROLL_BEHAVIOR, type VariantScrollConfig, type VLSlotSignature } from '$lib';
   import { VirtualList } from 'svelte-virtuallists';
 
   const myModel = $state(new Array(10000));
-
-  // on the UI
-  let theScrollToIndex: number | undefined = $state();
-  let theScrollOffet: number | undefined = $state();
-
-  // on the component
-  let scrollToIndex: number | undefined = $state();
-  let scrollToOffet: number | undefined = $state();
 
   let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
   let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
@@ -24,18 +16,17 @@
     console.log(prefix + JSON.stringify(event));
   }
 
-  // The two effects below are an elegant way to ensure only one fo the value is defined
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToIndex = undefined;
-    scrollToOffet = theScrollOffet;
-  });
+  let scrollToProps: VariantScrollConfig = $state({});
 
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToOffet = undefined;
-    scrollToIndex = theScrollToIndex;
-  });
+  function updateScrollToProps(key: 'scrollToIndex' | 'scrollToOffset', value: number | undefined) {
+    if (key === 'scrollToIndex') {
+      scrollToProps.scrollToIndex = value;
+      scrollToProps.scrollToOffset = undefined;
+    } else if (key === 'scrollToOffset') {
+      scrollToProps.scrollToOffset = value;
+      scrollToProps.scrollToIndex = undefined;
+    }
+  }
 
   function randomizeSize() {
     randSizes = new Array(myModel.length);
@@ -74,7 +65,8 @@
         type="number"
         placeholder="pick an index..."
         class="input"
-        bind:value={theScrollToIndex} />
+        value={scrollToProps.scrollToIndex}
+        oninput={e => updateScrollToProps('scrollToIndex', Number(e.currentTarget.value))} />
     </span>
   </div>
   <div class="select">
@@ -85,7 +77,8 @@
         type="number"
         placeholder="pick an offset..."
         class="input"
-        bind:value={theScrollOffet} />
+        value={scrollToProps.scrollToOffset}
+        oninput={e => updateScrollToProps('scrollToOffset', Number(e.currentTarget.value))} />
     </span>
   </div>
   <div class="select">
@@ -114,8 +107,7 @@
 <VirtualList
   items={myModel}
   style="height:500px"
-  {scrollToIndex}
-  scrollToOffset={scrollToOffet}
+  {...scrollToProps}
   {scrollToAlignment}
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
@@ -124,7 +116,7 @@
   {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
-      class:highlighted={index === scrollToIndex}>
+      class:highlighted={index === scrollToProps.scrollToIndex}>
       #{index}
       {item.text}
     </div>

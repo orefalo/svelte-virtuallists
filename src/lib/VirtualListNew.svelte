@@ -42,7 +42,8 @@
     type SizingCalculatorFn,
     type VLRangeEvent,
     type VLScrollEvent,
-    type VLSlotSignature
+    type VLSlotSignature,
+    type VariantScrollConfig
   } from '.';
 
   import clsx from 'clsx';
@@ -139,7 +140,7 @@
     style?: string;
 
     sizingCalculator?: SizingCalculatorFn;
-  } = $props();
+  } & VariantScrollConfig = $props();
 
   // ======== VARIABLES ========
 

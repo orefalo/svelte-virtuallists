@@ -42,3 +42,24 @@ export enum ALIGNMENT {
   CENTER = 'center',
   END = 'end'
 }
+
+
+export type VariantScrollToIndex = {
+  scrollToIndex: number;
+  scrollToOffset?: undefined;
+};
+
+export type VariantScrollToOffset = {
+  scrollToIndex?: undefined;
+  scrollToOffset: number;
+};
+
+export type VariantScrollPositionUndefined = {
+  scrollToIndex?: undefined;
+  scrollToOffset?: undefined;
+};
+
+export type VariantScrollConfig =
+  | VariantScrollToIndex
+  | VariantScrollToOffset
+  | VariantScrollPositionUndefined;
