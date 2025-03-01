@@ -1,6 +1,12 @@
-import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t,e as os,M as cs,N as is,g as V,h as xs,q as e,O as rs,x as l,m as Ts,k as zs,K as R}from"../chunks/Hb09kDf2.js";import{E as Ss}from"../chunks/Be7KHuKK.js";import{A as qs,S as ws,V as ks}from"../chunks/P-AzkfP4.js";function Os(u,r){for(let p=0;p<10;p++)r.pop()}var Is=C("<div> </div>"),As=C('<div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option>auto</option><option>start</option><option>center</option><option>end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option>auto</option><option>smooth</option><option>instant</option></select></span></div></div> <div style="font-weight: bold"><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <!> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div>',1);function Ms(u,r){ys(r,!0);const p=i(new Array(1e4));let B=c(0),E=c(0),g=c(void 0),m=c(void 0),j=c(void 0),v=c(void 0),f=c(i(qs.AUTO)),b=c(i(ws.SMOOTH)),_=c(void 0),d;function us(s){e(B,i(s.start)),e(E,i(s.end))}ps(()=>{e(j,void 0),e(v,i(t(m)))}),ps(()=>{e(v,void 0),e(j,i(t(g)))});function js(){d=new Array(p.length);for(let s=0;s<d.length;s++)d[s]=Math.round(Math.random()*65+30);e(_,(s,ls)=>d[s])}function N(){e(_,()=>25)}function H(){for(let s=0;s<p.length;s++)p[s]={text:Math.floor(Math.random()*p.length)}}H(),N();var U=As(),y=hs(U),x=a(y),G=a(x),$=n(a(G));rs($),l(G),l(x);var T=n(x,2),K=a(T),P=n(a(K));rs(P),l(K),l(T);var z=n(T,2),D=a(z),S=n(a(D)),q=a(S);q.value=(q.__value="auto")==null?"":"auto";var w=n(q);w.value=(w.__value="start")==null?"":"start";var k=n(w);k.value=(k.__value="center")==null?"":"center";var F=n(k);F.value=(F.__value="end")==null?"":"end",l(S),l(D),l(z);var J=n(z,2),Q=a(J),O=n(a(Q)),I=a(O);I.value=(I.__value="auto")==null?"":"auto";var A=n(I);A.value=(A.__value="smooth")==null?"":"smooth";var W=n(A);W.value=(W.__value="instant")==null?"":"instant",l(O),l(Q),l(J),l(y);var M=n(y,2),L=n(a(M),2),ds=a(L,!0);l(L);var X=n(L,4),gs=a(X,!0);l(X),l(M);var Y=n(M,2);ks(Y,{get items(){return p},style:"height:500px",get scrollToIndex(){return t(j)},get scrollToOffset(){return t(v)},get scrollToAlignment(){return t(f)},get scrollToBehaviour(){return t(b)},get sizingCalculator(){return t(_)},onVisibleRangeUpdate:us,vl_slot:(ls,o)=>{let ts=()=>o==null?void 0:o().index,vs=()=>o==null?void 0:o().item,fs=()=>o==null?void 0:o().size;var h=Is();let es;var bs=a(h);l(h),os(()=>{Ts(h,"style",`border: 1px solid rgb(204, 204, 204); line-height: ${fs()??""}px;`),es=zs(h,1,"svelte-1bng65z",null,es,{highlighted:ts()===t(j)}),R(bs,`#${ts()??""}
-      ${vs().text??""}`)}),V(ls,h)},$$slots:{vl_slot:!0}});var Z=n(Y,2),ss=a(Z);ss.__click=js;var ns=n(ss,2);ns.__click=N;var as=n(ns,2);as.__click=H;var ms=n(as,2);ms.__click=[Os,p],l(Z),os(()=>{R(ds,t(B)),R(gs,t(E))}),cs($,()=>t(g),s=>e(g,s)),cs(P,()=>t(m),s=>e(m,s)),is(S,()=>t(f),s=>e(f,s)),is(O,()=>t(b),s=>e(b,s)),V(u,U),xs()}_s(["click"]);const Ls=`<script lang="ts">
-  import { ALIGNMENT, SCROLL_BEHAVIOR, type VLRangeEvent, type VLSlotSignature } from '$lib';
+import{L as vs,p as fs,b as i,s as d,t as R,y as cs,B as s,w as a,M as _s,e as ts,N as ps,n as r,g as C,h as bs,q as h,O as es,x as l,m as ys,k as Ts,K as V,P as os}from"../chunks/jdX24A6w.js";import{E as xs}from"../chunks/OWgUB9v-.js";import{A as zs,S as qs,V as Ss}from"../chunks/B7HiuRcr.js";function ks(o,p){for(let t=0;t<10;t++)p.pop()}var ws=(o,p)=>p("scrollToIndex",Number(o.currentTarget.value)),As=(o,p)=>p("scrollToOffset",Number(o.currentTarget.value)),Ms=R("<div> </div>"),Os=R('<div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option>auto</option><option>start</option><option>center</option><option>end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option>auto</option><option>smooth</option><option>instant</option></select></span></div></div> <div style="font-weight: bold"><span>Visible Area: start</span> <span> </span> - <span>end</span> <span> </span></div> <!> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div>',1);function Is(o,p){fs(p,!0);const t=i(new Array(1e4));let P=d(0),B=d(0),m=d(i(zs.AUTO)),v=d(i(qs.SMOOTH)),f=d(void 0),g;function rs(n){h(P,i(n.start)),h(B,i(n.end))}let c=i({});function N(n,u){n==="scrollToIndex"?(c.scrollToIndex=u,c.scrollToOffset=void 0):n==="scrollToOffset"&&(c.scrollToOffset=u,c.scrollToIndex=void 0)}function is(){g=new Array(t.length);for(let n=0;n<g.length;n++)g[n]=Math.round(Math.random()*65+30);h(f,(n,u)=>g[n])}function E(){h(f,()=>25)}function H(){for(let n=0;n<t.length;n++)t[n]={text:Math.floor(Math.random()*t.length)}}H(),E();var G=Os(),_=cs(G),b=a(_),U=a(b),y=s(a(U));es(y),y.__input=[ws,N],l(U),l(b);var T=s(b,2),K=a(T),x=s(a(K));es(x),x.__input=[As,N],l(K),l(T);var z=s(T,2),D=a(z),q=s(a(D)),S=a(q);S.value=(S.__value="auto")==null?"":"auto";var k=s(S);k.value=(k.__value="start")==null?"":"start";var w=s(k);w.value=(w.__value="center")==null?"":"center";var F=s(w);F.value=(F.__value="end")==null?"":"end",l(q),l(D),l(z);var J=s(z,2),Q=a(J),A=s(a(Q)),M=a(A);M.value=(M.__value="auto")==null?"":"auto";var O=s(M);O.value=(O.__value="smooth")==null?"":"smooth";var W=s(O);W.value=(W.__value="instant")==null?"":"instant",l(A),l(Q),l(J),l(_);var I=s(_,2),L=s(a(I),2),hs=a(L,!0);l(L);var X=s(L,4),us=a(X,!0);l(X),l(I);var Y=s(I,2);Ss(Y,_s({get items(){return t},style:"height:500px"},()=>c,{get scrollToAlignment(){return r(m)},get scrollToBehaviour(){return r(v)},get sizingCalculator(){return r(f)},onVisibleRangeUpdate:rs,vl_slot:(u,e)=>{let as=()=>e==null?void 0:e().index,ds=()=>e==null?void 0:e().item,gs=()=>e==null?void 0:e().size;var j=Ms();let ls;var ms=a(j);l(j),ts(()=>{ys(j,"style",`border: 1px solid rgb(204, 204, 204); line-height: ${gs()??""}px;`),ls=Ts(j,1,"svelte-1bng65z",null,ls,{highlighted:as()===c.scrollToIndex}),V(ms,`#${as()??""}
+      ${ds().text??""}`)}),C(u,j)},$$slots:{vl_slot:!0}}));var Z=s(Y,2),$=a(Z);$.__click=is;var ss=s($,2);ss.__click=E;var ns=s(ss,2);ns.__click=H;var js=s(ns,2);js.__click=[ks,t],l(Z),ts(()=>{os(y,c.scrollToIndex),os(x,c.scrollToOffset),V(hs,r(P)),V(us,r(B))}),ps(q,()=>r(m),n=>h(m,n)),ps(A,()=>r(v),n=>h(v,n)),C(o,G),bs()}vs(["input","click"]);const Ls=`<script lang="ts">
+  import {
+    ALIGNMENT,
+    SCROLL_BEHAVIOR,
+    type VariantScrollConfig,
+    type VLRangeEvent,
+    type VLSlotSignature
+  } from '$lib';
   import { VirtualList } from 'svelte-virtuallists';
 
   const myModel = $state(new Array(10000));
@@ -8,14 +14,6 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
   // used for the positioning pointers
   let start = $state(0);
   let end = $state(0);
-
-  // on the UI
-  let theScrollToIndex: number | undefined = $state();
-  let theScrollOffet: number | undefined = $state();
-
-  // on the component
-  let scrollToIndex: number | undefined = $state();
-  let scrollToOffet: number | undefined = $state();
 
   let scrollToAlignment: ALIGNMENT = $state(ALIGNMENT.AUTO);
   let scrollToBehaviour: SCROLL_BEHAVIOR = $state(SCROLL_BEHAVIOR.SMOOTH);
@@ -30,18 +28,17 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
     end = event.end;
   }
 
-  // The two effects below are an elegant VLRangeEventensure only one fo the value is defined
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToIndex = undefined;
-    scrollToOffet = theScrollOffet;
-  });
+  let scrollToProps: VariantScrollConfig = $state({});
 
-  $effect(() => {
-    // scrollToIndex and scrollOffset shall not be used together.
-    scrollToOffet = undefined;
-    scrollToIndex = theScrollToIndex;
-  });
+  function updateScrollToProps(key: 'scrollToIndex' | 'scrollToOffset', value: number | undefined) {
+    if (key === 'scrollToIndex') {
+      scrollToProps.scrollToIndex = value;
+      scrollToProps.scrollToOffset = undefined;
+    } else if (key === 'scrollToOffset') {
+      scrollToProps.scrollToOffset = value;
+      scrollToProps.scrollToIndex = undefined;
+    }
+  }
 
   function randomizeSize() {
     randSizes = new Array(myModel.length);
@@ -79,7 +76,8 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
         type="number"
         placeholder="pick an index..."
         class="input"
-        bind:value={theScrollToIndex} />
+        value={scrollToProps.scrollToIndex}
+        oninput={e => updateScrollToProps('scrollToIndex', Number(e.currentTarget.value))} />
     </span>
   </div>
   <div class="select">
@@ -90,7 +88,8 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
         type="number"
         placeholder="pick an offset..."
         class="input"
-        bind:value={theScrollOffet} />
+        value={scrollToProps.scrollToOffset}
+        oninput={e => updateScrollToProps('scrollToOffset', Number(e.currentTarget.value))} />
     </span>
   </div>
   <div class="select">
@@ -127,8 +126,7 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
 <VirtualList
   items={myModel}
   style="height:500px"
-  {scrollToIndex}
-  scrollToOffset={scrollToOffet}
+  {...scrollToProps}
   {scrollToAlignment}
   {scrollToBehaviour}
   sizingCalculator={szCalculator}
@@ -136,7 +134,7 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
   {#snippet vl_slot({ index, item, size }: VLSlotSignature<(typeof myModel)[0]>)}
     <div
       style="border: 1px solid rgb(204, 204, 204); line-height: {size}px;"
-      class:highlighted={index === scrollToIndex}>
+      class:highlighted={index === scrollToProps.scrollToIndex}>
       #{index}
       {item.text}
     </div>
@@ -155,8 +153,14 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
     background: #efefef;
   }
 </style>
-`,Rs=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">ALIGNMENT</span>, <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>, type <span class="hljs-title class_">VLRangeEvent</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
+`,Vs=`<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> {
+    <span class="hljs-variable constant_">ALIGNMENT</span>,
+    <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>,
+    type <span class="hljs-title class_">VariantScrollConfig</span>,
+    type <span class="hljs-title class_">VLRangeEvent</span>,
+    type <span class="hljs-title class_">VLSlotSignature</span>
+  } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = $state(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>));
@@ -164,14 +168,6 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
   <span class="hljs-comment">// used for the positioning pointers</span>
   <span class="hljs-keyword">let</span> start = $state(<span class="hljs-number">0</span>);
   <span class="hljs-keyword">let</span> end = $state(<span class="hljs-number">0</span>);
-
-  <span class="hljs-comment">// on the UI</span>
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">theScrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">theScrollOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
-
-  <span class="hljs-comment">// on the component</span>
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
 
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToAlignment</span>: <span class="hljs-variable constant_">ALIGNMENT</span> = $state(<span class="hljs-variable constant_">ALIGNMENT</span>.<span class="hljs-property">AUTO</span>);
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToBehaviour</span>: <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span> = $state(<span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>.<span class="hljs-property">SMOOTH</span>);
@@ -186,18 +182,17 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
     end = event.<span class="hljs-property">end</span>;
   }
 
-  <span class="hljs-comment">// The two effects below are an elegant VLRangeEventensure only one fo the value is defined</span>
-  $effect(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
-    scrollToIndex = <span class="hljs-literal">undefined</span>;
-    scrollToOffet = theScrollOffet;
-  });
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToProps</span>: <span class="hljs-title class_">VariantScrollConfig</span> = $state({});
 
-  $effect(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
-    scrollToOffet = <span class="hljs-literal">undefined</span>;
-    scrollToIndex = theScrollToIndex;
-  });
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateScrollToProps</span>(<span class="hljs-params">key: <span class="hljs-string">&#x27;scrollToIndex&#x27;</span> | <span class="hljs-string">&#x27;scrollToOffset&#x27;</span>, value: number | <span class="hljs-literal">undefined</span></span>) {
+    <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;scrollToIndex&#x27;</span>) {
+      scrollToProps.<span class="hljs-property">scrollToIndex</span> = value;
+      scrollToProps.<span class="hljs-property">scrollToOffset</span> = <span class="hljs-literal">undefined</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;scrollToOffset&#x27;</span>) {
+      scrollToProps.<span class="hljs-property">scrollToOffset</span> = value;
+      scrollToProps.<span class="hljs-property">scrollToIndex</span> = <span class="hljs-literal">undefined</span>;
+    }
+  }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">randomizeSize</span>(<span class="hljs-params"></span>) {
     randSizes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(myModel.<span class="hljs-property">length</span>);
@@ -235,7 +230,8 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
         <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>
         <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;pick an index...&quot;</span>
         <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input&quot;</span>
-        <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{theScrollToIndex}</span> /&gt;</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{scrollToProps.scrollToIndex}</span>
+        <span class="hljs-attr">oninput</span>=<span class="hljs-string">{e</span> =&gt;</span> updateScrollToProps(&#x27;scrollToIndex&#x27;, Number(e.currentTarget.value))} /&gt;
     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>&gt;</span>
@@ -246,7 +242,8 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
         <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>
         <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;pick an offset...&quot;</span>
         <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input&quot;</span>
-        <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{theScrollOffet}</span> /&gt;</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{scrollToProps.scrollToOffset}</span>
+        <span class="hljs-attr">oninput</span>=<span class="hljs-string">{e</span> =&gt;</span> updateScrollToProps(&#x27;scrollToOffset&#x27;, Number(e.currentTarget.value))} /&gt;
     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>&gt;</span>
@@ -283,8 +280,7 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
 <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span>
   <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span>
   <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:500px&quot;</span>
-  {<span class="hljs-attr">scrollToIndex</span>}
-  <span class="hljs-attr">scrollToOffset</span>=<span class="hljs-string">{scrollToOffet}</span>
+  {<span class="hljs-attr">...scrollToProps</span>}
   {<span class="hljs-attr">scrollToAlignment</span>}
   {<span class="hljs-attr">scrollToBehaviour</span>}
   <span class="hljs-attr">sizingCalculator</span>=<span class="hljs-string">{szCalculator}</span>
@@ -292,7 +288,7 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
   {#snippet vl_slot({ index, item, size }: VLSlotSignature&lt;(typeof myModel)[0]&gt;)}
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
       <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); line-height: {size}px;&quot;</span>
-      <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
+      <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToProps.scrollToIndex}</span>&gt;</span>
       #{index}
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -311,4 +307,4 @@ import{L as _s,p as ys,b as i,s as c,u as ps,t as C,y as hs,w as a,B as n,n as t
     <span class="hljs-attribute">background</span>: <span class="hljs-number">#efefef</span>;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-`,Vs={code:Ls,highlightedHTML:Rs,component:Ms};var Cs=C("<h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or at a pixel offset.</p> <!>",1);function Hs(u){var r=Cs(),p=n(hs(r),4);Ss(p,{example:Vs}),V(u,r)}export{Hs as component};
+`,Cs={code:Ls,highlightedHTML:Vs,component:Is};var Rs=R("<h2>Positioning</h2> <p>The component provides properties to position the list either on an element, or at a pixel offset.</p> <!>",1);function Es(o){var p=Rs(),t=s(cs(p),4);xs(t,{example:Cs}),C(o,p)}export{Es as component};

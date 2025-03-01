@@ -7,13 +7,13 @@
     
 		<link href="/svelte-virtuallists/_app/immutable/assets/0.BR721seb.css" rel="stylesheet">
 		<link href="/svelte-virtuallists/_app/immutable/assets/3.DDWW01F8.css" rel="stylesheet">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.ZunuoUY_.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/Hb09kDf2.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.varDWRqa.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.7mWwnE-V.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/3.BNlkzD1R.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/Be7KHuKK.js">
-		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/P-AzkfP4.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/start.CulGJ7la.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/jdX24A6w.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/entry/app.DjTgBKl7.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/0.CXy9HQ3V.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/nodes/3.CXATAQQG.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/OWgUB9v-.js">
+		<link rel="modulepreload" href="/svelte-virtuallists/_app/immutable/chunks/B7HiuRcr.js"><!--[--><meta name="description" content="A Fantastic virtual list for Svelte 5 and above"> <!----><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
 /*
 
 Night Owl for highlight.js (c) Carl Baxter <carl@cbax.tech>
@@ -46,25 +46,17 @@ SOFTWARE.
 .hljs-selector-pseudo{color:#c792ea;font-style:italic}.hljs-template-tag{color:#c792ea}.hljs-template-variable{color:#addb67}.hljs-addition{color:#addb67ff;font-style:italic}.hljs-deletion{color:#EF535090;font-style:italic}</style><!----><!--]--><title>Svelte-Virtuallists - Events</title>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-16mabzq"><div role="presentation" class="toc-container-space svelte-16mabzq"></div> <main class="svelte-16mabzq"><!----><h2>Events</h2> <p>Try interacting with the list below and check the event log in the console.</p> <div><b>Please check the browser console to see event traces</b> <div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option value="auto">auto</option><option value="start">start</option><option value="center">center</option><option value="end">end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option value="auto">auto</option><option value="smooth">smooth</option><option value="instant">instant</option></select></span></div></div> <div class="vtlist" style="overflow:auto; height:500px"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:column; margin-top:0px;margin-bottom:624628px"><!----> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); line-height: 93px;" class="svelte-1bng65z">#0
-      5754</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 51px;" class="svelte-1bng65z">#1
-      1486</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 93px;" class="svelte-1bng65z">#2
-      3701</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 65px;" class="svelte-1bng65z">#3
-      234</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 73px;" class="svelte-1bng65z">#4
-      7399</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 81px;" class="svelte-1bng65z">#5
-      5319</div><!----><!--]--><!--]--> <!----></div><!--]--></div><!----> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">ALIGNMENT</span>, <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
+    <div style="display: contents"><!--[--><!--[--><!----><div class="page-container svelte-16mabzq"><div role="presentation" class="toc-container-space svelte-16mabzq"></div> <main class="svelte-16mabzq"><!----><h2>Events</h2> <p>Try interacting with the list below and check the event log in the console.</p> <div><b>Please check the browser console to see event traces</b> <div class="actions"><div class="select"><span>Scroll to row index <input id="index" type="number" placeholder="pick an index..." class="input"></span></div> <div class="select"><span>Scroll to pixel offset <input id="offset" type="number" placeholder="pick an offset..." class="input"></span></div> <div class="select"><span>Alignment <select id="alignment"><option value="auto">auto</option><option value="start">start</option><option value="center">center</option><option value="end">end</option></select></span></div> <div class="select"><span>Behaviour <select id="behaviour"><option value="auto">auto</option><option value="smooth">smooth</option><option value="instant">instant</option></select></span></div></div> <div class="vtlist" style="overflow:auto; height:500px"><!--[!--><div class="vtlist-inner" style="display:flex; flex-direction:column; margin-top:0px;margin-bottom:623881px"><!----> <!--[!--><!--[--><div style="border: 1px solid rgb(204, 204, 204); line-height: 60px;" class="svelte-1bng65z">#0
+      7863</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 56px;" class="svelte-1bng65z">#1
+      9930</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 61px;" class="svelte-1bng65z">#2
+      8728</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 67px;" class="svelte-1bng65z">#3
+      2347</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 31px;" class="svelte-1bng65z">#4
+      7782</div><!----><div style="border: 1px solid rgb(204, 204, 204); line-height: 64px;" class="svelte-1bng65z">#5
+      5569</div><!----><!--]--><!--]--> <!----></div><!--]--></div><!----> <div class="actions"><button class="button">Randomize row heights</button> <button class="button">Same row heights</button> <button class="button">Randomize content</button> <button class="button">array size -10</button></div><!----> <pre data-language="svelte"><code class="hljs"><!----><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { <span class="hljs-variable constant_">ALIGNMENT</span>, <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>, type <span class="hljs-title class_">VariantScrollConfig</span>, type <span class="hljs-title class_">VLSlotSignature</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;$lib&#x27;</span>;
   <span class="hljs-keyword">import</span> { <span class="hljs-title class_">VirtualList</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-virtuallists&#x27;</span>;
 
   <span class="hljs-keyword">const</span> myModel = $state(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">10000</span>));
-
-  <span class="hljs-comment">// on the UI</span>
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">theScrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">theScrollOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
-
-  <span class="hljs-comment">// on the component</span>
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToIndex</span>: number | <span class="hljs-literal">undefined</span> = $state();
-  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToOffet</span>: number | <span class="hljs-literal">undefined</span> = $state();
 
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToAlignment</span>: <span class="hljs-variable constant_">ALIGNMENT</span> = $state(<span class="hljs-variable constant_">ALIGNMENT</span>.<span class="hljs-property">AUTO</span>);
   <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToBehaviour</span>: <span class="hljs-variable constant_">SCROLL_BEHAVIOR</span> = $state(<span class="hljs-variable constant_">SCROLL_BEHAVIOR</span>.<span class="hljs-property">SMOOTH</span>);
@@ -78,18 +70,17 @@ SOFTWARE.
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefix + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(event));
   }
 
-  <span class="hljs-comment">// The two effects below are an elegant way to ensure only one fo the value is defined</span>
-  $effect(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
-    scrollToIndex = <span class="hljs-literal">undefined</span>;
-    scrollToOffet = theScrollOffet;
-  });
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">scrollToProps</span>: <span class="hljs-title class_">VariantScrollConfig</span> = $state({});
 
-  $effect(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// scrollToIndex and scrollOffset shall not be used together.</span>
-    scrollToOffet = <span class="hljs-literal">undefined</span>;
-    scrollToIndex = theScrollToIndex;
-  });
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateScrollToProps</span>(<span class="hljs-params">key: <span class="hljs-string">&#x27;scrollToIndex&#x27;</span> | <span class="hljs-string">&#x27;scrollToOffset&#x27;</span>, value: number | <span class="hljs-literal">undefined</span></span>) {
+    <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;scrollToIndex&#x27;</span>) {
+      scrollToProps.<span class="hljs-property">scrollToIndex</span> = value;
+      scrollToProps.<span class="hljs-property">scrollToOffset</span> = <span class="hljs-literal">undefined</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;scrollToOffset&#x27;</span>) {
+      scrollToProps.<span class="hljs-property">scrollToOffset</span> = value;
+      scrollToProps.<span class="hljs-property">scrollToIndex</span> = <span class="hljs-literal">undefined</span>;
+    }
+  }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">randomizeSize</span>(<span class="hljs-params"></span>) {
     randSizes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(myModel.<span class="hljs-property">length</span>);
@@ -128,7 +119,8 @@ SOFTWARE.
         <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>
         <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;pick an index...&quot;</span>
         <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input&quot;</span>
-        <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{theScrollToIndex}</span> /&gt;</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{scrollToProps.scrollToIndex}</span>
+        <span class="hljs-attr">oninput</span>=<span class="hljs-string">{e</span> =&gt;</span> updateScrollToProps(&#x27;scrollToIndex&#x27;, Number(e.currentTarget.value))} /&gt;
     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>&gt;</span>
@@ -139,7 +131,8 @@ SOFTWARE.
         <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>
         <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;pick an offset...&quot;</span>
         <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input&quot;</span>
-        <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{theScrollOffet}</span> /&gt;</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{scrollToProps.scrollToOffset}</span>
+        <span class="hljs-attr">oninput</span>=<span class="hljs-string">{e</span> =&gt;</span> updateScrollToProps(&#x27;scrollToOffset&#x27;, Number(e.currentTarget.value))} /&gt;
     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>&gt;</span>
@@ -168,8 +161,7 @@ SOFTWARE.
 <span class="hljs-tag">&lt;<span class="hljs-name">VirtualList</span>
   <span class="hljs-attr">items</span>=<span class="hljs-string">{myModel}</span>
   <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:500px&quot;</span>
-  {<span class="hljs-attr">scrollToIndex</span>}
-  <span class="hljs-attr">scrollToOffset</span>=<span class="hljs-string">{scrollToOffet}</span>
+  {<span class="hljs-attr">...scrollToProps</span>}
   {<span class="hljs-attr">scrollToAlignment</span>}
   {<span class="hljs-attr">scrollToBehaviour</span>}
   <span class="hljs-attr">sizingCalculator</span>=<span class="hljs-string">{szCalculator}</span>
@@ -178,7 +170,7 @@ SOFTWARE.
   {#snippet vl_slot({ index, item, size }: VLSlotSignature&lt;(typeof myModel)[0]&gt;)}
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
       <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid rgb(204, 204, 204); line-height: {size}px;&quot;</span>
-      <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToIndex}</span>&gt;</span>
+      <span class="hljs-attr">class:highlighted</span>=<span class="hljs-string">{index</span> === <span class="hljs-string">scrollToProps.scrollToIndex}</span>&gt;</span>
       #{index}
       {item.text}
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -201,7 +193,7 @@ SOFTWARE.
 			
 			<script>
 				{
-					__sveltekit_1k75zjs = {
+					__sveltekit_zjxplg = {
 						base: "/svelte-virtuallists",
 						assets: "/svelte-virtuallists"
 					};
@@ -209,8 +201,8 @@ SOFTWARE.
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("/svelte-virtuallists/_app/immutable/entry/start.ZunuoUY_.js"),
-						import("/svelte-virtuallists/_app/immutable/entry/app.varDWRqa.js")
+						import("/svelte-virtuallists/_app/immutable/entry/start.CulGJ7la.js"),
+						import("/svelte-virtuallists/_app/immutable/entry/app.DjTgBKl7.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
