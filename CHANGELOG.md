@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/orefalo/svelte-virtuallists/compare/v1.4.1...v1.4.2) (2025-03-01)
+
+
+### Bug Fixes
+
+* enhance typings, update examples [#32](https://github.com/orefalo/svelte-virtuallists/issues/32) ([beae202](https://github.com/orefalo/svelte-virtuallists/commit/beae20202957718671ed2b37a36237cdcd6c4314))
+
 ## [1.4.1](https://github.com/orefalo/svelte-virtuallists/compare/v1.4.0...v1.4.1) (2025-02-25)
 
 

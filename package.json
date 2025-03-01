@@ -1,6 +1,6 @@
 {
   "name": "svelte-virtuallists",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": false,
   "description": "A component that renders only what is visible",
   "keywords": [
