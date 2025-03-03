@@ -13,7 +13,7 @@
   <a href="#about">About</a> •
   <a href="#features">Features</a> •
   <a href="#usage">Usage</a> •
-  <a href="#demos">Demos</a> •
+  <a href="#examples">Demos</a> •
   <a href="#samples">Samples</a>
 </p>
 

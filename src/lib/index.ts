@@ -43,7 +43,6 @@ export enum ALIGNMENT {
   END = 'end'
 }
 
-
 export type VariantScrollToIndex = {
   scrollToIndex: number;
   scrollToOffset?: undefined;
